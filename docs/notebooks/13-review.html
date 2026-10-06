@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Ensembles and Interpretability – Data Science in Engineering</title>
+<title>13&nbsp; Review and Exam Preparation – Data Science in Engineering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notebooks/09-unsupervised.html" rel="next">
-<link href="../notebooks/07-classification.html" rel="prev">
+<link href="../datasets.html" rel="next">
+<link href="../notebooks/12-neural-networks.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -147,7 +113,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/08-ensembles.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/11-time-series.html">Part D – Time Series, Deep Learning and Review</a></li><li class="breadcrumb-item"><a href="../notebooks/13-review.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -260,7 +226,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/08-ensembles.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notebooks/08-ensembles.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
   </div>
 </li>
@@ -301,7 +267,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
+  <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
@@ -340,18 +306,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-ensembles-work" id="toc-why-ensembles-work" class="nav-link active" data-scroll-target="#why-ensembles-work"><span class="header-section-number">8.1</span> Why ensembles work</a>
+  <li><a href="#which-method-when" id="toc-which-method-when" class="nav-link active" data-scroll-target="#which-method-when"><span class="header-section-number">13.1</span> Which method when?</a></li>
+  <li><a href="#core-concepts-at-a-glance" id="toc-core-concepts-at-a-glance" class="nav-link" data-scroll-target="#core-concepts-at-a-glance"><span class="header-section-number">13.2</span> Core concepts at a glance</a></li>
+  <li><a href="#checklist-typical-pitfalls" id="toc-checklist-typical-pitfalls" class="nav-link" data-scroll-target="#checklist-typical-pitfalls"><span class="header-section-number">13.3</span> Checklist: typical pitfalls</a></li>
+  <li><a href="#typical-exam-question-types" id="toc-typical-exam-question-types" class="nav-link" data-scroll-target="#typical-exam-question-types"><span class="header-section-number">13.4</span> Typical exam question types</a></li>
+  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions"><span class="header-section-number">13.5</span> Practice questions</a>
   <ul class="collapse">
-  <li><a href="#bagging-and-random-forests" id="toc-bagging-and-random-forests" class="nav-link" data-scroll-target="#bagging-and-random-forests"><span class="header-section-number">8.1.1</span> Bagging and random forests</a></li>
-  <li><a href="#boosting" id="toc-boosting" class="nav-link" data-scroll-target="#boosting"><span class="header-section-number">8.1.2</span> Boosting</a></li>
-  </ul></li>
-  <li><a href="#multi-class-problems" id="toc-multi-class-problems" class="nav-link" data-scroll-target="#multi-class-problems"><span class="header-section-number">8.2</span> Multi-class problems</a></li>
-  <li><a href="#interpreting-models" id="toc-interpreting-models" class="nav-link" data-scroll-target="#interpreting-models"><span class="header-section-number">8.3</span> Interpreting models</a></li>
-  <li><a href="#live-coding-steel-plate-faults" id="toc-live-coding-steel-plate-faults" class="nav-link" data-scroll-target="#live-coding-steel-plate-faults"><span class="header-section-number">8.4</span> Live coding: steel plate faults</a></li>
-  <li><a href="#extension-shap-values" id="toc-extension-shap-values" class="nav-link" data-scroll-target="#extension-shap-values"><span class="header-section-number">8.5</span> Extension: SHAP values</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.6</span> Exercises</a>
-  <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">8.6.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">13.5.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -359,9 +320,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/08-ensembles.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/11-time-series.html">Part D – Time Series, Deep Learning and Review</a></li><li class="breadcrumb-item"><a href="../notebooks/13-review.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></h1>
 </div>
 
 
@@ -378,269 +339,382 @@ window.Quarto = {
 </header>
 
 
-<p>A single decision tree is easy to understand but a poor predictor: it overfits, and a small change in the data can produce a completely different tree. The remedy is surprisingly simple – combine many trees. <strong>Ensemble methods</strong> such as random forests and gradient boosting are, for tabular data, among the most accurate general-purpose methods available. In industrial practice they are often the first choice for quality prediction, fault classification and virtual sensors.</p>
-<p>Their accuracy comes at a price: an ensemble of hundreds of trees is no longer transparent. Yet engineers need to know <em>why</em> a model predicts a defect – to trust it, to check it against physics and to derive process improvements. The second half of this chapter therefore introduces methods to interpret such models.</p>
-<blockquote class="blockquote">
-<p><strong>Engineering question:</strong> Which surface defect does a steel plate have, and which measurements drive the decision?</p>
-</blockquote>
-<p><strong>Learning goals.</strong> After this chapter you can</p>
-<ul>
-<li>explain bagging and boosting and why they improve on a single tree,</li>
-<li>train random forests and gradient boosting models and tune their hyperparameters with cross-validated search,</li>
-<li>solve and evaluate multi-class problems,</li>
-<li>interpret models with permutation importance and partial dependence plots, knowing their limitations,</li>
-<li>(extension) explain individual predictions with SHAP values.</li>
-</ul>
-<p><strong>Datasets in this chapter</strong></p>
-<ul>
-<li><a href="https://archive.ics.uci.edu/dataset/198/steel+plates+faults">Steel Plates Faults (UCI)</a></li>
-</ul>
-<section id="why-ensembles-work" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="why-ensembles-work"><span class="header-section-number">8.1</span> Why ensembles work</h2>
-<p>Recall the bias–variance decomposition from Chapter 6. A deep decision tree has low bias but high variance. If we could average many trees trained on <em>different</em> datasets from the same process, the variance would shrink while the bias stays low. Ensembles approximate this idea in two different ways.</p>
-<div id="fig-ensembles" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ensembles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/bagging-boosting.png" class="img-fluid figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ensembles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8.1: Bagging and boosting. Bagging trains many deep trees independently on bootstrap samples and averages them (variance reduction). Boosting trains shallow trees one after another, each one correcting the remaining errors of the ensemble so far (bias reduction).
-</figcaption>
-</figure>
-</div>
-<section id="bagging-and-random-forests" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="bagging-and-random-forests"><span class="header-section-number">8.1.1</span> Bagging and random forests</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition: Bagging and random forest
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Bagging</strong> (bootstrap aggregating) trains <span class="math inline">\(B\)</span> models on <span class="math inline">\(B\)</span> bootstrap samples of the training data and averages their predictions (regression) or takes a majority vote (classification). A <strong>random forest</strong> is bagging with decision trees plus one additional trick: at each split, only a random subset of the features (e.g.&nbsp;<span class="math inline">\(\sqrt{p}\)</span> of <span class="math inline">\(p\)</span> features) is considered. This decorrelates the trees and makes the averaging more effective.</p>
-</div>
-</div>
-<p>Why the extra randomness helps: averaging <span class="math inline">\(B\)</span> predictions with variance <span class="math inline">\(\sigma^2\)</span> and pairwise correlation <span class="math inline">\(\rho\)</span> gives a variance of <span class="math inline">\(\rho\sigma^2 + \frac{1-\rho}{B}\sigma^2\)</span>. More trees reduce only the second term; reducing the correlation <span class="math inline">\(\rho\)</span> between the trees reduces the first. Random forests have few critical hyperparameters, rarely overfit when more trees are added, and provide a free validation estimate: each tree did not see about a third of the data (<em>out-of-bag</em> samples), on which it can be evaluated.</p>
+<p>This chapter collects the methods of the course in one map, lists the most important pitfalls and offers practice questions in the style of the exam. The exam is written, without a computer: it tests understanding, interpretation and method choice – not programming routine. Sections marked <em>Extension</em> in the chapters are not part of the exam; in the tables below they are marked (ext.).</p>
+<section id="which-method-when" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="which-method-when"><span class="header-section-number">13.1</span> Which method when?</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Engineering question</th>
+<th>Data</th>
+<th>Method</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>How reliable is a component?</td>
+<td>lifetimes</td>
+<td>Weibull fit, B10 life, bootstrap</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>How much can we trust an alarm?</td>
+<td>detection and false alarm rates, base rate</td>
+<td>Bayes’ theorem</td>
+<td>3, 7</td>
+</tr>
+<tr class="odd">
+<td>Few tests, but prior knowledge</td>
+<td>counts, earlier products</td>
+<td>Bayesian updating (beta–binomial) (ext.)</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Did a change improve the process?</td>
+<td>measurements of two or more groups</td>
+<td>t-test, ANOVA, effect size</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>How many samples do I need?</td>
+<td>assumed effect and noise</td>
+<td>power analysis</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>How does an output depend on inputs?</td>
+<td>continuous, few inputs</td>
+<td>linear regression, design of experiments (ext.)</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Fit a physical or empirical law</td>
+<td>measured curve</td>
+<td>nonlinear least squares (<code>curve_fit</code>)</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Predict a continuous quantity</td>
+<td>many inputs</td>
+<td>regularised regression, gradient boosting</td>
+<td>6, 8</td>
+</tr>
+<tr class="odd">
+<td>Expensive experiments or simulations</td>
+<td>few runs</td>
+<td>Gaussian process, Bayesian optimisation (ext.)</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>OK / not OK, fault type</td>
+<td>labelled data</td>
+<td>logistic regression, trees, ensembles</td>
+<td>7, 8</td>
+</tr>
+<tr class="odd">
+<td>Why does the model decide this way?</td>
+<td>trained model</td>
+<td>permutation importance, partial dependence, SHAP (ext.)</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>Detect unknown deviations</td>
+<td>mostly normal data</td>
+<td>PCA (T², SPE), Isolation Forest</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>Find operating modes or groups</td>
+<td>unlabelled data</td>
+<td>k-means, DBSCAN</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>Diagnose rotating machinery</td>
+<td>vibration signals</td>
+<td>FFT, statistical features, envelope spectrum (ext.)</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Forecast demand or load</td>
+<td>time series</td>
+<td>baselines, lag features + boosting, SARIMA (ext.)</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>Remaining useful life</td>
+<td>multivariate sequences</td>
+<td>neural networks, boosting baseline</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td>Inspect surfaces</td>
+<td>images</td>
+<td>pretrained CNN, anomaly detection (ext.)</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="boosting" class="level3" data-number="8.1.2">
-<h3 data-number="8.1.2" class="anchored" data-anchor-id="boosting"><span class="header-section-number">8.1.2</span> Boosting</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition: Gradient boosting
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Gradient boosting builds the model step by step: <span class="math display">\[F_m(x) = F_{m-1}(x) + \nu\, h_m(x),\]</span> where each new tree <span class="math inline">\(h_m\)</span> is fitted to the negative gradient of the loss with respect to the current predictions – for squared error simply the <strong>residuals</strong> of <span class="math inline">\(F_{m-1}\)</span>. The <strong>learning rate</strong> <span class="math inline">\(0 &lt; \nu \le 1\)</span> shrinks each step.</p>
-</div>
-</div>
-<p>Boosting uses shallow trees (depth 3–8) that individually are weak, and reduces mainly the bias. Unlike random forests, boosting <em>can</em> overfit if too many trees are added; the number of trees, the learning rate and the tree depth must be tuned together, typically with early stopping on validation data. Modern implementations (scikit-learn’s <code>HistGradientBoostingClassifier</code>, XGBoost, LightGBM) are very fast and handle missing values natively.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Engineering practice: which method first?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For a new tabular problem, a random forest with default settings is a robust first model that needs almost no tuning. Gradient boosting is often a few percent more accurate but requires tuning. A linear or logistic model remains the essential baseline – if the ensemble is only marginally better, the simpler model may be preferable for transparency.</p>
-</div>
-</div>
+<section id="core-concepts-at-a-glance" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="core-concepts-at-a-glance"><span class="header-section-number">13.2</span> Core concepts at a glance</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>In one sentence</th>
+<th>Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CRISP-DM</td>
+<td>Process model: understanding → data → preparation → modelling → evaluation → deployment, iterated.</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Statistics vs.&nbsp;ML</td>
+<td>Statistics focuses on understanding and uncertainty, ML on prediction for new data; they overlap in statistical learning.</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Robust statistics</td>
+<td>Median, IQR and MAD are barely affected by outliers, mean and standard deviation are.</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>MCAR / MAR / MNAR</td>
+<td>Whether missingness is random, depends on observed data, or on the missing value itself.</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Central limit theorem</td>
+<td>Means of many independent observations are approximately normal, with standard error <span class="math inline">\(\sigma/\sqrt{n}\)</span>.</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Weibull shape <span class="math inline">\(\beta\)</span></td>
+<td><span class="math inline">\(&lt;1\)</span> early failures, <span class="math inline">\(=1\)</span> random failures, <span class="math inline">\(&gt;1\)</span> wear-out.</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>Confidence interval</td>
+<td>A procedure that captures the true parameter in 95 % of repetitions.</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>p-value</td>
+<td>Probability of data at least as extreme as observed, assuming <span class="math inline">\(H_0\)</span>.</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Effect size</td>
+<td>Size of a difference in physical units or standard deviations; decides relevance.</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>Prediction interval</td>
+<td>Interval for a single new observation; wider than the confidence interval of the mean.</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Bias–variance trade-off</td>
+<td>Too simple models underfit, too flexible models overfit; the test error is U-shaped.</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>Cross-validation</td>
+<td>Estimate of the test error by rotating held-out folds.</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>Precision / recall</td>
+<td>Share of alarms that are real / share of failures that are detected.</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Bagging / boosting</td>
+<td>Averaging decorrelated deep trees / adding shallow trees that correct errors.</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>T² / SPE</td>
+<td>Unusual within the PCA model plane / distance from the plane.</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>Nyquist frequency</td>
+<td>Half the sampling rate; higher frequencies alias.</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Time series validation</td>
+<td>Train on the past, test on the following period.</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>Backpropagation</td>
+<td>Chain rule to compute the gradient of the loss with respect to all weights.</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
 </section>
-</section>
-<section id="multi-class-problems" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="multi-class-problems"><span class="header-section-number">8.2</span> Multi-class problems</h2>
-<p>With <span class="math inline">\(K &gt; 2\)</span> classes, the confusion matrix becomes <span class="math inline">\(K \times K\)</span>, and precision and recall are computed per class. They can be averaged in two ways: the <strong>macro</strong> average treats every class equally (important if rare classes matter), the <strong>weighted</strong> average weights them by their frequency. Balanced accuracy is the macro average of the recalls.</p>
-</section>
-<section id="interpreting-models" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="interpreting-models"><span class="header-section-number">8.3</span> Interpreting models</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Definition: Permutation importance
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The importance of feature <span class="math inline">\(j\)</span> is the decrease in a performance score (on validation or test data) when the values of feature <span class="math inline">\(j\)</span> are randomly shuffled, which destroys its relationship with the target while keeping its distribution.</p>
-</div>
-</div>
-<p>Permutation importance works for any model. The impurity-based <code>feature_importances_</code> of tree models are cheaper but biased towards features with many distinct values and computed on training data.</p>
+<section id="checklist-typical-pitfalls" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="checklist-typical-pitfalls"><span class="header-section-number">13.3</span> Checklist: typical pitfalls</h2>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Pitfall: importance is not causality – and correlated features share importance
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A high importance means that the <em>model</em> relies on a feature, not that the feature <em>causes</em> the defect. If two features are strongly correlated (e.g.&nbsp;two dimensions of a defect), shuffling one of them hurts little because the other still carries the information – both may appear unimportant although the information is essential.</p>
-</div>
-</div>
-<p>A <strong>partial dependence plot</strong> (PDP) shows how the predicted probability changes on average when one feature is varied over its range while the others keep their observed values. It answers the engineering question “in which direction and how strongly does this measurement influence the prediction?” and reveals thresholds and nonlinearities.</p>
-<div id="8bbf63e6" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>, <span class="st">"shap"</span>]:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> importlib.util.find_spec(pkg) <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, <span class="st">"-q"</span>, pkg], check<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="live-coding-steel-plate-faults" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="live-coding-steel-plate-faults"><span class="header-section-number">8.4</span> Live coding: steel plate faults</h2>
-<p>The dataset comes from the automatic inspection of steel plates. For 1,941 detected surface defects, 27 features were extracted from the inspection images and the production data: position and size of the defect (<code>X_Minimum</code>, <code>Pixels_Areas</code>, <code>Length_of_Conveyer</code>, …), luminosity statistics, shape indices, the steel type and the plate thickness. Each defect belongs to one of seven classes: <em>Pastry</em>, <em>Z_Scratch</em>, <em>K_Scatch</em>, <em>Stains</em>, <em>Dirtiness</em>, <em>Bumps</em> and <em>Other_Faults</em>.</p>
-<div id="1c862f0e" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>steel <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">198</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> steel.data.features</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> steel.data.targets.idxmax(axis<span class="op">=</span><span class="dv">1</span>)      <span class="co"># 7 one-hot columns -&gt; one label</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>y.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The classes are imbalanced: <em>Other_Faults</em> is by far the largest class, while <em>Dirtiness</em> and <em>Stains</em> are rare. “Other faults” is a heterogeneous rest category – we must expect it to be hard to classify.</p>
-<div id="9a500706" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score, StratifiedKFold</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier, HistGradientBoostingClassifier</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(<span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> {</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"logistic regression (baseline)"</span>: make_pipeline(StandardScaler(), LogisticRegression(max_iter<span class="op">=</span><span class="dv">3000</span>)),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"random forest"</span>: RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>),</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gradient boosting"</span>: HistGradientBoostingClassifier(random_state<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> candidates.items():</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> cross_val_score(m, X_train, y_train, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:32s}</span><span class="ss"> balanced accuracy = </span><span class="sc">{</span>s<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss"> ± </span><span class="sc">{</span>s<span class="sc">.</span>std()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Discussion.</strong> Both ensembles should clearly outperform the logistic regression baseline. The standard deviation across folds indicates how much of the difference between the ensembles is real – differences smaller than this spread should not be over-interpreted. With seven classes, guessing would reach a balanced accuracy of about 1/7 ≈ 0.14.</p>
-<div id="f437f070" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, ConfusionMatrixDisplay</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>rf <span class="op">=</span> candidates[<span class="st">"random forest"</span>].fit(X_train, y_train)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, rf.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_estimator(rf, X_test, y_test, xticks_rotation<span class="op">=</span><span class="dv">45</span>, colorbar<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                      normalize<span class="op">=</span><span class="st">"true"</span>, values_format<span class="op">=</span><span class="st">".2f"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The row-normalised confusion matrix shows for each true class where its defects end up. Typically, geometrically distinctive defects (scratches, pastry) are recognised well, while <em>Other_Faults</em> and <em>Bumps</em> are confused with each other.</p>
-<div id="ffaf64ea" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> permutation_importance</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> permutation_importance(rf, X_test, y_test, n_repeats<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                            scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>imp <span class="op">=</span> pd.Series(pi.importances_mean, index<span class="op">=</span>X.columns).sort_values()</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>imp.tail(<span class="dv">10</span>).plot.barh(xlabel<span class="op">=</span><span class="st">"Drop in balanced accuracy when shuffled"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="13459e6d" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> PartialDependenceDisplay</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>top <span class="op">=</span> imp.index[<span class="op">-</span><span class="dv">1</span>]                       <span class="co"># most important feature</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>PartialDependenceDisplay.from_estimator(rf, X_test, [top], target<span class="op">=</span>rf.classes_[<span class="dv">0</span>], kind<span class="op">=</span><span class="st">"average"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Partial dependence for class '</span><span class="sc">{</span>rf<span class="sc">.</span>classes_[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Discussion.</strong> The importance ranking tells us which measurements the model relies on – for steel defects typically luminosity and geometry features as well as the steel type and plate thickness. The partial dependence plot shows <em>how</em> the predicted probability of one class changes along the most important feature. Look for thresholds: a steep step suggests a physical limit or a property of the inspection system worth discussing with the process engineers.</p>
-</section>
-<section id="extension-shap-values" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="extension-shap-values"><span class="header-section-number">8.5</span> Extension: SHAP values</h2>
-<p><em>Extension – optional material, not required for the exam.</em></p>
-<p>SHAP (<em>SHapley Additive exPlanations</em>) distributes a single prediction among the features, based on the Shapley value from cooperative game theory: each feature receives its average marginal contribution over all possible orders in which features could be added. The contributions add up exactly to the difference between the prediction and the average prediction. SHAP answers the question: <em>why</em> did the model classify <strong>this</strong> plate as K_Scatch?</p>
-<div id="944b0152" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.TreeExplainer(rf)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>sv <span class="op">=</span> explainer(X_test.iloc[:<span class="dv">200</span>])</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># SHAP values for one class, e.g. "K_Scatch"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>cls <span class="op">=</span> <span class="bu">list</span>(rf.classes_).index(<span class="st">"K_Scatch"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>shap.plots.beeswarm(sv[:, :, cls], max_display<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Each dot is one plate; its horizontal position is the contribution of the feature to the K_Scatch score, its colour the feature value. Features at the top have the largest overall influence. Unlike permutation importance, the beeswarm plot also shows the <em>direction</em> of the effect.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Key takeaways
+Before you trust a result, check …
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Bagging/random forests reduce variance by averaging decorrelated deep trees; boosting reduces bias by adding shallow trees sequentially.</li>
-<li>Random forests are robust defaults; gradient boosting needs tuning but is often slightly more accurate.</li>
-<li>In multi-class problems, use per-class metrics and the confusion matrix; macro averages protect rare classes.</li>
-<li>Permutation importance and partial dependence make black-box models inspectable – but importance is not causality.</li>
+<li><strong>Data leakage:</strong> features that contain the answer, preprocessing fitted on all data, random splits of time series, windows or parts of the same unit in training and test.</li>
+<li><strong>Wrong metric:</strong> accuracy or ROC on imbalanced data; MAPE near zero values.</li>
+<li><strong>Significance without relevance:</strong> tiny effects with huge <span class="math inline">\(n\)</span>; dependent observations treated as independent.</li>
+<li><strong>Extrapolation:</strong> predictions outside the range (or the combinations) of the training data.</li>
+<li><strong>Missing baseline:</strong> no comparison with the mean, the seasonal naive forecast or a simple linear model.</li>
+<li><strong>Correlation vs.&nbsp;causation:</strong> importance and correlation do not prove that a factor causes the effect.</li>
 </ul>
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">8.6</span> Exercises</h2>
+<section id="typical-exam-question-types" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="typical-exam-question-types"><span class="header-section-number">13.4</span> Typical exam question types</h2>
+<ol type="1">
+<li><strong>Method choice:</strong> given a scenario, choose and justify a method and an evaluation metric.</li>
+<li><strong>Interpretation:</strong> read a regression table, a confusion matrix, a scree plot, a probability plot or a learning curve.</li>
+<li><strong>Calculation by hand:</strong> confidence interval, test statistic, Bayes’ theorem, precision/recall from a confusion matrix, aliasing frequency.</li>
+<li><strong>Code reading:</strong> find the error in a short Python snippet.</li>
+</ol>
+</section>
+<section id="practice-questions" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="practice-questions"><span class="header-section-number">13.5</span> Practice questions</h2>
 <div class="exercises">
 <ol type="1">
-<li>Tune <code>max_depth</code>, <code>learning_rate</code> and <code>max_iter</code> of the gradient boosting model with <code>RandomizedSearchCV</code>. How much does the tuning gain compared with the default?</li>
-<li>Which fault classes are confused most often? Look at the row-normalised confusion matrix and discuss whether the confusions are plausible.</li>
-<li>Compare impurity-based importance (<code>rf.feature_importances_</code>) with permutation importance. Why can they differ?</li>
-<li>Train the random forest with <code>class_weight="balanced"</code>. How do the recalls of the rare classes <em>Dirtiness</em> and <em>Stains</em> change?</li>
-<li>(Extension) Explain one single prediction with a SHAP waterfall plot, as you would to a quality engineer.</li>
+<li>A confusion matrix shows TN = 950, FP = 30, FN = 5, TP = 15. Compute accuracy, precision and recall. Is the model useful for failure detection?</li>
+<li>A sensor detects 99 % of all leaks and raises a false alarm in 2 % of the leak-free tests; 0.5 % of all parts leak. What is the probability that a part with an alarm really leaks?</li>
+<li>Find the error: <code>X = StandardScaler().fit_transform(X); X_train, X_test, y_train, y_test = train_test_split(X, y)</code>.</li>
+<li>A t-test on 50,000 parts shows p &lt; 0.001 for a 0.2 µm difference in mean diameter, tolerance ±20 µm. What do you tell the production manager?</li>
+<li>Explain to a colleague, in five sentences, why a random train/test split is wrong for load forecasting.</li>
+<li>Ten measurements of a shaft diameter give <span class="math inline">\(\bar x = 25.012\)</span> mm and <span class="math inline">\(s = 0.004\)</span> mm. Compute a 95 % confidence interval for the mean diameter (<span class="math inline">\(t_{9,\,0.975} = 2.262\)</span>).</li>
+<li>A Weibull analysis of pump seals gives <span class="math inline">\(\beta = 0.8\)</span>. The maintenance manager wants to replace all seals preventively after 2,000 hours. What do you advise?</li>
+<li>A regression of tool wear on cutting speed gives <span class="math inline">\(R^2 = 0.95\)</span> on the training data. The CV error is three times the training error. What do you conclude, and what do you do?</li>
+<li>A vibration signal is sampled at 2 kHz. A gear mesh frequency of 1.6 kHz is present. Where does it appear in the spectrum?</li>
+<li>In a PCA monitoring chart, a new production run exceeds the SPE limit but not the T² limit. How do you interpret this?</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">8.6.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">13.5.1</span> Solutions</h3>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Question 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Accuracy = 965/1000 = 96.5 %, precision = 15/45 = 33 %, recall = 15/20 = 75 %. The trivial model “always OK” would reach 98 % accuracy, so accuracy is misleading here. The model detects three out of four failures with two false alarms per real alarm. Whether it is useful depends on the cost ratio of missed failures and false alarms – often yes.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Question 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[P(\text{leak} \mid \text{alarm}) = \frac{0.99 \cdot 0.005}{0.99 \cdot 0.005 + 0.02 \cdot 0.995} = \frac{0.00495}{0.00495 + 0.0199} \approx 0.20.\]</span> Only about one in five alarms is a real leak – the base rate effect. Alarmed parts should be re-tested before scrapping.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Question 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The scaler is fitted on all data before the split, so means and standard deviations of the test data leak into the preprocessing. Correct: split first, then fit the scaler on the training data only – best by putting scaler and model into a <code>Pipeline</code>. (For time series, additionally <code>shuffle=False</code> or a time-based split.)</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Question 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The difference is statistically significant but practically irrelevant: 0.2 µm is 1 % of the tolerance half-width. With 50,000 parts, the test detects even tiny differences. No action is needed because of this difference; what matters is whether the process stays within tolerance (process capability).</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Question 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Neighbouring hours and days are strongly correlated. With a random split, the test days are surrounded by training days from before <em>and after</em>, so the model only interpolates. In operation, a forecast must be made without knowing the future. The random split therefore underestimates the real forecast error. A time-based split – train on the past, test on the following period – reproduces the real situation.</p>
+</div>
+</div>
+</div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution to Exercise 1
+Solution to Question 6
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="fb3d3482" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RandomizedSearchCV</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> loguniform, randint</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> RandomizedSearchCV(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    HistGradientBoostingClassifier(random_state<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"learning_rate"</span>: loguniform(<span class="fl">0.01</span>, <span class="fl">0.3</span>), <span class="st">"max_depth"</span>: randint(<span class="dv">2</span>, <span class="dv">10</span>),</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"max_iter"</span>: randint(<span class="dv">100</span>, <span class="dv">600</span>), <span class="st">"l2_regularization"</span>: loguniform(<span class="fl">1e-4</span>, <span class="dv">1</span>)},</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    n_iter<span class="op">=</span><span class="dv">25</span>, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>search.fit(X_train, y_train)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"best parameters:"</span>, search.best_params_)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CV balanced accuracy: tuned </span><span class="sc">{</span>search<span class="sc">.</span>best_score_<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Random search samples hyperparameter combinations instead of trying a full grid – usually more efficient when only a few parameters matter. The gain over the default is often modest (a few percentage points); compare it with the fold-to-fold standard deviation before concluding that tuning was worthwhile. The CV score of the best configuration is slightly optimistic, because it was selected among 25 candidates – an untouched test set gives the honest estimate.</p>
+<p><span class="math display">\[25.012 \pm 2.262 \cdot \frac{0.004}{\sqrt{10}} = 25.012 \pm 0.0029\ \text{mm} \;\Rightarrow\; [25.0091,\ 25.0149]\ \text{mm}.\]</span> The interval describes the uncertainty of the <em>mean</em> diameter, not the spread of individual shafts (about ±2s = ±0.008 mm).</p>
 </div>
 </div>
 </div>
@@ -650,13 +724,13 @@ Solution to Exercise 1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution to Exercise 2
+Solution to Question 7
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The largest off-diagonal entries of the normalised confusion matrix show the most frequent confusions. Typically, <em>Other_Faults</em> is confused with <em>Bumps</em> and vice versa: both are less distinct in shape, and “other” is a collection of different defect types without a common signature. Geometrically clear defects such as <em>K_Scatch</em> or <em>Pastry</em> are rarely confused. From a process point of view, refining the <em>Other_Faults</em> category (better labels) may improve the classification more than any change of the algorithm.</p>
+<p><span class="math inline">\(\beta &lt; 1\)</span> means a decreasing failure rate – early failures dominate (e.g.&nbsp;installation errors, defective batches). A new seal is then <em>more</em> likely to fail soon than an old one, so preventive replacement at 2,000 hours would increase the number of failures and costs. Better: investigate the cause of the early failures (installation, quality of supply) and possibly run-in tests.</p>
 </div>
 </div>
 </div>
@@ -666,18 +740,13 @@ Solution to Exercise 2
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution to Exercise 3
+Solution to Question 8
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="3b39632f" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cmp</span> <span class="op">=</span> pd.DataFrame({<span class="st">"impurity"</span>: pd.Series(rf.feature_importances_, index<span class="op">=</span>X.columns),</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"permutation"</span>: imp})</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cmp</span>.rank(ascending<span class="op">=</span><span class="va">False</span>).sort_values(<span class="st">"permutation"</span>).head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Impurity importance is computed on the training data during tree building and favours continuous features with many possible split points; it also distributes importance over correlated features. Permutation importance is computed on test data and measures what the model actually needs for its predictions. Strongly correlated features (e.g.&nbsp;different measures of the defect size) can have high impurity importance but low permutation importance, because shuffling one leaves the others intact.</p>
+<p>The large gap between training and cross-validation error indicates overfitting: the model is too flexible for the amount of data, and the high training <span class="math inline">\(R^2\)</span> is misleading. Actions: simpler model (fewer terms, lower polynomial degree), regularisation, more data; select the complexity by cross-validation and report the CV or test error, not the training <span class="math inline">\(R^2\)</span>.</p>
 </div>
 </div>
 </div>
@@ -687,23 +756,13 @@ Solution to Exercise 3
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution to Exercise 4
+Solution to Question 9
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="978f5724" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> recall_score</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>rf_bal <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">300</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>rf_bal.fit(X_train, y_train)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall (unweighted)"</span>: recall_score(y_test, rf.predict(X_test), average<span class="op">=</span><span class="va">None</span>, labels<span class="op">=</span>rf.classes_),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall (balanced)"</span>: recall_score(y_test, rf_bal.predict(X_test), average<span class="op">=</span><span class="va">None</span>, labels<span class="op">=</span>rf.classes_),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>rf.classes_).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Class weights often increase the recall of rare classes slightly at the expense of frequent ones. For random forests the effect is usually small, because deep trees fit even small classes in the training data. With few test examples per rare class (only a dozen or so), recall estimates are very uncertain – one more or one fewer correct plate changes them by several percentage points.</p>
+<p>The Nyquist frequency is 1 kHz. The 1.6 kHz component aliases to <span class="math inline">\(|1.6 - 2.0| = 0.4\)</span> kHz = 400 Hz. The spectrum shows a false peak at 400 Hz. A sampling rate above 3.2 kHz (in practice ≥ 4 kHz) with an anti-aliasing filter is needed.</p>
 </div>
 </div>
 </div>
@@ -713,20 +772,13 @@ Solution to Exercise 4
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution to Exercise 5
+Solution to Question 10
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="6629eb25" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pred_class <span class="op">=</span> rf.predict(X_test.iloc[[i]])[<span class="dv">0</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">list</span>(rf.classes_).index(pred_class)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"predicted class:"</span>, pred_class, <span class="st">" true class:"</span>, y_test.iloc[i])</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>shap.plots.waterfall(sv[i, :, k], max_display<span class="op">=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The waterfall plot starts at the average model output for this class and adds the contribution of each feature until the prediction for this plate is reached. A good explanation for a quality engineer names the two or three largest contributions in physical terms, for example: “The model considers this a scratch mainly because the defect is long and narrow and its luminosity is low – typical for K_Scatch.” It should also state what the explanation is <em>not</em>: a causal statement about the production process.</p>
+<p>A high SPE with normal T² means that the run shows a pattern of variation that the PCA model of normal operation does not contain – a new kind of deviation, e.g.&nbsp;a sensor fault, a broken correlation between variables or a new fault type. The contribution plot of the SPE shows which variables cause the deviation and is the starting point for the root-cause analysis.</p>
 </div>
 </div>
 </div>
@@ -1350,13 +1402,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notebooks/07-classification.html" class="pagination-link" aria-label="Classification">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification</span></span>
+      <a href="../notebooks/12-neural-networks.html" class="pagination-link" aria-label="Deep Learning in Engineering">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notebooks/09-unsupervised.html" class="pagination-link" aria-label="Unsupervised Learning and Anomaly Detection">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../datasets.html" class="pagination-link" aria-label="Datasets">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

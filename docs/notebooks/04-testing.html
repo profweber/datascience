@@ -105,6 +105,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -203,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression: Linear, Nonlinear and Design of Experiments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -252,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Part D – Time Series, Deep Learning and Outlook</span></a>
+ <span class="menu-text">Part D – Time Series, Deep Learning and Review</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -267,19 +296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/13-visual-inspection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning for Visual Inspection and Outlook</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/14-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+  <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -317,9 +340,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#choosing-a-test" id="toc-choosing-a-test" class="nav-link active" data-scroll-target="#choosing-a-test"><span class="header-section-number">4.1</span> Choosing a test</a></li>
-  <li><a href="#live-coding-nox-emissions-20112015" id="toc-live-coding-nox-emissions-20112015" class="nav-link" data-scroll-target="#live-coding-nox-emissions-20112015"><span class="header-section-number">4.2</span> Live coding: NOx emissions 2011–2015</a></li>
-  <li><a href="#live-coding-product-variant-and-machine-failures" id="toc-live-coding-product-variant-and-machine-failures" class="nav-link" data-scroll-target="#live-coding-product-variant-and-machine-failures"><span class="header-section-number">4.3</span> Live coding: product variant and machine failures</a></li>
+  <li><a href="#the-logic-of-a-hypothesis-test" id="toc-the-logic-of-a-hypothesis-test" class="nav-link active" data-scroll-target="#the-logic-of-a-hypothesis-test"><span class="header-section-number">4.1</span> The logic of a hypothesis test</a></li>
+  <li><a href="#comparing-two-groups-the-t-test" id="toc-comparing-two-groups-the-t-test" class="nav-link" data-scroll-target="#comparing-two-groups-the-t-test"><span class="header-section-number">4.2</span> Comparing two groups: the t-test</a></li>
+  <li><a href="#more-than-two-groups-categories-and-non-normal-data" id="toc-more-than-two-groups-categories-and-non-normal-data" class="nav-link" data-scroll-target="#more-than-two-groups-categories-and-non-normal-data"><span class="header-section-number">4.3</span> More than two groups, categories and non-normal data</a></li>
+  <li><a href="#effect-size-and-practical-relevance" id="toc-effect-size-and-practical-relevance" class="nav-link" data-scroll-target="#effect-size-and-practical-relevance"><span class="header-section-number">4.4</span> Effect size and practical relevance</a></li>
+  <li><a href="#the-multiple-testing-problem" id="toc-the-multiple-testing-problem" class="nav-link" data-scroll-target="#the-multiple-testing-problem"><span class="header-section-number">4.5</span> The multiple-testing problem</a></li>
+  <li><a href="#live-coding-nox-emissions-20112015" id="toc-live-coding-nox-emissions-20112015" class="nav-link" data-scroll-target="#live-coding-nox-emissions-20112015"><span class="header-section-number">4.6</span> Live coding: NOx emissions 2011–2015</a></li>
+  <li><a href="#live-coding-product-variant-and-machine-failures" id="toc-live-coding-product-variant-and-machine-failures" class="nav-link" data-scroll-target="#live-coding-product-variant-and-machine-failures"><span class="header-section-number">4.7</span> Live coding: product variant and machine failures</a></li>
+  <li><a href="#how-many-measurements-do-we-need" id="toc-how-many-measurements-do-we-need" class="nav-link" data-scroll-target="#how-many-measurements-do-we-need"><span class="header-section-number">4.8</span> How many measurements do we need?</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">4.9</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">4.9.1</span> Solutions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -345,24 +377,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Hypothesis tests answer the question whether an observed difference could plausibly be due to chance. With large engineering datasets almost every difference becomes significant – so effect sizes matter at least as much as p-values.</p>
+<p>A process engineer changes the supplier of a raw material, and the mean scrap rate in the following week is slightly lower. Is the new material better – or was it a good week by chance? Questions like this are everyday engineering questions, and statistical hypothesis tests are the standard tool to answer them. They provide a disciplined way to decide whether an observed difference is larger than what random variation alone would plausibly produce.</p>
+<p>Tests are also among the most misunderstood tools of statistics. A small p-value does not mean that an effect is large or important, and a large p-value does not prove that there is no effect. With the big datasets of modern production, almost every difference becomes “significant”. This chapter therefore puts as much weight on <strong>effect sizes</strong> and <strong>practical relevance</strong> as on p-values.</p>
 <blockquote class="blockquote">
 <p><strong>Engineering question:</strong> Have the NOx emissions of a gas turbine changed over the years – and does the product variant affect the failure rate of a machine?</p>
 </blockquote>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>formulate engineering questions as statistical hypotheses,</li>
+<li>explain test statistic, p-value, significance level, type I and type II errors and power,</li>
 <li>choose and apply t-tests, ANOVA, chi-squared and non-parametric tests,</li>
 <li>distinguish statistical significance from practical relevance (effect size),</li>
-<li>recognise the multiple-testing problem.</li>
+<li>recognise and correct for the multiple-testing problem,</li>
+<li>estimate the sample size needed to detect a relevant effect.</li>
 </ul>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://archive.ics.uci.edu/dataset/551/gas+turbine+co+and+nox+emission+data+set">Gas Turbine CO and NOx Emission (UCI)</a></li>
 <li><a href="https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset">AI4I 2020 Predictive Maintenance (UCI)</a></li>
 </ul>
-<section id="choosing-a-test" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="choosing-a-test"><span class="header-section-number">4.1</span> Choosing a test</h2>
+<section id="the-logic-of-a-hypothesis-test" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="the-logic-of-a-hypothesis-test"><span class="header-section-number">4.1</span> The logic of a hypothesis test</h2>
+<p>A hypothesis test is a proof by contradiction with uncertainty. We assume that there is <em>no</em> effect and check whether the data are compatible with this assumption.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Elements of a hypothesis test
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Null hypothesis</strong> <span class="math inline">\(H_0\)</span>: the “nothing special” statement, e.g.&nbsp;<span class="math inline">\(\mu_1 = \mu_2\)</span> (both suppliers give the same mean).</li>
+<li><strong>Alternative hypothesis</strong> <span class="math inline">\(H_1\)</span>: what we want to detect, e.g.&nbsp;<span class="math inline">\(\mu_1 \neq \mu_2\)</span>.</li>
+<li><strong>Test statistic</strong> <span class="math inline">\(T\)</span>: a number computed from the data that measures the deviation from <span class="math inline">\(H_0\)</span>.</li>
+<li><strong>p-value</strong>: the probability of obtaining a test statistic at least as extreme as the observed one, <strong>assuming <span class="math inline">\(H_0\)</span> is true</strong>.</li>
+<li><strong>Significance level</strong> <span class="math inline">\(\alpha\)</span> (often 0.05): <span class="math inline">\(H_0\)</span> is rejected if <span class="math inline">\(p &lt; \alpha\)</span>.</li>
+</ul>
+</div>
+</div>
+<p>Two kinds of wrong decisions are possible:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -371,9 +427,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <thead>
 <tr class="header">
+<th></th>
+<th><span class="math inline">\(H_0\)</span> true (no effect)</th>
+<th><span class="math inline">\(H_0\)</span> false (effect exists)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><span class="math inline">\(H_0\)</span> rejected</strong></td>
+<td>type I error (false alarm), probability <span class="math inline">\(\alpha\)</span></td>
+<td>correct decision, probability <span class="math inline">\(1 - \beta\)</span> = <strong>power</strong></td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">\(H_0\)</span> not rejected</strong></td>
+<td>correct decision</td>
+<td>type II error (missed effect), probability <span class="math inline">\(\beta\)</span></td>
+</tr>
+</tbody>
+</table>
+<div id="fig-pvalue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pvalue-errors.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pvalue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Left: the p-value is the probability, computed under the null hypothesis, of a test statistic at least as extreme as the observed one (two-sided test). Right: the two error types. The critical value is set such that the false alarm probability α is 5 %; the probability β of missing a real effect depends on the effect size and the sample size.
+</figcaption>
+</figure>
+</div>
+<p>The significance level controls the false alarm rate. The power depends on the size of the effect, the noise level and the sample size – small samples often have too little power to detect relevant effects.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: what the p-value is not
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>It is <strong>not</strong> the probability that <span class="math inline">\(H_0\)</span> is true.</li>
+<li><span class="math inline">\(p \ge 0.05\)</span> does <strong>not</strong> prove that there is no effect – maybe the sample was just too small (“absence of evidence is not evidence of absence”).</li>
+<li><span class="math inline">\(p &lt; 0.05\)</span> says nothing about the <strong>size</strong> or the <strong>importance</strong> of the effect.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="comparing-two-groups-the-t-test" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="comparing-two-groups-the-t-test"><span class="header-section-number">4.2</span> Comparing two groups: the t-test</h2>
+<p>For two independent samples with means <span class="math inline">\(\bar x_1, \bar x_2\)</span>, standard deviations <span class="math inline">\(s_1, s_2\)</span> and sizes <span class="math inline">\(n_1, n_2\)</span>, the <strong>Welch t-test</strong> uses</p>
+<p><span class="math display">\[t = \frac{\bar x_1 - \bar x_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}.\]</span></p>
+<p>Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(t\)</span> follows approximately a t-distribution. Welch’s version does not assume equal variances and should be the default (the classical Student t-test assumes them). The test assumes independent observations and approximately normal data – for large samples, the central limit theorem makes the normality assumption less critical.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tests and confidence intervals are two sides of one coin
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A two-sided test at level <span class="math inline">\(\alpha = 0.05\)</span> rejects <span class="math inline">\(H_0: \mu_1 - \mu_2 = 0\)</span> exactly when the 95 % confidence interval for <span class="math inline">\(\mu_1 - \mu_2\)</span> does not contain 0. The interval is more informative: it shows not only <em>whether</em> there is a difference but also <em>how large</em> it plausibly is. Report intervals whenever possible.</p>
+</div>
+</div>
+</section>
+<section id="more-than-two-groups-categories-and-non-normal-data" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="more-than-two-groups-categories-and-non-normal-data"><span class="header-section-number">4.3</span> More than two groups, categories and non-normal data</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
 <th>Question</th>
 <th>Data</th>
 <th>Test</th>
+<th>SciPy</th>
 </tr>
 </thead>
 <tbody>
@@ -381,34 +515,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Do two groups differ in their mean?</td>
 <td>continuous, approx. normal</td>
 <td>Welch t-test</td>
+<td><code>ttest_ind(equal_var=False)</code></td>
 </tr>
 <tr class="even">
 <td>… without normality assumption</td>
 <td>continuous / ordinal</td>
 <td>Mann–Whitney U</td>
+<td><code>mannwhitneyu</code></td>
 </tr>
 <tr class="odd">
-<td>Do <em>k</em> groups differ?</td>
-<td>continuous</td>
-<td>one-way ANOVA / Kruskal–Wallis</td>
-</tr>
-<tr class="even">
-<td>Are two categorical variables related?</td>
-<td>counts</td>
-<td>chi-squared test</td>
-</tr>
-<tr class="odd">
-<td>Paired measurements (before/after)</td>
+<td>Paired measurements (before/after on the same parts)</td>
 <td>continuous</td>
 <td>paired t-test / Wilcoxon</td>
+<td><code>ttest_rel</code> / <code>wilcoxon</code></td>
+</tr>
+<tr class="even">
+<td>Do <span class="math inline">\(k\)</span> groups differ?</td>
+<td>continuous</td>
+<td>one-way ANOVA / Kruskal–Wallis</td>
+<td><code>f_oneway</code> / <code>kruskal</code></td>
+</tr>
+<tr class="odd">
+<td>Are two categorical variables related?</td>
+<td>counts in a contingency table</td>
+<td>chi-squared test</td>
+<td><code>chi2_contingency</code></td>
 </tr>
 </tbody>
 </table>
-<p><strong>p-value:</strong> probability of observing a result at least as extreme as the data, <em>if the null hypothesis is true</em>. It is <strong>not</strong> the probability that the null hypothesis is true.</p>
-<div id="1d0c47f3" class="cell">
+<p>The <strong>one-way ANOVA</strong> (analysis of variance) compares the variation <em>between</em> group means with the variation <em>within</em> the groups:</p>
+<p><span class="math display">\[F = \frac{\text{variance between groups}}{\text{variance within groups}} = \frac{\sum_j n_j(\bar x_j - \bar x)^2/(k-1)}{\sum_j \sum_i (x_{ij} - \bar x_j)^2/(N-k)}.\]</span></p>
+<p>A large <span class="math inline">\(F\)</span> indicates that at least one group mean differs. ANOVA does not say <em>which</em> one – this requires pairwise comparisons, which lead to the multiple-testing problem below.</p>
+<p>The <strong>chi-squared test</strong> compares the observed counts <span class="math inline">\(O\)</span> in a contingency table with the counts <span class="math inline">\(E\)</span> expected if the variables were independent: <span class="math inline">\(\chi^2 = \sum (O - E)^2/E\)</span>.</p>
+</section>
+<section id="effect-size-and-practical-relevance" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="effect-size-and-practical-relevance"><span class="header-section-number">4.4</span> Effect size and practical relevance</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Cohen’s d
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The standardised mean difference <span class="math display">\[d = \frac{\bar x_1 - \bar x_2}{s_p}, \qquad s_p = \sqrt{\frac{s_1^2 + s_2^2}{2}},\]</span> expresses a difference in units of the standard deviation. Rough conventions: <span class="math inline">\(|d| \approx 0.2\)</span> small, <span class="math inline">\(0.5\)</span> medium, <span class="math inline">\(0.8\)</span> large.</p>
+</div>
+</div>
+<p>In engineering, the most meaningful effect size is often the raw difference in physical units, compared with a tolerance or a requirement: “the mean diameter differs by 0.2 µm, the tolerance is ±20 µm”.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: significance with large samples
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The standard error shrinks with <span class="math inline">\(1/\sqrt{n}\)</span>. With thousands of observations, differences far too small to matter become highly significant. With big data, always ask: <em>Is the difference large enough to matter for the process?</em></p>
+</div>
+</div>
+</section>
+<section id="the-multiple-testing-problem" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="the-multiple-testing-problem"><span class="header-section-number">4.5</span> The multiple-testing problem</h2>
+<p>If we perform 20 independent tests at <span class="math inline">\(\alpha = 0.05\)</span> and no effect exists anywhere, we still expect one “significant” result by chance. The probability of at least one false alarm is <span class="math inline">\(1 - 0.95^{20} \approx 64\,\%\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Correcting for multiple tests
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The simplest correction is <strong>Bonferroni</strong>: with <span class="math inline">\(m\)</span> tests, use <span class="math inline">\(\alpha/m\)</span> for each. It is conservative. The <strong>Holm</strong> method is uniformly better and equally simple. Both are available in <code>statsmodels.stats.multitest.multipletests</code>. Most importantly: decide <em>before</em> looking at the data which comparisons you will test.</p>
+</div>
+</div>
+<div id="9f574f67" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">'ucimlrepo'</span>]:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>]:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> importlib.util.find_spec(pkg) <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, <span class="st">"-q"</span>, pkg], check<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -420,9 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9d8f3434" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div id="07fe3358" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -437,13 +624,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        path.write_bytes(r.content)</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
-<section id="live-coding-nox-emissions-20112015" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="live-coding-nox-emissions-20112015"><span class="header-section-number">4.2</span> Live coding: NOx emissions 2011–2015</h2>
-<p>The dataset contains 36,733 hourly sensor values of a gas turbine in Turkey, one CSV file per year.</p>
-<div id="2d6f5ba8" class="cell">
+<section id="live-coding-nox-emissions-20112015" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="live-coding-nox-emissions-20112015"><span class="header-section-number">4.6</span> Live coding: NOx emissions 2011–2015</h2>
+<p>The dataset contains 36,733 hourly sensor values of a gas turbine in north-western Turkey, recorded over five years, with one CSV file per year. Besides ambient conditions and turbine process variables, it contains the emissions of carbon monoxide (<code>CO</code>) and nitrogen oxides (<code>NOX</code>), both in mg/m³. Emission limits make NOx a relevant quantity for plant operators and authorities.</p>
+<div id="a1208381" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://archive.ics.uci.edu/static/public/551/gas+turbine+co+and+nox+emission+data+set.zip"</span></span>
@@ -454,9 +640,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        frames.append(pd.read_csv(z.<span class="bu">open</span>(name)).assign(year<span class="op">=</span>year))</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>gt <span class="op">=</span> pd.concat(frames, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>gt.columns <span class="op">=</span> gt.columns.<span class="bu">str</span>.upper()</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>gt.groupby(<span class="st">"YEAR"</span>)[<span class="st">"NOX"</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>gt.groupby(<span class="st">"YEAR"</span>)[<span class="st">"NOX"</span>].describe().<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="416b4f04" class="cell">
+<div id="f8d98635" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>gt, x<span class="op">=</span><span class="st">"YEAR"</span>, y<span class="op">=</span><span class="st">"NOX"</span>)</span>
@@ -464,40 +650,201 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="a972f92f" class="cell">
+<p>The box plots show the distribution of NOx per year. Before testing, look at the size of the differences between the medians compared with the spread within each year – this is what the tests will formalise.</p>
+<div id="7d30f708" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [g[<span class="st">"NOX"</span>].values <span class="cf">for</span> _, g <span class="kw">in</span> gt.groupby(<span class="st">"YEAR"</span>)]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ANOVA:         "</span>, stats.f_oneway(<span class="op">*</span>groups))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Kruskal-Wallis:"</span>, stats.kruskal(<span class="op">*</span>groups))</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> gt.loc[gt.YEAR <span class="op">==</span> <span class="dv">2011</span>, <span class="st">"NOX"</span>], gt.loc[gt.YEAR <span class="op">==</span> <span class="dv">2015</span>, <span class="st">"NOX"</span>]</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> stats.ttest_ind(a, b, equal_var<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cohens_d <span class="op">=</span> (a.mean() <span class="op">-</span> b.mean()) <span class="op">/</span> np.sqrt((a.var() <span class="op">+</span> b.var()) <span class="op">/</span> <span class="dv">2</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Welch t-test 2011 vs 2015: p = </span><span class="sc">{</span>res<span class="sc">.</span>pvalue<span class="sc">:.2e}</span><span class="ss">, difference = </span><span class="sc">{</span>a<span class="sc">.</span>mean() <span class="op">-</span> b<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> mg/m³, Cohen's d = </span><span class="sc">{</span>cohens_d<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ci <span class="op">=</span> res.confidence_interval(<span class="fl">0.95</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>cohens_d <span class="op">=</span> (a.mean() <span class="op">-</span> b.mean()) <span class="op">/</span> np.sqrt((a.var() <span class="op">+</span> b.var()) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Welch t-test 2011 vs 2015: p = </span><span class="sc">{</span>res<span class="sc">.</span>pvalue<span class="sc">:.2e}</span><span class="ss">"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"difference = </span><span class="sc">{</span>a<span class="sc">.</span>mean() <span class="op">-</span> b<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> mg/m³, 95 % CI [</span><span class="sc">{</span>ci<span class="sc">.</span>low<span class="sc">:.1f}</span><span class="ss">, </span><span class="sc">{</span>ci<span class="sc">.</span>high<span class="sc">:.1f}</span><span class="ss">], Cohen's d = </span><span class="sc">{</span>cohens_d<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Discussion.</strong> With several thousand hourly values per year, the p-values are astronomically small – any systematic difference between years is detected. The informative numbers are the difference in mg/m³ with its confidence interval and Cohen’s d.&nbsp;Whether the change matters depends on the distance to the emission limit and on the cause.</p>
+<p>And here an engineering caution is needed: the hourly values are <strong>not independent</strong> – consecutive hours are strongly correlated, so the effective sample size is much smaller than the number of rows, and the p-values are too optimistic. Moreover, differences between years can be caused by different ambient conditions (a hot year), different load profiles or maintenance work. A test can establish <em>that</em> the years differ, not <em>why</em>. To attribute the change to a cause we would need a model that accounts for these influences (Chapter 5).</p>
 </section>
-<section id="live-coding-product-variant-and-machine-failures" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="live-coding-product-variant-and-machine-failures"><span class="header-section-number">4.3</span> Live coding: product variant and machine failures</h2>
-<p>The AI4I dataset (synthetic, modelled on a real milling process) assigns each product a quality variant L, M or H. Is the failure rate independent of the variant?</p>
-<div id="ff84da16" class="cell">
+<section id="live-coding-product-variant-and-machine-failures" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="live-coding-product-variant-and-machine-failures"><span class="header-section-number">4.7</span> Live coding: product variant and machine failures</h2>
+<p>The AI4I dataset is a synthetic dataset modelled on a real milling process. Each of the 10,000 records belongs to a product of quality variant L (low, 50 % of products), M (medium, 30 %) or H (high, 20 %). Is the failure rate independent of the variant? Both variables are categorical, so we use the chi-squared test.</p>
+<div id="fdfd4e52" class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ai4i <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">601</span>).data.original</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pd.crosstab(ai4i[<span class="st">"Type"</span>], ai4i[<span class="st">"Machine failure"</span>])</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>chi2, p, dof, expected <span class="op">=</span> stats.chi2_contingency(table)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table, <span class="ss">f"</span><span class="ch">\n</span><span class="ss">chi2 = </span><span class="sc">{</span>chi2<span class="sc">:.2f}</span><span class="ss">, dof = </span><span class="sc">{</span>dof<span class="sc">}</span><span class="ss">, p = </span><span class="sc">{</span>p<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>(table[<span class="dv">1</span>] <span class="op">/</span> table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)).rename(<span class="st">"failure rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>(table[<span class="dv">1</span>] <span class="op">/</span> table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)).rename(<span class="st">"failure rate"</span>).<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Discussion.</strong> Compare the failure rates per variant and the p-value. The chi-squared test needs sufficiently large expected counts (rule of thumb: at least 5 in every cell) – check <code>expected</code>. Even if the test is significant, ask whether the difference in failure rates is relevant, and whether the variants differ in other respects (e.g.&nbsp;tool wear or load) that could explain it.</p>
+</section>
+<section id="how-many-measurements-do-we-need" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="how-many-measurements-do-we-need"><span class="header-section-number">4.8</span> How many measurements do we need?</h2>
+<p>Planning comes before testing. If a difference of <span class="math inline">\(\delta\)</span> is relevant, how many samples are needed to detect it with a power of, say, 80 %? For the two-sample t-test, the required number per group is approximately</p>
+<p><span class="math display">\[n \approx \frac{2\,(z_{1-\alpha/2} + z_{1-\beta})^2}{d^2}, \qquad d = \delta/\sigma,\]</span></p>
+<p>i.e.&nbsp;about <span class="math inline">\(16/d^2\)</span> for <span class="math inline">\(\alpha = 0.05\)</span> and power 0.8. Halving the detectable effect requires four times as many samples.</p>
+<div id="801f289d" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.power <span class="im">import</span> TTestIndPower</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>power_analysis <span class="op">=</span> TTestIndPower()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> [<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>]:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> power_analysis.solve_power(effect_size<span class="op">=</span>d, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">: n = </span><span class="sc">{</span>np<span class="sc">.</span>ceil(n)<span class="sc">:.0f}</span><span class="ss"> per group"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>A test checks whether data are compatible with “no effect”; the p-value is a probability <em>under</em> <span class="math inline">\(H_0\)</span>, not <em>of</em> <span class="math inline">\(H_0\)</span>.</li>
+<li>Report effect sizes and confidence intervals, not just p-values; judge relevance in physical units.</li>
+<li>Large samples make tiny effects significant; small samples miss relevant effects – plan the sample size.</li>
+<li>Many tests produce false alarms; correct (Bonferroni, Holm) and plan comparisons in advance.</li>
+<li>Tests assume independent observations – time series data violate this.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4.9</span> Exercises</h2>
 <div class="exercises">
-<p><strong>Exercises</strong></p>
 <ol type="1">
-<li>Check the normality assumption for NOx per year with QQ plots. Does it matter for the ANOVA with these sample sizes?</li>
-<li>Take a random sample of 30 values per year and repeat the tests. What changes and why?</li>
-<li>Run pairwise t-tests between all years. How many comparisons are there? Apply a Bonferroni correction.</li>
-<li>Formulate an engineering conclusion from the NOx analysis in two sentences – for a plant manager, not a statistician.</li>
+<li>Check the normality assumption for NOx per year with QQ plots. Does a violation matter for the ANOVA with these sample sizes?</li>
+<li>Draw a random sample of 30 hourly values per year and repeat the ANOVA and the 2011 vs.&nbsp;2015 t-test. What changes and why? Repeat the sampling a few times.</li>
+<li>Run pairwise Welch t-tests between all years. How many comparisons are there? Apply a Bonferroni and a Holm correction.</li>
+<li>Formulate an engineering conclusion from the NOx analysis in two or three sentences – for a plant manager, not for a statistician.</li>
+<li>A new coating is supposed to reduce the wear of a tool by 10 µm. From previous tests the standard deviation of the wear is 25 µm. How many tools must be tested per variant to detect the improvement with 80 % power (<span class="math inline">\(\alpha = 0.05\)</span>)?</li>
 </ol>
 </div>
+<section id="solutions" class="level3" data-number="4.9.1">
+<h3 data-number="4.9.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">4.9.1</span> Solutions</h3>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="66f596ee" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">sorted</span>(gt[<span class="st">"YEAR"</span>].unique())</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(years), figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="fl">3.5</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, yr <span class="kw">in</span> <span class="bu">zip</span>(axes, years):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    stats.probplot(gt.loc[gt.YEAR <span class="op">==</span> yr, <span class="st">"NOX"</span>], dist<span class="op">=</span><span class="st">"norm"</span>, plot<span class="op">=</span>ax)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="bu">str</span>(yr))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Deviations from the straight line at the ends indicate heavier or lighter tails than the normal distribution, curvature indicates skewness. With thousands of observations per group, the central limit theorem makes the group <em>means</em> approximately normal, so the ANOVA is robust against moderate non-normality. More critical are the unequal variances between years and above all the dependence of consecutive hourly values. The Kruskal–Wallis test, which does not assume normality, serves as a cross-check.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="4f6270f9" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    small <span class="op">=</span> gt.groupby(<span class="st">"YEAR"</span>, group_keys<span class="op">=</span><span class="va">False</span>).sample(<span class="dv">30</span>, random_state<span class="op">=</span>seed)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    groups_s <span class="op">=</span> [g[<span class="st">"NOX"</span>].values <span class="cf">for</span> _, g <span class="kw">in</span> small.groupby(<span class="st">"YEAR"</span>)]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    a_s <span class="op">=</span> small.loc[small.YEAR <span class="op">==</span> <span class="dv">2011</span>, <span class="st">"NOX"</span>]<span class="op">;</span> b_s <span class="op">=</span> small.loc[small.YEAR <span class="op">==</span> <span class="dv">2015</span>, <span class="st">"NOX"</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"seed </span><span class="sc">{</span>seed<span class="sc">}</span><span class="ss">: ANOVA p = </span><span class="sc">{</span>stats<span class="sc">.</span>f_oneway(<span class="op">*</span>groups_s)<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">, "</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"t-test p = </span><span class="sc">{</span>stats<span class="sc">.</span>ttest_ind(a_s, b_s, equal_var<span class="op">=</span><span class="va">False</span>)<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">, "</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"difference = </span><span class="sc">{</span>a_s<span class="sc">.</span>mean() <span class="op">-</span> b_s<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> mg/m³"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The estimated differences stay of similar size, but the p-values are much larger and vary from sample to sample: with 30 values per year, the standard error is roughly <span class="math inline">\(\sqrt{7000/30} \approx 15\)</span> times larger. Small differences that were “highly significant” with all data may no longer be detectable. The effect did not change – only the power of the test.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="ff9396d6" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.multitest <span class="im">import</span> multipletests</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>pairs, pvals <span class="op">=</span> [], []</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y1, y2 <span class="kw">in</span> itertools.combinations(years, <span class="dv">2</span>):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    pairs.append(<span class="ss">f"</span><span class="sc">{</span>y1<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>y2<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    pvals.append(stats.ttest_ind(gt.loc[gt.YEAR <span class="op">==</span> y1, <span class="st">"NOX"</span>], gt.loc[gt.YEAR <span class="op">==</span> y2, <span class="st">"NOX"</span>],</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                                 equal_var<span class="op">=</span><span class="va">False</span>).pvalue)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.DataFrame({<span class="st">"p"</span>: pvals,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Bonferroni"</span>: multipletests(pvals, method<span class="op">=</span><span class="st">"bonferroni"</span>)[<span class="dv">1</span>],</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Holm"</span>: multipletests(pvals, method<span class="op">=</span><span class="st">"holm"</span>)[<span class="dv">1</span>]}, index<span class="op">=</span>pairs)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>result.style.<span class="bu">format</span>(<span class="st">"</span><span class="sc">{:.2e}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With 5 years there are <span class="math inline">\(\binom{5}{2} = 10\)</span> comparisons. Bonferroni multiplies each p-value by 10 (capped at 1); Holm multiplies the smallest by 10, the next by 9 and so on, and is therefore less conservative. With these large samples most comparisons remain significant even after correction – the correction matters most when p-values are close to <span class="math inline">\(\alpha\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A good answer states the size of the change in physical units, relates it to a meaningful reference and names the limits of the analysis, for example: “The mean NOx emission in 2015 was X mg/m³ lower (higher) than in 2011, a change of about Y % of the typical level. This difference is clearly larger than random variation. The data alone do not show whether the change was caused by maintenance, different operation or different weather; to find out, we should model the emissions as a function of load and ambient conditions.” (Insert X and Y from your results.) Avoid statistical jargon such as “p &lt; 0.001” without explanation.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="cf693cfd" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">25</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> TTestIndPower().solve_power(effect_size<span class="op">=</span>d, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"d = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">, n = </span><span class="sc">{</span>np<span class="sc">.</span>ceil(n)<span class="sc">:.0f}</span><span class="ss"> tools per variant (rule of thumb 16/d² = </span><span class="sc">{</span><span class="dv">16</span> <span class="op">/</span> d<span class="op">**</span><span class="dv">2</span><span class="sc">:.0f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The effect size is <span class="math inline">\(d = 10/25 = 0.4\)</span>, which requires about 100 tools per variant. If that is too expensive, options are: reduce the noise (more homogeneous test conditions, paired design with both coatings on the same machine), accept a lower power, or test for a larger minimum effect.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1120,8 +1467,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notebooks/05-regression-doe.html" class="pagination-link" aria-label="Regression: Linear, Nonlinear and Design of Experiments">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression: Linear, Nonlinear and Design of Experiments</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notebooks/05-regression-doe.html" class="pagination-link" aria-label="Linear and Nonlinear Regression">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

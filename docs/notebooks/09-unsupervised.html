@@ -232,7 +232,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression: Linear, Nonlinear and Design of Experiments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -281,7 +281,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Part D – Time Series, Deep Learning and Outlook</span></a>
+ <span class="menu-text">Part D – Time Series, Deep Learning and Review</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -296,19 +296,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/13-visual-inspection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning for Visual Inspection and Outlook</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/14-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+  <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -346,8 +340,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pca-in-a-nutshell" id="toc-pca-in-a-nutshell" class="nav-link active" data-scroll-target="#pca-in-a-nutshell"><span class="header-section-number">9.1</span> PCA in a nutshell</a></li>
-  <li><a href="#live-coding-pca-monitoring-of-semiconductor-production" id="toc-live-coding-pca-monitoring-of-semiconductor-production" class="nav-link" data-scroll-target="#live-coding-pca-monitoring-of-semiconductor-production"><span class="header-section-number">9.2</span> Live coding: PCA monitoring of semiconductor production</a></li>
+  <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link active" data-scroll-target="#principal-component-analysis"><span class="header-section-number">9.1</span> Principal component analysis</a></li>
+  <li><a href="#process-monitoring-with-pca" id="toc-process-monitoring-with-pca" class="nav-link" data-scroll-target="#process-monitoring-with-pca"><span class="header-section-number">9.2</span> Process monitoring with PCA</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering"><span class="header-section-number">9.3</span> Clustering</a></li>
+  <li><a href="#anomaly-detection" id="toc-anomaly-detection" class="nav-link" data-scroll-target="#anomaly-detection"><span class="header-section-number">9.4</span> Anomaly detection</a></li>
+  <li><a href="#live-coding-pca-monitoring-of-semiconductor-production" id="toc-live-coding-pca-monitoring-of-semiconductor-production" class="nav-link" data-scroll-target="#live-coding-pca-monitoring-of-semiconductor-production"><span class="header-section-number">9.5</span> Live coding: PCA monitoring of semiconductor production</a></li>
+  <li><a href="#live-coding-operating-states-of-a-hydraulic-test-rig" id="toc-live-coding-operating-states-of-a-hydraulic-test-rig" class="nav-link" data-scroll-target="#live-coding-operating-states-of-a-hydraulic-test-rig"><span class="header-section-number">9.6</span> Live coding: operating states of a hydraulic test rig</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">9.7</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">9.7.1</span> Solutions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -373,33 +375,133 @@ window.Quarto = {
 </header>
 
 
-<p>Labels are expensive in engineering: failures are rare and expert labelling is slow. Unsupervised methods learn what ‘normal’ looks like and flag deviations.</p>
+<p>In the previous chapters every training example came with a label: the strength of the concrete, the failure of the machine, the type of defect. In engineering, labels are often the scarcest resource. Failures are rare, new fault types appear that nobody has seen before, and expert labelling is slow and expensive. Yet we usually have plenty of data from <strong>normal operation</strong>.</p>
+<p>Unsupervised learning finds structure in data without labels. In this chapter we use it for three purposes: to compress hundreds of correlated sensor signals into a few meaningful components (PCA), to monitor a process by detecting deviations from its normal behaviour, and to group operating states or products into clusters.</p>
 <blockquote class="blockquote">
 <p><strong>Engineering question:</strong> Can we detect abnormal production runs without knowing in advance what a fault looks like?</p>
 </blockquote>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
-<li>reduce high-dimensional process data with principal component analysis (PCA),</li>
-<li>monitor a process with PCA-based statistics (Hotelling’s T², SPE),</li>
-<li>group data with k-means and DBSCAN,</li>
-<li>detect anomalies with Isolation Forest.</li>
+<li>distinguish supervised and unsupervised learning and name engineering uses of the latter,</li>
+<li>reduce high-dimensional process data with principal component analysis (PCA) and interpret scores, loadings and explained variance,</li>
+<li>monitor a process with PCA-based statistics (Hotelling’s T², SPE) and control limits,</li>
+<li>group data with k-means and DBSCAN and choose the number of clusters,</li>
+<li>detect anomalies with Isolation Forest and evaluate detectors when a few labels are available.</li>
 </ul>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://archive.ics.uci.edu/dataset/179/secom">SECOM (UCI)</a></li>
 <li><a href="https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems">Condition Monitoring of Hydraulic Systems (UCI)</a></li>
 </ul>
-<section id="pca-in-a-nutshell" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="pca-in-a-nutshell"><span class="header-section-number">9.1</span> PCA in a nutshell</h2>
-<p>PCA rotates the (standardised) data into new axes – the principal components – ordered by explained variance. It is computed from the singular value decomposition <span class="math inline">\(X = U \Sigma V^\top\)</span>. For process monitoring, a PCA model of normal operation yields two statistics:</p>
-<ul>
-<li><strong>Hotelling’s T²:</strong> distance <em>within</em> the model plane – unusual combination of known patterns.</li>
-<li><strong>SPE / Q statistic:</strong> distance <em>from</em> the model plane – a new kind of variation.</li>
-</ul>
-<div id="d85b085b" class="cell">
+<section id="principal-component-analysis" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="principal-component-analysis"><span class="header-section-number">9.1</span> Principal component analysis</h2>
+<p>Process data are highly redundant: dozens of temperatures in the same furnace, pressures along the same line, currents of coupled drives all move together. PCA exploits this redundancy.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Principal component analysis (PCA)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Given standardised data <span class="math inline">\(Z \in \mathbb{R}^{n \times p}\)</span> (each column with mean 0 and standard deviation 1), PCA finds orthogonal directions <span class="math inline">\(v_1, v_2, \dots\)</span> (the <strong>loadings</strong>) such that the projection of the data onto <span class="math inline">\(v_1\)</span> has maximal variance, the projection onto <span class="math inline">\(v_2\)</span> has maximal variance among all directions orthogonal to <span class="math inline">\(v_1\)</span>, and so on. The projections <span class="math inline">\(t_k = Z v_k\)</span> are the <strong>scores</strong>. Computationally, PCA is the singular value decomposition <span class="math display">\[Z = U \Sigma V^\top,\]</span> where the columns of <span class="math inline">\(V\)</span> are the loadings and the variance explained by component <span class="math inline">\(k\)</span> is proportional to <span class="math inline">\(\sigma_k^2\)</span>.</p>
+</div>
+</div>
+<p>Keeping the first <span class="math inline">\(k\)</span> components gives the best possible approximation of the data by a <span class="math inline">\(k\)</span>-dimensional plane (in the least-squares sense). The <strong>scree plot</strong> (explained variance per component) and the cumulative explained variance help to choose <span class="math inline">\(k\)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: standardise before PCA
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PCA maximises variance, and variance depends on units. Without standardisation, a pressure in Pa (values around <span class="math inline">\(10^5\)</span>) dominates a temperature in °C. Standardise unless all variables share a unit and their natural variances are meaningful.</p>
+</div>
+</div>
+</section>
+<section id="process-monitoring-with-pca" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="process-monitoring-with-pca"><span class="header-section-number">9.2</span> Process monitoring with PCA</h2>
+<p>The idea of multivariate statistical process control: build a PCA model from data of <strong>normal operation</strong> (phase I) and then check every new observation against it (phase II). Two complementary statistics measure the deviation:</p>
+<div id="fig-pcamon" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pcamon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca-monitoring.png" class="img-fluid figure-img" style="width:75.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pcamon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Geometry of PCA monitoring, shown for two correlated sensors and a one-component model (in practice: many sensors and a model plane of several components). Hotelling’s T² measures how unusual an observation is <em>within</em> the model (an extreme value along the known pattern); the squared prediction error SPE measures its distance <em>from</em> the model (a new kind of variation the model has never seen).
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Hotelling’s T² and SPE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For an observation <span class="math inline">\(z\)</span> with scores <span class="math inline">\(t = V_k^\top z\)</span> in a PCA model with <span class="math inline">\(k\)</span> components and score variances <span class="math inline">\(\lambda_1, \dots, \lambda_k\)</span>: <span class="math display">\[T^2 = \sum_{j=1}^k \frac{t_j^2}{\lambda_j}, \qquad \text{SPE} = \|z - V_k t\|^2 .\]</span> Control limits are derived from the normal-operation data, e.g.&nbsp;as the 99 % quantile of each statistic.</p>
+</div>
+</div>
+<p>When an alarm occurs, <strong>contribution plots</strong> show which original variables contribute most to the large T² or SPE value – a first hint for the operator where to look.</p>
+</section>
+<section id="clustering" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="clustering"><span class="header-section-number">9.3</span> Clustering</h2>
+<p>Clustering groups observations so that members of a group are similar and different groups are dissimilar. Engineering uses: identifying operating modes of a machine (idle, part load, full load), grouping products or customers, finding families of similar faults.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: k-means
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>k-means partitions the data into <span class="math inline">\(k\)</span> clusters by minimising the within-cluster sum of squared distances to the cluster centres. The algorithm alternates two steps until convergence: (1) assign each point to the nearest centre, (2) move each centre to the mean of its points. The result depends on the starting centres, so the algorithm is run several times.</p>
+</div>
+</div>
+<p>k-means assumes roughly spherical clusters of similar size, and <span class="math inline">\(k\)</span> must be chosen: the <strong>elbow</strong> of the within-cluster sum of squares or the <strong>silhouette score</strong> (how much closer a point is to its own cluster than to the next one, between −1 and 1) help. <strong>DBSCAN</strong> instead defines clusters as dense regions: it finds clusters of arbitrary shape, determines their number itself and labels points in sparse regions as noise – a natural link to anomaly detection.</p>
+</section>
+<section id="anomaly-detection" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="anomaly-detection"><span class="header-section-number">9.4</span> Anomaly detection</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Isolation Forest
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An Isolation Forest builds random trees that split the data at random features and random thresholds. Anomalies are “few and different”: they are isolated after few splits. The <strong>anomaly score</strong> is derived from the average path length needed to isolate a point – short paths mean anomalous.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Engineering practice: evaluating unsupervised detectors
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Even if the detector is trained without labels, a few labelled faults are invaluable for <strong>evaluating</strong> it. Use them only for evaluation and threshold selection, never for training – and fit the model on normal data that is separate from the normal data used for evaluation.</p>
+</div>
+</div>
+<div id="c8448507" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">'ucimlrepo'</span>]:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>]:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> importlib.util.find_spec(pkg) <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, <span class="st">"-q"</span>, pkg], check<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -411,9 +513,10 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="live-coding-pca-monitoring-of-semiconductor-production" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="live-coding-pca-monitoring-of-semiconductor-production"><span class="header-section-number">9.2</span> Live coding: PCA monitoring of semiconductor production</h2>
-<div id="2917a938" class="cell">
+<section id="live-coding-pca-monitoring-of-semiconductor-production" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="live-coding-pca-monitoring-of-semiconductor-production"><span class="header-section-number">9.5</span> Live coding: PCA monitoring of semiconductor production</h2>
+<p>We use the SECOM data introduced in Chapter 2: 1,567 production runs, 590 process measurements, and a pass/fail label. Following the preparation from Chapter 2, we remove sparse and constant features, impute the remaining gaps with the median and standardise. All preprocessing steps and the PCA model are fitted on <strong>passed runs only</strong> – this is our model of normal operation.</p>
+<div id="acb5841b" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> SimpleImputer</span>
@@ -431,12 +534,13 @@ window.Quarto = {
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA().fit(Z)</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>cum <span class="op">=</span> np.cumsum(pca.explained_variance_ratio_)</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">int</span>(np.searchsorted(cum, <span class="fl">0.80</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.plot(cum[:<span class="dv">100</span>])<span class="op">;</span> plt.axhline(<span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="dv">101</span>), cum[:<span class="dv">100</span>])<span class="op">;</span> plt.axhline(<span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of components"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Cumulative explained variance"</span>)</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Components for 80 % variance:"</span>, k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f0fa22e2" class="cell">
+<p><strong>Discussion.</strong> The cumulative explained variance rises steeply for the first components and then slowly. For SECOM, many components are needed to reach 80 % – the process has many partly independent sources of variation, and much of the variance is noise. The choice of 80 % is a convention; in monitoring, the number of components is often chosen by cross-validation of the reconstruction error or by the scree plot’s elbow.</p>
+<div id="0cfa1c4b" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pca_k <span class="op">=</span> PCA(k).fit(Z)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> t2_spe(Zx):</span>
@@ -454,27 +558,217 @@ window.Quarto = {
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Red: failed runs, dashed: 99 </span><span class="sc">% li</span><span class="st">mits of normal runs"</span>)</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d76c7ce7" class="cell">
+<p><strong>Discussion.</strong> The dashed lines are the 99 % limits of the normal runs, so about 1 % of normal runs exceed each limit by construction (false alarms). Failed runs that exceed a limit are detected; those inside the limits look normal to the model. If most failures lie inside the limits, the measured variables may not contain the cause of the failure, or the failure manifests itself in variables that were removed, or in a way that PCA does not capture.</p>
+<div id="89adecfd" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(Z)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="op">-</span>iso.score_samples(prep.transform(X))</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  Isolation Forest: </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, score)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  SPE:              </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, spe)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  T²:               </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, t2)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  SPE:              </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, spe)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Note:</em> the normal runs used for fitting are also part of the evaluation here, which makes the result optimistic. Exercise 1 fixes this.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: evaluating on the training data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this quick comparison, the normal runs used to fit the models are also part of the evaluation. They naturally look “very normal” to the models, which makes the result optimistic. Exercise 1 repeats the evaluation properly with separate normal runs.</p>
+</div>
+</div>
+<p>For SECOM, expect modest AUC values: fault detection in semiconductor manufacturing from summary process data is known to be hard. This is a realistic lesson – many sensors do not guarantee that the relevant information is in the data.</p>
+</section>
+<section id="live-coding-operating-states-of-a-hydraulic-test-rig" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="live-coding-operating-states-of-a-hydraulic-test-rig"><span class="header-section-number">9.6</span> Live coding: operating states of a hydraulic test rig</h2>
+<p>The hydraulic dataset was recorded on a test rig in which the condition of four components – cooler, valve, pump and accumulator – was varied deliberately. Each of the 2,205 load cycles lasts 60 seconds; 17 sensors were recorded at up to 100 Hz. The file <code>profile.txt</code> contains the component conditions, e.g.&nbsp;the cooler efficiency (3 %, 20 % or 100 %). We compute simple features per cycle from the temperature sensors and the cooling efficiency and see whether PCA and k-means recover the cooler condition <strong>without</strong> using the labels.</p>
+<div id="86cdbd1d" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile, io, requests</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>)<span class="op">;</span> DATA.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>hz <span class="op">=</span> DATA <span class="op">/</span> <span class="st">"hydraulic.zip"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> hz.exists():</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    hz.write_bytes(requests.get(<span class="st">"https://archive.ics.uci.edu/static/public/447/"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"condition+monitoring+of+hydraulic+systems.zip"</span>, timeout<span class="op">=</span><span class="dv">300</span>).content)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_sensor(z, name):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    member <span class="op">=</span> <span class="bu">next</span>(n <span class="cf">for</span> n <span class="kw">in</span> z.namelist() <span class="cf">if</span> n.endswith(name))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.read_csv(z.<span class="bu">open</span>(member), sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="va">None</span>).values</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    sensors <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"TS1"</span>, <span class="st">"TS2"</span>, <span class="st">"TS3"</span>, <span class="st">"TS4"</span>, <span class="st">"CE"</span>, <span class="st">"CP"</span>]}</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> pd.DataFrame(read_sensor(z, <span class="st">"profile.txt"</span>),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                           columns<span class="op">=</span>[<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>, <span class="st">"stable"</span>])</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>feat <span class="op">=</span> pd.DataFrame({<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">"</span>: <span class="bu">getattr</span>(np, stat)(v, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                     <span class="cf">for</span> s, v <span class="kw">in</span> sensors.items() <span class="cf">for</span> stat <span class="kw">in</span> [<span class="st">"mean"</span>, <span class="st">"std"</span>]})</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>feat.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="58d1e3c2" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>Zh <span class="op">=</span> StandardScaler().fit_transform(feat)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scores_h <span class="op">=</span> PCA(<span class="dv">2</span>).fit_transform(Zh)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>sil <span class="op">=</span> {k_: silhouette_score(Zh, KMeans(k_, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zh)) <span class="cf">for</span> k_ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">7</span>)}</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Silhouette scores:"</span>, {k_: <span class="bu">round</span>(v, <span class="dv">3</span>) <span class="cf">for</span> k_, v <span class="kw">in</span> sil.items()})</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>clusters <span class="op">=</span> KMeans(<span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zh)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">4.5</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>scores_h[:, <span class="dv">0</span>], y<span class="op">=</span>scores_h[:, <span class="dv">1</span>], hue<span class="op">=</span>profile[<span class="st">"cooler"</span>].astype(<span class="bu">int</span>).astype(<span class="bu">str</span>),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                ax<span class="op">=</span>axes[<span class="dv">0</span>], s<span class="op">=</span><span class="dv">12</span>).<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Coloured by true cooler condition (%)"</span>, xlabel<span class="op">=</span><span class="st">"PC 1"</span>, ylabel<span class="op">=</span><span class="st">"PC 2"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>scores_h[:, <span class="dv">0</span>], y<span class="op">=</span>scores_h[:, <span class="dv">1</span>], hue<span class="op">=</span>clusters.astype(<span class="bu">str</span>), ax<span class="op">=</span>axes[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">"Set2"</span>).<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Coloured by k-means cluster"</span>, xlabel<span class="op">=</span><span class="st">"PC 1"</span>, ylabel<span class="op">=</span><span class="st">"PC 2"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>pd.crosstab(profile[<span class="st">"cooler"</span>], clusters, rownames<span class="op">=</span>[<span class="st">"cooler %"</span>], colnames<span class="op">=</span>[<span class="st">"cluster"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Discussion.</strong> Temperatures and cooling efficiency depend directly on the cooler condition, so the operating states form well-separated groups in the score plot, and k-means finds them without ever seeing the labels. The cross-table compares clusters and true conditions. This is the ideal case for unsupervised learning: the dominant source of variation in the chosen features <em>is</em> the condition of interest. With features dominated by other influences, clusters would reflect those instead – feature choice is decisive.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Unsupervised learning finds structure without labels: compression (PCA), grouping (clustering), deviations (anomaly detection).</li>
+<li>PCA on standardised data summarises correlated sensors; T² and SPE monitor a process against its normal behaviour.</li>
+<li>k-means needs a chosen <span class="math inline">\(k\)</span> and spherical clusters; DBSCAN finds arbitrary shapes and noise.</li>
+<li>Fit detectors on normal data, evaluate them with held-out normal data and a few labelled faults.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">9.7</span> Exercises</h2>
 <div class="exercises">
-<p><strong>Exercises</strong></p>
 <ol type="1">
-<li>Split the pass runs into a training and a test part and repeat the evaluation properly. How much does the AUC change?</li>
-<li>Plot the first two principal component scores coloured by pass/fail. Then run k-means with 2–6 clusters. Do clusters correspond to failures?</li>
-<li>Hydraulic systems: load the pressure signal <code>PS1.txt</code> (2205 cycles × 6000 values), compute mean, std and max per cycle and run a PCA. Colour the scores by the cooler condition in <code>profile.txt</code>.</li>
-<li>Discuss: why is the SECOM failure detection so hard, even though there are 590 sensors?</li>
+<li>Split the passed SECOM runs into a training part (70 %) and a test part (30 %). Fit preprocessing, PCA and Isolation Forest on the training part only and evaluate on the test part plus all failed runs. How much does the AUC change compared with the optimistic evaluation?</li>
+<li>Plot the first two principal component scores of SECOM coloured by pass/fail. Then run k-means with 2–6 clusters. Do clusters correspond to failures?</li>
+<li>Hydraulic system: repeat the analysis with the pressure sensors <code>PS1</code>–<code>PS6</code> instead of the temperatures. Which component condition (cooler, valve, pump, accumulator) do the clusters now reflect best?</li>
+<li>Discuss: why is failure detection in SECOM so hard, even though there are almost 600 sensors?</li>
 </ol>
 </div>
+<section id="solutions" class="level3" data-number="9.7.1">
+<h3 data-number="9.7.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">9.7.1</span> Solutions</h3>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="d55b17a3" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X_pass, X_fail <span class="op">=</span> X[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], X[y <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>X_pass_tr, X_pass_te <span class="op">=</span> train_test_split(X_pass, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>prep2 <span class="op">=</span> make_pipeline(SimpleImputer(strategy<span class="op">=</span><span class="st">"median"</span>), VarianceThreshold(<span class="fl">1e-8</span>), StandardScaler())</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>Z_tr <span class="op">=</span> prep2.fit_transform(X_pass_tr)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>X_eval <span class="op">=</span> pd.concat([X_pass_te, X_fail])</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>y_eval <span class="op">=</span> np.r_[np.zeros(<span class="bu">len</span>(X_pass_te)), np.ones(<span class="bu">len</span>(X_fail))]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>Z_eval <span class="op">=</span> prep2.transform(X_eval)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>iso2 <span class="op">=</span> IsolationForest(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(Z_tr)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>pca2 <span class="op">=</span> PCA(k).fit(Z_tr)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>spe2 <span class="op">=</span> np.<span class="bu">sum</span>((Z_eval <span class="op">-</span> pca2.inverse_transform(pca2.transform(Z_eval)))<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC Isolation Forest (proper): </span><span class="sc">{</span>roc_auc_score(y_eval, <span class="op">-</span>iso2.score_samples(Z_eval))<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC SPE (proper):              </span><span class="sc">{</span>roc_auc_score(y_eval, spe2)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The SPE in particular drops when evaluated properly: the PCA model reconstructs its own training runs better than new runs, so in the optimistic evaluation the normal runs looked “too normal” compared with the failed ones. Proper separation of training and evaluation data is just as important in unsupervised as in supervised learning.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="f02128b2" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>scores_s <span class="op">=</span> pca_k.transform(prep.transform(X))[:, :<span class="dv">2</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(scores_s[:, <span class="dv">0</span>], scores_s[:, <span class="dv">1</span>], c<span class="op">=</span>(y <span class="op">==</span> <span class="dv">1</span>), cmap<span class="op">=</span><span class="st">"coolwarm"</span>, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"PC 1"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"PC 2"</span>)<span class="op">;</span> plt.title(<span class="st">"SECOM scores, red = fail"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Zall <span class="op">=</span> prep.transform(X)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k_ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">7</span>):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    lab <span class="op">=</span> KMeans(k_, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zall)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    rates <span class="op">=</span> pd.Series(y.values <span class="op">==</span> <span class="dv">1</span>).groupby(lab).mean()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"k = </span><span class="sc">{</span>k_<span class="sc">}</span><span class="ss">: failure rate per cluster"</span>, rates.<span class="bu">round</span>(<span class="dv">3</span>).tolist())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The failed runs are scattered among the passed ones in the first two components, and the failure rate per cluster stays close to the overall rate of about 6–7 %. The dominant sources of variation in SECOM (e.g.&nbsp;tool or recipe changes) are not related to the pass/fail outcome. Clustering finds the largest structure in the data – which need not be the structure we are interested in.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="4d7f4107" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    ps <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"PS1"</span>, <span class="st">"PS2"</span>, <span class="st">"PS3"</span>, <span class="st">"PS4"</span>, <span class="st">"PS5"</span>, <span class="st">"PS6"</span>]}</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>feat_ps <span class="op">=</span> pd.DataFrame({<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">"</span>: <span class="bu">getattr</span>(np, stat)(v, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">for</span> s, v <span class="kw">in</span> ps.items() <span class="cf">for</span> stat <span class="kw">in</span> [<span class="st">"mean"</span>, <span class="st">"std"</span>, <span class="st">"max"</span>]})</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Zp <span class="op">=</span> StandardScaler().fit_transform(feat_ps)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>lab_ps <span class="op">=</span> KMeans(<span class="dv">4</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zp)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> adjusted_rand_score</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>{c: <span class="bu">round</span>(adjusted_rand_score(profile[c], lab_ps), <span class="dv">3</span>) <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>]}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The adjusted Rand index (0 = random agreement, 1 = identical grouping) shows which component condition the clusters reflect. Pressure features respond strongly to the valve condition (switching behaviour) and the accumulator pre-charge pressure, while the temperatures reflected the cooler. Different sensors “see” different faults – a central insight for designing condition monitoring systems.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Possible reasons: (1) the measurements are summary values per run and may not capture the physical cause of the failure; (2) the failures may have several different causes, so there is no single “failure direction”; (3) many features are noise, and in high dimensions the distance to normal data grows for <em>every</em> point, which dilutes anomaly scores; (4) only about 100 failures are available, and labels may be noisy; (5) part of the failures may originate in later process steps that are not measured at all. More sensors do not help if they do not measure the right thing.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

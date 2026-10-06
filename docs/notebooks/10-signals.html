@@ -232,7 +232,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression: Linear, Nonlinear and Design of Experiments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -281,7 +281,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Part D – Time Series, Deep Learning and Outlook</span></a>
+ <span class="menu-text">Part D – Time Series, Deep Learning and Review</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -296,19 +296,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/13-visual-inspection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning for Visual Inspection and Outlook</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/14-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+  <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -346,8 +340,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#from-time-signal-to-features" id="toc-from-time-signal-to-features" class="nav-link active" data-scroll-target="#from-time-signal-to-features"><span class="header-section-number">10.1</span> From time signal to features</a></li>
-  <li><a href="#live-coding-healthy-vs.-inner-race-fault" id="toc-live-coding-healthy-vs.-inner-race-fault" class="nav-link" data-scroll-target="#live-coding-healthy-vs.-inner-race-fault"><span class="header-section-number">10.2</span> Live coding: healthy vs.&nbsp;inner-race fault</a></li>
+  <li><a href="#sampling-and-aliasing" id="toc-sampling-and-aliasing" class="nav-link active" data-scroll-target="#sampling-and-aliasing"><span class="header-section-number">10.1</span> Sampling and aliasing</a></li>
+  <li><a href="#the-frequency-domain" id="toc-the-frequency-domain" class="nav-link" data-scroll-target="#the-frequency-domain"><span class="header-section-number">10.2</span> The frequency domain</a></li>
+  <li><a href="#bearing-fault-frequencies" id="toc-bearing-fault-frequencies" class="nav-link" data-scroll-target="#bearing-fault-frequencies"><span class="header-section-number">10.3</span> Bearing fault frequencies</a></li>
+  <li><a href="#statistical-features-of-a-signal-window" id="toc-statistical-features-of-a-signal-window" class="nav-link" data-scroll-target="#statistical-features-of-a-signal-window"><span class="header-section-number">10.4</span> Statistical features of a signal window</a></li>
+  <li><a href="#live-coding-healthy-vs.-inner-race-fault" id="toc-live-coding-healthy-vs.-inner-race-fault" class="nav-link" data-scroll-target="#live-coding-healthy-vs.-inner-race-fault"><span class="header-section-number">10.5</span> Live coding: healthy vs.&nbsp;inner-race fault</a></li>
+  <li><a href="#live-coding-amplitude-spectrum" id="toc-live-coding-amplitude-spectrum" class="nav-link" data-scroll-target="#live-coding-amplitude-spectrum"><span class="header-section-number">10.6</span> Live coding: amplitude spectrum</a></li>
+  <li><a href="#extension-envelope-analysis" id="toc-extension-envelope-analysis" class="nav-link" data-scroll-target="#extension-envelope-analysis"><span class="header-section-number">10.7</span> Extension: envelope analysis</a></li>
+  <li><a href="#live-coding-statistical-features" id="toc-live-coding-statistical-features" class="nav-link" data-scroll-target="#live-coding-statistical-features"><span class="header-section-number">10.8</span> Live coding: statistical features</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">10.9</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">10.9.1</span> Solutions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -356,7 +360,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/10-signals.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></h1>
 </div>
 
 
@@ -373,50 +377,142 @@ window.Quarto = {
 </header>
 
 
-<p>Condition monitoring produces raw signals sampled at kHz rates. Machine learning models need compact, meaningful features – engineering knowledge about the physics of faults is the best source of such features.</p>
+<p>Condition monitoring systems record vibration, current, pressure or acoustic signals at sampling rates of several kilohertz. A single minute of vibration data from one accelerometer at 12 kHz contains 720,000 numbers. Machine learning models cannot – and should not – work on such raw data directly. They need a small set of <strong>features</strong> that capture the information relevant for the question at hand.</p>
+<p>This chapter shows how to get from a raw signal to meaningful features. We look at signals in the time and in the frequency domain, use the physics of rolling bearings to know <em>where</em> in the spectrum a fault should appear, and compute statistical features that summarise a signal window. Feature engineering is where engineering knowledge pays off most in data science.</p>
 <blockquote class="blockquote">
 <p><strong>Engineering question:</strong> Can we tell a damaged rolling bearing from a healthy one by its vibration signal?</p>
 </blockquote>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
-<li>explain sampling, aliasing and the discrete Fourier transform,</li>
-<li>compute and interpret amplitude spectra and envelope spectra,</li>
-<li>relate spectral peaks to bearing fault frequencies,</li>
-<li>extract statistical features from raw signals for machine learning.</li>
+<li>explain sampling, the Nyquist frequency and aliasing,</li>
+<li>compute and interpret amplitude spectra with the FFT, including frequency resolution and leakage,</li>
+<li>calculate characteristic bearing fault frequencies and relate spectral peaks to them,</li>
+<li>extract statistical features (RMS, peak, crest factor, kurtosis) from signal windows,</li>
+<li>split windowed data correctly for training and testing,</li>
+<li>(extension) explain and apply envelope analysis.</li>
 </ul>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://engineering.case.edu/bearingdatacenter">CWRU Bearing Data Center</a></li>
 <li><a href="https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems">Condition Monitoring of Hydraulic Systems (UCI)</a></li>
 </ul>
-<section id="from-time-signal-to-features" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="from-time-signal-to-features"><span class="header-section-number">10.1</span> From time signal to features</h2>
-<ul>
-<li><strong>Sampling theorem:</strong> a signal sampled at <span class="math inline">\(f_s\)</span> represents frequencies up to <span class="math inline">\(f_s/2\)</span> (Nyquist frequency).</li>
-<li><strong>FFT:</strong> decomposes a signal into frequency components.</li>
-<li><strong>Envelope analysis:</strong> bearing faults cause periodic impacts that modulate high-frequency resonances. Band-pass filtering, Hilbert transform and FFT of the envelope reveal the impact frequency.</li>
-<li><strong>Bearing fault frequencies</strong> (CWRU drive-end bearing SKF 6205, multiples of shaft speed <span class="math inline">\(f_r\)</span>): inner race BPFI ≈ 5.415 <span class="math inline">\(f_r\)</span>, outer race BPFO ≈ 3.585 <span class="math inline">\(f_r\)</span> – check the CWRU bearing specification page.</li>
-<li><strong>Statistical features:</strong> RMS, peak, crest factor, kurtosis, skewness.</li>
-</ul>
-<div id="aa7ee8be" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> []:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> importlib.util.find_spec(pkg) <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, <span class="st">"-q"</span>, pkg], check<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> signal, stats</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.io <span class="im">import</span> loadmat</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="sampling-and-aliasing" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="sampling-and-aliasing"><span class="header-section-number">10.1</span> Sampling and aliasing</h2>
+<p>A sensor signal is continuous; the data acquisition system samples it at discrete times <span class="math inline">\(t_n = n/f_s\)</span> with the <strong>sampling rate</strong> <span class="math inline">\(f_s\)</span>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div id="ed439ef7" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
+<div class="callout-title-container flex-fill">
+Sampling theorem (Nyquist–Shannon)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A signal can be reconstructed from its samples if it contains no frequencies at or above half the sampling rate, the <strong>Nyquist frequency</strong> <span class="math inline">\(f_N = f_s/2\)</span>. Frequencies above <span class="math inline">\(f_N\)</span> are not lost silently – they are folded back and appear as false lower frequencies (<strong>aliasing</strong>).</p>
+</div>
+</div>
+<div id="fig-aliasing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-aliasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/aliasing.png" class="img-fluid figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aliasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Aliasing. A 9 Hz sine sampled at 10 Hz (dots) produces exactly the same samples as a 1 Hz sine. After sampling, the two cannot be distinguished.
+</figcaption>
+</figure>
+</div>
+<p>A component at frequency <span class="math inline">\(f\)</span> with <span class="math inline">\(f_N &lt; f &lt; f_s\)</span> appears at <span class="math inline">\(|f - f_s|\)</span>. This is why data acquisition systems use an analogue <strong>anti-aliasing filter</strong> before the A/D converter. Once aliasing has happened, no digital processing can undo it.</p>
+</section>
+<section id="the-frequency-domain" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="the-frequency-domain"><span class="header-section-number">10.2</span> The frequency domain</h2>
+<p>Rotating machines produce periodic excitations: imbalance at the shaft frequency, gear meshing at the tooth frequency, bearing defects at characteristic frequencies. In the time domain these components overlap; in the frequency domain they separate into peaks.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Discrete Fourier transform and amplitude spectrum
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For <span class="math inline">\(N\)</span> samples <span class="math inline">\(x_0, \dots, x_{N-1}\)</span>, the discrete Fourier transform is <span class="math display">\[X_k = \sum_{n=0}^{N-1} x_n\, e^{-2\pi i\,kn/N}, \qquad k = 0, \dots, N-1,\]</span> computed efficiently by the <strong>fast Fourier transform (FFT)</strong>. Bin <span class="math inline">\(k\)</span> corresponds to the frequency <span class="math inline">\(f_k = k\,f_s/N\)</span>. The single-sided <strong>amplitude spectrum</strong> <span class="math inline">\(A_k = 2|X_k|/N\)</span> (for <span class="math inline">\(0 &lt; k &lt; N/2\)</span>) gives the amplitude of a sine component at <span class="math inline">\(f_k\)</span>.</p>
+</div>
+</div>
+<p>Two practical facts:</p>
+<ul>
+<li><strong>Frequency resolution</strong> <span class="math inline">\(\Delta f = f_s/N = 1/T\)</span>: it depends only on the measurement duration <span class="math inline">\(T\)</span>. To separate two peaks 1 Hz apart, you need at least one second of data.</li>
+<li><strong>Leakage:</strong> the FFT assumes the signal window repeats periodically. If a component does not complete an integer number of periods in the window, its energy “leaks” into neighbouring bins. Multiplying the window by a smooth <strong>window function</strong> (e.g.&nbsp;Hann) reduces leakage at the price of slightly wider peaks.</li>
+</ul>
+</section>
+<section id="bearing-fault-frequencies" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="bearing-fault-frequencies"><span class="header-section-number">10.3</span> Bearing fault frequencies</h2>
+<p>When a rolling element passes a local defect on a raceway, it produces a short impact. These impacts repeat at frequencies that follow from the bearing geometry: with shaft frequency <span class="math inline">\(f_r\)</span>, number of rolling elements <span class="math inline">\(n\)</span>, rolling element diameter <span class="math inline">\(d\)</span>, pitch diameter <span class="math inline">\(D\)</span> and contact angle <span class="math inline">\(\phi\)</span>,</p>
+<p><span class="math display">\[\text{BPFO} = \frac{n f_r}{2}\left(1 - \frac{d}{D}\cos\phi\right), \qquad \text{BPFI} = \frac{n f_r}{2}\left(1 + \frac{d}{D}\cos\phi\right).\]</span></p>
+<p>BPFO and BPFI are the <em>ball pass frequencies</em> of the outer and inner race. For the drive-end bearing of the CWRU test rig (SKF 6205), the CWRU documentation gives BPFI ≈ 5.415 <span class="math inline">\(f_r\)</span> and BPFO ≈ 3.585 <span class="math inline">\(f_r\)</span> – check the bearing specification page before relying on these factors.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Engineering practice: let physics tell you where to look
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Knowing the fault frequencies turns a vague search (“is the spectrum different?”) into a targeted test (“is there a peak at BPFI and its harmonics?”). Features built from physics – the amplitude at BPFI, the energy in a resonance band – are more robust and easier to explain than features found by blind search.</p>
+</div>
+</div>
+</section>
+<section id="statistical-features-of-a-signal-window" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="statistical-features-of-a-signal-window"><span class="header-section-number">10.4</span> Statistical features of a signal window</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Common time-domain features
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a window <span class="math inline">\(x_1, \dots, x_N\)</span>:</p>
+<ul>
+<li><strong>RMS</strong> <span class="math inline">\(= \sqrt{\frac{1}{N}\sum x_i^2}\)</span> – overall vibration energy,</li>
+<li><strong>peak</strong> <span class="math inline">\(= \max |x_i|\)</span>,</li>
+<li><strong>crest factor</strong> <span class="math inline">\(=\)</span> peak / RMS – impulsiveness,</li>
+<li><strong>kurtosis</strong> <span class="math inline">\(= \frac{\frac1N\sum (x_i - \bar x)^4}{s^4} - 3\)</span> (excess kurtosis) – “spikiness”; 0 for a normal distribution, large for signals with short impacts,</li>
+<li><strong>skewness</strong> – asymmetry of the amplitude distribution.</li>
+</ul>
+</div>
+</div>
+<p>Early bearing damage produces short impacts: kurtosis and crest factor rise while the RMS hardly changes. As damage progresses and spreads, the impacts become less distinct, kurtosis may fall again and RMS rises – a reason to use several features together.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: splitting windows of the same recording
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When a long recording is cut into windows, neighbouring windows are almost identical. If windows of the same recording end up in both training and test set, the model recognises the <em>recording</em>, not the fault – the test accuracy is meaningless. Split by recording, machine or time period (e.g.&nbsp;with <code>GroupKFold</code>), never randomly by window.</p>
+</div>
+</div>
+<div id="ca57c130" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> signal, stats</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.io <span class="im">import</span> loadmat</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="1f385296" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -431,13 +527,13 @@ window.Quarto = {
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        path.write_bytes(r.content)</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
-<section id="live-coding-healthy-vs.-inner-race-fault" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="live-coding-healthy-vs.-inner-race-fault"><span class="header-section-number">10.2</span> Live coding: healthy vs.&nbsp;inner-race fault</h2>
-<p>We use two files from the CWRU Bearing Data Center: normal baseline (<code>97.mat</code>) and a 0.007-inch inner race fault at the drive end (<code>105.mat</code>), both at 0 hp motor load (approx. 1797 rpm). <strong>Check the file numbers and the sampling rates (12 kHz or 48 kHz) on the CWRU download pages before using them.</strong></p>
-<div id="fb5ebdd8" class="cell">
+<section id="live-coding-healthy-vs.-inner-race-fault" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="live-coding-healthy-vs.-inner-race-fault"><span class="header-section-number">10.5</span> Live coding: healthy vs.&nbsp;inner-race fault</h2>
+<p>The Case Western Reserve University (CWRU) bearing data are a widely used benchmark. Faults of defined size were introduced into the bearings of a 2 hp motor test rig by electro-discharge machining; vibration was measured with accelerometers at the drive end and fan end. We use two files: normal baseline (<code>97.mat</code>) and a 0.007-inch inner race fault at the drive end (<code>105.mat</code>), both at 0 hp motor load (approx. 1797 rpm).</p>
+<p><strong>Check the file numbers and the sampling rates (12 kHz or 48 kHz) on the CWRU download pages before using them</strong> – the values below are set accordingly and marked.</p>
+<div id="434ce138" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>FILES <span class="op">=</span> {<span class="st">"normal"</span>: (<span class="st">"97.mat"</span>, <span class="dv">48_000</span>), <span class="st">"inner race"</span>: (<span class="st">"105.mat"</span>, <span class="dv">12_000</span>)}   <span class="co"># file, sampling rate (Hz) – verify!</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>BASE_URL <span class="op">=</span> <span class="st">"https://engineering.case.edu/sites/default/files/"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -454,52 +550,256 @@ window.Quarto = {
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.2</span>), xlabel<span class="op">=</span><span class="st">"Time (s)"</span>)</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="517d8c44" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>f_r <span class="op">=</span> <span class="dv">1797</span> <span class="op">/</span> <span class="dv">60</span>          <span class="co"># shaft frequency (Hz)</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bpfi <span class="op">=</span> <span class="fl">5.4152</span> <span class="op">*</span> f_r</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> envelope_spectrum(x, fs, band<span class="op">=</span>(<span class="dv">2000</span>, <span class="dv">5000</span>)):</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    b, a <span class="op">=</span> signal.butter(<span class="dv">4</span>, band, btype<span class="op">=</span><span class="st">"bandpass"</span>, fs<span class="op">=</span>fs)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    env <span class="op">=</span> np.<span class="bu">abs</span>(signal.hilbert(signal.filtfilt(b, a, x)))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    env <span class="op">-=</span> env.mean()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.fft.rfftfreq(<span class="bu">len</span>(env), <span class="dv">1</span> <span class="op">/</span> fs)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f, np.<span class="bu">abs</span>(np.fft.rfft(env)) <span class="op">/</span> <span class="bu">len</span>(env)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, (x, fs) <span class="kw">in</span> signals.items():</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    f, A <span class="op">=</span> envelope_spectrum(x, fs)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    ax.plot(f, A, label<span class="op">=</span>label, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>):</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    ax.axvline(k <span class="op">*</span> bpfi, c<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">600</span>), xlabel<span class="op">=</span><span class="st">"Frequency (Hz)"</span>, ylabel<span class="op">=</span><span class="st">"Envelope amplitude"</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>       title<span class="op">=</span><span class="st">"Envelope spectrum, dotted: BPFI harmonics"</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ax.legend()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Discussion.</strong> Already in the time domain the faulty bearing looks different: short, regularly spaced impacts are visible on top of the background vibration. Count the impacts in 0.1 s – their rate should match the BPFI of about 5.4 × 30 Hz ≈ 162 Hz.</p>
+</section>
+<section id="live-coding-amplitude-spectrum" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="live-coding-amplitude-spectrum"><span class="header-section-number">10.6</span> Live coding: amplitude spectrum</h2>
+<div id="068593d4" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, (x, fs) <span class="kw">in</span> signals.items():</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.fft.rfftfreq(<span class="bu">len</span>(x), <span class="dv">1</span> <span class="op">/</span> fs)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.<span class="bu">abs</span>(np.fft.rfft(x)) <span class="op">/</span> <span class="bu">len</span>(x)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ax.plot(f, A, label<span class="op">=</span>label, lw<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">6000</span>), xlabel<span class="op">=</span><span class="st">"Frequency (Hz)"</span>, ylabel<span class="op">=</span><span class="st">"Amplitude (g)"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       title<span class="op">=</span><span class="st">"Amplitude spectrum of the raw signals"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax.legend()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bc0682e3" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> features(x):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    rms <span class="op">=</span> np.sqrt(np.mean(x<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"rms"</span>: rms, <span class="st">"peak"</span>: np.<span class="bu">max</span>(np.<span class="bu">abs</span>(x)), <span class="st">"crest"</span>: np.<span class="bu">max</span>(np.<span class="bu">abs</span>(x)) <span class="op">/</span> rms,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"kurtosis"</span>: stats.kurtosis(x), <span class="st">"skewness"</span>: stats.skew(x)}</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># features on 1-second windows</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, (x, fs) <span class="kw">in</span> signals.items():</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> start <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(x) <span class="op">-</span> fs, fs):</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        rows.append({<span class="st">"condition"</span>: label, <span class="op">**</span>features(x[start:start <span class="op">+</span> fs])})</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>feat <span class="op">=</span> pd.DataFrame(rows)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>feat.groupby(<span class="st">"condition"</span>).mean().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Discussion.</strong> The faulty bearing shows much more energy at high frequencies, in the range of several kilohertz. These are <strong>structural resonances</strong> of the bearing and housing, excited by the impacts – not the fault frequency itself. The impact rate of about 162 Hz modulates these resonances but is hard to see directly in this spectrum. Envelope analysis makes it visible.</p>
+</section>
+<section id="extension-envelope-analysis" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="extension-envelope-analysis"><span class="header-section-number">10.7</span> Extension: envelope analysis</h2>
+<p><em>Extension – optional material, not required for the exam.</em></p>
+<div id="fig-envelope" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-envelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/envelope.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-envelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: Envelope analysis. Periodic impacts excite a high-frequency resonance (1). A band-pass filter isolates the resonance band (2). The envelope – the magnitude of the analytic signal from the Hilbert transform – recovers the impact pattern (3). Its spectrum shows peaks at the impact frequency and its harmonics (4).
+</figcaption>
+</figure>
+</div>
+<p>The plain spectrum shows <em>that</em> the faulty bearing excites high-frequency resonances, but not <em>why</em>. The envelope spectrum reveals the repetition rate of the impacts – and thus the damaged component.</p>
+<div id="d96d3e20" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f_r <span class="op">=</span> <span class="dv">1797</span> <span class="op">/</span> <span class="dv">60</span>          <span class="co"># shaft frequency (Hz)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bpfi <span class="op">=</span> <span class="fl">5.4152</span> <span class="op">*</span> f_r</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> envelope_spectrum(x, fs, band<span class="op">=</span>(<span class="dv">2000</span>, <span class="dv">5000</span>)):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    b, a <span class="op">=</span> signal.butter(<span class="dv">4</span>, band, btype<span class="op">=</span><span class="st">"bandpass"</span>, fs<span class="op">=</span>fs)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    env <span class="op">=</span> np.<span class="bu">abs</span>(signal.hilbert(signal.filtfilt(b, a, x)))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    env <span class="op">-=</span> env.mean()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.fft.rfftfreq(<span class="bu">len</span>(env), <span class="dv">1</span> <span class="op">/</span> fs)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f, np.<span class="bu">abs</span>(np.fft.rfft(env)) <span class="op">/</span> <span class="bu">len</span>(env)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, (x, fs) <span class="kw">in</span> signals.items():</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    f, A <span class="op">=</span> envelope_spectrum(x, fs)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ax.plot(f, A, label<span class="op">=</span>label, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>):</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    ax.axvline(k <span class="op">*</span> bpfi, c<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">600</span>), xlabel<span class="op">=</span><span class="st">"Frequency (Hz)"</span>, ylabel<span class="op">=</span><span class="st">"Envelope amplitude"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>       title<span class="op">=</span><span class="st">"Envelope spectrum, dotted: BPFI harmonics"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>ax.legend()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For the inner race fault, peaks appear at BPFI and its harmonics; often there are also sidebands spaced at the shaft frequency, because the defect on the rotating inner ring moves in and out of the load zone once per revolution. The choice of the band (here 2–5 kHz) matters: it should contain the resonance excited by the impacts. Methods such as the <em>kurtogram</em> select it automatically.</p>
+</section>
+<section id="live-coding-statistical-features" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="live-coding-statistical-features"><span class="header-section-number">10.8</span> Live coding: statistical features</h2>
+<div id="151a32fb" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> features(x):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    rms <span class="op">=</span> np.sqrt(np.mean(x<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"rms"</span>: rms, <span class="st">"peak"</span>: np.<span class="bu">max</span>(np.<span class="bu">abs</span>(x)), <span class="st">"crest"</span>: np.<span class="bu">max</span>(np.<span class="bu">abs</span>(x)) <span class="op">/</span> rms,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"kurtosis"</span>: stats.kurtosis(x), <span class="st">"skewness"</span>: stats.skew(x)}</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># features on 1-second windows</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, (x, fs) <span class="kw">in</span> signals.items():</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> start <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(x) <span class="op">-</span> fs, fs):</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        rows.append({<span class="st">"condition"</span>: label, <span class="op">**</span>features(x[start:start <span class="op">+</span> fs])})</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>feat <span class="op">=</span> pd.DataFrame(rows)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>feat.groupby(<span class="st">"condition"</span>).mean().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Discussion.</strong> The faulty bearing has a clearly higher kurtosis and crest factor – the signature of impacts. Such features can feed a classifier (Exercise 3). They are cheap to compute, which matters for monitoring systems running on embedded hardware, and they have an intuitive meaning that maintenance staff understand.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Sample at more than twice the highest relevant frequency and filter before sampling – aliasing cannot be undone.</li>
+<li>The FFT reveals periodic components; frequency resolution is <span class="math inline">\(1/T\)</span>, leakage is reduced by window functions.</li>
+<li>Bearing geometry determines where fault frequencies appear; physics-based features are robust and explainable.</li>
+<li>RMS, crest factor and kurtosis summarise signal windows; split windows by recording, not randomly.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">10.9</span> Exercises</h2>
 <div class="exercises">
-<p><strong>Exercises</strong></p>
 <ol type="1">
-<li>Compare the plain amplitude spectrum (FFT of the raw signal) with the envelope spectrum. Why is the fault frequency hardly visible in the plain spectrum?</li>
-<li>Download an outer race fault file and check whether a peak appears at BPFO.</li>
-<li>Build a small classifier (normal / inner / outer / ball fault) on the statistical window features. Why must windows of the same recording not be split between training and test set?</li>
-<li>Hydraulic systems: compute features per cycle for all 100 Hz sensors and predict the valve condition with a random forest.</li>
+<li>A vibration signal contains a component at 7 kHz. It is sampled at 10 kHz without anti-aliasing filter. At which frequency does the component appear in the spectrum? What sampling rate would be needed?</li>
+<li>You record 0.5 s of vibration data at 12 kHz. What is the frequency resolution? Can you separate the BPFI (≈ 162.3 Hz) from its sideband at BPFI + <span class="math inline">\(f_r\)</span>?</li>
+<li>Build a classifier for normal / inner race / ball / outer race faults on the statistical window features. Split each recording in time (first 70 % of the windows for training, last 30 % for testing). Why is a random split of the windows wrong?</li>
+<li>Hydraulic system: compute features per cycle (mean, std, max) for the 100 Hz pressure sensors and predict the valve condition with a random forest. Use stratified cross-validation.</li>
+<li>(Extension) Compare the plain amplitude spectrum with the envelope spectrum around BPFI. Then download an outer race fault file and check whether a peak appears at BPFO.</li>
 </ol>
 </div>
+<section id="solutions" class="level3" data-number="10.9.1">
+<h3 data-number="10.9.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">10.9.1</span> Solutions</h3>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The Nyquist frequency is 5 kHz. The 7 kHz component is folded back to <span class="math inline">\(|7 - 10| = 3\)</span> kHz – it appears as a false peak at 3 kHz. To capture 7 kHz correctly, the sampling rate must exceed 14 kHz; in practice one chooses about 2.5 times the highest frequency of interest (≥ 17.5 kHz) and uses an anti-aliasing filter with its cut-off below the Nyquist frequency.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\Delta f = 1/T = 1/0.5\,\text{s} = 2\)</span> Hz. The sideband lies <span class="math inline">\(f_r \approx 30\)</span> Hz from the BPFI peak, i.e.&nbsp;15 bins away – easily separable. Peaks closer than about 2–3 bins (here 4–6 Hz) could not be separated, especially with a window function that widens the peaks. Note that the sampling rate does not affect the resolution; only the duration does.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="f53b008f" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>FILES4 <span class="op">=</span> {<span class="st">"normal"</span>: (<span class="st">"97.mat"</span>, <span class="dv">48_000</span>), <span class="st">"inner race"</span>: (<span class="st">"105.mat"</span>, <span class="dv">12_000</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">"ball"</span>: (<span class="st">"118.mat"</span>, <span class="dv">12_000</span>), <span class="st">"outer race"</span>: (<span class="st">"130.mat"</span>, <span class="dv">12_000</span>)}   <span class="co"># verify on the CWRU pages!</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, (fname, fs) <span class="kw">in</span> FILES4.items():</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    mat <span class="op">=</span> loadmat(download(BASE_URL <span class="op">+</span> fname))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> mat[<span class="bu">next</span>(k <span class="cf">for</span> k <span class="kw">in</span> mat <span class="cf">if</span> k.endswith(<span class="st">"_DE_time"</span>))].ravel()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> fs <span class="op">==</span> <span class="dv">48_000</span>:                                   <span class="co"># bring all signals to 12 kHz</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        x, fs <span class="op">=</span> signal.decimate(x, <span class="dv">4</span>), <span class="dv">12_000</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    win <span class="op">=</span> fs <span class="op">//</span> <span class="dv">4</span>                                      <span class="co"># 0.25 s windows</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    starts <span class="op">=</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(x) <span class="op">-</span> win, win)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    n_train <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.7</span> <span class="op">*</span> <span class="bu">len</span>(starts))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, s <span class="kw">in</span> <span class="bu">enumerate</span>(starts):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        rows.append({<span class="st">"condition"</span>: label, <span class="st">"train"</span>: i <span class="op">&lt;</span> n_train, <span class="op">**</span>features(x[s:s <span class="op">+</span> win])})</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>fw <span class="op">=</span> pd.DataFrame(rows)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>feat_cols <span class="op">=</span> [<span class="st">"rms"</span>, <span class="st">"peak"</span>, <span class="st">"crest"</span>, <span class="st">"kurtosis"</span>, <span class="st">"skewness"</span>]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> RandomForestClassifier(<span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(fw.loc[fw.train, feat_cols], fw.loc[fw.train, <span class="st">"condition"</span>])</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(fw.loc[<span class="op">~</span>fw.train, <span class="st">"condition"</span>], clf.predict(fw.loc[<span class="op">~</span>fw.train, feat_cols])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All signals are first brought to the same sampling rate, because features such as peak and RMS depend on the bandwidth. A random split would put neighbouring, nearly identical windows into training and test, so the test accuracy would measure memorisation. The time split is better, but still optimistic: there is only one recording per condition, so the model may learn properties of the individual test run (sensor mounting, load) rather than the fault. A convincing evaluation needs several recordings per class – e.g.&nbsp;train on 0 and 1 hp, test on 2 and 3 hp.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="f72d6bc6" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score, StratifiedKFold</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>hz <span class="op">=</span> download(<span class="st">"https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">"hydraulic.zip"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_sensor(z, name):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    member <span class="op">=</span> <span class="bu">next</span>(n <span class="cf">for</span> n <span class="kw">in</span> z.namelist() <span class="cf">if</span> n.endswith(name))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.read_csv(z.<span class="bu">open</span>(member), sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="va">None</span>).values</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    ps <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"PS1"</span>, <span class="st">"PS2"</span>, <span class="st">"PS3"</span>, <span class="st">"PS4"</span>, <span class="st">"PS5"</span>, <span class="st">"PS6"</span>]}</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> pd.DataFrame(read_sensor(z, <span class="st">"profile.txt"</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                           columns<span class="op">=</span>[<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>, <span class="st">"stable"</span>])</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>feat_ps <span class="op">=</span> pd.DataFrame({<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">"</span>: <span class="bu">getattr</span>(np, stat)(v, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">for</span> s, v <span class="kw">in</span> ps.items() <span class="cf">for</span> stat <span class="kw">in</span> [<span class="st">"mean"</span>, <span class="st">"std"</span>, <span class="st">"max"</span>]})</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>acc <span class="op">=</span> cross_val_score(RandomForestClassifier(<span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>), feat_ps, profile[<span class="st">"valve"</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                      cv<span class="op">=</span>StratifiedKFold(<span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Valve condition accuracy: </span><span class="sc">{</span>acc<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss"> ± </span><span class="sc">{</span>acc<span class="sc">.</span>std()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Simple pressure statistics per cycle usually predict the valve condition well, because a degraded valve changes the switching behaviour and thus the pressure curves. Caution: the conditions were changed in blocks over the duration of the experiment, so neighbouring cycles share conditions <em>and</em> drifting factors such as oil temperature. A time-based split would give a more conservative estimate than the shuffled cross-validation used here.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="f9dd6487" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x_ir, fs_ir <span class="op">=</span> signals[<span class="st">"inner race"</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>f_plain <span class="op">=</span> np.fft.rfftfreq(<span class="bu">len</span>(x_ir), <span class="dv">1</span> <span class="op">/</span> fs_ir)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>A_plain <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.<span class="bu">abs</span>(np.fft.rfft(x_ir)) <span class="op">/</span> <span class="bu">len</span>(x_ir)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>f_env, A_env <span class="op">=</span> envelope_spectrum(x_ir, fs_ir)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(f_plain, A_plain)<span class="op">;</span> axes[<span class="dv">0</span>].<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">600</span>), title<span class="op">=</span><span class="st">"Plain spectrum"</span>, xlabel<span class="op">=</span><span class="st">"Hz"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(f_env, A_env)<span class="op">;</span> axes[<span class="dv">1</span>].<span class="bu">set</span>(xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">600</span>), title<span class="op">=</span><span class="st">"Envelope spectrum"</span>, xlabel<span class="op">=</span><span class="st">"Hz"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    ax.axvline(bpfi, c<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>mat <span class="op">=</span> loadmat(download(BASE_URL <span class="op">+</span> <span class="st">"130.mat"</span>))                 <span class="co"># outer race fault (verify!)</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>x_or <span class="op">=</span> mat[<span class="bu">next</span>(k <span class="cf">for</span> k <span class="kw">in</span> mat <span class="cf">if</span> k.endswith(<span class="st">"_DE_time"</span>))].ravel()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>f_o, A_o <span class="op">=</span> envelope_spectrum(x_or, <span class="dv">12_000</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>bpfo <span class="op">=</span> <span class="fl">3.5848</span> <span class="op">*</span> f_r</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>plt.plot(f_o, A_o)<span class="op">;</span> plt.xlim(<span class="dv">0</span>, <span class="dv">600</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>):</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    plt.axvline(k <span class="op">*</span> bpfo, c<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Outer race fault: envelope spectrum, dotted: BPFO harmonics"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Hz"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the plain spectrum, the low-frequency range is dominated by shaft harmonics and noise, and the impact rate hardly shows, because the impacts carry their energy at the resonance frequencies. The envelope spectrum demodulates the resonance and reveals BPFI clearly. For the outer race fault, the peaks appear at BPFO; since the outer ring is stationary, the defect stays in the same position relative to the load zone, and shaft-frequency sidebands are typically weaker than for inner race faults.</p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

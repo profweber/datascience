@@ -24,3 +24,24 @@ body.quarto-dark code {
 .exercises li {
     margin-bottom: 0.5em;
 }
+
+/* Solutions: neutral grey instead of the caution colour */
+.callout.solution {
+  border-left-color: #6c757d !important;
+}
+.callout.solution > .callout-header {
+  background-color: rgba(108, 117, 125, 0.10) !important;
+}
+.callout.solution .callout-icon::before,
+.callout.solution .callout-toggle::before {
+  filter: grayscale(100%);
+}
+body.quarto-dark .callout.solution > .callout-header {
+  background-color: rgba(173, 181, 189, 0.12) !important;
+}
+
+/* Concept figures have a white background; soften them in dark mode */
+body.quarto-dark img[src*="images/"] {
+  filter: brightness(0.92);
+  border-radius: 4px;
+}

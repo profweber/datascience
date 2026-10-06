@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Neural Networks – Data Science in Engineering</title>
+<title>12&nbsp; Deep Learning in Engineering – Data Science in Engineering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notebooks/13-visual-inspection.html" rel="next">
+<link href="../notebooks/13-review.html" rel="next">
 <link href="../notebooks/11-time-series.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/11-time-series.html">Part D – Time Series, Deep Learning and Outlook</a></li><li class="breadcrumb-item"><a href="../notebooks/12-neural-networks.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Neural Networks</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/11-time-series.html">Part D – Time Series, Deep Learning and Review</a></li><li class="breadcrumb-item"><a href="../notebooks/12-neural-networks.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -232,7 +232,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression: Linear, Nonlinear and Design of Experiments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -281,7 +281,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Part D – Time Series, Deep Learning and Outlook</span></a>
+ <span class="menu-text">Part D – Time Series, Deep Learning and Review</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -296,19 +296,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/13-visual-inspection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning for Visual Inspection and Outlook</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/14-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+  <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -347,16 +341,27 @@ window.Quarto = {
    
   <ul>
   <li><a href="#from-linear-regression-to-neural-networks" id="toc-from-linear-regression-to-neural-networks" class="nav-link active" data-scroll-target="#from-linear-regression-to-neural-networks"><span class="header-section-number">12.1</span> From linear regression to neural networks</a></li>
-  <li><a href="#live-coding-remaining-useful-life" id="toc-live-coding-remaining-useful-life" class="nav-link" data-scroll-target="#live-coding-remaining-useful-life"><span class="header-section-number">12.2</span> Live coding: remaining useful life</a></li>
+  <li><a href="#training-loss-gradients-and-backpropagation" id="toc-training-loss-gradients-and-backpropagation" class="nav-link" data-scroll-target="#training-loss-gradients-and-backpropagation"><span class="header-section-number">12.2</span> Training: loss, gradients and backpropagation</a></li>
+  <li><a href="#remaining-useful-life-from-sensor-sequences" id="toc-remaining-useful-life-from-sensor-sequences" class="nav-link" data-scroll-target="#remaining-useful-life-from-sensor-sequences"><span class="header-section-number">12.3</span> Remaining useful life from sensor sequences</a></li>
+  <li><a href="#live-coding-remaining-useful-life" id="toc-live-coding-remaining-useful-life" class="nav-link" data-scroll-target="#live-coding-remaining-useful-life"><span class="header-section-number">12.4</span> Live coding: remaining useful life</a></li>
+  <li><a href="#extension-cnns-and-transfer-learning-for-visual-inspection" id="toc-extension-cnns-and-transfer-learning-for-visual-inspection" class="nav-link" data-scroll-target="#extension-cnns-and-transfer-learning-for-visual-inspection"><span class="header-section-number">12.5</span> Extension: CNNs and transfer learning for visual inspection</a>
+  <ul class="collapse">
+  <li><a href="#live-coding-anomaly-detection-on-one-mvtec-category" id="toc-live-coding-anomaly-detection-on-one-mvtec-category" class="nav-link" data-scroll-target="#live-coding-anomaly-detection-on-one-mvtec-category"><span class="header-section-number">12.5.1</span> Live coding: anomaly detection on one MVTec category</a></li>
+  </ul></li>
+  <li><a href="#outlook" id="toc-outlook" class="nav-link" data-scroll-target="#outlook"><span class="header-section-number">12.6</span> Outlook</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">12.7</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">12.7.1</span> Solutions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/11-time-series.html">Part D – Time Series, Deep Learning and Outlook</a></li><li class="breadcrumb-item"><a href="../notebooks/12-neural-networks.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Neural Networks</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/11-time-series.html">Part D – Time Series, Deep Learning and Review</a></li><li class="breadcrumb-item"><a href="../notebooks/12-neural-networks.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Neural Networks</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -373,28 +378,118 @@ window.Quarto = {
 </header>
 
 
-<p>Neural networks can learn features from raw data by themselves. For tabular data they rarely beat gradient boosting; for sequences, signals and images they are often the method of choice.</p>
+<p>Neural networks are behind most of the recent headlines about artificial intelligence: image recognition, speech assistants, large language models. In engineering, they are used for visual quality inspection, for virtual sensors, for surrogate models of simulations and for predicting the remaining useful life of machines. Their strength is that they can learn suitable features from raw data – pixels, signal samples, sequences – by themselves, where the methods of the previous chapters needed hand-crafted features.</p>
+<p>This chapter gives a compact, application-oriented introduction. We build a neural network from its smallest unit, the neuron, train it with gradient descent and apply it to predict the remaining useful life of jet engines. An extension section shows how pretrained networks detect defects on images. Neural networks in depth are the subject of a separate course; here the goal is to understand the principles and to judge when deep learning is worth its cost.</p>
 <blockquote class="blockquote">
-<p><strong>Engineering question:</strong> How many cycles does a turbofan engine have left before it fails?</p>
+<p><strong>Engineering question:</strong> How many cycles does a turbofan engine have left before it fails – and can a model trained only on good parts find defects on images?</p>
 </blockquote>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
-<li>explain neurons, layers, activation functions, loss and backpropagation,</li>
-<li>train a neural network in PyTorch with a training and validation loop,</li>
+<li>explain neurons, layers, activation functions, loss functions and backpropagation,</li>
+<li>train a neural network in PyTorch with mini-batch gradient descent and monitor training with a validation set,</li>
 <li>prepare sensor time series as sliding windows for remaining useful life (RUL) prediction,</li>
-<li>compare a neural network with a classical baseline.</li>
+<li>judge when deep learning is worth it compared with classical methods,</li>
+<li>(extension) use a pretrained CNN as a feature extractor for visual anomaly detection.</li>
 </ul>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data">NASA C-MAPSS turbofan degradation data</a></li>
+<li><a href="https://www.mvtec.com/company/research/datasets/mvtec-ad">MVTec Anomaly Detection (MVTec AD)</a></li>
 </ul>
 <section id="from-linear-regression-to-neural-networks" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="from-linear-regression-to-neural-networks"><span class="header-section-number">12.1</span> From linear regression to neural networks</h2>
-<p>A neuron computes <span class="math inline">\(a = \sigma(w^\top x + b)\)</span> with a non-linear activation <span class="math inline">\(\sigma\)</span> (e.g.&nbsp;ReLU). Stacking layers of neurons yields a multilayer perceptron (MLP). Training minimises a loss (here the mean squared error) with gradient descent; the gradients are computed by backpropagation. Important practical knobs: learning rate, batch size, number of epochs, early stopping.</p>
-<div id="4c2b949b" class="cell">
+<p>A linear regression computes a weighted sum of its inputs. A <strong>neuron</strong> does the same and then applies a nonlinear <strong>activation function</strong>:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Neuron, layer, multilayer perceptron
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>neuron</strong> computes <span class="math inline">\(a = \sigma(w^\top x + b)\)</span> with weights <span class="math inline">\(w\)</span>, bias <span class="math inline">\(b\)</span> and activation function <span class="math inline">\(\sigma\)</span>. A <strong>layer</strong> applies many neurons to the same input: <span class="math inline">\(a = \sigma(Wx + b)\)</span>. A <strong>multilayer perceptron (MLP)</strong> stacks layers: <span class="math display">\[\hat y = W_3\,\sigma\big(W_2\,\sigma(W_1 x + b_1) + b_2\big) + b_3.\]</span> Common activations are ReLU, <span class="math inline">\(\sigma(z) = \max(0, z)\)</span>, and the sigmoid <span class="math inline">\(1/(1+e^{-z})\)</span>.</p>
+</div>
+</div>
+<div id="fig-mlp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mlp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/mlp.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mlp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: A multilayer perceptron with two hidden layers. Each arrow carries a weight; each neuron computes a weighted sum of its inputs and applies an activation function. Without the nonlinear activations, the whole network would collapse into a single linear model.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Universal approximation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An MLP with one hidden layer and enough neurons can approximate any continuous function on a bounded region arbitrarily well. The theorem guarantees that a suitable network <em>exists</em> – not that training will find it, nor how much data is needed. In practice, deeper networks with fewer neurons per layer often learn more efficiently.</p>
+</div>
+</div>
+</section>
+<section id="training-loss-gradients-and-backpropagation" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="training-loss-gradients-and-backpropagation"><span class="header-section-number">12.2</span> Training: loss, gradients and backpropagation</h2>
+<p>The network’s weights are found by minimising a <strong>loss function</strong> on the training data, e.g.&nbsp;the mean squared error for regression or the cross-entropy for classification. Since the loss is a nonconvex function of possibly millions of weights, we use <strong>gradient descent</strong>:</p>
+<p><span class="math display">\[\theta \leftarrow \theta - \eta\,\nabla_\theta L(\theta),\]</span></p>
+<p>with the <strong>learning rate</strong> <span class="math inline">\(\eta\)</span>. The gradient is computed by <strong>backpropagation</strong> – the chain rule of calculus applied layer by layer from the output back to the input. Frameworks like PyTorch do this automatically (<em>automatic differentiation</em>).</p>
+<p>Practical ingredients:</p>
+<ul>
+<li><strong>Mini-batches:</strong> each step uses a small random subset of the data (e.g.&nbsp;256 examples) – <em>stochastic</em> gradient descent. One pass through all data is an <strong>epoch</strong>.</li>
+<li><strong>Optimisers</strong> like Adam adapt the step size per weight and usually work well with default settings.</li>
+<li><strong>Scaling:</strong> inputs should be standardised; otherwise training is slow or unstable.</li>
+<li><strong>Validation and early stopping:</strong> monitor the loss on a validation set during training and stop when it no longer improves – the most important protection against overfitting.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Engineering practice: when is deep learning worth it?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Raw, high-dimensional data</strong> (images, spectrograms, long signals, text): yes – neural networks learn the features.</li>
+<li><strong>Tabular data with meaningful engineered features:</strong> usually no – gradient boosting is typically as good or better, faster to train and easier to explain.</li>
+<li><strong>Little data:</strong> usually no, unless a <strong>pretrained</strong> network can be reused (transfer learning).</li>
+<li>Always compare with a classical baseline and consider the costs: training time, hardware, expertise, explainability, certification.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="remaining-useful-life-from-sensor-sequences" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="remaining-useful-life-from-sensor-sequences"><span class="header-section-number">12.3</span> Remaining useful life from sensor sequences</h2>
+<p>The <strong>remaining useful life (RUL)</strong> of a machine is the time it can still operate before failure. Predicting it is the core of predictive maintenance: replace parts shortly before they fail, not too early (wasted life) and not too late (unplanned failure).</p>
+<p>Two modelling choices are typical for RUL prediction:</p>
+<ul>
+<li><strong>Sliding windows:</strong> the input for a prediction at cycle <span class="math inline">\(t\)</span> is the sensor history of the last <span class="math inline">\(W\)</span> cycles, a <span class="math inline">\(W \times p\)</span> matrix. Each trajectory provides many overlapping windows for training.</li>
+<li><strong>Piecewise linear target:</strong> early in life, degradation is not observable in the sensors – a new engine with 300 remaining cycles looks like one with 200. The RUL target is therefore capped at a constant (commonly 125 cycles) and decreases linearly afterwards.</li>
+</ul>
+<div id="fig-rul" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rul-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rul-windows.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rul-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.2: Sliding windows and capped RUL target. From each engine’s sensor history, windows of W cycles are cut; the target of a window is the RUL at its last cycle. The RUL is capped at 125 cycles because early degradation is invisible in the data.
+</figcaption>
+</figure>
+</div>
+<p>Windows of the same engine are highly correlated – exactly like signal windows in Chapter 10. Training and validation data must be split <strong>by engine</strong>.</p>
+<div id="e791ed24" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">'torch'</span>]:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"torch"</span>, <span class="st">"torchvision"</span>]:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> importlib.util.find_spec(pkg) <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, <span class="st">"-q"</span>, pkg], check<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -408,10 +503,10 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="live-coding-remaining-useful-life" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="live-coding-remaining-useful-life"><span class="header-section-number">12.2</span> Live coding: remaining useful life</h2>
-<p>Data access as in Chapter 3: extract <code>CMAPSSData.zip</code> into <code>data/CMAPSSData/</code>. For the training engines the RUL is known (last cycle − current cycle). Following common practice we cap the RUL at 125 cycles, because degradation is not observable early in life.</p>
-<div id="e1a6b65c" class="cell">
+<section id="live-coding-remaining-useful-life" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="live-coding-remaining-useful-life"><span class="header-section-number">12.4</span> Live coding: remaining useful life</h2>
+<p>Data access as in Chapter 3: extract <code>CMAPSSData.zip</code> into <code>data/CMAPSSData/</code>. Subset FD001 has one operating condition and one fault mode (degradation of the high-pressure compressor). The test file contains trajectories that end some time <em>before</em> failure; <code>RUL_FD001.txt</code> gives the true RUL at the end of each test trajectory.</p>
+<div id="93e31b9e" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>) <span class="op">/</span> <span class="st">"CMAPSSData"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"unit"</span>, <span class="st">"cycle"</span>, <span class="st">"op1"</span>, <span class="st">"op2"</span>, <span class="st">"op3"</span>] <span class="op">+</span> [<span class="ss">f"s</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">22</span>)]</span>
@@ -427,79 +522,346 @@ window.Quarto = {
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>test[sensors] <span class="op">=</span> (test[sensors] <span class="op">-</span> mu) <span class="op">/</span> sd</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sensors used:"</span>, sensors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f3a462f0" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> <span class="dv">30</span>   <span class="co"># window length (cycles)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> windows(df, with_target<span class="op">=</span><span class="va">True</span>):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    X, y <span class="op">=</span> [], []</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, g <span class="kw">in</span> df.groupby(<span class="st">"unit"</span>):</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> g[sensors].values</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(v) <span class="op">&lt;</span> W:                                   <span class="co"># pad short test series</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            v <span class="op">=</span> np.vstack([np.repeat(v[:<span class="dv">1</span>], W <span class="op">-</span> <span class="bu">len</span>(v), axis<span class="op">=</span><span class="dv">0</span>), v])</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> with_target:</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            r <span class="op">=</span> g[<span class="st">"rul"</span>].values</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> end <span class="kw">in</span> <span class="bu">range</span>(W, <span class="bu">len</span>(v) <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                X.append(v[end <span class="op">-</span> W:end])<span class="op">;</span> y.append(r[end <span class="op">-</span> <span class="dv">1</span>])</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            X.append(v[<span class="op">-</span>W:])</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(X, dtype<span class="op">=</span>np.float32), np.array(y, dtype<span class="op">=</span>np.float32)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>X_tr, y_tr <span class="op">=</span> windows(train)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>X_te, _ <span class="op">=</span> windows(test, with_target<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>X_tr.shape, X_te.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="81b54394" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">0</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Sequential(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    nn.Flatten(),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    nn.Linear(W <span class="op">*</span> <span class="bu">len</span>(sensors), <span class="dv">64</span>), nn.ReLU(),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">64</span>, <span class="dv">32</span>), nn.ReLU(),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">32</span>, <span class="dv">1</span>),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">1e-3</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> nn.MSELoss()</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Xt, yt <span class="op">=</span> torch.tensor(X_tr), torch.tensor(y_tr).unsqueeze(<span class="dv">1</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> torch.utils.data.DataLoader(torch.utils.data.TensorDataset(Xt, yt),</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                     batch_size<span class="op">=</span><span class="dv">256</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> []</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>):</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    model.train()</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xb, yb <span class="kw">in</span> loader:</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        opt.zero_grad()</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> loss_fn(model(xb), yb)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        opt.step()</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    history.append(loss.item())</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> model(torch.tensor(X_te)).squeeze().numpy()</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> np.sqrt(np.mean((pred <span class="op">-</span> np.minimum(rul_test, <span class="dv">125</span>))<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="ea35df1c" class="cell">
+<div id="091d6a60" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">4</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(history)<span class="op">;</span> axes[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Epoch"</span>, ylabel<span class="op">=</span><span class="st">"Training loss (last batch)"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].scatter(np.minimum(rul_test, <span class="dv">125</span>), pred, s<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot([<span class="dv">0</span>, <span class="dv">125</span>], [<span class="dv">0</span>, <span class="dv">125</span>], <span class="st">"k--"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"True RUL (cycles)"</span>, ylabel<span class="op">=</span><span class="st">"Predicted RUL (cycles)"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="fl">3.5</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, s <span class="kw">in</span> <span class="bu">zip</span>(axes, sensors[:<span class="dv">3</span>]):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> u <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> train[train.unit <span class="op">==</span> u]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        ax.plot(g[<span class="st">"cycle"</span>] <span class="op">-</span> g[<span class="st">"cycle"</span>].<span class="bu">max</span>(), g[s], lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(title<span class="op">=</span>s, xlabel<span class="op">=</span><span class="st">"Cycles before failure"</span>, ylabel<span class="op">=</span><span class="st">"standardised value"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>Plotted against the cycles <em>before failure</em>, several sensors show a clear trend that accelerates towards the end of life – the degradation signature the network must learn. Some sensors are constant in FD001 and were removed.</p>
+<div id="ca842432" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> <span class="dv">30</span>   <span class="co"># window length (cycles)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> windows(df, with_target<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    X, y <span class="op">=</span> [], []</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, g <span class="kw">in</span> df.groupby(<span class="st">"unit"</span>):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        v <span class="op">=</span> g[sensors].values</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(v) <span class="op">&lt;</span> W:                                   <span class="co"># pad short test series</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            v <span class="op">=</span> np.vstack([np.repeat(v[:<span class="dv">1</span>], W <span class="op">-</span> <span class="bu">len</span>(v), axis<span class="op">=</span><span class="dv">0</span>), v])</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> with_target:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            r <span class="op">=</span> g[<span class="st">"rul"</span>].values</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> end <span class="kw">in</span> <span class="bu">range</span>(W, <span class="bu">len</span>(v) <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                X.append(v[end <span class="op">-</span> W:end])<span class="op">;</span> y.append(r[end <span class="op">-</span> <span class="dv">1</span>])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            X.append(v[<span class="op">-</span>W:])</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(X, dtype<span class="op">=</span>np.float32), np.array(y, dtype<span class="op">=</span>np.float32)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>X_tr, y_tr <span class="op">=</span> windows(train)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>X_te, _ <span class="op">=</span> windows(test, with_target<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>X_tr.shape, X_te.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="570ec02d" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">0</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Sequential(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    nn.Flatten(),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    nn.Linear(W <span class="op">*</span> <span class="bu">len</span>(sensors), <span class="dv">64</span>), nn.ReLU(),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">64</span>, <span class="dv">32</span>), nn.ReLU(),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    nn.Linear(<span class="dv">32</span>, <span class="dv">1</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> torch.optim.Adam(model.parameters(), lr<span class="op">=</span><span class="fl">1e-3</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> nn.MSELoss()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>Xt, yt <span class="op">=</span> torch.tensor(X_tr), torch.tensor(y_tr).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>loader <span class="op">=</span> torch.utils.data.DataLoader(torch.utils.data.TensorDataset(Xt, yt),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                                     batch_size<span class="op">=</span><span class="dv">256</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> []</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>):</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    model.train()</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    epoch_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xb, yb <span class="kw">in</span> loader:</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        opt.zero_grad()</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> loss_fn(model(xb), yb)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        opt.step()</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        epoch_loss <span class="op">+=</span> loss.item() <span class="op">*</span> <span class="bu">len</span>(xb)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    history.append(epoch_loss <span class="op">/</span> <span class="bu">len</span>(Xt))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> model(torch.tensor(X_te)).squeeze().numpy()</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> np.sqrt(np.mean((pred <span class="op">-</span> np.minimum(rul_test, <span class="dv">125</span>))<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test RMSE: </span><span class="sc">{</span>rmse<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The training loop is the same in every PyTorch project: forward pass, loss, <code>backward()</code> to compute gradients, <code>step()</code> to update the weights. The network has a few tens of thousands of weights – small by deep learning standards.</p>
+<div id="c3e76276" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">4</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(history)<span class="op">;</span> axes[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Epoch"</span>, ylabel<span class="op">=</span><span class="st">"Training loss (MSE)"</span>, yscale<span class="op">=</span><span class="st">"log"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].scatter(np.minimum(rul_test, <span class="dv">125</span>), pred, s<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot([<span class="dv">0</span>, <span class="dv">125</span>], [<span class="dv">0</span>, <span class="dv">125</span>], <span class="st">"k--"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"True RUL (cycles, capped)"</span>, ylabel<span class="op">=</span><span class="st">"Predicted RUL (cycles)"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Discussion.</strong> The predictions follow the diagonal, with larger scatter at high RUL, where degradation is barely visible, and smaller scatter near the end of life – fortunately the region where accurate predictions matter most. The training loss alone says nothing about overfitting; we did not use a validation set here (Exercise 2 fixes this). Also note that the test RMSE is computed on only 100 engines and therefore has considerable uncertainty itself. Whether the network beats a gradient boosting model on window statistics is an open question – Exercise 1.</p>
+</section>
+<section id="extension-cnns-and-transfer-learning-for-visual-inspection" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="extension-cnns-and-transfer-learning-for-visual-inspection"><span class="header-section-number">12.5</span> Extension: CNNs and transfer learning for visual inspection</h2>
+<p><em>Extension – optional material, not required for the exam.</em></p>
+<p><strong>Convolutional neural networks (CNNs)</strong> process images with small learnable filters (e.g.&nbsp;3 × 3 pixels) that slide across the image. Early layers detect edges and simple textures, deeper layers combine them into complex patterns. Because the same filter is applied everywhere, CNNs need far fewer weights than an MLP on raw pixels.</p>
+<p>Training a CNN from scratch requires many thousands of labelled images. <strong>Transfer learning</strong> avoids this: a network pretrained on millions of everyday images (ImageNet) already provides general visual features that transfer surprisingly well to industrial images. For anomaly detection, a simple but strong approach is: embed all good training images with the pretrained CNN and score a test image by its distance to the nearest good image in this feature space. No defective images are needed for training.</p>
+<section id="live-coding-anomaly-detection-on-one-mvtec-category" class="level3" data-number="12.5.1">
+<h3 data-number="12.5.1" class="anchored" data-anchor-id="live-coding-anomaly-detection-on-one-mvtec-category"><span class="header-section-number">12.5.1</span> Live coding: anomaly detection on one MVTec category</h3>
+<p><strong>Data access.</strong> MVTec AD is free for non-commercial use (CC BY-NC-SA 4.0) and is downloaded from the MVTec website after accepting the license. Download one category (e.g.&nbsp;<code>bottle</code>, a few hundred MB) and extract it to <code>data/mvtec/bottle/</code>. A GPU (Colab: <em>Runtime → Change runtime type</em>) speeds things up but is not required.</p>
+<div id="cd068993" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision <span class="im">import</span> models</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ROOT <span class="op">=</span> Path(<span class="st">"data/mvtec/bottle"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> <span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> models.ResNet18_Weights.DEFAULT</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>backbone <span class="op">=</span> models.resnet18(weights<span class="op">=</span>weights)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>backbone.fc <span class="op">=</span> torch.nn.Identity()           <span class="co"># use the 512-d feature vector</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>backbone.<span class="bu">eval</span>().to(device)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>tf <span class="op">=</span> weights.transforms()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="at">@torch.no_grad</span>()</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> embed(paths):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    feats <span class="op">=</span> []</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> paths:</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> tf(Image.<span class="bu">open</span>(p).convert(<span class="st">"RGB"</span>)).unsqueeze(<span class="dv">0</span>).to(device)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        feats.append(backbone(x).cpu().numpy()[<span class="dv">0</span>])</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(feats)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>train_paths <span class="op">=</span> <span class="bu">sorted</span>((ROOT <span class="op">/</span> <span class="st">"train"</span> <span class="op">/</span> <span class="st">"good"</span>).glob(<span class="st">"*.png"</span>))</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>test_paths <span class="op">=</span> <span class="bu">sorted</span>((ROOT <span class="op">/</span> <span class="st">"test"</span>).glob(<span class="st">"*/*.png"</span>))</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> np.array([p.parent.name <span class="op">!=</span> <span class="st">"good"</span> <span class="cf">for</span> p <span class="kw">in</span> test_paths])</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>F_train, F_test <span class="op">=</span> embed(train_paths), embed(test_paths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fd05da84" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> NearestNeighbors</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>nn_model <span class="op">=</span> NearestNeighbors(n_neighbors<span class="op">=</span><span class="dv">1</span>).fit(F_train)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> nn_model.kneighbors(F_test)[<span class="dv">0</span>][:, <span class="dv">0</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Image-level ROC AUC: </span><span class="sc">{</span>roc_auc_score(labels, score)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> np.argsort(score)[::<span class="op">-</span><span class="dv">1</span>][:<span class="dv">5</span>]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">3</span>))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, i <span class="kw">in</span> <span class="bu">zip</span>(axes, order):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    ax.imshow(Image.<span class="bu">open</span>(test_paths[i]))<span class="op">;</span> ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span>test_paths[i]<span class="sc">.</span>parent<span class="sc">.</span>name<span class="sc">}</span><span class="ch">\n</span><span class="ss">score </span><span class="sc">{</span>score[i]<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The five most anomalous test images should mostly be defective bottles. State-of-the-art methods (e.g.&nbsp;PatchCore) refine this idea by comparing local image patches instead of whole images, which also localises the defect.</p>
+</section>
+</section>
+<section id="outlook" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="outlook"><span class="header-section-number">12.6</span> Outlook</h2>
+<ul>
+<li><strong>Physics-informed machine learning:</strong> physical laws enter the model as constraints or as terms of the loss function – useful when data are scarce and extrapolation matters.</li>
+<li><strong>Surrogate models:</strong> neural networks or Gaussian processes replace expensive FEM or CFD simulations in optimisation loops.</li>
+<li><strong>Foundation models:</strong> large pretrained models for time series, images and text, adapted to specific tasks with little data; large language models as assistants for coding and documentation.</li>
+<li><strong>Deployment and MLOps:</strong> models in production must be monitored for <em>data drift</em> (the input data change, e.g.&nbsp;a new sensor or a new product), retrained, versioned and – in safety-relevant applications – validated and certified.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>A neural network is a stack of linear maps and nonlinear activations, trained by gradient descent with backpropagation.</li>
+<li>Monitor a validation set and stop early; split by unit (engine, machine), not by window.</li>
+<li>For RUL prediction, sliding windows and a capped target are standard; errors near end of life matter most.</li>
+<li>Deep learning shines on raw images, signals and text; for tabular features, compare with gradient boosting first.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">12.7</span> Exercises</h2>
 <div class="exercises">
-<p><strong>Exercises</strong></p>
 <ol type="1">
-<li>Build a baseline: gradient boosting on the last-cycle sensor values plus window mean and slope. Is the neural network better?</li>
-<li>Hold out 20 training engines as a validation set (split by engine, not by window!) and implement early stopping.</li>
-<li>Replace the MLP by a 1D convolutional network (<code>nn.Conv1d</code>) or an LSTM. Mind the tensor shape (batch, channels, time).</li>
-<li>Why is an <em>underestimate</em> of the RUL less critical than an overestimate? Design an asymmetric loss function.</li>
+<li>Build a baseline: gradient boosting on features of each window (last value, mean and slope of each sensor). Is the neural network better?</li>
+<li>Hold out 20 training engines as a validation set (split by engine, not by window!) and implement early stopping. Plot training and validation loss.</li>
+<li>Why is an <em>underestimate</em> of the RUL less critical than an overestimate? Design an asymmetric loss function and discuss its effect.</li>
+<li>(Extension) Replace the MLP by a 1D convolutional network (<code>nn.Conv1d</code>). Mind the tensor shape (batch, channels, time).</li>
+<li>(Extension) MVTec: repeat the anomaly detection for a texture category (e.g.&nbsp;<code>carpet</code>) and an object category (e.g.&nbsp;<code>screw</code>). Where does the method work better? Choose a threshold so that no defective part passes – what fraction of good parts is rejected?</li>
 </ol>
+</div>
+<section id="solutions" class="level3" data-number="12.7.1">
+<h3 data-number="12.7.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">12.7.1</span> Solutions</h3>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="1543e059" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> HistGradientBoostingRegressor</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> window_features(Xw):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> np.arange(W) <span class="op">-</span> (W <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    slope <span class="op">=</span> (Xw <span class="op">*</span> t[<span class="va">None</span>, :, <span class="va">None</span>]).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> (t<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.hstack([Xw[:, <span class="op">-</span><span class="dv">1</span>, :], Xw.mean(axis<span class="op">=</span><span class="dv">1</span>), slope])</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>gb <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(window_features(X_tr), y_tr)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>pred_gb <span class="op">=</span> gb.predict(window_features(X_te))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>rmse_gb <span class="op">=</span> np.sqrt(np.mean((pred_gb <span class="op">-</span> np.minimum(rul_test, <span class="dv">125</span>))<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test RMSE: MLP </span><span class="sc">{</span>rmse<span class="sc">:.1f}</span><span class="ss"> cycles, gradient boosting </span><span class="sc">{</span>rmse_gb<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With well-chosen window features (level, mean and trend per sensor), gradient boosting is often on par with a small MLP on FD001 – a reminder that deep learning is not automatically better on sensor data with few channels. Neural networks gain an advantage on the more complex subsets (FD002/FD004 with six operating conditions) and with architectures that exploit the sequence structure, such as 1D CNNs or LSTMs.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="c75db639" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>val_units <span class="op">=</span> rng.choice(train[<span class="st">"unit"</span>].unique(), size<span class="op">=</span><span class="dv">20</span>, replace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Xa, ya <span class="op">=</span> windows(train[<span class="op">~</span>train.unit.isin(val_units)])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Xv, yv <span class="op">=</span> windows(train[train.unit.isin(val_units)])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Xa_t, ya_t <span class="op">=</span> torch.tensor(Xa), torch.tensor(ya).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Xv_t, yv_t <span class="op">=</span> torch.tensor(Xv), torch.tensor(yv).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_mlp():</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nn.Sequential(nn.Flatten(), nn.Linear(W <span class="op">*</span> <span class="bu">len</span>(sensors), <span class="dv">64</span>), nn.ReLU(),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                         nn.Linear(<span class="dv">64</span>, <span class="dv">32</span>), nn.ReLU(), nn.Linear(<span class="dv">32</span>, <span class="dv">1</span>))</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">0</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>net, best, best_state, patience, wait <span class="op">=</span> make_mlp(), np.inf, <span class="va">None</span>, <span class="dv">5</span>, <span class="dv">0</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>opt2 <span class="op">=</span> torch.optim.Adam(net.parameters(), lr<span class="op">=</span><span class="fl">1e-3</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>dl <span class="op">=</span> torch.utils.data.DataLoader(torch.utils.data.TensorDataset(Xa_t, ya_t), batch_size<span class="op">=</span><span class="dv">256</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>tr_hist, va_hist <span class="op">=</span> [], []</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    net.train()</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xb, yb <span class="kw">in</span> dl:</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        opt2.zero_grad()<span class="op">;</span> l <span class="op">=</span> loss_fn(net(xb), yb)<span class="op">;</span> l.backward()<span class="op">;</span> opt2.step()</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    net.<span class="bu">eval</span>()</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        tr_hist.append(loss_fn(net(Xa_t), ya_t).item())<span class="op">;</span> va_hist.append(loss_fn(net(Xv_t), yv_t).item())</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> va_hist[<span class="op">-</span><span class="dv">1</span>] <span class="op">&lt;</span> best:</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        best, best_state, wait <span class="op">=</span> va_hist[<span class="op">-</span><span class="dv">1</span>], {k: v.clone() <span class="cf">for</span> k, v <span class="kw">in</span> net.state_dict().items()}, <span class="dv">0</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        wait <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> wait <span class="op">&gt;=</span> patience:</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>net.load_state_dict(best_state)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>plt.plot(tr_hist, label<span class="op">=</span><span class="st">"training"</span>)<span class="op">;</span> plt.plot(va_hist, label<span class="op">=</span><span class="st">"validation"</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Epoch"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"MSE"</span>)<span class="op">;</span> plt.legend()<span class="op">;</span> plt.show()</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"stopped after </span><span class="sc">{</span><span class="bu">len</span>(va_hist)<span class="sc">}</span><span class="ss"> epochs, best validation RMSE </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(best)<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The validation loss typically decreases at first and then flattens or rises while the training loss keeps falling – overfitting. Early stopping keeps the weights of the best validation epoch. Splitting by engine is essential: with a random window split, validation windows would be near-copies of training windows from the same engine, and the validation loss would keep falling.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>An underestimate leads to maintenance too early: some useful life is wasted, a cost that can be planned. An overestimate means the machine may fail before maintenance: unplanned downtime, secondary damage, possibly a safety risk. An asymmetric loss penalises late predictions (predicted RUL &gt; true RUL) more strongly, e.g.&nbsp;the score of the PHM 2008 challenge with <span class="math inline">\(d = \hat y - y\)</span>: <span class="math display">\[s(d) = \begin{cases} e^{-d/13} - 1, &amp; d &lt; 0 \\ e^{d/10} - 1, &amp; d \ge 0. \end{cases}\]</span> A simpler differentiable variant for training is a weighted squared error:</p>
+<div id="91aa911f" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> asymmetric_mse(pred, target, w_late<span class="op">=</span><span class="fl">4.0</span>):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> pred <span class="op">-</span> target</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> torch.mean(torch.where(d <span class="op">&gt;</span> <span class="dv">0</span>, w_late <span class="op">*</span> d<span class="op">**</span><span class="dv">2</span>, d<span class="op">**</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Training with such a loss shifts the predictions towards lower RUL values – the model becomes deliberately conservative. The weight should reflect the real cost ratio of late and early maintenance.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="35ef5a50" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CNN1D(nn.Module):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, n_sensors):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.net <span class="op">=</span> nn.Sequential(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            nn.Conv1d(n_sensors, <span class="dv">32</span>, kernel_size<span class="op">=</span><span class="dv">5</span>, padding<span class="op">=</span><span class="dv">2</span>), nn.ReLU(),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            nn.Conv1d(<span class="dv">32</span>, <span class="dv">32</span>, kernel_size<span class="op">=</span><span class="dv">5</span>, padding<span class="op">=</span><span class="dv">2</span>), nn.ReLU(),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            nn.AdaptiveAvgPool1d(<span class="dv">1</span>), nn.Flatten(), nn.Linear(<span class="dv">32</span>, <span class="dv">1</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):                  <span class="co"># x: (batch, time, sensors)</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.net(x.transpose(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># Conv1d expects (batch, channels, time)</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">0</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>cnn <span class="op">=</span> CNN1D(<span class="bu">len</span>(sensors))</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>opt3 <span class="op">=</span> torch.optim.Adam(cnn.parameters(), lr<span class="op">=</span><span class="fl">1e-3</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>):</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    cnn.train()</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> xb, yb <span class="kw">in</span> loader:</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        opt3.zero_grad()<span class="op">;</span> l <span class="op">=</span> loss_fn(cnn(xb), yb)<span class="op">;</span> l.backward()<span class="op">;</span> opt3.step()</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>cnn.<span class="bu">eval</span>()</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    pred_cnn <span class="op">=</span> cnn(torch.tensor(X_te)).squeeze().numpy()</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test RMSE 1D CNN: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(np.mean((pred_cnn <span class="op">-</span> np.minimum(rul_test, <span class="dv">125</span>))<span class="op">**</span><span class="dv">2</span>))<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The convolution filters slide along the time axis and share their weights over time, so the network detects local patterns (e.g.&nbsp;a steepening trend) wherever they occur in the window. The sensors are the input <em>channels</em> – hence the transposition from (batch, time, sensors) to (batch, sensors, time).</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Change <code>ROOT</code> to the new category and rerun the two cells. Image-level anomaly detection with global features typically works very well for objects with consistent appearance (bottle) and for many textures, but less well for categories with small, local defects on objects with varying pose (screw), because a global feature vector averages over the whole image. For a threshold that lets no defective part pass:</p>
+<div id="3e9c909e" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>thr <span class="op">=</span> score[labels].<span class="bu">min</span>()                          <span class="co"># lowest score among defective images</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>false_reject <span class="op">=</span> (score[<span class="op">~</span>labels] <span class="op">&gt;=</span> thr).mean()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"threshold </span><span class="sc">{</span>thr<span class="sc">:.2f}</span><span class="ss">: </span><span class="sc">{</span>false_reject<span class="sc">:.0%}</span><span class="ss"> of good parts rejected"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The resulting false reject rate shows the price of zero slip. Note that this threshold was chosen on the test set itself and is therefore optimistic; in practice it must be set on separate validation images.</p>
+</div>
+</div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1122,8 +1484,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notebooks/13-visual-inspection.html" class="pagination-link" aria-label="Deep Learning for Visual Inspection and Outlook">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning for Visual Inspection and Outlook</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notebooks/13-review.html" class="pagination-link" aria-label="Review and Exam Preparation">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

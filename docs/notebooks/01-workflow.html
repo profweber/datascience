@@ -105,6 +105,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -203,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Regression: Linear, Nonlinear and Design of Experiments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -252,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Part D – Time Series, Deep Learning and Outlook</span></a>
+ <span class="menu-text">Part D – Time Series, Deep Learning and Review</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -267,19 +296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/13-visual-inspection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning for Visual Inspection and Outlook</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../notebooks/14-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+  <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -317,10 +340,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#from-engineering-question-to-data-driven-answer" id="toc-from-engineering-question-to-data-driven-answer" class="nav-link active" data-scroll-target="#from-engineering-question-to-data-driven-answer"><span class="header-section-number">1.1</span> From engineering question to data-driven answer</a></li>
-  <li><a href="#tools-the-python-data-stack" id="toc-tools-the-python-data-stack" class="nav-link" data-scroll-target="#tools-the-python-data-stack"><span class="header-section-number">1.2</span> Tools: the Python data stack</a></li>
-  <li><a href="#live-coding-a-first-look-at-the-power-plant-data" id="toc-live-coding-a-first-look-at-the-power-plant-data" class="nav-link" data-scroll-target="#live-coding-a-first-look-at-the-power-plant-data"><span class="header-section-number">1.3</span> Live coding: a first look at the power plant data</a></li>
-  <li><a href="#live-coding-reading-a-raw-sensor-file" id="toc-live-coding-reading-a-raw-sensor-file" class="nav-link" data-scroll-target="#live-coding-reading-a-raw-sensor-file"><span class="header-section-number">1.4</span> Live coding: reading a raw sensor file</a></li>
+  <li><a href="#what-is-data-science-in-engineering" id="toc-what-is-data-science-in-engineering" class="nav-link active" data-scroll-target="#what-is-data-science-in-engineering"><span class="header-section-number">1.1</span> What is data science in engineering?</a></li>
+  <li><a href="#statistics-machine-learning-deep-learning-ai-sorting-the-terms" id="toc-statistics-machine-learning-deep-learning-ai-sorting-the-terms" class="nav-link" data-scroll-target="#statistics-machine-learning-deep-learning-ai-sorting-the-terms"><span class="header-section-number">1.2</span> Statistics, machine learning, deep learning, AI: sorting the terms</a>
+  <ul class="collapse">
+  <li><a href="#and-what-about-ai" id="toc-and-what-about-ai" class="nav-link" data-scroll-target="#and-what-about-ai"><span class="header-section-number">1.2.1</span> And what about AI?</a></li>
+  <li><a href="#where-statistics-and-machine-learning-differ-and-where-they-overlap" id="toc-where-statistics-and-machine-learning-differ-and-where-they-overlap" class="nav-link" data-scroll-target="#where-statistics-and-machine-learning-differ-and-where-they-overlap"><span class="header-section-number">1.2.2</span> Where statistics and machine learning differ – and where they overlap</a></li>
+  </ul></li>
+  <li><a href="#the-crisp-dm-process-model" id="toc-the-crisp-dm-process-model" class="nav-link" data-scroll-target="#the-crisp-dm-process-model"><span class="header-section-number">1.3</span> The CRISP-DM process model</a></li>
+  <li><a href="#tools-the-python-data-stack" id="toc-tools-the-python-data-stack" class="nav-link" data-scroll-target="#tools-the-python-data-stack"><span class="header-section-number">1.4</span> Tools: the Python data stack</a></li>
+  <li><a href="#live-coding-a-first-look-at-the-power-plant-data" id="toc-live-coding-a-first-look-at-the-power-plant-data" class="nav-link" data-scroll-target="#live-coding-a-first-look-at-the-power-plant-data"><span class="header-section-number">1.5</span> Live coding: a first look at the power plant data</a>
+  <ul class="collapse">
+  <li><a href="#a-first-baseline-model" id="toc-a-first-baseline-model" class="nav-link" data-scroll-target="#a-first-baseline-model"><span class="header-section-number">1.5.1</span> A first baseline model</a></li>
+  </ul></li>
+  <li><a href="#live-coding-reading-a-raw-sensor-file" id="toc-live-coding-reading-a-raw-sensor-file" class="nav-link" data-scroll-target="#live-coding-reading-a-raw-sensor-file"><span class="header-section-number">1.6</span> Live coding: reading a raw sensor file</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.7</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">1.7.1</span> Solutions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -346,76 +382,347 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Data science in engineering starts with a technical question and ends with a decision about a product, a process or a machine. This chapter introduces the workflow that connects the two, and the tools we use throughout the course.</p>
+<p>Engineers have always worked with data: test bench measurements, calibration curves, quality records, field failures. What has changed is the <em>amount</em> and the <em>variety</em> of data. A modern production line logs hundreds of signals per second, a wind turbine reports its state every few seconds, and simulation studies produce thousands of runs. Data science provides the methods to turn such data into decisions.</p>
+<p>This chapter sets the stage. We look at what makes data science in engineering special, introduce a process model that structures every project, and get to know the Python tools we will use throughout the course. Finally, we load and inspect our first two datasets – one clean table from a public repository and one raw sensor file, as they typically arrive in practice.</p>
 <blockquote class="blockquote">
 <p><strong>Engineering question:</strong> Can we predict the electrical power output of a combined cycle power plant from ambient conditions alone?</p>
 </blockquote>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
-<li>describe the steps of a data science project (CRISP-DM) in an engineering context,</li>
+<li>explain how we use the terms statistics, machine learning, deep learning, artificial intelligence and data science, and where they overlap,</li>
+<li>describe the phases of a data science project (CRISP-DM) and apply them to an engineering problem,</li>
+<li>distinguish data science tasks such as description, prediction, diagnosis and optimisation,</li>
 <li>use the Python data stack (NumPy, pandas, Matplotlib, seaborn) in Jupyter or Google Colab,</li>
 <li>load tabular data from a public repository and from a raw sensor file,</li>
-<li>produce a first overview of a dataset (size, types, summary statistics, pair plots).</li>
+<li>produce a first overview of a dataset (size, types, summary statistics, pair plots) and interpret it.</li>
 </ul>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant">Combined Cycle Power Plant (UCI)</a></li>
 <li><a href="https://opendata.dwd.de/climate_environment/CDC/">DWD Climate Data Center – hourly station data</a></li>
 </ul>
-<section id="from-engineering-question-to-data-driven-answer" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="from-engineering-question-to-data-driven-answer"><span class="header-section-number">1.1</span> From engineering question to data-driven answer</h2>
-<p>The <em>Cross-Industry Standard Process for Data Mining</em> (CRISP-DM) structures a project into six phases:</p>
-<ol type="1">
-<li><strong>Business / engineering understanding</strong> – What decision should the analysis support? What accuracy is good enough?</li>
-<li><strong>Data understanding</strong> – Which data exist, how were they measured, what is their quality?</li>
-<li><strong>Data preparation</strong> – Cleaning, merging, resampling, feature construction.</li>
-<li><strong>Modelling</strong> – Statistical or machine learning models.</li>
-<li><strong>Evaluation</strong> – Does the model answer the engineering question? Is it valid outside the training data?</li>
-<li><strong>Deployment</strong> – Integration into a process, a report or a product.</li>
-</ol>
-<p>In practice, phases 2–4 are revisited many times. Typical engineering data sources are test benches, production lines (MES/SCADA), condition monitoring systems, simulations and public data such as weather or grid data.</p>
-</section>
-<section id="tools-the-python-data-stack" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="tools-the-python-data-stack"><span class="header-section-number">1.2</span> Tools: the Python data stack</h2>
+<section id="what-is-data-science-in-engineering" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-data-science-in-engineering"><span class="header-section-number">1.1</span> What is data science in engineering?</h2>
+<p>Put briefly, data science is the systematic extraction of knowledge and decisions from data. It combines <em>statistics</em> (how to reason under uncertainty), <em>computer science</em> (how to process data and fit models efficiently) and <em>domain knowledge</em> (what the data mean and which questions matter). How this relates to statistics, machine learning and AI is sorted out in the next section.</p>
+<p>The third ingredient is where engineers have a decisive advantage. A data scientist without engineering background may find that the vibration level of a pump correlates with the time of day; an engineer knows that this is because the pump runs at higher load during the day shift – and asks the right follow-up question.</p>
+<p>Typical tasks fall into four groups:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Question</th>
+<th>Engineering example</th>
+<th>Chapters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Description</strong></td>
+<td>What happened?</td>
+<td>Distribution of tensile strength in a batch</td>
+<td>2, 3</td>
+</tr>
+<tr class="even">
+<td><strong>Inference</strong></td>
+<td>Is the effect real?</td>
+<td>Did the new supplier change the scrap rate?</td>
+<td>4, 5</td>
+</tr>
+<tr class="odd">
+<td><strong>Prediction</strong></td>
+<td>What will happen?</td>
+<td>Remaining useful life of a bearing, tomorrow’s grid load</td>
+<td>5–8, 11, 12</td>
+</tr>
+<tr class="even">
+<td><strong>Diagnosis / detection</strong></td>
+<td>What is wrong?</td>
+<td>Which fault type? Is this run abnormal?</td>
+<td>7–10</td>
+</tr>
+</tbody>
+</table>
+<p>Engineering data have some characteristic properties that we will meet again and again:</p>
+<ul>
+<li><strong>Physics behind the data.</strong> Relationships are often known in principle (energy balance, material laws). Good models use this knowledge instead of ignoring it.</li>
+<li><strong>Rare events.</strong> Failures and defects are – fortunately – rare. This makes them hard to learn from (Chapter 7).</li>
+<li><strong>Time and sequence.</strong> Sensor data are time series. Neighbouring values are not independent, which has consequences for validation (Chapter 11).</li>
+<li><strong>Measurement chains.</strong> Every value went through sensor, amplifier, A/D converter, logging system. Each step can introduce errors, offsets, gaps and wrong units (Chapter 2).</li>
+<li><strong>High cost of errors.</strong> A wrong prediction can mean an unplanned standstill or a safety issue. Uncertainty must be quantified and communicated.</li>
+</ul>
+</section>
+<section id="statistics-machine-learning-deep-learning-ai-sorting-the-terms" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="statistics-machine-learning-deep-learning-ai-sorting-the-terms"><span class="header-section-number">1.2</span> Statistics, machine learning, deep learning, AI: sorting the terms</h2>
+<p>You have certainly heard all of these terms – and probably noticed that they are used inconsistently. Product brochures call a linear regression “AI”, job advertisements use “data science” and “machine learning” interchangeably, and research communities draw the borders differently. There is no official definition. For this course we therefore fix <strong>working definitions</strong>: not the only possible ones, but clear enough to know what we are talking about.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Working definitions used in this course
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Statistics</strong> is the science of learning from data under uncertainty: collecting data (sampling, design of experiments), describing them, and drawing conclusions with a quantified uncertainty (estimates, confidence intervals, tests). Its focus is on <em>understanding</em> the process that generated the data.</li>
+<li><strong>Machine learning (ML)</strong> is the field of algorithms that learn a task from examples instead of being explicitly programmed. Its focus is on <em>predicting</em> well on new, unseen data; models are judged by their performance on held-out test data.</li>
+<li><strong>Deep learning (DL)</strong> is the part of machine learning that uses neural networks with many layers. Such networks learn suitable features from raw data (images, signals, text) by themselves, but typically need large amounts of data and computing power.</li>
+<li><strong>Artificial intelligence (AI)</strong> is the broadest term: systems that perform tasks which would require intelligence if done by humans – perceiving, reasoning, planning, deciding. Machine learning is today the dominant approach to AI, but not the only one: rule-based expert systems or search and planning algorithms are AI without learning.</li>
+<li><strong>Data science</strong> is the whole process of turning data into knowledge and decisions – from the question via data acquisition, preparation, analysis and modelling to communication and deployment. It <em>uses</em> statistics and machine learning as tools and requires domain knowledge to ask the right questions and interpret the answers.</li>
+</ul>
+</div>
+</div>
+<div id="fig-terms" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-terms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/ds-terms.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-terms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Working definitions used in this course. (a) Data science lives where statistics, computer science and domain knowledge meet; using powerful tools without statistical understanding is risky. (b) The method families: deep learning is part of machine learning, which is part of AI; statistics overlaps strongly with machine learning (“statistical learning”) but also covers topics outside of it.
+</figcaption>
+</figure>
+</div>
+<p>The sketch shows two different views. Panel (a) describes data science by the <strong>competences</strong> it combines. Panel (b) arranges the <strong>method families</strong> – and data science does not appear there as a separate region, because it is defined by its process and purpose, not by a particular class of methods.</p>
+<section id="and-what-about-ai" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="and-what-about-ai"><span class="header-section-number">1.2.1</span> And what about AI?</h3>
+<p>“Artificial intelligence” is the oldest and the broadest of the terms – and today the most overloaded one. The field was founded in the 1950s with the goal of making machines perform tasks that require intelligence. For decades, the dominant approach was <strong>symbolic AI</strong>: knowledge was written down by experts as rules (“if bearing temperature &gt; 90 °C and vibration rising, then …”) and combined by logical inference. Such <em>expert systems</em> worked in narrow domains but were laborious to build and brittle when reality deviated from the rules.</p>
+<p>The alternative is to <strong>learn</strong> the behaviour from data – machine learning. Since around 2012, deep neural networks have achieved breakthroughs in image recognition, speech and text, and today’s <em>generative AI</em> (large language models such as the chatbots you know, image generators) is deep learning trained on enormous amounts of data. This is why “AI” in everyday language now usually means deep learning – but the term formally covers much more.</p>
+<p>Two distinctions help to keep a clear head:</p>
+<ul>
+<li><strong>Narrow vs.&nbsp;general AI.</strong> All AI systems in practical use, including large language models, are built for specific kinds of tasks. A system that matches humans across all intellectual tasks (<em>artificial general intelligence</em>) does not exist and remains a matter of research and debate.</li>
+<li><strong>Legal vs.&nbsp;technical meaning.</strong> The EU AI Act defines “AI system” broadly – roughly, a machine-based system that infers from its input how to produce outputs such as predictions, recommendations or decisions – and attaches obligations depending on the risk of the application. For engineers this means that even a fairly simple machine learning model in a safety-relevant product can fall under regulation.</li>
+</ul>
+<p>In this course we rarely use the word AI. We say precisely which method we use – a test, a regression, a random forest, a neural network – because that determines its assumptions, its limits and how it must be validated.</p>
+</section>
+<section id="where-statistics-and-machine-learning-differ-and-where-they-overlap" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="where-statistics-and-machine-learning-differ-and-where-they-overlap"><span class="header-section-number">1.2.2</span> Where statistics and machine learning differ – and where they overlap</h3>
+<p>The boundary between statistics and machine learning is the most blurred one, because both fit models to data and many methods belong to both. The difference lies mainly in the <strong>goal</strong> and the <strong>culture</strong> – the statistician Leo Breiman famously spoke of “two cultures”:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Statistics</th>
+<th>Machine learning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Main goal</td>
+<td>understand and explain: which factors matter, how strong, how certain?</td>
+<td>predict accurately on new data</td>
+</tr>
+<tr class="even">
+<td>Typical question</td>
+<td>“Does the coolant temperature significantly affect the tool wear?”</td>
+<td>“Which tool will fail within the next 100 parts?”</td>
+</tr>
+<tr class="odd">
+<td>Models</td>
+<td>few parameters, interpretable, explicit assumptions</td>
+<td>flexible, often many parameters, “black box” accepted</td>
+</tr>
+<tr class="even">
+<td>Data</td>
+<td>often small, carefully designed experiments</td>
+<td>often large, observational (“whatever was logged”)</td>
+</tr>
+<tr class="odd">
+<td>Validation</td>
+<td>model assumptions, standard errors, tests</td>
+<td>performance on held-out test data, cross-validation</td>
+</tr>
+<tr class="even">
+<td>Typical output</td>
+<td>estimate ± uncertainty, p-value</td>
+<td>prediction, score, class</td>
+</tr>
+</tbody>
+</table>
+<p>The overlap is large: linear and logistic regression, principal component analysis and Gaussian processes are standard tools in both communities – this common ground is often called <strong>statistical learning</strong>. In this course we use both perspectives: when we fit a regression model in Chapter 5, we look at coefficients and confidence intervals (statistics) <em>and</em> at the prediction error on test data (machine learning).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How this course is positioned
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Chapters 3–5 are mainly <strong>statistics</strong>: distributions, uncertainty, tests, regression, design of experiments.</li>
+<li>Chapters 6–11 are <strong>statistical learning and machine learning</strong>: model selection, classification, ensembles, unsupervised learning, signals and time series.</li>
+<li>Chapter 12 gives a first look at <strong>deep learning</strong>.</li>
+<li>AI methods without learning are not covered. All chapters together follow the <strong>data science</strong> process described next.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: buzzwords instead of methods
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When a supplier advertises an “AI-based” monitoring system, ask what is behind it: a threshold rule, a regression model, a random forest or a neural network? How was it validated, on which data, with which error rates? The label says nothing about the quality – the validation does.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="the-crisp-dm-process-model" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-crisp-dm-process-model"><span class="header-section-number">1.3</span> The CRISP-DM process model</h2>
+<p>Data science projects fail more often for organisational reasons than for mathematical ones: the wrong question was answered, the data did not contain the necessary information, or the model was never used. Process models help to avoid this. The most widely used is CRISP-DM.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: CRISP-DM
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>Cross-Industry Standard Process for Data Mining</em> (CRISP-DM) divides a data science project into six phases: business understanding, data understanding, data preparation, modelling, evaluation and deployment. The phases are passed through iteratively, not strictly one after another.</p>
+</div>
+</div>
+<div id="fig-crisp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crisp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/crisp-dm.png" class="img-fluid figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crisp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: The CRISP-DM process model. The phases form a cycle around the data; in practice, the project moves back and forth between them.
+</figcaption>
+</figure>
+</div>
+<p>What the phases mean in an engineering context:</p>
+<ol type="1">
+<li><strong>Business / engineering understanding.</strong> Which decision should the analysis support? Who uses the result? What is the cost of a wrong answer, and what accuracy is good enough? <em>Example:</em> “Predict the power output with an error below 1 % so that the plant can commit its output to the day-ahead market.”</li>
+<li><strong>Data understanding.</strong> Which data exist, how and where were they measured, with which sampling rate and accuracy? Are the relevant influences measured at all?</li>
+<li><strong>Data preparation.</strong> Cleaning, merging data sources, resampling, handling missing values, constructing features. In practice this phase typically takes most of the time of a project.</li>
+<li><strong>Modelling.</strong> Choosing and fitting statistical or machine learning models.</li>
+<li><strong>Evaluation.</strong> Does the model answer the engineering question? Is it valid under all relevant operating conditions? Is it better than a simple baseline?</li>
+<li><strong>Deployment.</strong> Integration into a process, a control system, a dashboard or a report – including monitoring whether the model stays valid.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Engineering practice: start with a baseline
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before fitting any sophisticated model, compute a trivial baseline: the mean value, yesterday’s value, or a simple physical formula. Every model must beat the baseline – otherwise its complexity is not justified. Surprisingly often, it does not.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: answering the wrong question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A model that predicts <em>when</em> a machine fails is useless if maintenance can only be scheduled four weeks in advance and the model warns two days ahead. Clarify the decision and its time horizon in phase 1 – it determines which data and models make sense.</p>
+</div>
+</div>
+</section>
+<section id="tools-the-python-data-stack" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="tools-the-python-data-stack"><span class="header-section-number">1.4</span> Tools: the Python data stack</h2>
+<p>Python has become the standard language for data science because of its readable syntax and a large ecosystem of open-source libraries. We use the following packages:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Package</th>
 <th>Purpose</th>
+<th>Typical objects / functions</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>NumPy</td>
-<td>n-dimensional arrays, linear algebra</td>
+<td>n-dimensional arrays, linear algebra, random numbers</td>
+<td><code>np.array</code>, <code>np.mean</code>, <code>np.linalg</code></td>
 </tr>
 <tr class="even">
 <td>pandas</td>
-<td>tables (<code>DataFrame</code>), time series, I/O</td>
+<td>tables and time series, reading and writing files</td>
+<td><code>DataFrame</code>, <code>Series</code>, <code>read_csv</code>, <code>groupby</code>, <code>resample</code></td>
 </tr>
 <tr class="odd">
-<td>Matplotlib / seaborn</td>
-<td>plotting</td>
+<td>Matplotlib</td>
+<td>plotting (low level, full control)</td>
+<td><code>plt.plot</code>, <code>plt.subplots</code></td>
 </tr>
 <tr class="even">
-<td>SciPy / statsmodels</td>
+<td>seaborn</td>
+<td>statistical plots (high level)</td>
+<td><code>sns.histplot</code>, <code>sns.pairplot</code>, <code>sns.boxplot</code></td>
+</tr>
+<tr class="odd">
+<td>SciPy</td>
 <td>statistics, signal processing, optimisation</td>
+<td><code>scipy.stats</code>, <code>scipy.signal</code>, <code>scipy.optimize</code></td>
+</tr>
+<tr class="even">
+<td>statsmodels</td>
+<td>statistical models with classical output tables</td>
+<td><code>smf.ols</code></td>
 </tr>
 <tr class="odd">
 <td>scikit-learn</td>
-<td>machine learning</td>
+<td>machine learning with a uniform interface</td>
+<td><code>fit</code>, <code>predict</code>, <code>Pipeline</code></td>
 </tr>
 <tr class="even">
 <td>PyTorch</td>
-<td>neural networks (Part D)</td>
+<td>neural networks (Chapter 12)</td>
+<td><code>torch.nn</code></td>
 </tr>
 </tbody>
 </table>
-<p>All notebooks run in <strong>Google Colab</strong> without any installation. The first code cell of every chapter installs packages that are missing.</p>
-<div id="ff54166d" class="cell">
+<p>The central data structure is the pandas <strong>DataFrame</strong>: a table whose columns have names and data types and whose rows have an index – for time series typically a timestamp. Most operations are <em>vectorised</em>: instead of looping over rows, we apply an operation to a whole column at once, which is shorter and much faster.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Working in Google Colab
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All notebooks run in <a href="https://colab.research.google.com">Google Colab</a> in the browser. The first code cell of each chapter installs packages that are not preinstalled. Files you download or upload live only as long as the Colab session; save results you want to keep to Google Drive or download them.</p>
+</div>
+</div>
+<div id="27d620cc" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">'ucimlrepo'</span>]:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>]:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> importlib.util.find_spec(pkg) <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, <span class="st">"-q"</span>, pkg], check<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -427,82 +734,336 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="live-coding-a-first-look-at-the-power-plant-data" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="live-coding-a-first-look-at-the-power-plant-data"><span class="header-section-number">1.3</span> Live coding: a first look at the power plant data</h2>
-<p>The dataset contains 9,568 hourly averages from a combined cycle power plant: ambient temperature <code>AT</code> (°C), exhaust vacuum <code>V</code> (cm Hg), ambient pressure <code>AP</code> (mbar), relative humidity <code>RH</code> (%) and the net electrical output <code>PE</code> (MW).</p>
-<div id="db5548f3" class="cell">
+<section id="live-coding-a-first-look-at-the-power-plant-data" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="live-coding-a-first-look-at-the-power-plant-data"><span class="header-section-number">1.5</span> Live coding: a first look at the power plant data</h2>
+<p>A combined cycle power plant (CCPP) combines a gas turbine with a steam turbine that uses the hot exhaust gas of the gas turbine. Its net electrical output depends on the ambient conditions: cold, dense air increases the mass flow through the gas turbine, and the condenser vacuum of the steam cycle depends on the cooling conditions.</p>
+<p>The dataset contains 9,568 hourly averages collected over six years with the plant at full load. The variables are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>AT</code></td>
+<td>ambient temperature</td>
+<td>°C</td>
+</tr>
+<tr class="even">
+<td><code>V</code></td>
+<td>exhaust vacuum (steam turbine)</td>
+<td>cm Hg</td>
+</tr>
+<tr class="odd">
+<td><code>AP</code></td>
+<td>ambient pressure</td>
+<td>mbar</td>
+</tr>
+<tr class="even">
+<td><code>RH</code></td>
+<td>relative humidity</td>
+<td>%</td>
+</tr>
+<tr class="odd">
+<td><code>PE</code></td>
+<td>net hourly electrical energy output (target)</td>
+<td>MW</td>
+</tr>
+</tbody>
+</table>
+<p>The package <code>ucimlrepo</code> downloads datasets from the UCI Machine Learning Repository directly into pandas.</p>
+<div id="4a95fea6" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ccpp <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">294</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([ccpp.data.features, ccpp.data.targets], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df.info()</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df.describe().T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e15f33a2" class="cell">
+<p><code>df.info()</code> tells us the number of rows, the column names, the data types and the number of non-missing values per column. Always check these first: a numeric column that was read as <code>object</code> (text) usually signals a problem in the file, for example a decimal comma or a text marker for missing values.</p>
+<p>Next, summary statistics:</p>
+<div id="72c262e2" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.describe().T.<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How to read <code>describe()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look at each row with an engineer’s eye: Are minimum and maximum physically plausible? Is the mean close to the median (50 %)? A large difference indicates a skewed distribution or outliers. Is the standard deviation large or small compared with the measurement accuracy you would expect?</p>
+</div>
+</div>
+<p>For the power plant, the ranges are plausible: ambient temperatures from just below freezing to the mid-thirties, pressures around 1013 mbar, and an output of roughly 420 to 500 MW. A pair plot shows all pairwise relationships at once:</p>
+<div id="6ebfc854" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(df.sample(<span class="dv">1000</span>, random_state<span class="op">=</span><span class="dv">0</span>), corner<span class="op">=</span><span class="va">True</span>, plot_kws<span class="op">=</span>{<span class="st">"s"</span>: <span class="dv">8</span>, <span class="st">"alpha"</span>: <span class="fl">0.5</span>})</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(df.sample(<span class="dv">1000</span>, random_state<span class="op">=</span><span class="dv">0</span>), corner<span class="op">=</span><span class="va">True</span>, plot_kws<span class="op">=</span>{<span class="st">"s"</span>: <span class="dv">8</span>, <span class="st">"alpha"</span>: <span class="fl">0.5</span>})</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>The pair plot already suggests a strong, almost linear relation between ambient temperature and power output. We will quantify this in Chapters 5 and 6.</p>
+<p><strong>Discussion.</strong> The pair plot is the most informative single figure for a small tabular dataset. Several observations stand out:</p>
+<ul>
+<li><code>PE</code> decreases almost linearly with ambient temperature <code>AT</code> – this is the strongest relationship in the data and has a clear physical explanation (air density and mass flow).</li>
+<li><code>AT</code> and the exhaust vacuum <code>V</code> are strongly correlated with each other. Such correlated inputs (<em>collinearity</em>) make it hard to separate their individual effects – we will return to this in Chapter 5.</li>
+<li>Ambient pressure and humidity show weaker, more diffuse relationships with the output.</li>
+</ul>
+<p>We plotted a random sample of 1,000 points; with all 9,568 points the scatter plots would be overplotted. Sampling is a simple and legitimate trick for visual exploration – but never for computing the final statistics.</p>
+<div id="0c80ec63" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df.corr()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">".2f"</span>, cmap<span class="op">=</span><span class="st">"RdBu_r"</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Pearson correlation"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Definition: Pearson correlation coefficient
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> with <span class="math inline">\(n\)</span> observations, <span class="math display">\[r_{xy} = \frac{\sum_{i=1}^n (x_i - \bar x)(y_i - \bar y)}{\sqrt{\sum_{i=1}^n (x_i - \bar x)^2}\,\sqrt{\sum_{i=1}^n (y_i - \bar y)^2}} \in [-1, 1].\]</span> It measures the strength of a <strong>linear</strong> relationship: <span class="math inline">\(r = \pm 1\)</span> means all points lie on a straight line, <span class="math inline">\(r = 0\)</span> means no linear relationship.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: correlation is not causation – and not every relationship is linear
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A correlation near zero does not mean “no relationship”: <span class="math inline">\(y = x^2\)</span> on a symmetric interval has <span class="math inline">\(r = 0\)</span>. And a strong correlation does not prove a causal effect: both variables may be driven by a third one. In the power plant, <code>V</code> correlates with <code>PE</code> partly <em>because</em> both depend on the ambient temperature.</p>
+</div>
+</div>
+<section id="a-first-baseline-model" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="a-first-baseline-model"><span class="header-section-number">1.5.1</span> A first baseline model</h3>
+<p>To make the engineering question concrete, we fit the simplest possible model: a straight line for <code>PE</code> as a function of <code>AT</code>. We will treat regression properly in Chapter 5; here it serves as a baseline.</p>
+<div id="8a1966ed" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(df[<span class="st">"AT"</span>], df[<span class="st">"PE"</span>], deg<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> df[<span class="st">"AT"</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>rmse <span class="op">=</span> np.sqrt(np.mean((df[<span class="st">"PE"</span>] <span class="op">-</span> pred) <span class="op">**</span> <span class="dv">2</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"PE ≈ </span><span class="sc">{</span>intercept<span class="sc">:.1f}</span><span class="ss"> MW </span><span class="sc">{</span>slope<span class="sc">:+.2f}</span><span class="ss"> MW/°C · AT,   RMSE = </span><span class="sc">{</span>rmse<span class="sc">:.1f}</span><span class="ss"> MW"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Baseline 'always predict the mean': RMSE = </span><span class="sc">{</span>df[<span class="st">'PE'</span>]<span class="sc">.</span>std()<span class="sc">:.1f}</span><span class="ss"> MW"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The line explains most of the variation: its error (root mean squared error, RMSE) is a fraction of the error of the trivial mean-value baseline. Each additional degree Celsius costs roughly one to two megawatts of output. Whether an error of a few MW is “good enough” is not a statistical question – it depends on the use case defined in CRISP-DM phase 1.</p>
 </section>
-<section id="live-coding-reading-a-raw-sensor-file" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="live-coding-reading-a-raw-sensor-file"><span class="header-section-number">1.4</span> Live coding: reading a raw sensor file</h2>
-<p>Real measurement data rarely come as a clean table. As an example, we load hourly air temperature and humidity from the German Weather Service (DWD), station Trier-Petrisberg (station ID 05100). The file is a zip archive with a semicolon-separated text file and the code <code>-999</code> for missing values.</p>
-<div id="e1daac60" class="cell">
+</section>
+<section id="live-coding-reading-a-raw-sensor-file" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="live-coding-reading-a-raw-sensor-file"><span class="header-section-number">1.6</span> Live coding: reading a raw sensor file</h2>
+<p>Real measurement data rarely come as a clean table. As an example, we load hourly air temperature and humidity from the German Weather Service (DWD), station Trier-Petrisberg (station ID 05100). The DWD provides the data as a zip archive containing a semicolon-separated text file plus metadata files. Missing values are coded as <code>-999</code>.</p>
+<p>This is typical for raw data: we have to know the file structure, the separator, the missing value code and the time format before we can use the data. All of this is documented in the metadata – reading it is part of CRISP-DM phase 2.</p>
+<div id="013c9033" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>DATA.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> download(url, fname<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Download a file once and cache it in ./data."""</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> DATA <span class="op">/</span> (fname <span class="kw">or</span> url.split(<span class="st">"/"</span>)[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> path.exists():</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> requests.get(url, timeout<span class="op">=</span><span class="dv">120</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        path.write_bytes(r.content)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8f05fd86" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://opendata.dwd.de/climate_environment/CDC/observations_germany/"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"climate/hourly/air_temperature/recent/stundenwerte_TU_05100_akt.zip"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(download(url)) <span class="im">as</span> z:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(z.namelist())                                     <span class="co"># what is inside?</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="bu">next</span>(n <span class="cf">for</span> n <span class="kw">in</span> z.namelist() <span class="cf">if</span> n.startswith(<span class="st">"produkt"</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    dwd <span class="op">=</span> pd.read_csv(z.<span class="bu">open</span>(name), sep<span class="op">=</span><span class="st">";"</span>, na_values<span class="op">=</span>[<span class="op">-</span><span class="dv">999</span>], skipinitialspace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>dwd.columns <span class="op">=</span> dwd.columns.<span class="bu">str</span>.strip()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>dwd.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The raw table has cryptic column names (<code>TT_TU</code> = air temperature in °C, <code>RF_TU</code> = relative humidity in %, <code>QN_9</code> = quality level) and the time stamp <code>MESS_DATUM</code> is an integer such as <code>2024010113</code>. We convert the time stamp into a proper <code>datetime</code>, use it as the index and give the columns meaningful names:</p>
+<div id="f36555be" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dwd[<span class="st">"time"</span>] <span class="op">=</span> pd.to_datetime(dwd[<span class="st">"MESS_DATUM"</span>].astype(<span class="bu">str</span>), <span class="bu">format</span><span class="op">=</span><span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">%H"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>weather <span class="op">=</span> (dwd.set_index(<span class="st">"time"</span>)[[<span class="st">"TT_TU"</span>, <span class="st">"RF_TU"</span>]]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              .rename(columns<span class="op">=</span>{<span class="st">"TT_TU"</span>: <span class="st">"temp_C"</span>, <span class="st">"RF_TU"</span>: <span class="st">"rel_humidity_pct"</span>}))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(weather.isna().<span class="bu">sum</span>())</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>weather.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="6c0e9018" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>DATA.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> download(url, fname<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Download a file once and cache it in ./data."""</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> DATA <span class="op">/</span> (fname <span class="kw">or</span> url.split(<span class="st">"/"</span>)[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> path.exists():</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> requests.get(url, timeout<span class="op">=</span><span class="dv">120</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        path.write_bytes(r.content)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> weather[<span class="st">"temp_C"</span>].resample(<span class="st">"D"</span>).agg([<span class="st">"min"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>]).plot(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">"Air temperature (°C)"</span>, title<span class="op">=</span><span class="st">"Trier-Petrisberg: daily min / mean / max"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="b7cf25bc" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> (<span class="st">"https://opendata.dwd.de/climate_environment/CDC/observations_germany/"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"climate/hourly/air_temperature/recent/stundenwerte_TU_05100_akt.zip"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(download(url)) <span class="im">as</span> z:</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="bu">next</span>(n <span class="cf">for</span> n <span class="kw">in</span> z.namelist() <span class="cf">if</span> n.startswith(<span class="st">"produkt"</span>))</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    dwd <span class="op">=</span> pd.read_csv(z.<span class="bu">open</span>(name), sep<span class="op">=</span><span class="st">";"</span>, na_values<span class="op">=</span>[<span class="op">-</span><span class="dv">999</span>], skipinitialspace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>dwd.columns <span class="op">=</span> dwd.columns.<span class="bu">str</span>.strip()</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>dwd[<span class="st">"time"</span>] <span class="op">=</span> pd.to_datetime(dwd[<span class="st">"MESS_DATUM"</span>].astype(<span class="bu">str</span>), <span class="bu">format</span><span class="op">=</span><span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">%H"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>weather <span class="op">=</span> (dwd.set_index(<span class="st">"time"</span>)[[<span class="st">"TT_TU"</span>, <span class="st">"RF_TU"</span>]]</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>              .rename(columns<span class="op">=</span>{<span class="st">"TT_TU"</span>: <span class="st">"temp_C"</span>, <span class="st">"RF_TU"</span>: <span class="st">"rel_humidity_pct"</span>}))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>weather.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Discussion.</strong> With a time index, pandas offers powerful operations: <code>resample("D")</code> aggregates hourly values to days, and we can compute several statistics at once. The plot shows the seasonal cycle and the day-to-day weather variability. Note the time zone: the DWD files of this product use UTC. When you combine such data with local production data, time zones and daylight saving time must be handled explicitly – a common source of one-hour shifts.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div id="a55c0b7a" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> weather[<span class="st">"temp_C"</span>].resample(<span class="st">"D"</span>).agg([<span class="st">"min"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>]).plot(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">"Air temperature (°C)"</span>, title<span class="op">=</span><span class="st">"Trier-Petrisberg: daily min / mean / max"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="callout-title-container flex-fill">
+Key takeaways
 </div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Every data science project starts with a precise engineering question and a clear criterion for success (CRISP-DM phase 1).</li>
+<li>Look at the data before modelling: <code>info()</code>, <code>describe()</code>, pair plots and correlations reveal structure and problems quickly.</li>
+<li>Real data require careful reading: separators, missing value codes, time formats, units and time zones.</li>
+<li>Always compare a model with a simple baseline.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.7</span> Exercises</h2>
 <div class="exercises">
-<p><strong>Exercises</strong></p>
 <ol type="1">
-<li>Which columns of the power plant data are inputs, which is the output? Which physical relations between them do you expect?</li>
-<li>Compute the correlation matrix of the power plant data and visualise it as a heatmap. Which variable is most strongly related to <code>PE</code>?</li>
-<li>Change the DWD code to load a weather station near your home town (station list: <code>TU_Stundenwerte_Beschreibung_Stationen.txt</code> in the same DWD folder).</li>
-<li>Sketch the CRISP-DM phases for a project from your own engineering background.</li>
+<li>Which columns of the power plant data are inputs, which is the output? Which physical relationships between them do you expect, and which signs of the correlations follow from them?</li>
+<li>Fit straight lines for <code>PE</code> against each of the four inputs separately and compare their RMSE. Which single input is the best predictor? Does the ranking agree with the correlation matrix?</li>
+<li>Change the DWD code to load a weather station near your home town. The station list <code>TU_Stundenwerte_Beschreibung_Stationen.txt</code> is in the same DWD folder.</li>
+<li>Compute the mean temperature per hour of the day for the DWD data and plot the daily cycle. At which hour is it warmest – and does the result change if you convert the time stamps from UTC to German local time?</li>
+<li>Sketch the six CRISP-DM phases for a project from your own engineering background. Which phase do you expect to be the most difficult?</li>
+<li>Place the following in Figure <a href="#fig-terms" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> (b) and justify: (a) a t-test whether a new supplier changes the scrap rate; (b) a convolutional neural network that detects cracks in X-ray images; (c) route planning for automated guided vehicles with the A* search algorithm; (d) a random forest that predicts tool breakage; (e) a straight line for power output vs.&nbsp;temperature with a confidence interval for the slope.</li>
 </ol>
 </div>
+<section id="solutions" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">1.7.1</span> Solutions</h3>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Inputs are the ambient conditions <code>AT</code>, <code>V</code>, <code>AP</code>, <code>RH</code>; the output is <code>PE</code>. Strictly speaking, the exhaust vacuum <code>V</code> is not an ambient condition but a plant variable – it depends on the cooling water temperature and therefore also on the weather.</p>
+<p>Expected signs: higher ambient temperature lowers air density and thus the mass flow and power of the gas turbine → negative correlation of <code>AT</code> with <code>PE</code>. A higher exhaust pressure (worse vacuum, larger <code>V</code> in this dataset) reduces the enthalpy drop in the steam turbine → negative correlation of <code>V</code> with <code>PE</code>. Higher ambient pressure increases air density → positive correlation. Humidity has a smaller, less obvious effect. The correlation matrix confirms these signs.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="a67644c4" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"AT"</span>, <span class="st">"V"</span>, <span class="st">"AP"</span>, <span class="st">"RH"</span>]:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    b1, b0 <span class="op">=</span> np.polyfit(df[col], df[<span class="st">"PE"</span>], deg<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    rmse_col <span class="op">=</span> np.sqrt(np.mean((df[<span class="st">"PE"</span>] <span class="op">-</span> (b0 <span class="op">+</span> b1 <span class="op">*</span> df[col])) <span class="op">**</span> <span class="dv">2</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"input"</span>: col, <span class="st">"slope"</span>: b1, <span class="st">"RMSE (MW)"</span>: rmse_col, <span class="st">"r"</span>: df[col].corr(df[<span class="st">"PE"</span>])})</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).sort_values(<span class="st">"RMSE (MW)"</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>AT</code> gives by far the smallest RMSE, followed by <code>V</code>. For a straight-line fit, the ranking by RMSE is exactly the ranking by <span class="math inline">\(|r|\)</span>, because the fraction of explained variance of a simple linear regression is <span class="math inline">\(r^2\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Open the station list in a browser or read it with pandas, find your station and replace <code>05100</code> in the file name. The file name of the <code>recent</code> product always has the form <code>stundenwerte_TU_&lt;ID&gt;_akt.zip</code>, where <code>&lt;ID&gt;</code> is the five-digit station ID with leading zeros. Not all stations measure all variables – if the file does not exist, choose a neighbouring station.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="71e0cd93" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>local <span class="op">=</span> weather.tz_localize(<span class="st">"UTC"</span>).tz_convert(<span class="st">"Europe/Berlin"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cycle <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"UTC"</span>: weather.groupby(weather.index.hour)[<span class="st">"temp_C"</span>].mean(),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"local time"</span>: local.groupby(local.index.hour)[<span class="st">"temp_C"</span>].mean(),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> cycle.plot(marker<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Hour of day"</span>, ylabel<span class="op">=</span><span class="st">"Mean temperature (°C)"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>cycle.idxmax()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The maximum typically occurs in the early or mid afternoon. In local time the curve is shifted by one hour in winter and two hours in summer, so the hour of the maximum changes accordingly. This is exactly the kind of shift that causes errors when weather data are merged with production data recorded in local time.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There is no single correct answer. A good sketch states a concrete decision in phase 1 (e.g.&nbsp;“decide weekly which tools to replace”), names the data sources and their owners in phase 2, lists expected preparation steps in phase 3 (merging, time alignment), names a baseline in phase 4, an evaluation criterion tied to the decision in phase 5 (e.g.&nbsp;cost of unplanned stops), and a realistic deployment path in phase 6. Many practitioners name phase 2/3 (data access and quality) or phase 6 (deployment and acceptance) as the hardest.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><strong>Statistics</strong> – inference about a difference with quantified uncertainty, no prediction task. (b) <strong>Deep learning</strong> (and thus ML and AI) – a neural network learns features from raw images. (c) <strong>AI without machine learning</strong> – A* is a search algorithm; nothing is learned from data. (d) <strong>Machine learning</strong> – a flexible model optimised for predictive accuracy; it is not deep learning. (e) The <strong>overlap of statistics and machine learning</strong>: the same linear model, used here in the statistical way (interpretation of the slope and its uncertainty). Used purely to predict output for the day-ahead market and validated on test data, it would be viewed as machine learning. The examples show that the method alone does not determine the category – the purpose matters too.</li>
+</ol>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
