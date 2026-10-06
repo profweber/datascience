@@ -1,0 +1,26 @@
+.exercises {
+    background-color: lightblue;
+    padding: 10px
+}
+
+/* Dark Mode */
+body.quarto-dark .exercises {
+  background-color: #1e2f44;
+  padding: 10px
+}
+
+/* Dark Mode: weniger grelle Code-Blöcke */
+body.quarto-dark pre,
+body.quarto-dark code {
+  background-color: #1c1c1c;
+}
+.exercises ul,
+.exercises ol {
+    margin-top: 0;
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+.exercises li {
+    margin-bottom: 0.5em;
+}

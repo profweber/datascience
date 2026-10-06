@@ -1,0 +1,635 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Science in Engineering",
+    "section": "",
+    "text": "Preface\nVersion: 0.1\nWelcome to Data Science in Engineering, a master’s course at Trier University of Applied Sciences for students of mechanical engineering, electrical engineering and industrial engineering.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#what-this-course-is-about",
+    "href": "index.html#what-this-course-is-about",
+    "title": "Data Science in Engineering",
+    "section": "What this course is about",
+    "text": "What this course is about\nEvery method in this script is introduced together with a real, publicly available engineering dataset – from power plants and gas turbines to rolling bearings, semiconductor production and jet engines. Theory and practice go hand in hand: each chapter starts with an engineering question, explains the method needed to answer it, and applies the method in Python.\nThe course has four parts:\n\n\n\n\n\n\n\n\nPart\nTopics\nChapters\n\n\n\n\nA – Understanding Data\nworkflow, exploratory analysis, data quality, uncertainty\n1–3\n\n\nB – Statistics for Engineers\nhypothesis tests, regression, design of experiments, model selection\n4–6\n\n\nC – Machine Learning\nclassification, ensembles, unsupervised learning, signal features\n7–10\n\n\nD – Time Series, Deep Learning and Outlook\nforecasting, neural networks, visual inspection, review\n11–14",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#prerequisites",
+    "href": "index.html#prerequisites",
+    "title": "Data Science in Engineering",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nBasic Python programming and mathematics at bachelor level (linear algebra, calculus, introductory statistics).",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-work-with-this-script",
+    "href": "index.html#how-to-work-with-this-script",
+    "title": "Data Science in Engineering",
+    "section": "How to work with this script",
+    "text": "How to work with this script\nEvery chapter is a Jupyter notebook. You can run all notebooks in Google Colab in your browser – no installation required, on a laptop or a tablet (an external keyboard helps a lot):\n\nOpen colab.research.google.com and sign in.\nChoose File → Open notebook and upload the chapter notebook (or open it from GitHub).\nRun the cells from top to bottom. The first code cell installs missing packages; datasets are downloaded automatically where possible.\n\nEach chapter ends with exercises (highlighted boxes). The lab assignments of the course build on them.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#assessment",
+    "href": "index.html#assessment",
+    "title": "Data Science in Engineering",
+    "section": "Assessment",
+    "text": "Assessment\n\nLab assignments (coursework, pass/fail): four assignments during the semester.\nWritten exam (90 minutes, without computer): method choice, interpretation of results, short calculations and code reading.\n\nBoth parts must be passed; they can be completed in different semesters.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "notebooks/01-workflow.html",
+    "href": "notebooks/01-workflow.html",
+    "title": "1  The Data Science Workflow in Engineering",
+    "section": "",
+    "text": "1.1 From engineering question to data-driven answer\nData science in engineering starts with a technical question and ends with a decision about a product, a process or a machine. This chapter introduces the workflow that connects the two, and the tools we use throughout the course.\nLearning goals. After this chapter you can\nDatasets in this chapter\nThe Cross-Industry Standard Process for Data Mining (CRISP-DM) structures a project into six phases:\nIn practice, phases 2–4 are revisited many times. Typical engineering data sources are test benches, production lines (MES/SCADA), condition monitoring systems, simulations and public data such as weather or grid data.",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Data Science Workflow in Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/01-workflow.html#from-engineering-question-to-data-driven-answer",
+    "href": "notebooks/01-workflow.html#from-engineering-question-to-data-driven-answer",
+    "title": "1  The Data Science Workflow in Engineering",
+    "section": "",
+    "text": "Business / engineering understanding – What decision should the analysis support? What accuracy is good enough?\nData understanding – Which data exist, how were they measured, what is their quality?\nData preparation – Cleaning, merging, resampling, feature construction.\nModelling – Statistical or machine learning models.\nEvaluation – Does the model answer the engineering question? Is it valid outside the training data?\nDeployment – Integration into a process, a report or a product.",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Data Science Workflow in Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/01-workflow.html#tools-the-python-data-stack",
+    "href": "notebooks/01-workflow.html#tools-the-python-data-stack",
+    "title": "1  The Data Science Workflow in Engineering",
+    "section": "1.2 Tools: the Python data stack",
+    "text": "1.2 Tools: the Python data stack\n\n\n\nPackage\nPurpose\n\n\n\n\nNumPy\nn-dimensional arrays, linear algebra\n\n\npandas\ntables (DataFrame), time series, I/O\n\n\nMatplotlib / seaborn\nplotting\n\n\nSciPy / statsmodels\nstatistics, signal processing, optimisation\n\n\nscikit-learn\nmachine learning\n\n\nPyTorch\nneural networks (Part D)\n\n\n\nAll notebooks run in Google Colab without any installation. The first code cell of every chapter installs packages that are missing.\n\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['ucimlrepo']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Data Science Workflow in Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/01-workflow.html#live-coding-a-first-look-at-the-power-plant-data",
+    "href": "notebooks/01-workflow.html#live-coding-a-first-look-at-the-power-plant-data",
+    "title": "1  The Data Science Workflow in Engineering",
+    "section": "1.3 Live coding: a first look at the power plant data",
+    "text": "1.3 Live coding: a first look at the power plant data\nThe dataset contains 9,568 hourly averages from a combined cycle power plant: ambient temperature AT (°C), exhaust vacuum V (cm Hg), ambient pressure AP (mbar), relative humidity RH (%) and the net electrical output PE (MW).\n\nfrom ucimlrepo import fetch_ucirepo\n\nccpp = fetch_ucirepo(id=294)\ndf = pd.concat([ccpp.data.features, ccpp.data.targets], axis=1)\ndf.info()\ndf.describe().T\n\n\n\nCode\nsns.pairplot(df.sample(1000, random_state=0), corner=True, plot_kws={\"s\": 8, \"alpha\": 0.5})\nplt.show()\n\n\nThe pair plot already suggests a strong, almost linear relation between ambient temperature and power output. We will quantify this in Chapters 5 and 6.",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Data Science Workflow in Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/01-workflow.html#live-coding-reading-a-raw-sensor-file",
+    "href": "notebooks/01-workflow.html#live-coding-reading-a-raw-sensor-file",
+    "title": "1  The Data Science Workflow in Engineering",
+    "section": "1.4 Live coding: reading a raw sensor file",
+    "text": "1.4 Live coding: reading a raw sensor file\nReal measurement data rarely come as a clean table. As an example, we load hourly air temperature and humidity from the German Weather Service (DWD), station Trier-Petrisberg (station ID 05100). The file is a zip archive with a semicolon-separated text file and the code -999 for missing values.\n\n\nCode\nfrom pathlib import Path\nimport requests\n\nDATA = Path(\"data\")\nDATA.mkdir(exist_ok=True)\n\ndef download(url, fname=None):\n    \"\"\"Download a file once and cache it in ./data.\"\"\"\n    path = DATA / (fname or url.split(\"/\")[-1])\n    if not path.exists():\n        r = requests.get(url, timeout=120)\n        r.raise_for_status()\n        path.write_bytes(r.content)\n    return path\n\n\n\nimport zipfile\n\nurl = (\"https://opendata.dwd.de/climate_environment/CDC/observations_germany/\"\n       \"climate/hourly/air_temperature/recent/stundenwerte_TU_05100_akt.zip\")\nwith zipfile.ZipFile(download(url)) as z:\n    name = next(n for n in z.namelist() if n.startswith(\"produkt\"))\n    dwd = pd.read_csv(z.open(name), sep=\";\", na_values=[-999], skipinitialspace=True)\n\ndwd.columns = dwd.columns.str.strip()\ndwd[\"time\"] = pd.to_datetime(dwd[\"MESS_DATUM\"].astype(str), format=\"%Y%m%d%H\")\nweather = (dwd.set_index(\"time\")[[\"TT_TU\", \"RF_TU\"]]\n              .rename(columns={\"TT_TU\": \"temp_C\", \"RF_TU\": \"rel_humidity_pct\"}))\nweather.tail()\n\n\n\nCode\nax = weather[\"temp_C\"].resample(\"D\").agg([\"min\", \"mean\", \"max\"]).plot(figsize=(10, 4))\nax.set(ylabel=\"Air temperature (°C)\", title=\"Trier-Petrisberg: daily min / mean / max\")\nplt.show()\n\n\n\nExercises\n\nWhich columns of the power plant data are inputs, which is the output? Which physical relations between them do you expect?\nCompute the correlation matrix of the power plant data and visualise it as a heatmap. Which variable is most strongly related to PE?\nChange the DWD code to load a weather station near your home town (station list: TU_Stundenwerte_Beschreibung_Stationen.txt in the same DWD folder).\nSketch the CRISP-DM phases for a project from your own engineering background.",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>The Data Science Workflow in Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/02-eda.html",
+    "href": "notebooks/02-eda.html",
+    "title": "2  Exploratory Data Analysis and Data Quality",
+    "section": "",
+    "text": "2.1 Data quality in engineering data\nExploratory data analysis (EDA) is the most underrated step in data science. In engineering, most model failures can be traced back to data problems that a careful look would have revealed.\nLearning goals. After this chapter you can\nDatasets in this chapter\nTypical problems in measured data:\nRule of thumb: never delete or impute data before you understand why they are missing or extreme.\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['ucimlrepo']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Exploratory Data Analysis and Data Quality</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/02-eda.html#data-quality-in-engineering-data",
+    "href": "notebooks/02-eda.html#data-quality-in-engineering-data",
+    "title": "2  Exploratory Data Analysis and Data Quality",
+    "section": "",
+    "text": "Missing values – sensor dropouts, logging gaps, values not measured for every product.\nOutliers – real rare events or measurement errors; the distinction needs domain knowledge.\nImplausible values – outside the physical range (negative absolute pressure, humidity &gt; 100 %).\nInconsistent units and time stamps – °C vs. K, local time vs. UTC, daylight saving time.\nDrift and offsets – sensor ageing, recalibration.",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Exploratory Data Analysis and Data Quality</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/02-eda.html#live-coding-energy-use-of-a-low-energy-house",
+    "href": "notebooks/02-eda.html#live-coding-energy-use-of-a-low-energy-house",
+    "title": "2  Exploratory Data Analysis and Data Quality",
+    "section": "2.2 Live coding: energy use of a low-energy house",
+    "text": "2.2 Live coding: energy use of a low-energy house\nTemperature and humidity in nine rooms, outdoor weather and the electricity consumption of appliances, sampled every 10 minutes over about 4.5 months.\n\nfrom ucimlrepo import fetch_ucirepo\n\nappl = fetch_ucirepo(id=374)\nenergy = appl.data.original.copy()\nenergy[\"date\"] = pd.to_datetime(energy[\"date\"])\nenergy = energy.set_index(\"date\").sort_index()\nenergy.shape, energy.index.min(), energy.index.max()\n\n\n\nCode\nfig, axes = plt.subplots(2, 1, figsize=(10, 6), sharex=True)\nenergy[\"Appliances\"].plot(ax=axes[0], lw=0.3, alpha=0.6, label=\"10 min\")\nenergy[\"Appliances\"].rolling(\"1D\").mean().plot(ax=axes[0], color=\"k\", label=\"24 h rolling mean\")\naxes[0].set(ylabel=\"Appliances (Wh)\"); axes[0].legend()\nenergy[[\"T1\", \"T_out\"]].resample(\"h\").mean().plot(ax=axes[1])\naxes[1].set(ylabel=\"Temperature (°C)\")\nplt.show()\n\n\n\n\nCode\n# Daily profile: mean consumption per hour of day and weekday\nprofile = energy.groupby([energy.index.dayofweek, energy.index.hour])[\"Appliances\"].mean().unstack(0)\nsns.heatmap(profile, cmap=\"viridis\", cbar_kws={\"label\": \"Appliances (Wh)\"})\nplt.xlabel(\"Day of week (0 = Monday)\"); plt.ylabel(\"Hour of day\")\nplt.show()",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Exploratory Data Analysis and Data Quality</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/02-eda.html#live-coding-missing-values-in-semiconductor-manufacturing",
+    "href": "notebooks/02-eda.html#live-coding-missing-values-in-semiconductor-manufacturing",
+    "title": "2  Exploratory Data Analysis and Data Quality",
+    "section": "2.3 Live coding: missing values in semiconductor manufacturing",
+    "text": "2.3 Live coding: missing values in semiconductor manufacturing\nSECOM contains 1,567 production runs with 591 process measurements and a pass/fail label. Many sensors have gaps.\n\nsecom = fetch_ucirepo(id=179)\nX = secom.data.features\nmissing = X.isna().mean().sort_values(ascending=False)\nprint(f\"Features: {X.shape[1]}, with any missing value: {(missing &gt; 0).sum()}, \"\n      f\"more than 50 % missing: {(missing &gt; 0.5).sum()}\")\nmissing.plot.hist(bins=40, xlabel=\"Share of missing values per feature\")\nplt.show()\n\n\n\nCode\n# Constant features carry no information\nn_constant = (X.nunique(dropna=True) &lt;= 1).sum()\nprint(\"Constant features:\", n_constant)\n\n\n\nExercises\n\nDetect outliers in Appliances with the IQR rule and with a rolling z-score. Do both rules flag the same points? Are they errors or real events?\nCheck all temperature and humidity columns of the energy dataset for physically implausible values.\nFor SECOM: propose a strategy for features with 0–5 %, 5–50 % and more than 50 % missing values. Justify it.\nResample the energy data to hourly values. Which aggregation (mean, sum, max) is correct for energy, which for temperature?",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Exploratory Data Analysis and Data Quality</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/03-uncertainty.html",
+    "href": "notebooks/03-uncertainty.html",
+    "title": "3  Probability and Uncertainty",
+    "section": "",
+    "text": "3.1 Distributions for engineering data\nEvery measurement and every estimate carries uncertainty. Engineers need to quantify it – for tolerances, for safety factors and for maintenance planning.\nLearning goals. After this chapter you can\nDatasets in this chapter\nThe two-parameter Weibull distribution has the cumulative distribution function\n\\[F(t) = 1 - \\exp\\left[-\\left(\\frac{t}{\\eta}\\right)^{\\beta}\\right]\\]\nwith shape parameter \\(\\beta\\) and scale parameter \\(\\eta\\). \\(\\beta &lt; 1\\) indicates early failures, \\(\\beta = 1\\) random failures, \\(\\beta &gt; 1\\) wear-out.\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in []:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom scipy import stats\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Probability and Uncertainty</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/03-uncertainty.html#distributions-for-engineering-data",
+    "href": "notebooks/03-uncertainty.html#distributions-for-engineering-data",
+    "title": "3  Probability and Uncertainty",
+    "section": "",
+    "text": "Distribution\nTypical use\n\n\n\n\nNormal\nmeasurement errors, dimensions of machined parts\n\n\nLognormal\nparticle sizes, repair times, fatigue life\n\n\nWeibull\nlifetimes, strength of brittle materials\n\n\nExponential\nrandom failures with constant failure rate\n\n\nPoisson\nnumber of defects per unit",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Probability and Uncertainty</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/03-uncertainty.html#live-coding-lifetimes-of-turbofan-engines",
+    "href": "notebooks/03-uncertainty.html#live-coding-lifetimes-of-turbofan-engines",
+    "title": "3  Probability and Uncertainty",
+    "section": "3.2 Live coding: lifetimes of turbofan engines",
+    "text": "3.2 Live coding: lifetimes of turbofan engines\nC-MAPSS contains simulated run-to-failure trajectories of turbofan engines. In the training file train_FD001.txt every one of the 100 engines runs until failure, so the last cycle of each engine is its lifetime.\nData access. Download CMAPSSData.zip from the NASA Open Data Portal (link above) and extract it into the folder data/CMAPSSData/. In Colab, upload the zip file via the file browser and run the cell below.\n\nfrom pathlib import Path\nimport zipfile\n\nDATA = Path(\"data\")\nif Path(\"CMAPSSData.zip\").exists() and not (DATA / \"CMAPSSData\").exists():\n    zipfile.ZipFile(\"CMAPSSData.zip\").extractall(DATA / \"CMAPSSData\")\n\ncols = [\"unit\", \"cycle\", \"op1\", \"op2\", \"op3\"] + [f\"s{i}\" for i in range(1, 22)]\ntrain = pd.read_csv(DATA / \"CMAPSSData\" / \"train_FD001.txt\", sep=r\"\\s+\", header=None, names=cols)\nlifetimes = train.groupby(\"unit\")[\"cycle\"].max()\nlifetimes.describe()\n\n\nbeta, loc, eta = stats.weibull_min.fit(lifetimes, floc=0)\nprint(f\"Weibull fit: shape beta = {beta:.2f}, scale eta = {eta:.1f} cycles\")\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4))\nt = np.linspace(0, lifetimes.max() * 1.1, 300)\naxes[0].hist(lifetimes, bins=15, density=True, alpha=0.6, label=\"data\")\naxes[0].plot(t, stats.weibull_min.pdf(t, beta, scale=eta), label=\"Weibull fit\")\naxes[0].set(xlabel=\"Lifetime (cycles)\", ylabel=\"Density\"); axes[0].legend()\nstats.probplot(lifetimes, dist=stats.weibull_min, sparams=(beta, 0, eta), plot=axes[1])\naxes[1].set_title(\"Probability plot (Weibull)\")\nplt.show()\n\n\n# B10 life: 10 % of the engines have failed\nb10 = stats.weibull_min.ppf(0.10, beta, scale=eta)\nprint(f\"B10 life: {b10:.0f} cycles\")\n\n# 95 % confidence interval of the mean lifetime: t-interval vs. bootstrap\nci_t = stats.t.interval(0.95, df=len(lifetimes) - 1,\n                        loc=lifetimes.mean(), scale=stats.sem(lifetimes))\nboot = stats.bootstrap((lifetimes.values,), np.mean, confidence_level=0.95,\n                       random_state=0)\nprint(\"t-interval:        \", np.round(ci_t, 1))\nprint(\"bootstrap interval:\", np.round(boot.confidence_interval, 1))",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Probability and Uncertainty</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/03-uncertainty.html#bayes-theorem-how-much-should-we-trust-an-alarm",
+    "href": "notebooks/03-uncertainty.html#bayes-theorem-how-much-should-we-trust-an-alarm",
+    "title": "3  Probability and Uncertainty",
+    "section": "3.3 Bayes’ theorem: how much should we trust an alarm?",
+    "text": "3.3 Bayes’ theorem: how much should we trust an alarm?\nBayes’ theorem reverses a conditional probability:\n\\[P(F \\mid A) = \\frac{P(A \\mid F)\\,P(F)}{P(A \\mid F)\\,P(F) + P(A \\mid \\bar F)\\,P(\\bar F)}\\]\nExample: a condition monitoring system detects a bearing fault \\(F\\) with probability \\(P(A \\mid F) = 0.95\\) (sensitivity) and raises a false alarm on a healthy bearing with \\(P(A \\mid \\bar F) = 0.05\\). Only 1 % of the monitored bearings are actually damaged. If the system raises an alarm \\(A\\), how likely is a real fault?\n\\[P(F \\mid A) = \\frac{0.95 \\cdot 0.01}{0.95 \\cdot 0.01 + 0.05 \\cdot 0.99} \\approx 0.16\\]\nFive out of six alarms are false – not because the system is bad, but because faults are rare. This base rate effect returns in Chapter 7 (precision of a classifier).\n\nsens, false_alarm = 0.95, 0.05\nprevalence = np.logspace(-4, -0.3, 200)\nposterior = sens * prevalence / (sens * prevalence + false_alarm * (1 - prevalence))\n\nplt.semilogx(prevalence, posterior)\nplt.axvline(0.01, ls=\":\", c=\"k\")\nplt.xlabel(\"Share of damaged bearings P(F)\"); plt.ylabel(\"P(fault | alarm)\")\nplt.title(\"Same sensor, very different meaning of an alarm\")\nplt.show()",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Probability and Uncertainty</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/03-uncertainty.html#bayesian-estimation-combining-prior-knowledge-with-few-tests",
+    "href": "notebooks/03-uncertainty.html#bayesian-estimation-combining-prior-knowledge-with-few-tests",
+    "title": "3  Probability and Uncertainty",
+    "section": "3.4 Bayesian estimation: combining prior knowledge with few tests",
+    "text": "3.4 Bayesian estimation: combining prior knowledge with few tests\nFrequentist statistics uses only the current data. Bayesian statistics treats an unknown parameter \\(\\theta\\) as uncertain and updates a prior distribution with the data to a posterior distribution:\n\\[p(\\theta \\mid \\text{data}) \\propto p(\\text{data} \\mid \\theta)\\; p(\\theta)\\]\nEngineering example: a new product variant is tested, 3 of 50 parts are defective. From the predecessor product we know a defect rate of about 2 %. For a defect rate, the beta distribution is a convenient prior: with prior \\(\\text{Beta}(\\alpha, \\beta)\\) and \\(k\\) defects in \\(n\\) parts, the posterior is simply \\(\\text{Beta}(\\alpha + k,\\; \\beta + n - k)\\). The prior \\(\\text{Beta}(2, 98)\\) has mean 2 % and carries roughly the weight of 100 previously inspected parts.\n\nk, n = 3, 50                       # new tests: defects, parts\na0, b0 = 2, 98                     # prior from the predecessor product\na1, b1 = a0 + k, b0 + n - k        # posterior\n\np = np.linspace(0, 0.20, 500)\nplt.plot(p, stats.beta.pdf(p, a0, b0), label=\"prior (predecessor)\")\nplt.plot(p, stats.beta.pdf(p, 1 + k, 1 + n - k), label=\"data only (flat prior)\")\nplt.plot(p, stats.beta.pdf(p, a1, b1), label=\"posterior\")\nplt.xlabel(\"Defect rate\"); plt.ylabel(\"Density\"); plt.legend()\nplt.show()\n\nci_freq = stats.binomtest(k, n).proportion_ci(0.95)\nprint(f\"Frequentist: {k/n:.1%}, 95 % CI [{ci_freq.low:.1%}, {ci_freq.high:.1%}]\")\nlo, hi = stats.beta.interval(0.95, a1, b1)\nprint(f\"Bayesian:    {a1/(a1+b1):.1%}, 95 % credible interval [{lo:.1%}, {hi:.1%}]\")\n\n\nExercises\n\nFit a lognormal and a normal distribution to the lifetimes. Compare the fits with probability plots and the Kolmogorov–Smirnov statistic.\nUse the bootstrap to compute a 95 % confidence interval for the B10 life. Why is it much wider than the interval for the mean?\nHow does the width of the confidence interval of the mean change if only 20 engines are available? Simulate it by subsampling.\nInterpret the shape parameter for the maintenance strategy: does preventive replacement make sense?\nBayes: the fault share in a well-maintained fleet is only 0.1 %. How reliable is an alarm now? Which false alarm rate would be needed to reach P(fault | alarm) = 50 %?\nRepeat the defect-rate analysis with a weak prior Beta(0.2, 9.8) and a strong prior Beta(20, 980). When does the prior dominate, when the data?",
+    "crumbs": [
+      "Part A – Understanding Data",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Probability and Uncertainty</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/04-testing.html",
+    "href": "notebooks/04-testing.html",
+    "title": "4  Statistical Testing",
+    "section": "",
+    "text": "4.1 Choosing a test\nHypothesis tests answer the question whether an observed difference could plausibly be due to chance. With large engineering datasets almost every difference becomes significant – so effect sizes matter at least as much as p-values.\nLearning goals. After this chapter you can\nDatasets in this chapter\np-value: probability of observing a result at least as extreme as the data, if the null hypothesis is true. It is not the probability that the null hypothesis is true.\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['ucimlrepo']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom scipy import stats\n\nsns.set_theme(style=\"whitegrid\")\nCode\nfrom pathlib import Path\nimport requests\n\nDATA = Path(\"data\")\nDATA.mkdir(exist_ok=True)\n\ndef download(url, fname=None):\n    \"\"\"Download a file once and cache it in ./data.\"\"\"\n    path = DATA / (fname or url.split(\"/\")[-1])\n    if not path.exists():\n        r = requests.get(url, timeout=120)\n        r.raise_for_status()\n        path.write_bytes(r.content)\n    return path",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Statistical Testing</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/04-testing.html#choosing-a-test",
+    "href": "notebooks/04-testing.html#choosing-a-test",
+    "title": "4  Statistical Testing",
+    "section": "",
+    "text": "Question\nData\nTest\n\n\n\n\nDo two groups differ in their mean?\ncontinuous, approx. normal\nWelch t-test\n\n\n… without normality assumption\ncontinuous / ordinal\nMann–Whitney U\n\n\nDo k groups differ?\ncontinuous\none-way ANOVA / Kruskal–Wallis\n\n\nAre two categorical variables related?\ncounts\nchi-squared test\n\n\nPaired measurements (before/after)\ncontinuous\npaired t-test / Wilcoxon",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Statistical Testing</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/04-testing.html#live-coding-nox-emissions-20112015",
+    "href": "notebooks/04-testing.html#live-coding-nox-emissions-20112015",
+    "title": "4  Statistical Testing",
+    "section": "4.2 Live coding: NOx emissions 2011–2015",
+    "text": "4.2 Live coding: NOx emissions 2011–2015\nThe dataset contains 36,733 hourly sensor values of a gas turbine in Turkey, one CSV file per year.\n\nimport zipfile\n\nurl = \"https://archive.ics.uci.edu/static/public/551/gas+turbine+co+and+nox+emission+data+set.zip\"\nframes = []\nwith zipfile.ZipFile(download(url, \"gas_turbine.zip\")) as z:\n    for name in sorted(n for n in z.namelist() if n.endswith(\".csv\")):\n        year = int(name.split(\"_\")[-1][:4])\n        frames.append(pd.read_csv(z.open(name)).assign(year=year))\ngt = pd.concat(frames, ignore_index=True)\ngt.columns = gt.columns.str.upper()\ngt.groupby(\"YEAR\")[\"NOX\"].describe()\n\n\n\nCode\nsns.boxplot(data=gt, x=\"YEAR\", y=\"NOX\")\nplt.ylabel(\"NOx (mg/m³)\")\nplt.show()\n\n\n\ngroups = [g[\"NOX\"].values for _, g in gt.groupby(\"YEAR\")]\nprint(\"ANOVA:         \", stats.f_oneway(*groups))\nprint(\"Kruskal-Wallis:\", stats.kruskal(*groups))\n\na, b = gt.loc[gt.YEAR == 2011, \"NOX\"], gt.loc[gt.YEAR == 2015, \"NOX\"]\nres = stats.ttest_ind(a, b, equal_var=False)\ncohens_d = (a.mean() - b.mean()) / np.sqrt((a.var() + b.var()) / 2)\nprint(f\"Welch t-test 2011 vs 2015: p = {res.pvalue:.2e}, difference = {a.mean() - b.mean():.1f} mg/m³, Cohen's d = {cohens_d:.2f}\")",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Statistical Testing</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/04-testing.html#live-coding-product-variant-and-machine-failures",
+    "href": "notebooks/04-testing.html#live-coding-product-variant-and-machine-failures",
+    "title": "4  Statistical Testing",
+    "section": "4.3 Live coding: product variant and machine failures",
+    "text": "4.3 Live coding: product variant and machine failures\nThe AI4I dataset (synthetic, modelled on a real milling process) assigns each product a quality variant L, M or H. Is the failure rate independent of the variant?\n\nfrom ucimlrepo import fetch_ucirepo\n\nai4i = fetch_ucirepo(id=601).data.original\ntable = pd.crosstab(ai4i[\"Type\"], ai4i[\"Machine failure\"])\nchi2, p, dof, expected = stats.chi2_contingency(table)\nprint(table, f\"\\nchi2 = {chi2:.2f}, dof = {dof}, p = {p:.3f}\")\n(table[1] / table.sum(axis=1)).rename(\"failure rate\")\n\n\nExercises\n\nCheck the normality assumption for NOx per year with QQ plots. Does it matter for the ANOVA with these sample sizes?\nTake a random sample of 30 values per year and repeat the tests. What changes and why?\nRun pairwise t-tests between all years. How many comparisons are there? Apply a Bonferroni correction.\nFormulate an engineering conclusion from the NOx analysis in two sentences – for a plant manager, not a statistician.",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Statistical Testing</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/05-regression-doe.html",
+    "href": "notebooks/05-regression-doe.html",
+    "title": "5  Regression: Linear, Nonlinear and Design of Experiments",
+    "section": "",
+    "text": "5.1 The linear model\nRegression is the workhorse of engineering data analysis: calibration curves, empirical material laws and process models are regression models. Design of experiments (DoE) makes sure the data contain the information we need.\nLearning goals. After this chapter you can\nDatasets in this chapter\n\\[y = \\beta_0 + \\beta_1 x_1 + \\dots + \\beta_p x_p + \\varepsilon, \\qquad \\varepsilon \\sim N(0, \\sigma^2)\\]\nThe least-squares estimate is \\(\\hat{\\beta} = (X^\\top X)^{-1} X^\\top y\\). Key assumptions: linearity, independent errors, constant variance, (approximately) normal errors. “Linear” refers to the parameters – \\(\\log(x)\\) or \\(x_1 x_2\\) terms are allowed.\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['ucimlrepo']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport statsmodels.formula.api as smf\nimport statsmodels.api as sm\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regression: Linear, Nonlinear and Design of Experiments</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/05-regression-doe.html#live-coding-concrete-strength",
+    "href": "notebooks/05-regression-doe.html#live-coding-concrete-strength",
+    "title": "5  Regression: Linear, Nonlinear and Design of Experiments",
+    "section": "5.2 Live coding: concrete strength",
+    "text": "5.2 Live coding: concrete strength\n\nfrom ucimlrepo import fetch_ucirepo\n\nconcrete = fetch_ucirepo(id=165)\nconc = concrete.data.features.copy()\nconc.columns = [\"cement\", \"slag\", \"fly_ash\", \"water\", \"superplasticizer\",\n                \"coarse_agg\", \"fine_agg\", \"age\"]          # kg/m³, age in days\nconc[\"strength\"] = concrete.data.targets.iloc[:, 0]        # MPa\nconc.describe().T\n\n\nmodel = smf.ols(\"strength ~ cement + slag + fly_ash + water + superplasticizer\"\n                \" + coarse_agg + fine_agg + np.log(age)\", data=conc).fit()\nprint(model.summary())\n\n\n\nCode\nfig, axes = plt.subplots(1, 3, figsize=(14, 4))\naxes[0].scatter(model.fittedvalues, model.resid, s=8, alpha=0.5)\naxes[0].axhline(0, color=\"k\", lw=1)\naxes[0].set(xlabel=\"Fitted strength (MPa)\", ylabel=\"Residual (MPa)\", title=\"Residuals vs fitted\")\nsm.qqplot(model.resid, line=\"45\", fit=True, ax=axes[1]); axes[1].set_title(\"Normal QQ plot\")\naxes[2].scatter(conc[\"age\"], model.resid, s=8, alpha=0.5)\naxes[2].set(xscale=\"log\", xlabel=\"Age (days)\", ylabel=\"Residual (MPa)\", title=\"Residuals vs age\")\nplt.tight_layout(); plt.show()",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regression: Linear, Nonlinear and Design of Experiments</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/05-regression-doe.html#nonlinear-curve-fitting",
+    "href": "notebooks/05-regression-doe.html#nonlinear-curve-fitting",
+    "title": "5  Regression: Linear, Nonlinear and Design of Experiments",
+    "section": "5.3 Nonlinear curve fitting",
+    "text": "5.3 Nonlinear curve fitting\nMany engineering models are nonlinear in their parameters: hardening curves, decay processes, characteristic curves of components. They cannot be written as a linear model, but their parameters can still be estimated by least squares – numerically, by iteration:\n\\[\\hat{\\theta} = \\arg\\min_{\\theta} \\sum_i \\left(y_i - f(x_i; \\theta)\\right)^2\\]\nPractical points:\n\nStarting values matter: the iteration can converge to a local minimum or not at all. Derive them from physics or from the data.\nParameter uncertainty: the covariance matrix pcov returned by curve_fit gives standard errors (valid for approximately normal, independent errors).\nIdentifiability: if two parameters are strongly correlated (see pcov), the data cannot separate them – a sign that the model is too complex for the data or the design is poor.\nLinearisation (e.g. taking logarithms) is tempting but changes the error structure; a direct nonlinear fit is usually preferable.\n\nAs an example we model the strength development of one concrete mix over time with the hyperbolic model\n\\[f_c(t) = f_\\infty \\, \\frac{t}{a + t}\\]\nwith the final strength \\(f_\\infty\\) (MPa) and the time \\(a\\) (days) at which half of it is reached.\n\nfrom scipy.optimize import curve_fit\n\nmix_cols = [\"cement\", \"slag\", \"fly_ash\", \"water\", \"superplasticizer\", \"coarse_agg\", \"fine_agg\"]\nn_ages = conc.groupby(mix_cols)[\"age\"].nunique()\nbest = n_ages.idxmax()                                   # the mix tested at most ages\nmix = conc[(conc[mix_cols] == pd.Series(best, index=mix_cols)).all(axis=1)].sort_values(\"age\")\nprint(f\"Mix tested at {n_ages.max()} different ages:\", dict(zip(mix_cols, best)))\n\ndef strength_model(t, f_inf, a):\n    return f_inf * t / (a + t)\n\np0 = [mix[\"strength\"].max(), 7]                          # starting values from the data\npopt, pcov = curve_fit(strength_model, mix[\"age\"], mix[\"strength\"], p0=p0)\nperr = np.sqrt(np.diag(pcov))\ncorr = pcov[0, 1] / (perr[0] * perr[1])\nprint(f\"f_inf = {popt[0]:.1f} ± {perr[0]:.1f} MPa,  a = {popt[1]:.1f} ± {perr[1]:.1f} days,  \"\n      f\"correlation = {corr:.2f}\")\n\n\n# 95 % confidence band of the fitted curve (delta method)\nt = np.linspace(1, mix[\"age\"].max() * 1.1, 300)\nf_inf, a = popt\nJ = np.column_stack([t / (a + t), -f_inf * t / (a + t) ** 2])   # partial derivatives\nse = np.sqrt(np.einsum(\"ij,jk,ik-&gt;i\", J, pcov, J))\nfit = strength_model(t, *popt)\n\nplt.scatter(mix[\"age\"], mix[\"strength\"], label=\"measurements\", zorder=3)\nplt.plot(t, fit, label=\"nonlinear fit\")\nplt.fill_between(t, fit - 1.96 * se, fit + 1.96 * se, alpha=0.25, label=\"95 % confidence band\")\nplt.axhline(f_inf, ls=\":\", c=\"k\", lw=1)\nplt.xlabel(\"Age (days)\"); plt.ylabel(\"Compressive strength (MPa)\"); plt.legend()\nplt.show()",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regression: Linear, Nonlinear and Design of Experiments</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/05-regression-doe.html#design-of-experiments-a-2³-full-factorial-design",
+    "href": "notebooks/05-regression-doe.html#design-of-experiments-a-2³-full-factorial-design",
+    "title": "5  Regression: Linear, Nonlinear and Design of Experiments",
+    "section": "5.4 Design of experiments: a 2³ full factorial design",
+    "text": "5.4 Design of experiments: a 2³ full factorial design\nObservational data like the concrete dataset have correlated inputs, which makes effects hard to separate. In a designed experiment we choose the factor levels ourselves. A full factorial design with three factors at two levels (coded −1/+1) needs 8 runs and estimates all main effects and interactions independently.\nThe example below simulates such an experiment with a known “true” model, so we can check whether the analysis recovers it.\n\nimport itertools\n\ndesign = pd.DataFrame(list(itertools.product([-1, 1], repeat=3)),\n                      columns=[\"cement\", \"water\", \"age\"])\nrng = np.random.default_rng(42)\ndesign = pd.concat([design, design], ignore_index=True)        # 2 replicates\ndesign[\"strength\"] = (40 + 8 * design.cement - 6 * design.water + 5 * design.age\n                      + 2 * design.cement * design.age + rng.normal(0, 1.5, len(design)))\n\ndoe = smf.ols(\"strength ~ cement * water * age\", data=design).fit()\ndoe.params.round(2)\n\n\nExercises\n\nReplace np.log(age) by age. How do R² and the residual plot change? Explain physically why the log transform helps.\nCompute the water/cement ratio and use it as a feature. Compare with the original model.\nWhich coefficients of the concrete model are statistically significant? Are the signs plausible from a materials point of view?\nFit the strength model to all mixes with at least four test ages. How does the final strength f_inf depend on the water/cement ratio?\nCompare the hyperbolic model with a logarithmic model f(t) = c₀ + c₁·ln(t). Which one extrapolates more plausibly to 1000 days, and why is extrapolation risky anyway?\nExtend the DoE example to a 2⁴ design with a fourth factor. How many runs are needed? What is a fractional factorial design?",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Regression: Linear, Nonlinear and Design of Experiments</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/06-model-selection.html",
+    "href": "notebooks/06-model-selection.html",
+    "title": "6  Model Selection, Regularisation and Gaussian Processes",
+    "section": "",
+    "text": "6.1 Bias, variance and cross-validation\nA model that fits the training data perfectly is usually useless. This chapter introduces the most important idea of machine learning: models must be judged on data they have not seen.\nLearning goals. After this chapter you can\nDatasets in this chapter\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['ucimlrepo']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Model Selection, Regularisation and Gaussian Processes</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/06-model-selection.html#bias-variance-and-cross-validation",
+    "href": "notebooks/06-model-selection.html#bias-variance-and-cross-validation",
+    "title": "6  Model Selection, Regularisation and Gaussian Processes",
+    "section": "",
+    "text": "Bias: systematic error because the model is too simple.\nVariance: sensitivity to the particular training sample because the model is too flexible.\nk-fold cross-validation: split the data into k parts, train on k−1, test on the remaining one, rotate, average.\nRegularisation adds a penalty on large coefficients: Ridge (\\(L_2\\)) shrinks, Lasso (\\(L_1\\)) can set coefficients exactly to zero (feature selection).",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Model Selection, Regularisation and Gaussian Processes</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/06-model-selection.html#live-coding-airfoil-self-noise",
+    "href": "notebooks/06-model-selection.html#live-coding-airfoil-self-noise",
+    "title": "6  Model Selection, Regularisation and Gaussian Processes",
+    "section": "6.2 Live coding: airfoil self-noise",
+    "text": "6.2 Live coding: airfoil self-noise\n\nfrom ucimlrepo import fetch_ucirepo\n\nair = fetch_ucirepo(id=291)\nX = air.data.features.copy()\nX.columns = [\"frequency\", \"angle\", \"chord\", \"velocity\", \"thickness\"]   # Hz, deg, m, m/s, m\ny = air.data.targets.iloc[:, 0].rename(\"spl\")                           # dB\nX.describe().T\n\n\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import PolynomialFeatures, StandardScaler\nfrom sklearn.linear_model import LinearRegression, RidgeCV\nfrom sklearn.model_selection import KFold, cross_validate\n\ncv = KFold(n_splits=5, shuffle=True, random_state=0)\nrows = []\nfor degree in range(1, 7):\n    pipe = make_pipeline(PolynomialFeatures(degree), StandardScaler(), LinearRegression())\n    res = cross_validate(pipe, X, y, cv=cv, scoring=\"neg_root_mean_squared_error\",\n                         return_train_score=True)\n    rows.append({\"degree\": degree, \"train RMSE\": -res[\"train_score\"].mean(),\n                 \"CV RMSE\": -res[\"test_score\"].mean()})\nscores = pd.DataFrame(rows).set_index(\"degree\")\nax = scores.plot(marker=\"o\"); ax.set(ylabel=\"RMSE (dB)\", ylim=(0, None))\nplt.show()\nscores\n\n\nridge = make_pipeline(PolynomialFeatures(5), StandardScaler(),\n                      RidgeCV(alphas=np.logspace(-4, 3, 30)))\nres = cross_validate(ridge, X, y, cv=cv, scoring=\"neg_root_mean_squared_error\")\nprint(f\"Ridge, degree 5: CV RMSE = {-res['test_score'].mean():.2f} dB\")",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Model Selection, Regularisation and Gaussian Processes</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/06-model-selection.html#gaussian-process-regression-predictions-with-uncertainty",
+    "href": "notebooks/06-model-selection.html#gaussian-process-regression-predictions-with-uncertainty",
+    "title": "6  Model Selection, Regularisation and Gaussian Processes",
+    "section": "6.3 Gaussian process regression: predictions with uncertainty",
+    "text": "6.3 Gaussian process regression: predictions with uncertainty\nLinear and polynomial models assume a fixed functional form. A Gaussian process (GP) instead places a probability distribution directly over functions – it is the Bayesian approach to regression. The kernel encodes assumptions such as smoothness and length scale; its hyperparameters and the noise level are fitted to the data.\nThe key advantage for engineers: every prediction comes with a standard deviation. Far from the data, the uncertainty grows. GPs are therefore popular as surrogate models for expensive simulations and experiments. Their limitation: the computational cost grows with \\(n^3\\), so they suit datasets up to a few thousand points.\nWe first look at a one-dimensional example: the power output of the combined cycle power plant as a function of ambient temperature, learned from only 15 measurements.\n\nfrom sklearn.gaussian_process import GaussianProcessRegressor\nfrom sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel as C\n\nccpp = fetch_ucirepo(id=294)\npp = pd.concat([ccpp.data.features, ccpp.data.targets], axis=1)\nfew = pp.sample(15, random_state=1)\n\nkernel = C(100.0) * RBF(length_scale=10.0) + WhiteKernel(noise_level=10.0)\ngp = GaussianProcessRegressor(kernel=kernel, normalize_y=True, random_state=0)\ngp.fit(few[[\"AT\"]], few[\"PE\"])\nprint(\"Fitted kernel:\", gp.kernel_)\n\nT = np.linspace(-5, 45, 300).reshape(-1, 1)\nmean, std = gp.predict(pd.DataFrame(T, columns=[\"AT\"]), return_std=True)\nplt.scatter(pp[\"AT\"], pp[\"PE\"], s=2, c=\"lightgray\", label=\"all data (unknown to the model)\")\nplt.scatter(few[\"AT\"], few[\"PE\"], c=\"C3\", zorder=3, label=\"15 training points\")\nplt.plot(T, mean, label=\"GP mean\")\nplt.fill_between(T.ravel(), mean - 1.96 * std, mean + 1.96 * std, alpha=0.3, label=\"95 % interval\")\nplt.xlabel(\"Ambient temperature (°C)\"); plt.ylabel(\"Power output (MW)\"); plt.legend()\nplt.show()\n\n\n# GP on the full airfoil problem (5 inputs), compared with the polynomial ridge model\ngp_air = make_pipeline(StandardScaler(), GaussianProcessRegressor(\n    kernel=C(1.0) * RBF(length_scale=np.ones(5)) + WhiteKernel(0.1), normalize_y=True))\nres = cross_validate(gp_air, X, y, cv=cv, scoring=\"neg_root_mean_squared_error\")\nprint(f\"Gaussian process: CV RMSE = {-res['test_score'].mean():.2f} dB\")",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Model Selection, Regularisation and Gaussian Processes</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/06-model-selection.html#outlook-bayesian-optimisation-design-of-experiments-with-a-gp",
+    "href": "notebooks/06-model-selection.html#outlook-bayesian-optimisation-design-of-experiments-with-a-gp",
+    "title": "6  Model Selection, Regularisation and Gaussian Processes",
+    "section": "6.4 Outlook: Bayesian optimisation – design of experiments with a GP",
+    "text": "6.4 Outlook: Bayesian optimisation – design of experiments with a GP\nWhen every experiment is expensive (a test bench run, a CFD simulation), we want to find the optimum with as few runs as possible. Bayesian optimisation fits a GP to the runs so far and chooses the next run where the expected improvement (EI) is largest – a balance between exploiting promising regions (high mean) and exploring uncertain ones (high standard deviation).\nThe example uses a simulated “experiment”: the yield of a process as a function of temperature, which the algorithm does not know.\n\nfrom scipy.stats import norm\n\ndef experiment(temp):                       # unknown to the optimiser\n    return 40 + 45 * np.exp(-((temp - 172) / 25) ** 2) + 5 * np.sin(temp / 9)\n\ngrid = np.linspace(100, 250, 500).reshape(-1, 1)\nX_runs = np.array([[110.0], [180.0], [240.0]])            # three initial runs\ny_runs = experiment(X_runs.ravel())\n\nfig, axes = plt.subplots(2, 3, figsize=(14, 6), sharex=True, sharey=True)\nfor ax in axes.ravel():\n    gp_bo = GaussianProcessRegressor(C(1.0) * RBF(20.0), normalize_y=True, alpha=1e-6)\n    gp_bo.fit(X_runs, y_runs)\n    mu, sd = gp_bo.predict(grid, return_std=True)\n    best = y_runs.max()\n    z = (mu - best) / np.maximum(sd, 1e-9)\n    ei = (mu - best) * norm.cdf(z) + sd * norm.pdf(z)       # expected improvement\n    x_next = grid[np.argmax(ei)]\n\n    ax.plot(grid, experiment(grid.ravel()), \"k:\", lw=1, label=\"true (unknown)\")\n    ax.plot(grid, mu, label=\"GP mean\")\n    ax.fill_between(grid.ravel(), mu - 1.96 * sd, mu + 1.96 * sd, alpha=0.25)\n    ax.scatter(X_runs, y_runs, c=\"C3\", zorder=3, label=\"runs\")\n    ax.axvline(x_next[0], c=\"C2\", ls=\"--\", label=\"next run\")\n    ax.set_title(f\"{len(y_runs)} runs, best yield {best:.1f}\")\n\n    X_runs = np.vstack([X_runs, x_next])\n    y_runs = np.append(y_runs, experiment(x_next[0]))\naxes[0, 0].legend(fontsize=8)\nfig.supxlabel(\"Temperature (°C)\"); fig.supylabel(\"Yield (%)\")\nplt.tight_layout(); plt.show()\n\n\nExercises\n\nRepeat the degree study for the power plant data. Why does the curve look so different?\nReplace Ridge by LassoCV. How many of the polynomial features survive? Which original variables appear most often?\nWhy must the StandardScaler be part of the pipeline instead of being fitted on all data beforehand?\nPlot predicted vs. measured sound pressure level for the best model. Where does it fail?\nGP: increase the number of training points from 15 to 50 and 200. How does the uncertainty band change? What happens outside the measured temperature range?\nBayesian optimisation: start with a different set of three runs. Does the algorithm still find the optimum? Compare with a regular grid of the same number of runs.",
+    "crumbs": [
+      "Part B – Statistics for Engineers",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Model Selection, Regularisation and Gaussian Processes</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/07-classification.html",
+    "href": "notebooks/07-classification.html",
+    "title": "7  Classification",
+    "section": "",
+    "text": "7.1 Metrics for imbalanced problems\nMany engineering decisions are binary: OK or not OK, failure or no failure. Accuracy is a misleading metric when failures are rare – the costs of false alarms and missed failures must drive the evaluation.\nLearning goals. After this chapter you can\nDatasets in this chapter\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['ucimlrepo']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Classification</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/07-classification.html#metrics-for-imbalanced-problems",
+    "href": "notebooks/07-classification.html#metrics-for-imbalanced-problems",
+    "title": "7  Classification",
+    "section": "",
+    "text": "predicted OK\npredicted failure\n\n\n\n\nactual OK\ntrue negative (TN)\nfalse positive (FP) – false alarm\n\n\nactual failure\nfalse negative (FN) – missed failure\ntrue positive (TP)\n\n\n\n\nPrecision = TP / (TP + FP): how many alarms are real?\nRecall = TP / (TP + FN): how many failures are detected?\nWith 3 % failures, a model that always predicts “OK” reaches 97 % accuracy – and is worthless.\nPrecision is nothing but \\(P(\\text{failure} \\mid \\text{alarm})\\) – Bayes’ theorem from Chapter 3: when failures are rare, even a good detector produces many false alarms.",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Classification</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/07-classification.html#live-coding-predictive-maintenance",
+    "href": "notebooks/07-classification.html#live-coding-predictive-maintenance",
+    "title": "7  Classification",
+    "section": "7.2 Live coding: predictive maintenance",
+    "text": "7.2 Live coding: predictive maintenance\n\nfrom ucimlrepo import fetch_ucirepo\n\nai4i = fetch_ucirepo(id=601).data.original\nfeatures = [\"Type\", \"Air temperature [K]\", \"Process temperature [K]\",\n            \"Rotational speed [rpm]\", \"Torque [Nm]\", \"Tool wear [min]\"]\nX = pd.get_dummies(ai4i[features], columns=[\"Type\"], drop_first=True)\ny = ai4i[\"Machine failure\"]\nprint(f\"Failure rate: {y.mean():.1%}\")\n# NOTE: the columns TWF, HDF, PWF, OSF, RNF describe the failure mode.\n# Using them as features would be data leakage!\n\n\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.metrics import classification_report\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.25, stratify=y, random_state=0)\n\nmodels = {\n    \"logistic regression\": make_pipeline(StandardScaler(), LogisticRegression(class_weight=\"balanced\", max_iter=1000)),\n    \"kNN (k=5)\": make_pipeline(StandardScaler(), KNeighborsClassifier(5)),\n    \"decision tree\": DecisionTreeClassifier(max_depth=5, class_weight=\"balanced\", random_state=0),\n}\nfor name, m in models.items():\n    m.fit(X_train, y_train)\n    print(f\"--- {name}\")\n    print(classification_report(y_test, m.predict(X_test), digits=3))\n\n\n\nCode\nfrom sklearn.metrics import ConfusionMatrixDisplay, PrecisionRecallDisplay\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4))\nConfusionMatrixDisplay.from_estimator(models[\"decision tree\"], X_test, y_test, ax=axes[0], colorbar=False)\nfor name, m in models.items():\n    PrecisionRecallDisplay.from_estimator(m, X_test, y_test, ax=axes[1], name=name)\nplt.tight_layout(); plt.show()\n\n\n\nExercises\n\nAdd the failure mode columns (TWF, HDF, …) as features and retrain. What happens to the scores – and why is this result worthless?\nAssume a missed failure costs 10,000 € and a false alarm 500 €. Choose the decision threshold of the logistic regression that minimises total cost.\nVisualise the decision tree (sklearn.tree.plot_tree). Do the rules make physical sense (power = torque × speed)?\nConstruct the feature power [W] and check whether it improves the logistic regression.",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Classification</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/08-ensembles.html",
+    "href": "notebooks/08-ensembles.html",
+    "title": "8  Ensembles and Interpretability",
+    "section": "",
+    "text": "8.1 Bagging and boosting\nTree ensembles are the strongest general-purpose method for tabular engineering data. Their weakness is transparency – which is why interpretation methods are part of this chapter.\nLearning goals. After this chapter you can\nDatasets in this chapter\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['ucimlrepo', 'shap']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ensembles and Interpretability</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/08-ensembles.html#bagging-and-boosting",
+    "href": "notebooks/08-ensembles.html#bagging-and-boosting",
+    "title": "8  Ensembles and Interpretability",
+    "section": "",
+    "text": "Random forest (bagging): many deep trees, each trained on a bootstrap sample with random feature subsets; predictions are averaged. Robust, few hyperparameters.\nGradient boosting: many shallow trees trained one after another, each correcting the errors of the previous ones. Often the most accurate, needs tuning (learning rate, number of trees, depth).\nPermutation importance: how much does the score drop if one feature is shuffled?\nSHAP values: contribution of each feature to a single prediction.",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ensembles and Interpretability</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/08-ensembles.html#live-coding-steel-plate-faults",
+    "href": "notebooks/08-ensembles.html#live-coding-steel-plate-faults",
+    "title": "8  Ensembles and Interpretability",
+    "section": "8.2 Live coding: steel plate faults",
+    "text": "8.2 Live coding: steel plate faults\n\nfrom ucimlrepo import fetch_ucirepo\n\nsteel = fetch_ucirepo(id=198)\nX = steel.data.features\ny = steel.data.targets.idxmax(axis=1)      # 7 one-hot columns -&gt; one label\ny.value_counts()\n\n\nfrom sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold\nfrom sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=0)\ncv = StratifiedKFold(5, shuffle=True, random_state=0)\n\nrf = RandomForestClassifier(n_estimators=300, random_state=0, n_jobs=-1)\ngb = HistGradientBoostingClassifier(random_state=0)\nfor name, m in [(\"random forest\", rf), (\"gradient boosting\", gb)]:\n    s = cross_val_score(m, X_train, y_train, cv=cv, scoring=\"balanced_accuracy\")\n    print(f\"{name:18s} balanced accuracy = {s.mean():.3f} ± {s.std():.3f}\")\n\n\nfrom sklearn.inspection import permutation_importance\n\nrf.fit(X_train, y_train)\npi = permutation_importance(rf, X_test, y_test, n_repeats=10, random_state=0,\n                            scoring=\"balanced_accuracy\")\nimp = pd.Series(pi.importances_mean, index=X.columns).sort_values()\nimp.tail(10).plot.barh(xlabel=\"Drop in balanced accuracy\")\nplt.show()\n\n\n\nCode\nimport shap\n\nexplainer = shap.TreeExplainer(rf)\nsv = explainer(X_test.iloc[:200])\n# SHAP values for one class, e.g. \"K_Scatch\"\ncls = list(rf.classes_).index(\"K_Scatch\")\nshap.plots.beeswarm(sv[:, :, cls], max_display=10)\n\n\n\nExercises\n\nTune max_depth and learning_rate of the gradient boosting model with GridSearchCV. How much does the tuning gain?\nShow the confusion matrix. Which fault classes are confused, and is that plausible?\nCompare impurity-based importance (rf.feature_importances_) with permutation importance. Why can they differ?\nExplain one single prediction with a SHAP waterfall plot to a quality engineer.",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ensembles and Interpretability</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/09-unsupervised.html",
+    "href": "notebooks/09-unsupervised.html",
+    "title": "9  Unsupervised Learning and Anomaly Detection",
+    "section": "",
+    "text": "9.1 PCA in a nutshell\nLabels are expensive in engineering: failures are rare and expert labelling is slow. Unsupervised methods learn what ‘normal’ looks like and flag deviations.\nLearning goals. After this chapter you can\nDatasets in this chapter\nPCA rotates the (standardised) data into new axes – the principal components – ordered by explained variance. It is computed from the singular value decomposition \\(X = U \\Sigma V^\\top\\). For process monitoring, a PCA model of normal operation yields two statistics:\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['ucimlrepo']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Unsupervised Learning and Anomaly Detection</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/09-unsupervised.html#pca-in-a-nutshell",
+    "href": "notebooks/09-unsupervised.html#pca-in-a-nutshell",
+    "title": "9  Unsupervised Learning and Anomaly Detection",
+    "section": "",
+    "text": "Hotelling’s T²: distance within the model plane – unusual combination of known patterns.\nSPE / Q statistic: distance from the model plane – a new kind of variation.",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Unsupervised Learning and Anomaly Detection</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/09-unsupervised.html#live-coding-pca-monitoring-of-semiconductor-production",
+    "href": "notebooks/09-unsupervised.html#live-coding-pca-monitoring-of-semiconductor-production",
+    "title": "9  Unsupervised Learning and Anomaly Detection",
+    "section": "9.2 Live coding: PCA monitoring of semiconductor production",
+    "text": "9.2 Live coding: PCA monitoring of semiconductor production\n\nfrom ucimlrepo import fetch_ucirepo\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.feature_selection import VarianceThreshold\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\nsecom = fetch_ucirepo(id=179)\nX = secom.data.features\ny = secom.data.targets.iloc[:, 0]           # -1 = pass, 1 = fail\nX = X.loc[:, X.isna().mean() &lt; 0.5]          # drop features with &gt; 50 % missing\n\nprep = make_pipeline(SimpleImputer(strategy=\"median\"), VarianceThreshold(1e-8), StandardScaler())\nZ = prep.fit_transform(X[y == -1])           # model of normal operation\npca = PCA().fit(Z)\ncum = np.cumsum(pca.explained_variance_ratio_)\nk = int(np.searchsorted(cum, 0.80) + 1)\nplt.plot(cum[:100]); plt.axhline(0.8, ls=\"--\", c=\"k\")\nplt.xlabel(\"Number of components\"); plt.ylabel(\"Cumulative explained variance\")\nplt.show()\nprint(\"Components for 80 % variance:\", k)\n\n\npca_k = PCA(k).fit(Z)\n\ndef t2_spe(Zx):\n    scores = pca_k.transform(Zx)\n    t2 = np.sum(scores**2 / pca_k.explained_variance_, axis=1)\n    spe = np.sum((Zx - pca_k.inverse_transform(scores))**2, axis=1)\n    return t2, spe\n\nt2, spe = t2_spe(prep.transform(X))\nt2_lim, spe_lim = np.percentile(t2[y == -1], 99), np.percentile(spe[y == -1], 99)\n\nplt.scatter(t2, spe, c=(y == 1), cmap=\"coolwarm\", s=8, alpha=0.6)\nplt.axvline(t2_lim, c=\"k\", ls=\"--\"); plt.axhline(spe_lim, c=\"k\", ls=\"--\")\nplt.xscale(\"log\"); plt.yscale(\"log\"); plt.xlabel(\"Hotelling T²\"); plt.ylabel(\"SPE\")\nplt.title(\"Red: failed runs, dashed: 99 % limits of normal runs\")\nplt.show()\n\n\nfrom sklearn.ensemble import IsolationForest\nfrom sklearn.metrics import roc_auc_score\n\niso = IsolationForest(n_estimators=300, random_state=0).fit(Z)\nscore = -iso.score_samples(prep.transform(X))\nprint(f\"ROC AUC  Isolation Forest: {roc_auc_score(y == 1, score):.3f}\")\nprint(f\"ROC AUC  SPE:              {roc_auc_score(y == 1, spe):.3f}\")\n\nNote: the normal runs used for fitting are also part of the evaluation here, which makes the result optimistic. Exercise 1 fixes this.\n\nExercises\n\nSplit the pass runs into a training and a test part and repeat the evaluation properly. How much does the AUC change?\nPlot the first two principal component scores coloured by pass/fail. Then run k-means with 2–6 clusters. Do clusters correspond to failures?\nHydraulic systems: load the pressure signal PS1.txt (2205 cycles × 6000 values), compute mean, std and max per cycle and run a PCA. Colour the scores by the cooler condition in profile.txt.\nDiscuss: why is the SECOM failure detection so hard, even though there are 590 sensors?",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Unsupervised Learning and Anomaly Detection</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/10-signals.html",
+    "href": "notebooks/10-signals.html",
+    "title": "10  Signals and Feature Engineering",
+    "section": "",
+    "text": "10.1 From time signal to features\nCondition monitoring produces raw signals sampled at kHz rates. Machine learning models need compact, meaningful features – engineering knowledge about the physics of faults is the best source of such features.\nLearning goals. After this chapter you can\nDatasets in this chapter\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in []:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom scipy import signal, stats\nfrom scipy.io import loadmat\n\nsns.set_theme(style=\"whitegrid\")\nCode\nfrom pathlib import Path\nimport requests\n\nDATA = Path(\"data\")\nDATA.mkdir(exist_ok=True)\n\ndef download(url, fname=None):\n    \"\"\"Download a file once and cache it in ./data.\"\"\"\n    path = DATA / (fname or url.split(\"/\")[-1])\n    if not path.exists():\n        r = requests.get(url, timeout=120)\n        r.raise_for_status()\n        path.write_bytes(r.content)\n    return path",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Signals and Feature Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/10-signals.html#from-time-signal-to-features",
+    "href": "notebooks/10-signals.html#from-time-signal-to-features",
+    "title": "10  Signals and Feature Engineering",
+    "section": "",
+    "text": "Sampling theorem: a signal sampled at \\(f_s\\) represents frequencies up to \\(f_s/2\\) (Nyquist frequency).\nFFT: decomposes a signal into frequency components.\nEnvelope analysis: bearing faults cause periodic impacts that modulate high-frequency resonances. Band-pass filtering, Hilbert transform and FFT of the envelope reveal the impact frequency.\nBearing fault frequencies (CWRU drive-end bearing SKF 6205, multiples of shaft speed \\(f_r\\)): inner race BPFI ≈ 5.415 \\(f_r\\), outer race BPFO ≈ 3.585 \\(f_r\\) – check the CWRU bearing specification page.\nStatistical features: RMS, peak, crest factor, kurtosis, skewness.",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Signals and Feature Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/10-signals.html#live-coding-healthy-vs.-inner-race-fault",
+    "href": "notebooks/10-signals.html#live-coding-healthy-vs.-inner-race-fault",
+    "title": "10  Signals and Feature Engineering",
+    "section": "10.2 Live coding: healthy vs. inner-race fault",
+    "text": "10.2 Live coding: healthy vs. inner-race fault\nWe use two files from the CWRU Bearing Data Center: normal baseline (97.mat) and a 0.007-inch inner race fault at the drive end (105.mat), both at 0 hp motor load (approx. 1797 rpm). Check the file numbers and the sampling rates (12 kHz or 48 kHz) on the CWRU download pages before using them.\n\nFILES = {\"normal\": (\"97.mat\", 48_000), \"inner race\": (\"105.mat\", 12_000)}   # file, sampling rate (Hz) – verify!\nBASE_URL = \"https://engineering.case.edu/sites/default/files/\"\n\nsignals = {}\nfor label, (fname, fs) in FILES.items():\n    mat = loadmat(download(BASE_URL + fname))\n    key = next(k for k in mat if k.endswith(\"_DE_time\"))     # drive-end accelerometer\n    signals[label] = (mat[key].ravel(), fs)\n\nfig, axes = plt.subplots(2, 1, figsize=(10, 5), sharex=True)\nfor ax, (label, (x, fs)) in zip(axes, signals.items()):\n    t = np.arange(len(x)) / fs\n    ax.plot(t, x, lw=0.5); ax.set(title=label, ylabel=\"Acceleration (g)\")\naxes[1].set(xlim=(0, 0.2), xlabel=\"Time (s)\")\nplt.tight_layout(); plt.show()\n\n\nf_r = 1797 / 60          # shaft frequency (Hz)\nbpfi = 5.4152 * f_r\n\ndef envelope_spectrum(x, fs, band=(2000, 5000)):\n    b, a = signal.butter(4, band, btype=\"bandpass\", fs=fs)\n    env = np.abs(signal.hilbert(signal.filtfilt(b, a, x)))\n    env -= env.mean()\n    f = np.fft.rfftfreq(len(env), 1 / fs)\n    return f, np.abs(np.fft.rfft(env)) / len(env)\n\nfig, ax = plt.subplots(figsize=(10, 4))\nfor label, (x, fs) in signals.items():\n    f, A = envelope_spectrum(x, fs)\n    ax.plot(f, A, label=label, lw=0.8)\nfor k in (1, 2, 3):\n    ax.axvline(k * bpfi, c=\"k\", ls=\":\", lw=1)\nax.set(xlim=(0, 600), xlabel=\"Frequency (Hz)\", ylabel=\"Envelope amplitude\",\n       title=\"Envelope spectrum, dotted: BPFI harmonics\")\nax.legend(); plt.show()\n\n\ndef features(x):\n    rms = np.sqrt(np.mean(x**2))\n    return {\"rms\": rms, \"peak\": np.max(np.abs(x)), \"crest\": np.max(np.abs(x)) / rms,\n            \"kurtosis\": stats.kurtosis(x), \"skewness\": stats.skew(x)}\n\n# features on 1-second windows\nrows = []\nfor label, (x, fs) in signals.items():\n    for start in range(0, len(x) - fs, fs):\n        rows.append({\"condition\": label, **features(x[start:start + fs])})\nfeat = pd.DataFrame(rows)\nfeat.groupby(\"condition\").mean().round(3)\n\n\nExercises\n\nCompare the plain amplitude spectrum (FFT of the raw signal) with the envelope spectrum. Why is the fault frequency hardly visible in the plain spectrum?\nDownload an outer race fault file and check whether a peak appears at BPFO.\nBuild a small classifier (normal / inner / outer / ball fault) on the statistical window features. Why must windows of the same recording not be split between training and test set?\nHydraulic systems: compute features per cycle for all 100 Hz sensors and predict the valve condition with a random forest.",
+    "crumbs": [
+      "Part C – Machine Learning",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Signals and Feature Engineering</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/11-time-series.html",
+    "href": "notebooks/11-time-series.html",
+    "title": "11  Time Series Forecasting",
+    "section": "",
+    "text": "11.1 Concepts\nLoad forecasting, production planning and energy management all rely on time series forecasts. The main pitfall: information from the future leaking into the training data.\nLearning goals. After this chapter you can\nDatasets in this chapter\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['statsmodels']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\nsns.set_theme(style=\"whitegrid\")\nCode\nfrom pathlib import Path\nimport requests\n\nDATA = Path(\"data\")\nDATA.mkdir(exist_ok=True)\n\ndef download(url, fname=None):\n    \"\"\"Download a file once and cache it in ./data.\"\"\"\n    path = DATA / (fname or url.split(\"/\")[-1])\n    if not path.exists():\n        r = requests.get(url, timeout=120)\n        r.raise_for_status()\n        path.write_bytes(r.content)\n    return path",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Time Series Forecasting</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/11-time-series.html#concepts",
+    "href": "notebooks/11-time-series.html#concepts",
+    "title": "11  Time Series Forecasting",
+    "section": "",
+    "text": "Autocorrelation function (ACF): correlation of a series with its own past – reveals daily and weekly cycles.\nStationarity: constant mean and variance over time; achieved by differencing.\nSARIMA(p,d,q)(P,D,Q)ₛ: autoregressive and moving average terms plus seasonal counterparts with period s.\nFeature-based forecasting: lagged values, rolling means and calendar features feed a regression model (e.g. gradient boosting).\nValidation: always train on the past and test on the future (TimeSeriesSplit, rolling origin).",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Time Series Forecasting</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/11-time-series.html#live-coding-german-electricity-load",
+    "href": "notebooks/11-time-series.html#live-coding-german-electricity-load",
+    "title": "11  Time Series Forecasting",
+    "section": "11.2 Live coding: German electricity load",
+    "text": "11.2 Live coding: German electricity load\nThe OPSD time series package (version 2020-10-06, 2015 to mid-2020) contains hourly load data from ENTSO-E. The CSV file is about 124 MB; we only read the German load column.\n\nurl = (\"https://data.open-power-system-data.org/time_series/2020-10-06/\"\n       \"time_series_60min_singleindex.csv\")\nload = pd.read_csv(download(url), usecols=[\"utc_timestamp\", \"DE_load_actual_entsoe_transparency\"],\n                   parse_dates=[\"utc_timestamp\"], index_col=\"utc_timestamp\")\nload = load.rename(columns={\"DE_load_actual_entsoe_transparency\": \"load_MW\"})[\"load_MW\"]\ndaily = load.resample(\"D\").mean().loc[\"2015-01-01\":\"2019-12-31\"] / 1000   # GW\ndaily.plot(figsize=(10, 3), ylabel=\"Mean load (GW)\")\nplt.show()\n\n\n\nCode\nfrom statsmodels.graphics.tsaplots import plot_acf\nplot_acf(daily, lags=40); plt.show()\n\n\n\nfrom statsmodels.tsa.statespace.sarimax import SARIMAX\n\ntrain, test = daily[:\"2019-10-31\"], daily[\"2019-11-01\":\"2019-11-30\"]\nsarima = SARIMAX(train, order=(1, 0, 1), seasonal_order=(1, 1, 1, 7)).fit(disp=False)\nfc = sarima.get_forecast(len(test))\nax = train[\"2019-09-01\":].plot(label=\"train\", figsize=(10, 3))\ntest.plot(ax=ax, label=\"actual\")\nfc.predicted_mean.plot(ax=ax, label=\"SARIMA forecast\")\nci = fc.conf_int()\nax.fill_between(ci.index, ci.iloc[:, 0], ci.iloc[:, 1], alpha=0.2)\nax.legend(); plt.show()\nmape = (abs(fc.predicted_mean - test) / test).mean()\nprint(f\"MAPE November 2019: {mape:.1%}\")\n\n\nfrom sklearn.ensemble import HistGradientBoostingRegressor\nfrom sklearn.model_selection import TimeSeriesSplit, cross_val_score\n\ndf = daily.to_frame(\"load\")\nfor lag in (1, 7, 14):\n    df[f\"lag_{lag}\"] = df[\"load\"].shift(lag)\ndf[\"dow\"] = df.index.dayofweek\ndf[\"doy\"] = df.index.dayofyear\ndf = df.dropna()\n\nX, y = df.drop(columns=\"load\"), df[\"load\"]\nscores = cross_val_score(HistGradientBoostingRegressor(random_state=0), X, y,\n                         cv=TimeSeriesSplit(5), scoring=\"neg_mean_absolute_percentage_error\")\nprint(\"MAPE per fold:\", np.round(-scores, 3))\n\nWeather as an input. Temperature drives heating and cooling demand. Historical hourly temperatures are available from the DWD (folder observations_germany/climate/hourly/air_temperature/historical/); see Chapter 1 for reading the files. A single station is of course only a rough proxy for Germany.\n\nExercises\n\nAdd public holidays (package holidays) as a feature. How much does the error drop around Christmas?\nAdd the daily mean temperature of one or several DWD stations as a feature and compare the error with and without it.\nUse a random train_test_split instead of TimeSeriesSplit for the gradient boosting model. Why does the error look better – and why is that wrong?\nForecast hourly instead of daily load. Which seasonal periods do you need now?",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Time Series Forecasting</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/12-neural-networks.html",
+    "href": "notebooks/12-neural-networks.html",
+    "title": "12  Neural Networks",
+    "section": "",
+    "text": "12.1 From linear regression to neural networks\nNeural networks can learn features from raw data by themselves. For tabular data they rarely beat gradient boosting; for sequences, signals and images they are often the method of choice.\nLearning goals. After this chapter you can\nDatasets in this chapter\nA neuron computes \\(a = \\sigma(w^\\top x + b)\\) with a non-linear activation \\(\\sigma\\) (e.g. ReLU). Stacking layers of neurons yields a multilayer perceptron (MLP). Training minimises a loss (here the mean squared error) with gradient descent; the gradients are computed by backpropagation. Important practical knobs: learning rate, batch size, number of epochs, early stopping.\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['torch']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport torch\nfrom torch import nn\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Neural Networks</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/12-neural-networks.html#live-coding-remaining-useful-life",
+    "href": "notebooks/12-neural-networks.html#live-coding-remaining-useful-life",
+    "title": "12  Neural Networks",
+    "section": "12.2 Live coding: remaining useful life",
+    "text": "12.2 Live coding: remaining useful life\nData access as in Chapter 3: extract CMAPSSData.zip into data/CMAPSSData/. For the training engines the RUL is known (last cycle − current cycle). Following common practice we cap the RUL at 125 cycles, because degradation is not observable early in life.\n\nfrom pathlib import Path\nDATA = Path(\"data\") / \"CMAPSSData\"\ncols = [\"unit\", \"cycle\", \"op1\", \"op2\", \"op3\"] + [f\"s{i}\" for i in range(1, 22)]\nread = lambda f: pd.read_csv(DATA / f, sep=r\"\\s+\", header=None, names=cols)\n\ntrain, test = read(\"train_FD001.txt\"), read(\"test_FD001.txt\")\nrul_test = pd.read_csv(DATA / \"RUL_FD001.txt\", header=None).iloc[:, 0].values\n\ntrain[\"rul\"] = (train.groupby(\"unit\")[\"cycle\"].transform(\"max\") - train[\"cycle\"]).clip(upper=125)\nsensors = [c for c in cols[5:] if train[c].std() &gt; 1e-3]       # drop constant sensors\nmu, sd = train[sensors].mean(), train[sensors].std()\ntrain[sensors] = (train[sensors] - mu) / sd\ntest[sensors] = (test[sensors] - mu) / sd\nprint(\"Sensors used:\", sensors)\n\n\nW = 30   # window length (cycles)\n\ndef windows(df, with_target=True):\n    X, y = [], []\n    for _, g in df.groupby(\"unit\"):\n        v = g[sensors].values\n        if len(v) &lt; W:                                   # pad short test series\n            v = np.vstack([np.repeat(v[:1], W - len(v), axis=0), v])\n        if with_target:\n            r = g[\"rul\"].values\n            for end in range(W, len(v) + 1):\n                X.append(v[end - W:end]); y.append(r[end - 1])\n        else:\n            X.append(v[-W:])\n    return np.array(X, dtype=np.float32), np.array(y, dtype=np.float32)\n\nX_tr, y_tr = windows(train)\nX_te, _ = windows(test, with_target=False)\nX_tr.shape, X_te.shape\n\n\ntorch.manual_seed(0)\nmodel = nn.Sequential(\n    nn.Flatten(),\n    nn.Linear(W * len(sensors), 64), nn.ReLU(),\n    nn.Linear(64, 32), nn.ReLU(),\n    nn.Linear(32, 1),\n)\nopt = torch.optim.Adam(model.parameters(), lr=1e-3)\nloss_fn = nn.MSELoss()\n\nXt, yt = torch.tensor(X_tr), torch.tensor(y_tr).unsqueeze(1)\nloader = torch.utils.data.DataLoader(torch.utils.data.TensorDataset(Xt, yt),\n                                     batch_size=256, shuffle=True)\nhistory = []\nfor epoch in range(30):\n    model.train()\n    for xb, yb in loader:\n        opt.zero_grad()\n        loss = loss_fn(model(xb), yb)\n        loss.backward()\n        opt.step()\n    history.append(loss.item())\n\nmodel.eval()\nwith torch.no_grad():\n    pred = model(torch.tensor(X_te)).squeeze().numpy()\nrmse = np.sqrt(np.mean((pred - np.minimum(rul_test, 125))**2))\nprint(f\"Test RMSE: {rmse:.1f} cycles\")\n\n\n\nCode\nfig, axes = plt.subplots(1, 2, figsize=(11, 4))\naxes[0].plot(history); axes[0].set(xlabel=\"Epoch\", ylabel=\"Training loss (last batch)\")\naxes[1].scatter(np.minimum(rul_test, 125), pred, s=12)\naxes[1].plot([0, 125], [0, 125], \"k--\")\naxes[1].set(xlabel=\"True RUL (cycles)\", ylabel=\"Predicted RUL (cycles)\")\nplt.tight_layout(); plt.show()\n\n\n\nExercises\n\nBuild a baseline: gradient boosting on the last-cycle sensor values plus window mean and slope. Is the neural network better?\nHold out 20 training engines as a validation set (split by engine, not by window!) and implement early stopping.\nReplace the MLP by a 1D convolutional network (nn.Conv1d) or an LSTM. Mind the tensor shape (batch, channels, time).\nWhy is an underestimate of the RUL less critical than an overestimate? Design an asymmetric loss function.",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Neural Networks</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/13-visual-inspection.html",
+    "href": "notebooks/13-visual-inspection.html",
+    "title": "13  Deep Learning for Visual Inspection and Outlook",
+    "section": "",
+    "text": "13.1 CNNs and transfer learning\nVisual inspection is one of the most successful industrial applications of deep learning. Because defects are rare and diverse, the practical approach is often to learn only what good parts look like.\nLearning goals. After this chapter you can\nDatasets in this chapter\nConvolutional layers apply small learnable filters across an image; deeper layers combine edges into textures and parts. Networks pretrained on millions of everyday images (ImageNet) provide general visual features that transfer surprisingly well to industrial images. A simple but strong anomaly detector: embed all good training images with a pretrained CNN, and score a test image by its distance to the nearest good image in feature space.\n# Setup: works locally and in Google Colab\nimport importlib.util, subprocess, sys\nfor pkg in ['torch', 'torchvision']:\n    if importlib.util.find_spec(pkg) is None:\n        subprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", pkg], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nimport torch\nfrom torchvision import models, transforms\nfrom PIL import Image\n\nsns.set_theme(style=\"whitegrid\")",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Deep Learning for Visual Inspection and Outlook</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/13-visual-inspection.html#live-coding-anomaly-detection-on-one-mvtec-category",
+    "href": "notebooks/13-visual-inspection.html#live-coding-anomaly-detection-on-one-mvtec-category",
+    "title": "13  Deep Learning for Visual Inspection and Outlook",
+    "section": "13.2 Live coding: anomaly detection on one MVTec category",
+    "text": "13.2 Live coding: anomaly detection on one MVTec category\nData access. MVTec AD is free for non-commercial use (CC BY-NC-SA 4.0) and is downloaded from the MVTec website after accepting the license. Download one category (e.g. bottle, a few hundred MB) and extract it to data/mvtec/bottle/. A GPU (Colab: Runtime → Change runtime type) speeds things up but is not required.\n\nfrom pathlib import Path\nROOT = Path(\"data/mvtec/bottle\")\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n\nweights = models.ResNet18_Weights.DEFAULT\nbackbone = models.resnet18(weights=weights)\nbackbone.fc = torch.nn.Identity()           # use the 512-d feature vector\nbackbone.eval().to(device)\ntf = weights.transforms()\n\n@torch.no_grad()\ndef embed(paths):\n    feats = []\n    for p in paths:\n        x = tf(Image.open(p).convert(\"RGB\")).unsqueeze(0).to(device)\n        feats.append(backbone(x).cpu().numpy()[0])\n    return np.array(feats)\n\ntrain_paths = sorted((ROOT / \"train\" / \"good\").glob(\"*.png\"))\ntest_paths = sorted((ROOT / \"test\").glob(\"*/*.png\"))\nlabels = np.array([p.parent.name != \"good\" for p in test_paths])\nF_train, F_test = embed(train_paths), embed(test_paths)\n\n\nfrom sklearn.neighbors import NearestNeighbors\nfrom sklearn.metrics import roc_auc_score\n\nnn_model = NearestNeighbors(n_neighbors=1).fit(F_train)\nscore = nn_model.kneighbors(F_test)[0][:, 0]\nprint(f\"Image-level ROC AUC: {roc_auc_score(labels, score):.3f}\")\n\norder = np.argsort(score)[::-1][:5]\nfig, axes = plt.subplots(1, 5, figsize=(15, 3))\nfor ax, i in zip(axes, order):\n    ax.imshow(Image.open(test_paths[i])); ax.axis(\"off\")\n    ax.set_title(f\"{test_paths[i].parent.name}\\nscore {score[i]:.1f}\")\nplt.show()",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Deep Learning for Visual Inspection and Outlook</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/13-visual-inspection.html#outlook",
+    "href": "notebooks/13-visual-inspection.html#outlook",
+    "title": "13  Deep Learning for Visual Inspection and Outlook",
+    "section": "13.3 Outlook",
+    "text": "13.3 Outlook\n\nPhysics-informed machine learning: combine physical laws (e.g. as constraints or loss terms) with data – useful when data are scarce.\nSurrogate models: replace expensive simulations (FEM, CFD) by fast ML models for optimisation.\nFoundation models and LLMs: pretrained models for time series, images and text; assistants for coding and documentation.\nDeployment and MLOps: monitoring of data drift, retraining, edge devices, validation in regulated environments.\n\n\nExercises\n\nRepeat the analysis for a texture category (e.g. carpet) and an object category (e.g. screw). Where does the method work better?\nUse the k = 3 nearest neighbours instead of one. Does the AUC change?\nChoose a threshold so that no defective bottle passes. What fraction of good bottles is rejected?\nDiscuss for a product from your field: which inspection task could be automated this way, and what are the risks?",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Deep Learning for Visual Inspection and Outlook</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/14-review.html",
+    "href": "notebooks/14-review.html",
+    "title": "14  Review and Exam Preparation",
+    "section": "",
+    "text": "14.1 Which method when?\nThis chapter collects the methods of the course in one map and points to typical exam questions. The exam is written, without a computer: it tests understanding, interpretation and method choice – not programming routine.",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Review and Exam Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/14-review.html#which-method-when",
+    "href": "notebooks/14-review.html#which-method-when",
+    "title": "14  Review and Exam Preparation",
+    "section": "",
+    "text": "Engineering question\nData\nMethod\nChapter\n\n\n\n\nHow reliable is a component?\nlifetimes\nWeibull fit, B10 life, bootstrap\n3\n\n\nHow much can we trust an alarm?\ndetection and false alarm rates, base rate\nBayes’ theorem\n3, 7\n\n\nFew tests, but prior knowledge\ncounts, earlier products\nBayesian updating (beta–binomial)\n3\n\n\nDid a change improve the process?\nmeasurements of two or more groups\nt-test, ANOVA, effect size\n4\n\n\nHow does an output depend on inputs?\ncontinuous, few inputs\nlinear regression, DoE\n5\n\n\nFit a physical or empirical law\nmeasured curve\nnonlinear least squares (curve_fit)\n5\n\n\nPredict a continuous quantity\nmany inputs\nregularised regression, gradient boosting\n6, 8\n\n\nExpensive experiments or simulations\nfew runs\nGaussian process, Bayesian optimisation\n6\n\n\nOK / not OK, fault type\nlabelled data\nlogistic regression, trees, ensembles\n7, 8\n\n\nDetect unknown deviations\nmostly normal data\nPCA (T², SPE), Isolation Forest\n9\n\n\nDiagnose rotating machinery\nvibration signals\nFFT, envelope spectrum, features\n10\n\n\nForecast demand or load\ntime series\nSARIMA, lag features + boosting\n11\n\n\nRemaining useful life\nmultivariate sequences\nneural networks, boosting baseline\n12\n\n\nInspect surfaces\nimages\npretrained CNN, anomaly detection\n13",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Review and Exam Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/14-review.html#checklist-typical-pitfalls",
+    "href": "notebooks/14-review.html#checklist-typical-pitfalls",
+    "title": "14  Review and Exam Preparation",
+    "section": "14.2 Checklist: typical pitfalls",
+    "text": "14.2 Checklist: typical pitfalls\n\nData leakage (features that contain the answer, scaling before splitting, random splits for time series)\nAccuracy on imbalanced data\nSignificance without relevance (large n)\nExtrapolation outside the training range\nSplitting windows of the same recording or engine between training and test set",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Review and Exam Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "notebooks/14-review.html#typical-exam-question-types",
+    "href": "notebooks/14-review.html#typical-exam-question-types",
+    "title": "14  Review and Exam Preparation",
+    "section": "14.3 Typical exam question types",
+    "text": "14.3 Typical exam question types\n\nMethod choice: given a scenario, choose and justify a method and an evaluation metric.\nInterpretation: read a regression table, a confusion matrix, a scree plot or a learning curve.\nCalculation by hand: confidence interval, test statistic, precision/recall from a confusion matrix.\nCode reading: find the error in a short Python snippet.\n\n\nExercises\n\nA confusion matrix shows TN = 950, FP = 30, FN = 5, TP = 15. Compute accuracy, precision and recall. Is the model useful for failure detection?\nA sensor detects 99 % of all leaks and raises a false alarm in 2 % of the leak-free tests; 0.5 % of all parts leak. What is the probability that a part with an alarm really leaks?\nFind the error: X = StandardScaler().fit_transform(X); X_train, X_test, y_train, y_test = train_test_split(X, y).\nA t-test on 50,000 parts shows p &lt; 0.001 for a 0.2 µm difference in mean diameter, tolerance ±20 µm. What do you tell the production manager?\nExplain to a colleague, in five sentences, why a random train/test split is wrong for load forecasting.",
+    "crumbs": [
+      "Part D – Time Series, Deep Learning and Outlook",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Review and Exam Preparation</span>"
+    ]
+  },
+  {
+    "objectID": "datasets.html",
+    "href": "datasets.html",
+    "title": "Appendix A — Datasets",
+    "section": "",
+    "text": "All datasets used in this script are publicly available. Please cite the original sources when you use them.\n\n\n\nDataset\nDomain\nSize\nLicense\nChapters\n\n\n\n\nCombined Cycle Power Plant\npower generation\n9,568 rows, 4 features\nCC BY 4.0\n1, 6\n\n\nAppliances Energy Prediction\nbuilding services, sensor network\n19,735 rows, 10-min intervals\nCC BY 4.0\n2\n\n\nSECOM\nsemiconductor manufacturing\n1,567 rows, 591 features\nCC BY 4.0\n2, 9\n\n\nNASA C-MAPSS\nturbofan degradation\n4 subsets, 21 sensors\nNASA Open Data\n3, 12\n\n\nGas Turbine CO and NOx Emission\ngas turbine emissions\n36,733 rows, 2011–2015\nCC BY 4.0\n4\n\n\nAI4I 2020 Predictive Maintenance\nmanufacturing (synthetic)\n10,000 rows, 5 failure modes\nCC BY 4.0\n4, 7\n\n\nConcrete Compressive Strength\nmaterials, civil engineering\n1,030 rows, 8 features\nCC BY 4.0\n5\n\n\nAirfoil Self-Noise\naerodynamics, acoustics\n1,503 rows, 5 features\nCC BY 4.0\n6\n\n\nSteel Plates Faults\nquality inspection\n1,941 rows, 27 features, 7 classes\nCC BY 4.0\n8\n\n\nCondition Monitoring of Hydraulic Systems\nhydraulic test rig\n2,205 cycles, 17 sensors up to 100 Hz\nCC BY 4.0\n9, 10\n\n\nCWRU Bearing Data Center\nrolling bearings, vibration\nnormal and faulty bearings, 0–3 hp\nfreely available\n10\n\n\nOpen Power System Data – Time Series\nEuropean power grid\n32 countries, 2015–2020, hourly\nopen (sources: ENTSO-E and others)\n11\n\n\nDWD Climate Data Center\nweather in Germany\nstation data\nDWD open data\n1, 11\n\n\nMVTec AD\nindustrial visual inspection\n&gt; 5,000 images, 15 categories\nCC BY-NC-SA 4.0\n13\n\n\n\nLoading. UCI datasets are loaded with the package ucimlrepo. C-MAPSS and MVTec AD have to be downloaded manually (see the respective chapters); all other files are downloaded by the notebooks and cached in a local data/ folder.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Datasets</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "Appendix B — Further Reading",
+    "section": "",
+    "text": "G. James, D. Witten, T. Hastie, R. Tibshirani, J. Taylor: An Introduction to Statistical Learning with Applications in Python. Springer, 2023. Free PDF: https://www.statlearning.com – core textbook for Chapters 5–10.\nS. L. Brunton, J. N. Kutz: Data-Driven Science and Engineering. 2nd ed., Cambridge University Press, 2022 – SVD/PCA, Fourier analysis, engineering perspective.\nJ. VanderPlas: Python Data Science Handbook. Free online: https://jakevdp.github.io/PythonDataScienceHandbook/ – NumPy, pandas, Matplotlib (Chapters 1–2).\nNIST/SEMATECH: e-Handbook of Statistical Methods. Free online: https://www.itl.nist.gov/div898/handbook/ – distributions, tests, reliability, DoE (Chapters 3–5).\nD. C. Montgomery: Design and Analysis of Experiments. Wiley – design of experiments in depth.\nA. Géron: Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow. 3rd ed., O’Reilly, 2022 – practical machine learning.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Further Reading</span>"
+    ]
+  }
+]
