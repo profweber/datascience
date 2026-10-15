@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -78,11 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-ef31e3f4d9d6eef55c54bdf6b9cd68ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-f92e9cd00cfa24dbc31d4226c6e5e52e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,10 +141,24 @@ window.Quarto = {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science in Engineering</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,33 +167,18 @@ window.Quarto = {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html">Part A – Understanding Data</a></li><li class="breadcrumb-item"><a href="../notebooks/02-eda.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Data Science in Engineering</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -345,16 +347,18 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data"><span class="header-section-number">2.2.1</span> Missing data</a></li>
   </ul></li>
-  <li><a href="#live-coding-energy-use-of-a-low-energy-house" id="toc-live-coding-energy-use-of-a-low-energy-house" class="nav-link" data-scroll-target="#live-coding-energy-use-of-a-low-energy-house"><span class="header-section-number">2.3</span> Live coding: energy use of a low-energy house</a>
+  <li><a href="#live-coding-how-missing-values-bias-a-mean" id="toc-live-coding-how-missing-values-bias-a-mean" class="nav-link" data-scroll-target="#live-coding-how-missing-values-bias-a-mean"><span class="header-section-number">2.3</span> Live coding: how missing values bias a mean</a></li>
+  <li><a href="#live-coding-energy-use-of-a-low-energy-house" id="toc-live-coding-energy-use-of-a-low-energy-house" class="nav-link" data-scroll-target="#live-coding-energy-use-of-a-low-energy-house"><span class="header-section-number">2.4</span> Live coding: energy use of a low-energy house</a>
   <ul class="collapse">
-  <li><a href="#the-target-variable-appliance-energy-use" id="toc-the-target-variable-appliance-energy-use" class="nav-link" data-scroll-target="#the-target-variable-appliance-energy-use"><span class="header-section-number">2.3.1</span> The target variable: appliance energy use</a></li>
-  <li><a href="#daily-and-weekly-patterns" id="toc-daily-and-weekly-patterns" class="nav-link" data-scroll-target="#daily-and-weekly-patterns"><span class="header-section-number">2.3.2</span> Daily and weekly patterns</a></li>
-  <li><a href="#outliers-iqr-rule-and-robust-z-score" id="toc-outliers-iqr-rule-and-robust-z-score" class="nav-link" data-scroll-target="#outliers-iqr-rule-and-robust-z-score"><span class="header-section-number">2.3.3</span> Outliers: IQR rule and robust z-score</a></li>
+  <li><a href="#the-target-variable-appliance-energy-use" id="toc-the-target-variable-appliance-energy-use" class="nav-link" data-scroll-target="#the-target-variable-appliance-energy-use"><span class="header-section-number">2.4.1</span> The target variable: appliance energy use</a></li>
+  <li><a href="#daily-and-weekly-patterns" id="toc-daily-and-weekly-patterns" class="nav-link" data-scroll-target="#daily-and-weekly-patterns"><span class="header-section-number">2.4.2</span> Daily and weekly patterns</a></li>
+  <li><a href="#outliers-iqr-rule-and-robust-z-score" id="toc-outliers-iqr-rule-and-robust-z-score" class="nav-link" data-scroll-target="#outliers-iqr-rule-and-robust-z-score"><span class="header-section-number">2.4.3</span> Outliers: IQR rule and robust z-score</a></li>
   </ul></li>
-  <li><a href="#live-coding-missing-values-in-semiconductor-manufacturing" id="toc-live-coding-missing-values-in-semiconductor-manufacturing" class="nav-link" data-scroll-target="#live-coding-missing-values-in-semiconductor-manufacturing"><span class="header-section-number">2.4</span> Live coding: missing values in semiconductor manufacturing</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.5</span> Exercises</a>
+  <li><a href="#live-coding-missing-values-in-semiconductor-manufacturing" id="toc-live-coding-missing-values-in-semiconductor-manufacturing" class="nav-link" data-scroll-target="#live-coding-missing-values-in-semiconductor-manufacturing"><span class="header-section-number">2.5</span> Live coding: missing values in semiconductor manufacturing</a></li>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">2.6</span> Back to the decision</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.7</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">2.5.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">2.7.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -383,9 +387,11 @@ window.Quarto = {
 
 <p>Exploratory data analysis (EDA) is the systematic first look at a dataset before any model is built. Its purpose is twofold: to understand the structure of the data – distributions, relationships, patterns over time – and to find problems – gaps, outliers, implausible values, inconsistencies. In engineering, a large share of failed data science projects can be traced back to data problems that a careful EDA would have revealed.</p>
 <p>The statistician John Tukey, who coined the term, put it this way: EDA is detective work. We look for clues without knowing in advance what we will find. The tools are simple – summary statistics and plots – but using them well requires domain knowledge.</p>
-<blockquote class="blockquote">
-<p><strong>Engineering question:</strong> How good are our sensor data, and what do they tell us before any model is built?</p>
-</blockquote>
+<div class="scenario">
+<p><strong>Scenario: go or no-go for a failure prediction project</strong></p>
+<p>A semiconductor fab wants to predict failed production runs from its process data. A project budget for one year has been requested, and the fab manager asks you for a quick assessment before signing: “We have almost 600 sensors and more than 1,500 runs – that must be enough, right?” You have one week to look at the data.</p>
+<p><strong>Your decision:</strong> Recommend starting the project now, or first investing in better data?</p>
+</div>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>describe distributions numerically (location, spread, shape) and visually (histogram, box plot),</li>
@@ -418,7 +424,7 @@ Definition: Location and spread
 <li><strong>Mean</strong> <span class="math inline">\(\bar x = \frac{1}{n}\sum_i x_i\)</span> and <strong>median</strong> (the middle value of the sorted data).</li>
 <li><strong>Sample standard deviation</strong> <span class="math inline">\(s = \sqrt{\frac{1}{n-1}\sum_i (x_i - \bar x)^2}\)</span>.</li>
 <li><strong>Quartiles</strong> <span class="math inline">\(Q_1\)</span>, <span class="math inline">\(Q_3\)</span> (25 % and 75 % quantiles) and the <strong>interquartile range</strong> <span class="math inline">\(\text{IQR} = Q_3 - Q_1\)</span>.</li>
-<li><strong>Median absolute deviation</strong> <span class="math inline">\(\text{MAD} = \text{median}_i\,|x_i - \text{median}(x)|\)</span>.</li>
+<li><strong>Median absolute deviation:</strong> with the median <span class="math inline">\(\tilde x = \operatorname{median}(x_1, \dots, x_n)\)</span>, <span class="math display">\[\text{MAD} = \operatorname{median}\big(|x_1 - \tilde x|, \dots, |x_n - \tilde x|\big),\]</span> i.e.&nbsp;the median of the absolute deviations from the median.</li>
 </ul>
 </div>
 </div>
@@ -507,7 +513,13 @@ Pitfall: deleting “outliers” automatically
 </div>
 <section id="missing-data" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="missing-data"><span class="header-section-number">2.2.1</span> Missing data</h3>
-<p>How to treat missing values depends on <em>why</em> they are missing.</p>
+<p>Almost every real dataset has gaps. How to treat them depends less on <em>how many</em> values are missing than on <em>why</em> they are missing. Statisticians distinguish three mechanisms. Because the names are notoriously confusing, we explain them with one running example.</p>
+<p><strong>Example: a hardening furnace.</strong> A thermocouple measures the furnace temperature once per minute; the target is about 850 °C. The actual temperature depends on the load: a fully loaded furnace runs hotter than a nearly empty one. The load is logged reliably by the control system. Now suppose that some temperature values are missing. Three different reasons are possible:</p>
+<ol type="1">
+<li><strong>The radio link drops messages at random.</strong> About 10 % of the readings are lost, regardless of load, temperature or time of day. Whether a value is missing has nothing to do with the process.</li>
+<li><strong>The logger runs in an energy-saving mode at low load.</strong> When the furnace is nearly empty, only every fifth reading is stored. Missing values are therefore much more frequent at low load – and since low load means lower temperatures, the missing values tend to be the lower ones. But the reason for the gap (low load) is itself recorded in the data.</li>
+<li><strong>The amplifier saturates above 900 °C.</strong> Whenever the furnace gets too hot, the measurement fails and nothing is stored. The values are missing <em>because</em> they are high – and nothing else in the data tells us so.</li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -518,22 +530,69 @@ Definition: Missing data mechanisms
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(R\)</span> indicate whether a value is missing.</p>
 <ul>
-<li><strong>MCAR</strong> (missing completely at random): missingness is unrelated to any data, e.g.&nbsp;random transmission errors.</li>
-<li><strong>MAR</strong> (missing at random): missingness depends on <em>observed</em> variables, e.g.&nbsp;a sensor is only read out in one operating mode.</li>
-<li><strong>MNAR</strong> (missing not at random): missingness depends on the <em>missing value itself</em>, e.g.&nbsp;a sensor saturates and reports nothing when the temperature exceeds its range.</li>
+<li><strong>MCAR</strong> (missing completely at random): <span class="math inline">\(R\)</span> does not depend on any variable, observed or unobserved. <em>Case 1 – random radio losses.</em></li>
+<li><strong>MAR</strong> (missing at random): <span class="math inline">\(R\)</span> depends only on <strong>observed</strong> variables. Once we know those (here: the load), the missingness tells us nothing more about the missing value. <em>Case 2 – energy-saving mode at low load.</em></li>
+<li><strong>MNAR</strong> (missing not at random): <span class="math inline">\(R\)</span> depends on the <strong>missing value itself</strong> (or on other unobserved quantities), even after accounting for everything observed. <em>Case 3 – saturation at high temperatures.</em></li>
 </ul>
 </div>
 </div>
-<p>Under MCAR, deleting incomplete rows loses information but does not bias the results. Under MAR and MNAR, deletion and naive imputation (filling with the mean) can bias results – in the MNAR example above, filling with the mean would systematically underestimate high temperatures. Common strategies:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: “missing at random” is not random
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The name MAR is misleading: in case 2 the values are <em>not</em> missing randomly – low temperatures are missing much more often. “At random” only means “random once we take the observed variables into account”. Do not read MAR as “harmless”.</p>
+</div>
+</div>
+<p>What the mechanism means in practice:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mechanism</th>
+<th>Mean of the remaining values</th>
+<th>What helps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MCAR</td>
+<td>unbiased – we just have fewer values</td>
+<td>deleting incomplete rows is acceptable; any reasonable imputation works</td>
+</tr>
+<tr class="even">
+<td>MAR</td>
+<td><strong>biased</strong> (case 2: too high, because low values are missing)</td>
+<td>use the observed variable that explains the gaps – e.g.&nbsp;impute temperature from load with a regression, or average per load level</td>
+</tr>
+<tr class="odd">
+<td>MNAR</td>
+<td><strong>biased</strong> (case 3: too low, because high values are missing)</td>
+<td>the data alone cannot fix it; we need knowledge of the mechanism (e.g.&nbsp;“missing means &gt; 900 °C”) or a better sensor</td>
+</tr>
+</tbody>
+</table>
+<p>The live coding below simulates the furnace and shows these effects in numbers. Common strategies in practice:</p>
 <ul>
 <li>drop variables with a very high share of missing values,</li>
 <li>drop rows if few are affected and the mechanism is plausibly MCAR,</li>
-<li>impute with median (robust) or with a model (e.g.&nbsp;regression from other sensors),</li>
+<li>impute with the median (robust) or with a model that uses the variables explaining the gaps (MAR),</li>
 <li>for time series: interpolate short gaps, but not long ones,</li>
-<li>add an indicator variable “value was missing” – missingness itself can be informative.</li>
+<li>add an indicator variable “value was missing” – missingness itself can be informative,</li>
+<li>above all: find out <em>why</em> the values are missing – ask the people who run the process.</li>
 </ul>
-<div id="3e6e6b97" class="cell">
+<div id="d0404970" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>]:</span>
@@ -549,8 +608,82 @@ Definition: Missing data mechanisms
 </div>
 </section>
 </section>
-<section id="live-coding-energy-use-of-a-low-energy-house" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="live-coding-energy-use-of-a-low-energy-house"><span class="header-section-number">2.3</span> Live coding: energy use of a low-energy house</h2>
+<section id="live-coding-how-missing-values-bias-a-mean" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="live-coding-how-missing-values-bias-a-mean"><span class="header-section-number">2.3</span> Live coding: how missing values bias a mean</h2>
+<p>We simulate the furnace from the example above: 10,000 readings, load between 0 and 1, temperature rising with load. Then we delete values according to the three mechanisms and compare the mean of the remaining values with the true mean. As a remedy for MAR we impute the missing temperatures from the load with a straight-line regression fitted on the complete rows.</p>
+<div id="4c8c5ede" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10_000</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>load <span class="op">=</span> rng.uniform(<span class="dv">0</span>, <span class="dv">1</span>, n)                              <span class="co"># observed for all readings</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> <span class="dv">820</span> <span class="op">+</span> <span class="dv">80</span> <span class="op">*</span> load <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">15</span>, n)            <span class="co"># true temperature (°C)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MCAR: random radio losses"</span>: rng.random(n) <span class="op">&lt;</span> <span class="fl">0.10</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MAR: energy-saving mode at low load"</span>: rng.random(n) <span class="op">&lt;</span> <span class="fl">0.8</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> load),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"MNAR: saturation above 900 °C"</span>: temp <span class="op">&gt;</span> <span class="dv">900</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> missing.items():</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    obs <span class="op">=</span> <span class="op">~</span>m</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    slope, intercept <span class="op">=</span> np.polyfit(load[obs], temp[obs], deg<span class="op">=</span><span class="dv">1</span>)      <span class="co"># regression on complete rows</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    imputed <span class="op">=</span> np.where(m, intercept <span class="op">+</span> slope <span class="op">*</span> load, temp)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"mechanism"</span>: name, <span class="st">"share missing"</span>: m.mean(),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"mean of remaining"</span>: temp[obs].mean(),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"mean after regression imputation"</span>: imputed.mean()})</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.DataFrame(rows).set_index(<span class="st">"mechanism"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True mean temperature: </span><span class="sc">{</span>temp<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> °C"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>result.style.<span class="bu">format</span>({<span class="st">"share missing"</span>: <span class="st">"</span><span class="sc">{:.0%}</span><span class="st">"</span>, <span class="st">"mean of remaining"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"mean after regression imputation"</span>: <span class="st">"</span><span class="sc">{:.1f}</span><span class="st">"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True mean temperature: 860.0 °C</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<style type="text/css">
+</style>
+
+<table id="T_9a380" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_9a380_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">share missing</th>
+<th id="T_9a380_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">mean of remaining</th>
+<th id="T_9a380_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">mean after regression imputation</th>
+</tr>
+<tr class="even">
+<th class="index_name level0" data-quarto-table-cell-role="th">mechanism</th>
+<th class="blank col0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col1" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col2" data-quarto-table-cell-role="th">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_9a380_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">MCAR: random radio losses</td>
+<td id="T_9a380_row0_col0" class="data row0 col0">10%</td>
+<td id="T_9a380_row0_col1" class="data row0 col1">860.0</td>
+<td id="T_9a380_row0_col2" class="data row0 col2">860.1</td>
+</tr>
+<tr class="even">
+<td id="T_9a380_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">MAR: energy-saving mode at low load</td>
+<td id="T_9a380_row1_col0" class="data row1 col0">40%</td>
+<td id="T_9a380_row1_col1" class="data row1 col1">868.9</td>
+<td id="T_9a380_row1_col2" class="data row1 col2">860.0</td>
+</tr>
+<tr class="odd">
+<td id="T_9a380_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">MNAR: saturation above 900 °C</td>
+<td id="T_9a380_row2_col0" class="data row2 col0">8%</td>
+<td id="T_9a380_row2_col1" class="data row2 col1">856.0</td>
+<td id="T_9a380_row2_col2" class="data row2 col2">858.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><strong>Discussion.</strong> Under MCAR, the mean of the remaining values is practically identical to the true mean. Under MAR it is too high, because the low-load (cooler) readings are under-represented – but imputing from the observed load repairs the bias almost completely, since the load explains <em>why</em> values are missing. Under MNAR the remaining mean is too low, and the regression imputation removes only part of the bias: the regression was fitted on readings below 900 °C and systematically underestimates the hot ones – it cannot know what happens above the saturation limit. A few degrees may not sound like much – but for a heat treatment with a tolerance of ±10 °C, it can decide whether a batch is released.</p>
+</section>
+<section id="live-coding-energy-use-of-a-low-energy-house" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="live-coding-energy-use-of-a-low-energy-house"><span class="header-section-number">2.4</span> Live coding: energy use of a low-energy house</h2>
 <p>The dataset was recorded in a low-energy house in Belgium. A wireless sensor network measured temperature and humidity in nine rooms every 10 minutes for about 4.5 months; the electricity consumption of the appliances was logged by an energy meter, and outdoor weather was taken from a nearby airport. Key columns:</p>
 <table class="caption-top table">
 <colgroup>
@@ -594,64 +727,134 @@ Definition: Missing data mechanisms
 </tbody>
 </table>
 <p>The two random variables are a nice feature of this dataset: a sound analysis should find that they carry no information.</p>
-<div id="4a849cd9" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>appl <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">374</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> appl.data.original.copy()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>energy[<span class="st">"date"</span>] <span class="op">=</span> pd.to_datetime(energy[<span class="st">"date"</span>])</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> energy.set_index(<span class="st">"date"</span>).sort_index()</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(energy.shape, energy.index.<span class="bu">min</span>(), <span class="st">"to"</span>, energy.index.<span class="bu">max</span>())</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing values:"</span>, energy.isna().<span class="bu">sum</span>().<span class="bu">sum</span>())</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Regular 10-min grid:"</span>, (energy.index.to_series().diff().dropna() <span class="op">==</span> pd.Timedelta(<span class="st">"10min"</span>)).<span class="bu">all</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="56226fc7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>appl <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">374</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> appl.data.original.copy()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Time stamps come in many formats. Look at the raw strings first ...</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> energy[<span class="st">"date"</span>].astype(<span class="bu">str</span>).<span class="bu">str</span>.strip()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Raw time stamps:"</span>, raw.iloc[:<span class="dv">3</span>].tolist())</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ... and parse them with an explicit format instead of letting pandas guess.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_timestamps(s, formats<span class="op">=</span>(<span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M:%S"</span>, <span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">%H:%M:%S"</span>, <span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st"> %H:%M"</span>, <span class="st">"</span><span class="sc">%d</span><span class="st">-%m-%Y %H:%M:%S"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"</span><span class="sc">%d</span><span class="st">-%m-%Y %H:%M"</span>, <span class="st">"</span><span class="sc">%d</span><span class="st">/%m/%Y %H:%M"</span>, <span class="st">"%m/</span><span class="sc">%d</span><span class="st">/%Y %H:%M"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"</span><span class="sc">%d</span><span class="st">.%m.%Y %H:%M"</span>)):</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> fmt <span class="kw">in</span> formats:</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> pd.to_datetime(s, <span class="bu">format</span><span class="op">=</span>fmt, errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t.notna().<span class="bu">all</span>():</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Time stamp format:"</span>, fmt)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> t</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    bad <span class="op">=</span> s[pd.to_datetime(s, <span class="bu">format</span><span class="op">=</span><span class="st">"mixed"</span>, errors<span class="op">=</span><span class="st">"coerce"</span>).isna()]</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"Unknown time stamp format, e.g. </span><span class="sc">{</span>bad<span class="sc">.</span>iloc[:<span class="dv">3</span>]<span class="sc">.</span>tolist() <span class="kw">or</span> s<span class="sc">.</span>iloc[:<span class="dv">3</span>]<span class="sc">.</span>tolist()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>energy[<span class="st">"date"</span>] <span class="op">=</span> parse_timestamps(raw)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>energy <span class="op">=</span> energy.set_index(<span class="st">"date"</span>).sort_index()</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(energy.shape, energy.index.<span class="bu">min</span>(), <span class="st">"to"</span>, energy.index.<span class="bu">max</span>())</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Missing values:"</span>, energy.isna().<span class="bu">sum</span>().<span class="bu">sum</span>())</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Regular 10-min grid:"</span>, (energy.index.to_series().diff().dropna() <span class="op">==</span> pd.Timedelta(<span class="st">"10min"</span>)).<span class="bu">all</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Raw time stamps: ['2016-01-1117:00:00', '2016-01-1117:10:00', '2016-01-1117:20:00']
+Time stamp format: %Y-%m-%d%H:%M:%S
+(19735, 28) 2016-01-11 17:00:00 to 2016-05-27 18:00:00
+Missing values: 0
+Regular 10-min grid: True</code></pre>
 </div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: letting the software guess date formats
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Is <code>03/04/2016</code> the 3rd of April or the 4th of March? If you let pandas guess, it may parse some time stamps one way and others the other way – or fail on a single unusual entry. Always look at the raw strings and give the format explicitly. Because the measurement period contains days after the 12th, only the correct order of day and month can parse <em>all</em> time stamps – the helper above uses exactly this check.</p>
+</div>
+</div>
+<p>A real-world surprise: in the version of this dataset served by the UCI repository, date and time are glued together without a space (<code>2016-01-1117:00:00</code> for 11 January 2016, 17:00). pandas cannot guess this format – but the explicit format <code>%Y-%m-%d%H:%M:%S</code> reads it without problems.</p>
 <p>Checking that the time index is regular is a quick but important test. Gaps in the time grid are “hidden” missing values: <code>isna()</code> does not see them because the rows do not exist at all.</p>
-<section id="the-target-variable-appliance-energy-use" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="the-target-variable-appliance-energy-use"><span class="header-section-number">2.3.1</span> The target variable: appliance energy use</h3>
-<div id="39f39835" class="cell">
+<section id="the-target-variable-appliance-energy-use" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="the-target-variable-appliance-energy-use"><span class="header-section-number">2.4.1</span> The target variable: appliance energy use</h3>
+<div id="be990c29" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(energy[<span class="st">"Appliances"</span>], bins<span class="op">=</span><span class="dv">60</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Appliances (Wh per 10 min)"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span>energy[<span class="st">"Appliances"</span>], ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Appliances (Wh per 10 min)"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>energy[<span class="st">"Appliances"</span>].describe().<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(energy[<span class="st">"Appliances"</span>], bins<span class="op">=</span><span class="dv">60</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Appliances (Wh per 10 min)"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span>energy[<span class="st">"Appliances"</span>], ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Appliances (Wh per 10 min)"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>energy[<span class="st">"Appliances"</span>].describe().<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-eda_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>count    19735.0
+mean        97.7
+std        102.5
+min         10.0
+25%         50.0
+50%         60.0
+75%        100.0
+max       1080.0
+Name: Appliances, dtype: float64</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> The distribution is strongly <strong>right-skewed</strong>: most of the time the consumption is low (base load from fridge, standby), but occasionally it rises sharply (cooking, washing machine). Consequently, the mean is clearly larger than the median, and the box plot flags many points as “outliers”. Here these are not measurement errors but real usage events – deleting them would remove the most interesting part of the data.</p>
 <p>For skewed, positive quantities a <strong>log transformation</strong> often helps: it makes the distribution more symmetric and turns multiplicative effects into additive ones.</p>
-<div id="95d11d22" class="cell">
+<div id="7787938e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>energy[<span class="st">"Appliances"</span>].plot(ax<span class="op">=</span>axes[<span class="dv">0</span>], lw<span class="op">=</span><span class="fl">0.3</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"10 min"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>energy[<span class="st">"Appliances"</span>].rolling(<span class="st">"1D"</span>).mean().plot(ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">"k"</span>, label<span class="op">=</span><span class="st">"24 h rolling mean"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">"Appliances (Wh)"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].legend()</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>energy[[<span class="st">"T1"</span>, <span class="st">"T_out"</span>]].resample(<span class="st">"h"</span>).mean().plot(ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">"Temperature (°C)"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>energy[<span class="st">"Appliances"</span>].plot(ax<span class="op">=</span>axes[<span class="dv">0</span>], lw<span class="op">=</span><span class="fl">0.3</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"10 min"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>energy[<span class="st">"Appliances"</span>].rolling(<span class="st">"1D"</span>).mean().plot(ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">"k"</span>, label<span class="op">=</span><span class="st">"24 h rolling mean"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">"Appliances (Wh)"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].legend()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>energy[[<span class="st">"T1"</span>, <span class="st">"T_out"</span>]].resample(<span class="st">"h"</span>).mean().plot(ax<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">"Temperature (°C)"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-eda_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>A <strong>rolling mean</strong> smooths short-term fluctuations and reveals the level over time. Indoor temperature <code>T1</code> is much more stable than the outdoor temperature – as expected for a well-insulated building.</p>
 </section>
-<section id="daily-and-weekly-patterns" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="daily-and-weekly-patterns"><span class="header-section-number">2.3.2</span> Daily and weekly patterns</h3>
+<section id="daily-and-weekly-patterns" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="daily-and-weekly-patterns"><span class="header-section-number">2.4.2</span> Daily and weekly patterns</h3>
 <p>Consumption depends on human behaviour, so we expect patterns over the hour of the day and the day of the week. A heatmap shows both at once:</p>
-<div id="1bb6bbca" class="cell">
+<div id="1dd51e5b" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> energy.groupby([energy.index.dayofweek, energy.index.hour])[<span class="st">"Appliances"</span>].mean().unstack(<span class="dv">0</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(profile, cmap<span class="op">=</span><span class="st">"viridis"</span>, cbar_kws<span class="op">=</span>{<span class="st">"label"</span>: <span class="st">"mean Appliances (Wh)"</span>})</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Day of week (0 = Monday)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Hour of day"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> energy.groupby([energy.index.dayofweek, energy.index.hour])[<span class="st">"Appliances"</span>].mean().unstack(<span class="dv">0</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(profile, cmap<span class="op">=</span><span class="st">"viridis"</span>, cbar_kws<span class="op">=</span>{<span class="st">"label"</span>: <span class="st">"mean Appliances (Wh)"</span>})</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Day of week (0 = Monday)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Hour of day"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-eda_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p><strong>Discussion.</strong> Low consumption at night, a rise in the morning and a peak in the evening hours – a typical residential profile. Such patterns are important for later modelling: hour of day and weekday are strong <strong>features</strong> for forecasting (Chapter 11).</p>
 </section>
-<section id="outliers-iqr-rule-and-robust-z-score" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="outliers-iqr-rule-and-robust-z-score"><span class="header-section-number">2.3.3</span> Outliers: IQR rule and robust z-score</h3>
+<section id="outliers-iqr-rule-and-robust-z-score" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="outliers-iqr-rule-and-robust-z-score"><span class="header-section-number">2.4.3</span> Outliers: IQR rule and robust z-score</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -664,52 +867,93 @@ Definition: Outlier rules
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>IQR rule (Tukey):</strong> a value is flagged if it lies below <span class="math inline">\(Q_1 - 1.5\,\text{IQR}\)</span> or above <span class="math inline">\(Q_3 + 1.5\,\text{IQR}\)</span>. These are the whiskers of the box plot.</li>
-<li><strong>Robust z-score:</strong> <span class="math inline">\(z_i = \dfrac{x_i - \text{median}(x)}{1.4826 \cdot \text{MAD}}\)</span>, flag if <span class="math inline">\(|z_i| &gt; 3.5\)</span>. The factor 1.4826 makes MAD comparable to the standard deviation for normally distributed data.</li>
+<li><strong>Robust z-score:</strong> <span class="math inline">\(z_i = \dfrac{x_i - \tilde x}{1.4826 \cdot \text{MAD}}\)</span>, flag if <span class="math inline">\(|z_i| &gt; 3.5\)</span>, where <span class="math inline">\(\tilde x\)</span> is the median. The factor 1.4826 makes MAD comparable to the standard deviation for normally distributed data.</li>
 </ul>
 </div>
 </div>
 <p>The ordinary z-score <span class="math inline">\((x_i - \bar x)/s\)</span> is less suitable for outlier detection: the outliers themselves inflate <span class="math inline">\(\bar x\)</span> and <span class="math inline">\(s\)</span> and can hide each other (<em>masking</em>).</p>
-<div id="0a9d1cc6" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> iqr_outliers(x, k<span class="op">=</span><span class="fl">1.5</span>):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    q1, q3 <span class="op">=</span> x.quantile([<span class="fl">0.25</span>, <span class="fl">0.75</span>])</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">&lt;</span> q1 <span class="op">-</span> k <span class="op">*</span> (q3 <span class="op">-</span> q1)) <span class="op">|</span> (x <span class="op">&gt;</span> q3 <span class="op">+</span> k <span class="op">*</span> (q3 <span class="op">-</span> q1))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> robust_z(x):</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    mad <span class="op">=</span> (x <span class="op">-</span> x.median()).<span class="bu">abs</span>().median()</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">-</span> x.median()) <span class="op">/</span> (<span class="fl">1.4826</span> <span class="op">*</span> mad)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"Appliances"</span>, <span class="st">"T1"</span>, <span class="st">"T_out"</span>, <span class="st">"RH_1"</span>]:</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> energy[col]</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">:11s}</span><span class="ss"> IQR rule: </span><span class="sc">{</span>iqr_outliers(x)<span class="sc">.</span>mean()<span class="sc">:6.1%}</span><span class="ss">   |robust z| &gt; 3.5: </span><span class="sc">{</span>(robust_z(x).<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">3.5</span>)<span class="sc">.</span>mean()<span class="sc">:6.1%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d4366705" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> iqr_outliers(x, k<span class="op">=</span><span class="fl">1.5</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    q1, q3 <span class="op">=</span> x.quantile([<span class="fl">0.25</span>, <span class="fl">0.75</span>])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">&lt;</span> q1 <span class="op">-</span> k <span class="op">*</span> (q3 <span class="op">-</span> q1)) <span class="op">|</span> (x <span class="op">&gt;</span> q3 <span class="op">+</span> k <span class="op">*</span> (q3 <span class="op">-</span> q1))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> robust_z(x):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    mad <span class="op">=</span> (x <span class="op">-</span> x.median()).<span class="bu">abs</span>().median()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">-</span> x.median()) <span class="op">/</span> (<span class="fl">1.4826</span> <span class="op">*</span> mad)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">"Appliances"</span>, <span class="st">"T1"</span>, <span class="st">"T_out"</span>, <span class="st">"RH_1"</span>]:</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> energy[col]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">:11s}</span><span class="ss"> IQR rule: </span><span class="sc">{</span>iqr_outliers(x)<span class="sc">.</span>mean()<span class="sc">:6.1%}</span><span class="ss">   |robust z| &gt; 3.5: </span><span class="sc">{</span>(robust_z(x).<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">3.5</span>)<span class="sc">.</span>mean()<span class="sc">:6.1%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Appliances  IQR rule:  10.8%   |robust z| &gt; 3.5:  11.2%
+T1          IQR rule:   2.6%   |robust z| &gt; 3.5:   0.2%
+T_out       IQR rule:   2.2%   |robust z| &gt; 3.5:   0.3%
+RH_1        IQR rule:   0.7%   |robust z| &gt; 3.5:   0.2%</code></pre>
+</div>
 </div>
 <p>For the room temperature and humidity, very few values are flagged; for <code>Appliances</code>, many. This confirms that a fixed rule cannot decide alone: the flags tell us where to <em>look</em>, the engineer decides what the values mean.</p>
 </section>
 </section>
-<section id="live-coding-missing-values-in-semiconductor-manufacturing" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="live-coding-missing-values-in-semiconductor-manufacturing"><span class="header-section-number">2.4</span> Live coding: missing values in semiconductor manufacturing</h2>
-<p>SECOM contains data from a semiconductor manufacturing process: 1,567 production runs, each described by 591 sensor and process measurements, and a label pass (−1) or fail (1). The sensor names are anonymised. Many signals have gaps.</p>
-<div id="9a080b0d" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>secom <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">179</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> secom.data.features</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> secom.data.targets.iloc[:, <span class="dv">0</span>]</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> X.isna().mean().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Runs: </span><span class="sc">{</span><span class="bu">len</span>(X)<span class="sc">}</span><span class="ss">, failed runs: </span><span class="sc">{</span>(y <span class="op">==</span> <span class="dv">1</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features: </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">, with any missing value: </span><span class="sc">{</span>(missing <span class="op">&gt;</span> <span class="dv">0</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">, "</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"more than 50 % missing: </span><span class="sc">{</span>(missing <span class="op">&gt;</span> <span class="fl">0.5</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>missing.plot.hist(bins<span class="op">=</span><span class="dv">40</span>, xlabel<span class="op">=</span><span class="st">"Share of missing values per feature"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="live-coding-missing-values-in-semiconductor-manufacturing" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="live-coding-missing-values-in-semiconductor-manufacturing"><span class="header-section-number">2.5</span> Live coding: missing values in semiconductor manufacturing</h2>
+<p>SECOM contains data from a semiconductor manufacturing process: 1,567 production runs, each described by 591 sensor and process measurements, and a label pass (−1) or fail (1). The sensor names are anonymised. Many signals have gaps. A small obstacle on the way: in the repository’s metadata the label is not marked as the target variable – another example of incomplete metadata. The helper function below therefore identifies the label column from its values.</p>
+<div id="09958f84" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_secom():</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""SECOM: return the process measurements X and the label y (-1 = pass, 1 = fail).</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">    In the UCI repository the label is not marked as target variable, so we find it</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">    ourselves: the only numeric column whose values are exactly -1 and 1.</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">179</span>).data.original</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> df.select_dtypes(<span class="st">"number"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> num.columns <span class="cf">if</span> <span class="bu">set</span>(num[c].dropna().unique()) <span class="op">==</span> {<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>}]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(labels) <span class="op">!=</span> <span class="dv">1</span>:</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df.columns <span class="cf">if</span> <span class="bu">any</span>(k <span class="kw">in</span> <span class="bu">str</span>(c).lower() <span class="cf">for</span> k <span class="kw">in</span> (<span class="st">"pass"</span>, <span class="st">"fail"</span>, <span class="st">"label"</span>))]</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(labels) <span class="op">==</span> <span class="dv">1</span>, <span class="ss">f"Label column not found unambiguously: </span><span class="sc">{</span>labels<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> df[labels[<span class="dv">0</span>]].astype(<span class="bu">int</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> num.drop(columns<span class="op">=</span>labels, errors<span class="op">=</span><span class="st">"ignore"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Label column: </span><span class="sc">{</span>labels[<span class="dv">0</span>]<span class="sc">!r}</span><span class="ss">, measurement columns: </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">, "</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"ignored non-numeric columns: </span><span class="sc">{</span>[c <span class="cf">for</span> c <span class="kw">in</span> df.columns <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> num.columns]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X, y</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> load_secom()</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> X.isna().mean().sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Runs: </span><span class="sc">{</span><span class="bu">len</span>(X)<span class="sc">}</span><span class="ss">, failed runs: </span><span class="sc">{</span>(y <span class="op">==</span> <span class="dv">1</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Features: </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">, with any missing value: </span><span class="sc">{</span>(missing <span class="op">&gt;</span> <span class="dv">0</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">, "</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"more than 50 % missing: </span><span class="sc">{</span>(missing <span class="op">&gt;</span> <span class="fl">0.5</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>missing.plot.hist(bins<span class="op">=</span><span class="dv">40</span>, xlabel<span class="op">=</span><span class="st">"Share of missing values per feature"</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Label column: 'class', measurement columns: 590, ignored non-numeric columns: ['timestamp']
+Runs: 1567, failed runs: 104
+Features: 590, with any missing value: 538, more than 50 % missing: 28</code></pre>
 </div>
-<div id="972db230" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-eda_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="ba1322a6" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the missingness itself related to the outcome?</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>miss_rate <span class="op">=</span> X.isna().mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(miss_rate.groupby(y).describe().<span class="bu">round</span>(<span class="dv">3</span>))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Constant features carry no information</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>n_constant <span class="op">=</span> (X.nunique(dropna<span class="op">=</span><span class="va">True</span>) <span class="op">&lt;=</span> <span class="dv">1</span>).<span class="bu">sum</span>()</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Constant features:"</span>, n_constant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is the missingness itself related to the outcome?</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>miss_rate <span class="op">=</span> X.isna().mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(miss_rate.groupby(y).describe().<span class="bu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Constant features carry no information</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>n_constant <span class="op">=</span> (X.nunique(dropna<span class="op">=</span><span class="va">True</span>) <span class="op">&lt;=</span> <span class="dv">1</span>).<span class="bu">sum</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Constant features:"</span>, n_constant)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        count   mean    std    min    25%    50%    75%    max
+class                                                         
+-1     1463.0  0.046  0.023  0.007  0.034  0.041  0.054  0.258
+ 1      104.0  0.043  0.017  0.014  0.034  0.041  0.047  0.108
+Constant features: 116</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> Most features are complete or nearly complete, but a group of features has a large share of missing values – often entire sensors that were only recorded for part of the runs. In addition, a considerable number of features are constant and can be removed without loss. Comparing the share of missing values between passed and failed runs is a quick check of whether missingness could be informative (MAR/MNAR rather than MCAR).</p>
 <p>A pragmatic preparation for SECOM, which we will use in Chapter 9:</p>
@@ -730,8 +974,35 @@ Pitfall: preprocessing before splitting
 </div>
 <div class="callout-body-container callout-body">
 <p>Medians for imputation and means/standard deviations for scaling must be computed on the <strong>training data only</strong> and then applied to the test data. Computing them on the full dataset leaks information from the test set into the model. In scikit-learn, putting all steps into a <code>Pipeline</code> prevents this automatically (Chapter 6).</p>
+<p><em>And how are gaps in the test data filled?</em> With the <strong>training</strong> median as well – not with a median computed from the test data. The median is a parameter of the model, just like a regression coefficient: it is estimated once from the training data and then applied unchanged to all new data. Three reasons:</p>
+<ul>
+<li>In operation there is no “test median”: new data often arrive one observation at a time – a single production run, a single sensor reading – and a median cannot be computed from one value.</li>
+<li>The model must always receive the same preprocessing. If a gap was filled with 52.3 during training but with 48.9 during testing, the model sees inputs it was not trained on.</li>
+<li>A test median would itself be a small leak: the prediction for one test point would depend on the other test points.</li>
+</ul>
+<p>The same holds for scaling, PCA and every other preprocessing step: <code>fit</code> on the training data, <code>transform</code> on training <em>and</em> test data. If the distribution of new data drifts away from the training data, the remedy is to monitor the drift and retrain – not to compute statistics on the test data. (One legitimate exception: if a whole batch – say all wafers of a lot – is always available at prediction time, statistics per batch may be used, but then in exactly the same way during training.)</p>
 </div>
 </div>
+</section>
+<section id="back-to-the-decision" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">2.6</span> Back to the decision</h2>
+<p>For a go/no-go recommendation, three questions matter: Are enough features usable? Are there enough examples of the event we want to predict? And are the gaps understood? We use simple, transparent criteria: at least half of the features should be non-constant with at most 50 % missing values, and there should be at least 50 failed runs to learn from.</p>
+<div id="2e6ffdfe" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>usable <span class="op">=</span> (X.nunique(dropna<span class="op">=</span><span class="va">True</span>) <span class="op">&gt;</span> <span class="dv">1</span>) <span class="op">&amp;</span> (X.isna().mean() <span class="op">&lt;=</span> <span class="fl">0.5</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>n_fail <span class="op">=</span> <span class="bu">int</span>((y <span class="op">==</span> <span class="dv">1</span>).<span class="bu">sum</span>())</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Usable features: </span><span class="sc">{</span>usable<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>usable<span class="sc">.</span>mean()<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Failed runs: </span><span class="sc">{</span>n_fail<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span><span class="bu">len</span>(y)<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>n_fail <span class="op">/</span> <span class="bu">len</span>(y)<span class="sc">:.1%}</span><span class="ss">)"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> usable.mean() <span class="op">&gt;=</span> <span class="fl">0.5</span> <span class="kw">and</span> n_fail <span class="op">&gt;=</span> <span class="dv">50</span>:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Decision: GO – with a data-quality work package in the first project phase."</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Decision: NO-GO for now – improve data acquisition first."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Usable features: 446 of 590 (76%)
+Failed runs: 104 of 1567 (6.6%)
+Decision: GO – with a data-quality work package in the first project phase.</code></pre>
+</div>
+</div>
+<p>Whatever the code prints, the recommendation should name the conditions: the sensor names are anonymised, so no process engineer can yet judge which signals are physically relevant; the missing values must be explained (are they MAR or MNAR?); and roughly one hundred failures is a small number for a problem with hundreds of candidate features. Chapter 9 will show how hard the prediction actually is.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -751,8 +1022,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.5</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.7</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Compare the IQR rule and the robust z-score for <code>Appliances</code> after a log transformation, <code>np.log(energy["Appliances"])</code>. How many values are flagged now? What does this tell you about the “outliers” in the original scale?</li>
@@ -762,10 +1033,10 @@ Key takeaways
 <li>For SECOM: propose a strategy for features with 0–5 %, 5–50 % and more than 50 % missing values, and implement steps 1–3 of the preparation described above. How many features remain?</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">2.5.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">2.7.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -774,64 +1045,18 @@ Solution to Exercise 1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div id="6e1146ad" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>log_app <span class="op">=</span> np.log(energy[<span class="st">"Appliances"</span>])</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"IQR rule:          </span><span class="sc">{</span>iqr_outliers(log_app)<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"|robust z| &gt; 3.5:  </span><span class="sc">{</span>(robust_z(log_app).<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">3.5</span>)<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>After the log transformation far fewer values are flagged. Many “outliers” on the original scale were simply the long right tail of a skewed distribution. Outlier rules implicitly assume a roughly symmetric distribution – applying them to skewed data without transformation flags normal behaviour.</p>
-</div>
-</div>
-</div>
-<div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution to Exercise 2
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div id="edf5ca35" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>temp_cols <span class="op">=</span> [<span class="ss">f"T</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">10</span>)] <span class="op">+</span> [<span class="st">"T_out"</span>]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>rh_cols <span class="op">=</span> [<span class="ss">f"RH_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">10</span>)] <span class="op">+</span> [<span class="st">"RH_out"</span>]</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temperature range (°C):"</span>, energy[temp_cols].<span class="bu">min</span>().<span class="bu">min</span>(), <span class="st">"to"</span>, energy[temp_cols].<span class="bu">max</span>().<span class="bu">max</span>())</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Humidity outside 0–100 %:"</span>, ((energy[rh_cols] <span class="op">&lt;</span> <span class="dv">0</span>) <span class="op">|</span> (energy[rh_cols] <span class="op">&gt;</span> <span class="dv">100</span>)).<span class="bu">sum</span>().<span class="bu">sum</span>())</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> longest_constant_run(x):</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    runs <span class="op">=</span> (x <span class="op">!=</span> x.shift()).cumsum()</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.groupby(runs).size().<span class="bu">max</span>()</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>frozen <span class="op">=</span> {c: longest_constant_run(energy[c]) <span class="cf">for</span> c <span class="kw">in</span> temp_cols <span class="op">+</span> rh_cols}</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>pd.Series(frozen).sort_values(ascending<span class="op">=</span><span class="va">False</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The temperature and humidity ranges should be physically plausible. Runs of identical values occur in practice because sensors report with limited resolution and indoor conditions change slowly; a run is suspicious only if it is long compared with the normal dynamics (e.g.&nbsp;several hours for an outdoor temperature). Here, the outdoor weather comes from an airport station with lower update rate and was interpolated to 10 minutes – this explains smooth or repeated values in the <code>_out</code> columns.</p>
-</div>
-</div>
-</div>
-<div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution to Exercise 3
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="066fb066" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hourly <span class="op">=</span> energy.resample(<span class="st">"h"</span>).agg({<span class="st">"Appliances"</span>: <span class="st">"sum"</span>, <span class="st">"lights"</span>: <span class="st">"sum"</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"T1"</span>: <span class="st">"mean"</span>, <span class="st">"T_out"</span>: <span class="st">"mean"</span>})</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>hourly.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0a978bd6" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>log_app <span class="op">=</span> np.log(energy[<span class="st">"Appliances"</span>])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"IQR rule:          </span><span class="sc">{</span>iqr_outliers(log_app)<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"|robust z| &gt; 3.5:  </span><span class="sc">{</span>(robust_z(log_app).<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="fl">3.5</span>)<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>IQR rule:          6.5%
+|robust z| &gt; 3.5:  7.4%</code></pre>
 </div>
-<p><code>Appliances</code> is an energy per interval (Wh in 10 minutes). The energy of one hour is the <strong>sum</strong> of the six 10-minute values (unit: Wh per hour, i.e.&nbsp;the mean power in W). Temperatures are state variables: the hourly value is the <strong>mean</strong> (or, for an instantaneous value, the last one). Summing temperatures would be physically meaningless. <code>max</code> is useful for questions about peaks, e.g.&nbsp;dimensioning a fuse.</p>
+</div>
+<p>After the log transformation far fewer values are flagged. Many “outliers” on the original scale were simply the long right tail of a skewed distribution. Outlier rules implicitly assume a roughly symmetric distribution – applying them to skewed data without transformation flags normal behaviour.</p>
 </div>
 </div>
 </div>
@@ -841,16 +1066,38 @@ Solution to Exercise 3
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution to Exercise 4
+Solution to Exercise 2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="f4908eea" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>energy[[<span class="st">"rv1"</span>, <span class="st">"rv2"</span>, <span class="st">"T_out"</span>, <span class="st">"T2"</span>, <span class="st">"RH_out"</span>]].corrwith(energy[<span class="st">"Appliances"</span>]).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4d5de61d" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>temp_cols <span class="op">=</span> [<span class="ss">f"T</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">10</span>)] <span class="op">+</span> [<span class="st">"T_out"</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>rh_cols <span class="op">=</span> [<span class="ss">f"RH_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">10</span>)] <span class="op">+</span> [<span class="st">"RH_out"</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temperature range (°C):"</span>, energy[temp_cols].<span class="bu">min</span>().<span class="bu">min</span>(), <span class="st">"to"</span>, energy[temp_cols].<span class="bu">max</span>().<span class="bu">max</span>())</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Humidity outside 0–100 %:"</span>, ((energy[rh_cols] <span class="op">&lt;</span> <span class="dv">0</span>) <span class="op">|</span> (energy[rh_cols] <span class="op">&gt;</span> <span class="dv">100</span>)).<span class="bu">sum</span>().<span class="bu">sum</span>())</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> longest_constant_run(x):</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    runs <span class="op">=</span> (x <span class="op">!=</span> x.shift()).cumsum()</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.groupby(runs).size().<span class="bu">max</span>()</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>frozen <span class="op">=</span> {c: longest_constant_run(energy[c]) <span class="cf">for</span> c <span class="kw">in</span> temp_cols <span class="op">+</span> rh_cols}</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>pd.Series(frozen).sort_values(ascending<span class="op">=</span><span class="va">False</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Temperature range (°C): -6.065 to 29.85666667
+Humidity outside 0–100 %: 0</code></pre>
 </div>
-<p>The correlations of <code>rv1</code> and <code>rv2</code> with <code>Appliances</code> are close to zero. (Check also with <code>energy["rv1"].equals(energy["rv2"])</code> whether the two random columns are identical copies – a nice example of a redundant feature.) The weather variables show small but non-zero correlations. Note that with almost 20,000 observations even tiny correlations can be “statistically significant” (Chapter 4) – the size of the correlation matters more than its p-value.</p>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>RH_6    353
+T9       79
+T7       78
+T5       62
+RH_8     42
+dtype: int64</code></pre>
+</div>
+</div>
+<p>The temperature and humidity ranges should be physically plausible. Runs of identical values occur in practice because sensors report with limited resolution and indoor conditions change slowly; a run is suspicious only if it is long compared with the normal dynamics (e.g.&nbsp;several hours for an outdoor temperature). Here, the outdoor weather comes from an airport station with lower update rate and was interpolated to 10 minutes – this explains smooth or repeated values in the <code>_out</code> columns.</p>
 </div>
 </div>
 </div>
@@ -860,18 +1107,132 @@ Solution to Exercise 4
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution to Exercise 5
+Solution to Exercise 3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="cc3b30b0" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> X.loc[:, X.nunique(dropna<span class="op">=</span><span class="va">True</span>) <span class="op">&gt;</span> <span class="dv">1</span>]              <span class="co"># 1. drop constant features</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> X1.loc[:, X1.isna().mean() <span class="op">&lt;=</span> <span class="fl">0.5</span>]                <span class="co"># 2. drop &gt; 50 % missing</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>X3 <span class="op">=</span> X2.fillna(X2.median())                            <span class="co"># 3. median imputation</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>X1<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (constant removed) -&gt; </span><span class="sc">{</span>X2<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (sparse removed)"</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Remaining missing values:"</span>, X3.isna().<span class="bu">sum</span>().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7c4d54fb" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>hourly <span class="op">=</span> energy.resample(<span class="st">"h"</span>).agg({<span class="st">"Appliances"</span>: <span class="st">"sum"</span>, <span class="st">"lights"</span>: <span class="st">"sum"</span>,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"T1"</span>: <span class="st">"mean"</span>, <span class="st">"T_out"</span>: <span class="st">"mean"</span>})</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>hourly.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Appliances</th>
+<th data-quarto-table-cell-role="th">lights</th>
+<th data-quarto-table-cell-role="th">T1</th>
+<th data-quarto-table-cell-role="th">T_out</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2016-01-11 17:00:00</td>
+<td>330</td>
+<td>210</td>
+<td>19.890000</td>
+<td>6.308333</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2016-01-11 18:00:00</td>
+<td>1060</td>
+<td>310</td>
+<td>19.897778</td>
+<td>5.941667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2016-01-11 19:00:00</td>
+<td>1040</td>
+<td>150</td>
+<td>20.495556</td>
+<td>6.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2016-01-11 20:00:00</td>
+<td>750</td>
+<td>210</td>
+<td>20.961111</td>
+<td>6.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2016-01-11 21:00:00</td>
+<td>620</td>
+<td>140</td>
+<td>21.311667</td>
+<td>5.833333</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><code>Appliances</code> is an energy per interval (Wh in 10 minutes). The energy of one hour is the <strong>sum</strong> of the six 10-minute values (unit: Wh per hour, i.e.&nbsp;the mean power in W). Temperatures are state variables: the hourly value is the <strong>mean</strong> (or, for an instantaneous value, the last one). Summing temperatures would be physically meaningless. <code>max</code> is useful for questions about peaks, e.g.&nbsp;dimensioning a fuse.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="ea36f470" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>energy[[<span class="st">"rv1"</span>, <span class="st">"rv2"</span>, <span class="st">"T_out"</span>, <span class="st">"T2"</span>, <span class="st">"RH_out"</span>]].corrwith(energy[<span class="st">"Appliances"</span>]).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>rv1      -0.011
+rv2      -0.011
+T_out     0.099
+T2        0.120
+RH_out   -0.152
+dtype: float64</code></pre>
+</div>
+</div>
+<p>The correlations of <code>rv1</code> and <code>rv2</code> with <code>Appliances</code> are close to zero. (Check also with <code>energy["rv1"].equals(energy["rv2"])</code> whether the two random columns are identical copies – a nice example of a redundant feature.) The weather variables show small but non-zero correlations. Note that with almost 20,000 observations even tiny correlations can be “statistically significant” (Chapter 4) – the size of the correlation matters more than its p-value.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="ece01dde" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> X.loc[:, X.nunique(dropna<span class="op">=</span><span class="va">True</span>) <span class="op">&gt;</span> <span class="dv">1</span>]              <span class="co"># 1. drop constant features</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> X1.loc[:, X1.isna().mean() <span class="op">&lt;=</span> <span class="fl">0.5</span>]                <span class="co"># 2. drop &gt; 50 % missing</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>X3 <span class="op">=</span> X2.fillna(X2.median())                            <span class="co"># 3. median imputation</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>X1<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (constant removed) -&gt; </span><span class="sc">{</span>X2<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> (sparse removed)"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Remaining missing values:"</span>, X3.isna().<span class="bu">sum</span>().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>590 -&gt; 474 (constant removed) -&gt; 446 (sparse removed)
+Remaining missing values: 0</code></pre>
+</div>
 </div>
 <p>Strategy: 0–5 % missing → median imputation (little influence on results); 5–50 % → median or model-based imputation plus an indicator variable “was missing”; more than 50 % → remove the feature, unless domain experts know that it is important (then investigate why it is missing). In a real project the imputation would be fitted on the training data only (see the warning above).</p>
 </div>

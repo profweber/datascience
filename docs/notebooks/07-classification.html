@@ -78,11 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-ef31e3f4d9d6eef55c54bdf6b9cd68ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-f92e9cd00cfa24dbc31d4226c6e5e52e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -138,10 +138,24 @@ window.Quarto = {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science in Engineering</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,33 +164,18 @@ window.Quarto = {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/07-classification.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Data Science in Engineering</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -352,9 +351,10 @@ window.Quarto = {
   <li><a href="#strategies-for-imbalanced-classes" id="toc-strategies-for-imbalanced-classes" class="nav-link" data-scroll-target="#strategies-for-imbalanced-classes"><span class="header-section-number">7.2.2</span> Strategies for imbalanced classes</a></li>
   </ul></li>
   <li><a href="#live-coding-predictive-maintenance" id="toc-live-coding-predictive-maintenance" class="nav-link" data-scroll-target="#live-coding-predictive-maintenance"><span class="header-section-number">7.3</span> Live coding: predictive maintenance</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.4</span> Exercises</a>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">7.4</span> Back to the decision</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.5</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">7.4.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">7.5.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -383,9 +383,11 @@ window.Quarto = {
 
 <p>Many engineering decisions are categorical: a part is OK or not OK, a machine will fail within the next shift or not, a fault belongs to type A, B or C. Predicting such a category from measured data is called <strong>classification</strong>. It is the core of automated quality inspection, predictive maintenance and fault diagnosis.</p>
 <p>Classification raises questions that regression does not. How do we measure the quality of a classifier when failures are rare? What is worse – a false alarm or a missed failure? And how do we choose the decision threshold that turns a predicted probability into an action? This chapter introduces three basic classifiers and, just as importantly, the metrics to evaluate them honestly.</p>
-<blockquote class="blockquote">
-<p><strong>Engineering question:</strong> Can we detect machine failures from process data – and what does it cost if we miss one?</p>
-</blockquote>
+<div class="scenario">
+<p><strong>Scenario: should we install the failure alarm?</strong></p>
+<p>A milling line runs 10,000 operations per period. Every machine failure that is not anticipated costs about 10,000 € (scrap, repair, downtime). A vendor offers to install a failure alarm: when it fires, the machine is stopped and inspected, which costs about 500 € – whether or not a failure was imminent. Today there is no alarm at all, so every failure is unplanned. The plant manager wants a clear answer.</p>
+<p><strong>Your decision:</strong> Install an alarm – and if so, based on which model?</p>
+</div>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>explain how logistic regression, k-nearest neighbours and decision trees classify,</li>
@@ -527,7 +529,7 @@ Engineering practice: choose the threshold by costs
 <li><strong>Resampling:</strong> undersample the majority class or oversample the minority class (only in the training data!).</li>
 <li><strong>Threshold adjustment</strong> as described above – often the simplest and most effective measure.</li>
 </ul>
-<div id="9648179b" class="cell">
+<div id="2940a252" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>]:</span>
@@ -546,66 +548,160 @@ Engineering practice: choose the threshold by costs
 <section id="live-coding-predictive-maintenance" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="live-coding-predictive-maintenance"><span class="header-section-number">7.3</span> Live coding: predictive maintenance</h2>
 <p>The AI4I 2020 dataset is a synthetic dataset that reflects a real milling process. Each of the 10,000 records contains the product quality variant (L/M/H), air and process temperature, rotational speed, torque and tool wear, and the label <code>Machine failure</code>. The failures are generated by five documented mechanisms: tool wear failure (TWF), heat dissipation failure (HDF), power failure (PWF), overstrain failure (OSF) and random failures (RNF). Because the mechanisms are known, the dataset is ideal to check whether a model has learned something physically sensible.</p>
-<div id="4d49ef08" class="cell">
+<div id="96571dd0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ai4i <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">601</span>).data.original</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">"Type"</span>, <span class="st">"Air temperature [K]"</span>, <span class="st">"Process temperature [K]"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Rotational speed [rpm]"</span>, <span class="st">"Torque [Nm]"</span>, <span class="st">"Tool wear [min]"</span>]</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(ai4i[features], columns<span class="op">=</span>[<span class="st">"Type"</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> ai4i[<span class="st">"Machine failure"</span>]</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Failure rate: </span><span class="sc">{</span>y<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: the columns TWF, HDF, PWF, OSF, RNF describe the failure mode.</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Using them as features would be data leakage!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Column names differ between versions of the dataset (with or without units in brackets,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># blanks or underscores). We map them to one canonical spelling with units.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>canonical <span class="op">=</span> {<span class="st">"air temperature"</span>: <span class="st">"Air temperature [K]"</span>, <span class="st">"process temperature"</span>: <span class="st">"Process temperature [K]"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">"rotational speed"</span>: <span class="st">"Rotational speed [rpm]"</span>, <span class="st">"torque"</span>: <span class="st">"Torque [Nm]"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>             <span class="st">"tool wear"</span>: <span class="st">"Tool wear [min]"</span>, <span class="st">"machine failure"</span>: <span class="st">"Machine failure"</span>, <span class="st">"type"</span>: <span class="st">"Type"</span>}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> standardise(col):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    base <span class="op">=</span> re.sub(<span class="vs">r"[_\s]+"</span>, <span class="st">" "</span>, <span class="bu">str</span>(col).split(<span class="st">"["</span>)[<span class="dv">0</span>]).strip().lower()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> canonical.get(base, col)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ai4i <span class="op">=</span> ai4i.rename(columns<span class="op">=</span>standardise)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Columns:"</span>, ai4i.columns.tolist())</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">"Type"</span>, <span class="st">"Air temperature [K]"</span>, <span class="st">"Process temperature [K]"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Rotational speed [rpm]"</span>, <span class="st">"Torque [Nm]"</span>, <span class="st">"Tool wear [min]"</span>]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(ai4i[features], columns<span class="op">=</span>[<span class="st">"Type"</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> ai4i[<span class="st">"Machine failure"</span>]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Failure rate: </span><span class="sc">{</span>y<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: the columns TWF, HDF, PWF, OSF, RNF describe the failure mode.</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Using them as features would be data leakage!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Columns: ['UID', 'Product ID', 'Type', 'Air temperature [K]', 'Process temperature [K]', 'Rotational speed [rpm]', 'Torque [Nm]', 'Tool wear [min]', 'Machine failure', 'TWF', 'HDF', 'PWF', 'OSF', 'RNF']
+Failure rate: 3.4%</code></pre>
 </div>
-<div id="61769933" class="cell">
+</div>
+<div id="ac4493b8" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>ai4i.sample(<span class="dv">3000</span>, random_state<span class="op">=</span><span class="dv">0</span>), x<span class="op">=</span><span class="st">"Rotational speed [rpm]"</span>, y<span class="op">=</span><span class="st">"Torque [Nm]"</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                hue<span class="op">=</span><span class="st">"Machine failure"</span>, s<span class="op">=</span><span class="dv">10</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, palette<span class="op">=</span>[<span class="st">"lightgray"</span>, <span class="st">"C3"</span>])</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>ai4i.sample(<span class="dv">3000</span>, random_state<span class="op">=</span><span class="dv">0</span>), x<span class="op">=</span><span class="st">"Rotational speed [rpm]"</span>, y<span class="op">=</span><span class="st">"Torque [Nm]"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                hue<span class="op">=</span><span class="st">"Machine failure"</span>, s<span class="op">=</span><span class="dv">10</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, palette<span class="op">=</span>[<span class="st">"lightgray"</span>, <span class="st">"C3"</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-classification_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>The failures are not spread randomly: they concentrate at very high torque with low speed and at very low torque with high speed – regions of high and low mechanical power. A linear boundary in this plane cannot separate them; this matters for the choice of model.</p>
-<div id="10bc85b1" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>models <span class="op">=</span> {</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"logistic regression"</span>: make_pipeline(StandardScaler(), LogisticRegression(class_weight<span class="op">=</span><span class="st">"balanced"</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)),</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"kNN (k=5)"</span>: make_pipeline(StandardScaler(), KNeighborsClassifier(<span class="dv">5</span>)),</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"decision tree"</span>: DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>, random_state<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> models.items():</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    m.fit(X_train, y_train)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"--- </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(classification_report(y_test, m.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="56aa092d" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>models <span class="op">=</span> {</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"logistic regression"</span>: make_pipeline(StandardScaler(), LogisticRegression(class_weight<span class="op">=</span><span class="st">"balanced"</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"kNN (k=5)"</span>: make_pipeline(StandardScaler(), KNeighborsClassifier(<span class="dv">5</span>)),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"decision tree"</span>: DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>, random_state<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> models.items():</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    m.fit(X_train, y_train)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"--- </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(classification_report(y_test, m.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--- logistic regression
+              precision    recall  f1-score   support
+
+           0      0.990     0.827     0.901      2415
+           1      0.135     0.765     0.229        85
+
+    accuracy                          0.825      2500
+   macro avg      0.562     0.796     0.565      2500
+weighted avg      0.961     0.825     0.878      2500
+
+--- kNN (k=5)
+              precision    recall  f1-score   support
+
+           0      0.977     0.996     0.986      2415
+           1      0.737     0.329     0.455        85
+
+    accuracy                          0.973      2500
+   macro avg      0.857     0.663     0.721      2500
+weighted avg      0.969     0.973     0.968      2500
+
+--- decision tree
+              precision    recall  f1-score   support
+
+           0      0.994     0.935     0.964      2415
+           1      0.311     0.835     0.454        85
+
+    accuracy                          0.932      2500
+   macro avg      0.653     0.885     0.709      2500
+weighted avg      0.971     0.932     0.946      2500
+</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> Read the reports row by row: the line for class 1 (failure) is the interesting one. Typically, logistic regression with class weights detects many failures (high recall) but raises many false alarms (low precision), because its linear boundary cannot isolate the failure regions. kNN without class weights is conservative: few false alarms, but many missed failures. The decision tree can represent the thresholds in torque, speed and tool wear that generate the failures and usually achieves the best balance. The accuracy row is high for all models – and says little.</p>
-<div id="74e6ca0d" class="cell">
+<div id="6ccf3c7d" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay, PrecisionRecallDisplay, RocCurveDisplay</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="fl">4.5</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_estimator(models[<span class="st">"decision tree"</span>], X_test, y_test, ax<span class="op">=</span>axes[<span class="dv">0</span>], colorbar<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Decision tree"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> models.items():</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    RocCurveDisplay.from_estimator(m, X_test, y_test, ax<span class="op">=</span>axes[<span class="dv">1</span>], name<span class="op">=</span>name)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    PrecisionRecallDisplay.from_estimator(m, X_test, y_test, ax<span class="op">=</span>axes[<span class="dv">2</span>], name<span class="op">=</span>name)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"ROC curves"</span>)<span class="op">;</span> axes[<span class="dv">2</span>].set_title(<span class="st">"Precision–recall curves"</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay, PrecisionRecallDisplay, RocCurveDisplay</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="fl">4.5</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_estimator(models[<span class="st">"decision tree"</span>], X_test, y_test, ax<span class="op">=</span>axes[<span class="dv">0</span>], colorbar<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_title(<span class="st">"Decision tree"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> models.items():</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    RocCurveDisplay.from_estimator(m, X_test, y_test, ax<span class="op">=</span>axes[<span class="dv">1</span>], name<span class="op">=</span>name)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    PrecisionRecallDisplay.from_estimator(m, X_test, y_test, ax<span class="op">=</span>axes[<span class="dv">2</span>], name<span class="op">=</span>name)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"ROC curves"</span>)<span class="op">;</span> axes[<span class="dv">2</span>].set_title(<span class="st">"Precision–recall curves"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-classification_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p><strong>Discussion.</strong> The ROC curves may look reassuringly good for all models, while the precision–recall curves reveal clear differences – the typical picture for rare events. The precision–recall curve directly shows the trade-off an engineer faces: “If I want to catch 80 % of the failures, how many of my alarms will be false?”</p>
+</section>
+<section id="back-to-the-decision" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">7.4</span> Back to the decision</h2>
+<p>We compare the total cost per test period for the status quo (every failure is a missed failure) and for each model at its default threshold. A missed failure costs 10,000 €, a false alarm 500 €. Detected failures are assumed to be prevented and to cost only the inspection.</p>
+<div id="12aa3435" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>c_fn, c_fp <span class="op">=</span> <span class="dv">10_000</span>, <span class="dv">500</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>status_quo <span class="op">=</span> c_fn <span class="op">*</span> <span class="bu">int</span>(y_test.<span class="bu">sum</span>())</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>costs <span class="op">=</span> {}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> models.items():</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    tn, fp, fn, tp <span class="op">=</span> confusion_matrix(y_test, m.predict(X_test)).ravel()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    costs[name] <span class="op">=</span> c_fn <span class="op">*</span> fn <span class="op">+</span> c_fp <span class="op">*</span> (fp <span class="op">+</span> tp)          <span class="co"># every alarm triggers an inspection</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'status quo (no alarm)'</span><span class="sc">:22s}</span><span class="ss"> </span><span class="sc">{</span>status_quo <span class="op">/</span> <span class="dv">1000</span><span class="sc">:8.1f}</span><span class="ss"> k€"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, c <span class="kw">in</span> costs.items():</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:22s}</span><span class="ss"> </span><span class="sc">{</span>c <span class="op">/</span> <span class="dv">1000</span><span class="sc">:8.1f}</span><span class="ss"> k€"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> <span class="bu">min</span>(costs, key<span class="op">=</span>costs.get)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> costs[best] <span class="op">&lt;</span> status_quo:</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Decision: install the alarm based on the </span><span class="sc">{</span>best<span class="sc">}</span><span class="ss"> – saving </span><span class="sc">{</span>(status_quo <span class="op">-</span> costs[best]) <span class="op">/</span> <span class="dv">1000</span><span class="sc">:.1f}</span><span class="ss"> k€ "</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"(</span><span class="sc">{</span><span class="dv">1</span> <span class="op">-</span> costs[best] <span class="op">/</span> status_quo<span class="sc">:.0%}</span><span class="ss">) per test period."</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Decision: no model beats the status quo – do not install."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>status quo (no alarm)     850.0 k€
+logistic regression       441.5 k€
+kNN (k=5)                 589.0 k€
+decision tree             254.0 k€
+Decision: install the alarm based on the decision tree – saving 596.0 k€ (70%) per test period.</code></pre>
+</div>
+</div>
+<p>The cost comparison translates the confusion matrix into the language of the plant manager. Exercise 2 shows that choosing the threshold by cost improves the result further. Before the final decision, two things should be checked: the AI4I data are <em>simulated</em>, so the savings must be confirmed in a pilot on the real line; and the assumption that every detected failure can be prevented is optimistic.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -625,8 +721,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.4</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.5</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Add the failure mode columns (TWF, HDF, PWF, OSF, RNF) as features and retrain the decision tree. What happens to the scores – and why is this result worthless?</li>
@@ -636,8 +732,8 @@ Key takeaways
 <li>A test set has TN = 950, FP = 30, FN = 5, TP = 15. Compute accuracy, precision, recall and F1 by hand. Is the model useful?</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">7.4.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">7.5.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -650,11 +746,22 @@ Solution to Exercise 1
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="5d56421d" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_leak <span class="op">=</span> X.join(ai4i[[<span class="st">"TWF"</span>, <span class="st">"HDF"</span>, <span class="st">"PWF"</span>, <span class="st">"OSF"</span>, <span class="st">"RNF"</span>]])</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Xl_tr, Xl_te, yl_tr, yl_te <span class="op">=</span> train_test_split(X_leak, y, test_size<span class="op">=</span><span class="fl">0.25</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>tree_leak <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(Xl_tr, yl_tr)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(yl_te, tree_leak.predict(Xl_te), digits<span class="op">=</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="771ddced" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X_leak <span class="op">=</span> X.join(ai4i[[<span class="st">"TWF"</span>, <span class="st">"HDF"</span>, <span class="st">"PWF"</span>, <span class="st">"OSF"</span>, <span class="st">"RNF"</span>]])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Xl_tr, Xl_te, yl_tr, yl_te <span class="op">=</span> train_test_split(X_leak, y, test_size<span class="op">=</span><span class="fl">0.25</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>tree_leak <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(Xl_tr, yl_tr)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(yl_te, tree_leak.predict(Xl_te), digits<span class="op">=</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              precision    recall  f1-score   support
+
+           0      0.998     1.000     0.999      2415
+           1      1.000     0.941     0.970        85
+
+    accuracy                          0.998      2500
+   macro avg      0.999     0.971     0.984      2500
+weighted avg      0.998     0.998     0.998      2500
+</code></pre>
+</div>
 </div>
 <p>Precision and recall jump to nearly 100 %. The failure mode columns are only known <em>after</em> a failure has been diagnosed – they essentially encode the label. In operation, at prediction time, they are not available. Such leakage produces impressive but completely useless models. Rule: for each feature, ask “Would I know this value at the moment I need the prediction?”</p>
 </div>
@@ -672,26 +779,36 @@ Solution to Exercise 2
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="3a4143f1" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X_fit, X_val, y_fit, y_val <span class="op">=</span> train_test_split(X_train, y_train, test_size<span class="op">=</span><span class="fl">0.3</span>,</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                                              stratify<span class="op">=</span>y_train, random_state<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>logreg <span class="op">=</span> make_pipeline(StandardScaler(), LogisticRegression(class_weight<span class="op">=</span><span class="st">"balanced"</span>, max_iter<span class="op">=</span><span class="dv">1000</span>))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>logreg.fit(X_fit, y_fit)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>p_val <span class="op">=</span> logreg.predict_proba(X_val)[:, <span class="dv">1</span>]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>c_fn, c_fp <span class="op">=</span> <span class="dv">10_000</span>, <span class="dv">500</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="fl">0.99</span>, <span class="dv">99</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> [c_fn <span class="op">*</span> ((p_val <span class="op">&lt;</span> t) <span class="op">&amp;</span> (y_val <span class="op">==</span> <span class="dv">1</span>)).<span class="bu">sum</span>() <span class="op">+</span> c_fp <span class="op">*</span> ((p_val <span class="op">&gt;=</span> t) <span class="op">&amp;</span> (y_val <span class="op">==</span> <span class="dv">0</span>)).<span class="bu">sum</span>()</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> thresholds]</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>t_best <span class="op">=</span> thresholds[np.argmin(cost)]</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.plot(thresholds, np.array(cost) <span class="op">/</span> <span class="dv">1000</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plt.axvline(t_best, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Threshold"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Total cost on validation data (k€)"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>p_test <span class="op">=</span> logreg.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>cost_test <span class="op">=</span> c_fn <span class="op">*</span> ((p_test <span class="op">&lt;</span> t_best) <span class="op">&amp;</span> (y_test <span class="op">==</span> <span class="dv">1</span>)).<span class="bu">sum</span>() <span class="op">+</span> c_fp <span class="op">*</span> ((p_test <span class="op">&gt;=</span> t_best) <span class="op">&amp;</span> (y_test <span class="op">==</span> <span class="dv">0</span>)).<span class="bu">sum</span>()</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"best threshold </span><span class="sc">{</span>t_best<span class="sc">:.2f}</span><span class="ss">, cost on test data </span><span class="sc">{</span>cost_test <span class="op">/</span> <span class="dv">1000</span><span class="sc">:.0f}</span><span class="ss"> k€"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d4c21da6" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>X_fit, X_val, y_fit, y_val <span class="op">=</span> train_test_split(X_train, y_train, test_size<span class="op">=</span><span class="fl">0.3</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                                              stratify<span class="op">=</span>y_train, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>logreg <span class="op">=</span> make_pipeline(StandardScaler(), LogisticRegression(class_weight<span class="op">=</span><span class="st">"balanced"</span>, max_iter<span class="op">=</span><span class="dv">1000</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>logreg.fit(X_fit, y_fit)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>p_val <span class="op">=</span> logreg.predict_proba(X_val)[:, <span class="dv">1</span>]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>c_fn, c_fp <span class="op">=</span> <span class="dv">10_000</span>, <span class="dv">500</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>thresholds <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="fl">0.99</span>, <span class="dv">99</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> [c_fn <span class="op">*</span> ((p_val <span class="op">&lt;</span> t) <span class="op">&amp;</span> (y_val <span class="op">==</span> <span class="dv">1</span>)).<span class="bu">sum</span>() <span class="op">+</span> c_fp <span class="op">*</span> ((p_val <span class="op">&gt;=</span> t) <span class="op">&amp;</span> (y_val <span class="op">==</span> <span class="dv">0</span>)).<span class="bu">sum</span>()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> thresholds]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>t_best <span class="op">=</span> thresholds[np.argmin(cost)]</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.plot(thresholds, np.array(cost) <span class="op">/</span> <span class="dv">1000</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.axvline(t_best, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Threshold"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Total cost on validation data (k€)"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>p_test <span class="op">=</span> logreg.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>cost_test <span class="op">=</span> c_fn <span class="op">*</span> ((p_test <span class="op">&lt;</span> t_best) <span class="op">&amp;</span> (y_test <span class="op">==</span> <span class="dv">1</span>)).<span class="bu">sum</span>() <span class="op">+</span> c_fp <span class="op">*</span> ((p_test <span class="op">&gt;=</span> t_best) <span class="op">&amp;</span> (y_test <span class="op">==</span> <span class="dv">0</span>)).<span class="bu">sum</span>()</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"best threshold </span><span class="sc">{</span>t_best<span class="sc">:.2f}</span><span class="ss">, cost on test data </span><span class="sc">{</span>cost_test <span class="op">/</span> <span class="dv">1000</span><span class="sc">:.0f}</span><span class="ss"> k€"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-classification_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>best threshold 0.72, cost on test data 404 k€</code></pre>
+</div>
 </div>
 <p>The cost curve typically has a broad minimum. Note that with <code>class_weight="balanced"</code> the predicted probabilities are no longer calibrated (the model behaves as if failures were as frequent as OK records), so the optimal threshold differs from the theoretical <span class="math inline">\(c_{FP}/(c_{FP}+c_{FN}) \approx 0.048\)</span>. Choosing the threshold on validation data and reporting the cost on the untouched test data keeps the evaluation honest.</p>
 </div>
@@ -709,14 +826,21 @@ Solution to Exercise 3
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="4819eb6c" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> plot_tree</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>tree3 <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">3</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(X_train, y_train)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">7</span>))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plot_tree(tree3, feature_names<span class="op">=</span>X.columns, class_names<span class="op">=</span>[<span class="st">"OK"</span>, <span class="st">"failure"</span>], filled<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          impurity<span class="op">=</span><span class="va">False</span>, proportion<span class="op">=</span><span class="va">True</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5174a083" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> plot_tree</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tree3 <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">3</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(X_train, y_train)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">7</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plot_tree(tree3, feature_names<span class="op">=</span>X.columns, class_names<span class="op">=</span>[<span class="st">"OK"</span>, <span class="st">"failure"</span>], filled<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>          impurity<span class="op">=</span><span class="va">False</span>, proportion<span class="op">=</span><span class="va">True</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-classification_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>The top splits typically use torque, rotational speed and tool wear – exactly the quantities behind the documented failure mechanisms: overstrain (high torque × tool wear), power failure (power too low or too high, i.e.&nbsp;extreme torque–speed combinations) and tool wear failure (large tool wear). A tree that splits mainly on product ID or random variables would be suspicious. Checking learned rules against physics is one of the best plausibility tests for a model.</p>
 </div>
@@ -734,18 +858,22 @@ Solution to Exercise 4
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="9cc41fc8" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X_eng <span class="op">=</span> X.copy()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>X_eng[<span class="st">"power [W]"</span>] <span class="op">=</span> ai4i[<span class="st">"Torque [Nm]"</span>] <span class="op">*</span> ai4i[<span class="st">"Rotational speed [rpm]"</span>] <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="dv">60</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X_eng[<span class="st">"delta T [K]"</span>] <span class="op">=</span> ai4i[<span class="st">"Process temperature [K]"</span>] <span class="op">-</span> ai4i[<span class="st">"Air temperature [K]"</span>]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>X_eng[<span class="st">"strain [min Nm]"</span>] <span class="op">=</span> ai4i[<span class="st">"Tool wear [min]"</span>] <span class="op">*</span> ai4i[<span class="st">"Torque [Nm]"</span>]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score, StratifiedKFold</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>skf <span class="op">=</span> StratifiedKFold(<span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, data <span class="kw">in</span> [(<span class="st">"original features"</span>, X), (<span class="st">"with engineered features"</span>, X_eng)]:</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> cross_val_score(make_pipeline(StandardScaler(), LogisticRegression(class_weight<span class="op">=</span><span class="st">"balanced"</span>, max_iter<span class="op">=</span><span class="dv">2000</span>)),</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                        data, y, cv<span class="op">=</span>skf, scoring<span class="op">=</span><span class="st">"average_precision"</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:26s}</span><span class="ss"> average precision = </span><span class="sc">{</span>s<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d2823de4" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>X_eng <span class="op">=</span> X.copy()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>X_eng[<span class="st">"power [W]"</span>] <span class="op">=</span> ai4i[<span class="st">"Torque [Nm]"</span>] <span class="op">*</span> ai4i[<span class="st">"Rotational speed [rpm]"</span>] <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="dv">60</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>X_eng[<span class="st">"delta T [K]"</span>] <span class="op">=</span> ai4i[<span class="st">"Process temperature [K]"</span>] <span class="op">-</span> ai4i[<span class="st">"Air temperature [K]"</span>]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>X_eng[<span class="st">"strain [min Nm]"</span>] <span class="op">=</span> ai4i[<span class="st">"Tool wear [min]"</span>] <span class="op">*</span> ai4i[<span class="st">"Torque [Nm]"</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score, StratifiedKFold</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>skf <span class="op">=</span> StratifiedKFold(<span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, data <span class="kw">in</span> [(<span class="st">"original features"</span>, X), (<span class="st">"with engineered features"</span>, X_eng)]:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> cross_val_score(make_pipeline(StandardScaler(), LogisticRegression(class_weight<span class="op">=</span><span class="st">"balanced"</span>, max_iter<span class="op">=</span><span class="dv">2000</span>)),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                        data, y, cv<span class="op">=</span>skf, scoring<span class="op">=</span><span class="st">"average_precision"</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:26s}</span><span class="ss"> average precision = </span><span class="sc">{</span>s<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>original features          average precision = 0.429
+with engineered features   average precision = 0.453</code></pre>
+</div>
 </div>
 <p>Engineered features based on physics can help logistic regression a lot, because they turn curved boundaries into simpler ones. But power failures occur for <em>both</em> too low and too high power – a linear model in <code>power</code> can only represent one side. Squared or binned terms, or a tree-based model, are needed to capture both. This is a typical example of how domain knowledge and model choice interact.</p>
 </div>

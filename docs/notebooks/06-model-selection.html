@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -78,11 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-ef31e3f4d9d6eef55c54bdf6b9cd68ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-f92e9cd00cfa24dbc31d4226c6e5e52e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,10 +141,24 @@ window.Quarto = {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science in Engineering</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,33 +167,18 @@ window.Quarto = {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04-testing.html">Part B – Statistics for Engineers</a></li><li class="breadcrumb-item"><a href="../notebooks/06-model-selection.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Data Science in Engineering</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -349,10 +351,11 @@ window.Quarto = {
   <li><a href="#regularisation-in-action" id="toc-regularisation-in-action" class="nav-link" data-scroll-target="#regularisation-in-action"><span class="header-section-number">6.4.2</span> Regularisation in action</a></li>
   </ul></li>
   <li><a href="#gaussian-process-regression-predictions-with-uncertainty" id="toc-gaussian-process-regression-predictions-with-uncertainty" class="nav-link" data-scroll-target="#gaussian-process-regression-predictions-with-uncertainty"><span class="header-section-number">6.5</span> Gaussian process regression: predictions with uncertainty</a></li>
-  <li><a href="#extension-bayesian-optimisation-design-of-experiments-with-a-gp" id="toc-extension-bayesian-optimisation-design-of-experiments-with-a-gp" class="nav-link" data-scroll-target="#extension-bayesian-optimisation-design-of-experiments-with-a-gp"><span class="header-section-number">6.6</span> Extension: Bayesian optimisation – design of experiments with a GP</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.7</span> Exercises</a>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">6.6</span> Back to the decision</a></li>
+  <li><a href="#extension-bayesian-optimisation-design-of-experiments-with-a-gp" id="toc-extension-bayesian-optimisation-design-of-experiments-with-a-gp" class="nav-link" data-scroll-target="#extension-bayesian-optimisation-design-of-experiments-with-a-gp"><span class="header-section-number">6.7</span> Extension: Bayesian optimisation – design of experiments with a GP</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.8</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">6.7.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">6.8.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -381,9 +384,11 @@ window.Quarto = {
 
 <p>A model that reproduces its training data perfectly is usually useless. Given enough parameters, any model can pass through every data point – including the noise. What we really want is a model that <strong>generalises</strong>: that predicts well for new operating points, new parts, next week’s data. This chapter introduces the central idea of machine learning: models must be judged on data they have not seen during fitting.</p>
 <p>We study how model complexity affects the prediction error, learn to estimate this error honestly with cross-validation, and meet two ways to control complexity: regularisation, which penalises large coefficients, and Gaussian processes, a Bayesian approach that also tells us how uncertain each prediction is.</p>
-<blockquote class="blockquote">
-<p><strong>Engineering question:</strong> How complex may a model for airfoil noise be before it starts to learn noise instead of physics?</p>
-</blockquote>
+<div class="scenario">
+<p><strong>Scenario: a surrogate model instead of wind tunnel time</strong></p>
+<p>An aerodynamics team is screening thousands of airfoil configurations for a quiet fan blade. Each wind tunnel measurement costs half a day. The team lead asks whether a data-driven model, trained on the existing NASA measurements, could replace the tunnel for the screening stage. The acoustics expert sets the requirement: the prediction error on <em>new</em> conditions must be below 2 dB (RMSE), otherwise the ranking of configurations is unreliable.</p>
+<p><strong>Your decision:</strong> Which model, if any, do you release for the screening?</p>
+</div>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>explain overfitting and the bias–variance trade-off,</li>
@@ -483,7 +488,7 @@ Definition: Ridge and Lasso regression
 </div>
 </div>
 <p>Ridge shrinks coefficients smoothly and copes well with collinear inputs. Lasso can set coefficients <strong>exactly to zero</strong> and thus performs feature selection. Because the penalty depends on the size of the coefficients, the inputs must be <strong>standardised</strong> first – otherwise the penalty depends on the units. <span class="math inline">\(\lambda\)</span> is chosen by cross-validation (<code>RidgeCV</code>, <code>LassoCV</code>).</p>
-<div id="23143bec" class="cell">
+<div id="42bcf15d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>]:</span>
@@ -542,7 +547,7 @@ Definition: Ridge and Lasso regression
 </tr>
 </tbody>
 </table>
-<div id="115de2ca" class="cell">
+<div id="267f7aed" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>air <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">291</span>)</span>
@@ -550,11 +555,90 @@ Definition: Ridge and Lasso regression
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>X.columns <span class="op">=</span> [<span class="st">"frequency"</span>, <span class="st">"angle"</span>, <span class="st">"chord"</span>, <span class="st">"velocity"</span>, <span class="st">"thickness"</span>]   <span class="co"># Hz, deg, m, m/s, m</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> air.data.targets.iloc[:, <span class="dv">0</span>].rename(<span class="st">"spl"</span>)                           <span class="co"># dB</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>X.describe().T.<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">frequency</td>
+<td>1503.0</td>
+<td>2886.3806</td>
+<td>3152.5731</td>
+<td>200.0000</td>
+<td>800.0000</td>
+<td>1600.0000</td>
+<td>4000.0000</td>
+<td>20000.0000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">angle</td>
+<td>1503.0</td>
+<td>6.7823</td>
+<td>5.9181</td>
+<td>0.0000</td>
+<td>2.0000</td>
+<td>5.4000</td>
+<td>9.9000</td>
+<td>22.2000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">chord</td>
+<td>1503.0</td>
+<td>0.1365</td>
+<td>0.0935</td>
+<td>0.0254</td>
+<td>0.0508</td>
+<td>0.1016</td>
+<td>0.2286</td>
+<td>0.3048</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">velocity</td>
+<td>1503.0</td>
+<td>50.8607</td>
+<td>15.5728</td>
+<td>31.7000</td>
+<td>39.6000</td>
+<td>39.6000</td>
+<td>71.3000</td>
+<td>71.3000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">thickness</td>
+<td>1503.0</td>
+<td>0.0111</td>
+<td>0.0132</td>
+<td>0.0004</td>
+<td>0.0025</td>
+<td>0.0050</td>
+<td>0.0156</td>
+<td>0.0584</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <section id="how-complex-should-the-model-be" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="how-complex-should-the-model-be"><span class="header-section-number">6.4.1</span> How complex should the model be?</h3>
 <p>We fit polynomial models of increasing degree – with five inputs, degree 6 already produces several hundred terms – and compare training and cross-validation errors.</p>
-<div id="1305889d" class="cell">
+<div id="77576d5d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures, StandardScaler</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression, RidgeCV</span>
@@ -573,17 +657,88 @@ Definition: Ridge and Lasso regression
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">"RMSE (dB)"</span>, ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="va">None</span>))</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>scores.<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-model-selection_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">terms</th>
+<th data-quarto-table-cell-role="th">train RMSE</th>
+<th data-quarto-table-cell-role="th">CV RMSE</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">degree</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>6</td>
+<td>4.80</td>
+<td>4.83</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>21</td>
+<td>4.10</td>
+<td>4.20</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>56</td>
+<td>3.36</td>
+<td>3.60</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>126</td>
+<td>2.58</td>
+<td>3.19</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>252</td>
+<td>2.10</td>
+<td>4.06</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6</td>
+<td>462</td>
+<td>1.75</td>
+<td>11.12</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <p><strong>Discussion.</strong> The training error decreases steadily with the degree – more terms can always fit the training data better. The cross-validation error first decreases (less bias) and eventually increases again (more variance); its minimum indicates a good degree. The growing gap between training and CV error is the signature of overfitting. Note also the scale: a straight-line model leaves errors of several dB, which matters for acoustic requirements.</p>
 </section>
 <section id="regularisation-in-action" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="regularisation-in-action"><span class="header-section-number">6.4.2</span> Regularisation in action</h3>
 <p>Instead of picking the degree exactly, we can use a rich model and let Ridge regression control its complexity. <code>RidgeCV</code> selects <span class="math inline">\(\lambda\)</span> by internal cross-validation; the outer cross-validation evaluates the whole procedure.</p>
-<div id="2192354f" class="cell">
+<div id="e1a9b9e0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> make_pipeline(PolynomialFeatures(<span class="dv">5</span>), StandardScaler(),</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                      RidgeCV(alphas<span class="op">=</span>np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">30</span>)))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> cross_validate(ridge, X, y, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"neg_root_mean_squared_error"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Ridge, degree 5: CV RMSE = </span><span class="sc">{</span><span class="op">-</span>res[<span class="st">'test_score'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss"> dB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>res_ridge <span class="op">=</span> cross_validate(ridge, X, y, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"neg_root_mean_squared_error"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Ridge, degree 5: CV RMSE = </span><span class="sc">{</span><span class="op">-</span>res_ridge[<span class="st">'test_score'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss"> dB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Ridge, degree 5: CV RMSE = 3.14 dB</code></pre>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -613,7 +768,7 @@ Definition: Gaussian process
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A Gaussian process is a collection of random variables <span class="math inline">\(f(x)\)</span>, any finite number of which have a joint normal distribution. It is specified by a mean function (often 0) and a <strong>kernel</strong> (covariance function) <span class="math inline">\(k(x, x')\)</span> that states how strongly the function values at <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span> are correlated. A common choice is the squared exponential (RBF) kernel <span class="math display">\[k(x, x') = \sigma_f^2 \exp\left(-\frac{\|x - x'\|^2}{2\ell^2}\right),\]</span> with signal variance <span class="math inline">\(\sigma_f^2\)</span> and <strong>length scale</strong> <span class="math inline">\(\ell\)</span>: points closer than about <span class="math inline">\(\ell\)</span> have similar function values.</p>
+<p>A Gaussian process is a collection of random variables <span class="math inline">\(f(x)\)</span>, any finite number of which have a joint normal distribution. It is specified by a mean function (often 0) and a <strong>kernel</strong> (covariance function) <span class="math inline">\(\kappa(x, x')\)</span> that states how strongly the function values at <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span> are correlated. A common choice is the squared exponential (RBF) kernel <span class="math display">\[\kappa(x, x') = \sigma_f^2 \exp\left(-\frac{\|x - x'\|^2}{2\ell^2}\right),\]</span> with signal variance <span class="math inline">\(\sigma_f^2\)</span> and <strong>length scale</strong> <span class="math inline">\(\ell\)</span> (we write <span class="math inline">\(\kappa\)</span> to avoid confusion with the <span class="math inline">\(k\)</span> of k-fold cross-validation): points closer than about <span class="math inline">\(\ell\)</span> have similar function values.</p>
 </div>
 </div>
 <p>Given training data, the GP posterior at a new point is again normal: its <strong>mean</strong> is the prediction and its <strong>standard deviation</strong> quantifies the uncertainty. Near the training points the uncertainty is small, far away it grows back to the prior level. The kernel hyperparameters and the noise level are fitted by maximising the marginal likelihood – no cross-validation needed.</p>
@@ -629,77 +784,121 @@ Figure&nbsp;6.3: A Gaussian process before and after observing data. Left: funct
 </div>
 <p>GPs are popular as <strong>surrogate models</strong> for expensive simulations and experiments, where data are scarce and knowing the uncertainty matters. Their limitation: the computational cost grows with <span class="math inline">\(n^3\)</span>, so they suit datasets up to a few thousand points.</p>
 <p>We first look at a one-dimensional example: the power output of the combined cycle power plant as a function of ambient temperature, learned from only 15 measurements.</p>
-<div id="c642f4b3" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.gaussian_process <span class="im">import</span> GaussianProcessRegressor</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.gaussian_process.kernels <span class="im">import</span> RBF, WhiteKernel, ConstantKernel <span class="im">as</span> C</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ccpp <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">294</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pp <span class="op">=</span> pd.concat([ccpp.data.features, ccpp.data.targets], axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>few <span class="op">=</span> pp.sample(<span class="dv">15</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> C(<span class="fl">100.0</span>) <span class="op">*</span> RBF(length_scale<span class="op">=</span><span class="fl">10.0</span>) <span class="op">+</span> WhiteKernel(noise_level<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>gp <span class="op">=</span> GaussianProcessRegressor(kernel<span class="op">=</span>kernel, normalize_y<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>gp.fit(few[[<span class="st">"AT"</span>]], few[<span class="st">"PE"</span>])</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fitted kernel:"</span>, gp.kernel_)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">45</span>, <span class="dv">300</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>mean, std <span class="op">=</span> gp.predict(pd.DataFrame(T, columns<span class="op">=</span>[<span class="st">"AT"</span>]), return_std<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(pp[<span class="st">"AT"</span>], pp[<span class="st">"PE"</span>], s<span class="op">=</span><span class="dv">2</span>, c<span class="op">=</span><span class="st">"lightgray"</span>, label<span class="op">=</span><span class="st">"all data (unknown to the model)"</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(few[<span class="st">"AT"</span>], few[<span class="st">"PE"</span>], c<span class="op">=</span><span class="st">"C3"</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"15 training points"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.plot(T, mean, label<span class="op">=</span><span class="st">"GP mean"</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.fill_between(T.ravel(), mean <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> std, mean <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> std, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"95 </span><span class="sc">% i</span><span class="st">nterval"</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Ambient temperature (°C)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Power output (MW)"</span>)<span class="op">;</span> plt.legend()</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6d7c2b0d" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.gaussian_process <span class="im">import</span> GaussianProcessRegressor</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.gaussian_process.kernels <span class="im">import</span> RBF, WhiteKernel, ConstantKernel <span class="im">as</span> C</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ccpp <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">294</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pp <span class="op">=</span> pd.concat([ccpp.data.features, ccpp.data.targets], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>few <span class="op">=</span> pp.sample(<span class="dv">15</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> C(<span class="fl">100.0</span>) <span class="op">*</span> RBF(length_scale<span class="op">=</span><span class="fl">10.0</span>) <span class="op">+</span> WhiteKernel(noise_level<span class="op">=</span><span class="fl">10.0</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>gp <span class="op">=</span> GaussianProcessRegressor(kernel<span class="op">=</span>kernel, normalize_y<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>gp.fit(few[[<span class="st">"AT"</span>]], few[<span class="st">"PE"</span>])</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fitted kernel:"</span>, gp.kernel_)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">45</span>, <span class="dv">300</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>mean, std <span class="op">=</span> gp.predict(pd.DataFrame(T, columns<span class="op">=</span>[<span class="st">"AT"</span>]), return_std<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(pp[<span class="st">"AT"</span>], pp[<span class="st">"PE"</span>], s<span class="op">=</span><span class="dv">2</span>, c<span class="op">=</span><span class="st">"lightgray"</span>, label<span class="op">=</span><span class="st">"all data (unknown to the model)"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(few[<span class="st">"AT"</span>], few[<span class="st">"PE"</span>], c<span class="op">=</span><span class="st">"C3"</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"15 training points"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.plot(T, mean, label<span class="op">=</span><span class="st">"GP mean"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.fill_between(T.ravel(), mean <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> std, mean <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> std, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"95 </span><span class="sc">% i</span><span class="st">nterval"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Ambient temperature (°C)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Power output (MW)"</span>)<span class="op">;</span> plt.legend()</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitted kernel: 2.27**2 * RBF(length_scale=29.5) + WhiteKernel(noise_level=0.118)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-model-selection_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p><strong>Discussion.</strong> With only 15 points, the GP recovers the almost linear trend. The fitted <code>WhiteKernel</code> noise level estimates the scatter of the individual measurements, the RBF length scale how quickly the function can change. Outside the measured temperature range (below the coldest and above the warmest training point), the band widens: the model honestly reports that it does not know. A polynomial would extrapolate with the same confidence everywhere.</p>
-<div id="95c823e9" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GP on the full airfoil problem (5 inputs), compared with the polynomial ridge model</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gp_air <span class="op">=</span> make_pipeline(StandardScaler(), GaussianProcessRegressor(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    kernel<span class="op">=</span>C(<span class="fl">1.0</span>) <span class="op">*</span> RBF(length_scale<span class="op">=</span>np.ones(<span class="dv">5</span>)) <span class="op">+</span> WhiteKernel(<span class="fl">0.1</span>), normalize_y<span class="op">=</span><span class="va">True</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> cross_validate(gp_air, X, y, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"neg_root_mean_squared_error"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gaussian process: CV RMSE = </span><span class="sc">{</span><span class="op">-</span>res[<span class="st">'test_score'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss"> dB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="92fea65a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GP on the full airfoil problem (5 inputs), compared with the polynomial ridge model</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gp_air <span class="op">=</span> make_pipeline(StandardScaler(), GaussianProcessRegressor(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    kernel<span class="op">=</span>C(<span class="fl">1.0</span>) <span class="op">*</span> RBF(length_scale<span class="op">=</span>np.ones(<span class="dv">5</span>)) <span class="op">+</span> WhiteKernel(<span class="fl">0.1</span>), normalize_y<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>res_gp <span class="op">=</span> cross_validate(gp_air, X, y, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"neg_root_mean_squared_error"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gaussian process: CV RMSE = </span><span class="sc">{</span><span class="op">-</span>res_gp[<span class="st">'test_score'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss"> dB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gaussian process: CV RMSE = 1.89 dB</code></pre>
+</div>
 </div>
 <p>Here we use one length scale per input (an <em>anisotropic</em> or ARD kernel). After fitting, a long length scale indicates that the output changes slowly with that input – a built-in measure of relevance.</p>
 </section>
-<section id="extension-bayesian-optimisation-design-of-experiments-with-a-gp" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="extension-bayesian-optimisation-design-of-experiments-with-a-gp"><span class="header-section-number">6.6</span> Extension: Bayesian optimisation – design of experiments with a GP</h2>
+<section id="back-to-the-decision" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">6.6</span> Back to the decision</h2>
+<p>The requirement refers to new conditions, so we compare the cross-validation errors – never the training errors. Among the models that meet the 2 dB requirement, we release the simplest one; if none meets it, the tunnel cannot yet be replaced.</p>
+<div id="2fd37d1b" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cv_rmse <span class="op">=</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"linear model"</span>: scores.loc[<span class="dv">1</span>, <span class="st">"CV RMSE"</span>],</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"polynomial (degree </span><span class="sc">{</span>scores[<span class="st">'CV RMSE'</span>]<span class="sc">.</span>idxmin()<span class="sc">}</span><span class="ss">)"</span>: scores[<span class="st">"CV RMSE"</span>].<span class="bu">min</span>(),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polynomial degree 5 + Ridge"</span>: <span class="op">-</span>res_ridge[<span class="st">"test_score"</span>].mean(),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Gaussian process"</span>: <span class="op">-</span>res_gp[<span class="st">"test_score"</span>].mean(),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, e <span class="kw">in</span> cv_rmse.items():</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:32s}</span><span class="ss"> CV RMSE = </span><span class="sc">{</span>e<span class="sc">:.2f}</span><span class="ss"> dB </span><span class="sc">{</span><span class="st">'✓'</span> <span class="cf">if</span> e <span class="op">&lt;</span> <span class="fl">2.0</span> <span class="cf">else</span> <span class="st">'✗'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ok <span class="op">=</span> [name <span class="cf">for</span> name, e <span class="kw">in</span> cv_rmse.items() <span class="cf">if</span> e <span class="op">&lt;</span> <span class="fl">2.0</span>]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Decision:"</span>, <span class="ss">f"release '</span><span class="sc">{</span>ok[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">' for the screening."</span> <span class="cf">if</span> ok <span class="cf">else</span> <span class="st">"no model is accurate enough – keep using the tunnel."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>linear model                     CV RMSE = 4.83 dB ✗
+polynomial (degree 4)            CV RMSE = 3.19 dB ✗
+polynomial degree 5 + Ridge      CV RMSE = 3.14 dB ✗
+Gaussian process                 CV RMSE = 1.89 dB ✓
+Decision: release 'Gaussian process' for the screening.</code></pre>
+</div>
+</div>
+<p>The models are listed from simple to complex, so the first model that meets the requirement is released. Two caveats belong in the recommendation: cross-validation estimates the error for conditions <em>similar</em> to the measured ones – for configurations outside the measured ranges (e.g.&nbsp;larger chords or higher speeds) the error can be much larger, and the Gaussian process at least signals this through its uncertainty. And the best candidates of the screening should still be confirmed in the tunnel.</p>
+</section>
+<section id="extension-bayesian-optimisation-design-of-experiments-with-a-gp" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="extension-bayesian-optimisation-design-of-experiments-with-a-gp"><span class="header-section-number">6.7</span> Extension: Bayesian optimisation – design of experiments with a GP</h2>
 <p><em>Extension – optional material, not required for the exam.</em></p>
 <p>When every experiment is expensive – a test bench run, a CFD simulation, a production trial – we want to find the optimum with as few runs as possible. <strong>Bayesian optimisation</strong> fits a GP to the runs so far and chooses the next run where an <em>acquisition function</em> is largest. The popular <strong>expected improvement</strong> (EI) is</p>
 <p><span class="math display">\[\text{EI}(x) = (\mu(x) - y^*)\,\Phi(z) + \sigma(x)\,\varphi(z), \qquad z = \frac{\mu(x) - y^*}{\sigma(x)},\]</span></p>
-<p>where <span class="math inline">\(y^*\)</span> is the best result so far and <span class="math inline">\(\Phi, \varphi\)</span> are the standard normal CDF and PDF. EI is large where the predicted mean is high (<em>exploitation</em>) or the uncertainty is large (<em>exploration</em>).</p>
+<p>where <span class="math inline">\(\mu(x)\)</span> and <span class="math inline">\(\sigma(x)\)</span> are the GP’s predicted mean and standard deviation at <span class="math inline">\(x\)</span>, <span class="math inline">\(y^*\)</span> is the best result so far and <span class="math inline">\(\Phi, \varphi\)</span> are the standard normal CDF and PDF. EI is large where the predicted mean is high (<em>exploitation</em>) or the uncertainty is large (<em>exploration</em>).</p>
 <p>The example uses a simulated “experiment”: the yield of a process as a function of temperature, which the algorithm does not know.</p>
-<div id="76ef31a0" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> experiment(temp):                       <span class="co"># unknown to the optimiser</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">40</span> <span class="op">+</span> <span class="dv">45</span> <span class="op">*</span> np.exp(<span class="op">-</span>((temp <span class="op">-</span> <span class="dv">172</span>) <span class="op">/</span> <span class="dv">25</span>) <span class="op">**</span> <span class="dv">2</span>) <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> np.sin(temp <span class="op">/</span> <span class="dv">9</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.linspace(<span class="dv">100</span>, <span class="dv">250</span>, <span class="dv">500</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>X_runs <span class="op">=</span> np.array([[<span class="fl">110.0</span>], [<span class="fl">180.0</span>], [<span class="fl">240.0</span>]])            <span class="co"># three initial runs</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>y_runs <span class="op">=</span> experiment(X_runs.ravel())</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes.ravel():</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    gp_bo <span class="op">=</span> GaussianProcessRegressor(C(<span class="fl">1.0</span>) <span class="op">*</span> RBF(<span class="fl">20.0</span>), normalize_y<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">1e-6</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    gp_bo.fit(X_runs, y_runs)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    mu, sd <span class="op">=</span> gp_bo.predict(grid, return_std<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> y_runs.<span class="bu">max</span>()</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (mu <span class="op">-</span> best) <span class="op">/</span> np.maximum(sd, <span class="fl">1e-9</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    ei <span class="op">=</span> (mu <span class="op">-</span> best) <span class="op">*</span> norm.cdf(z) <span class="op">+</span> sd <span class="op">*</span> norm.pdf(z)       <span class="co"># expected improvement</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    x_next <span class="op">=</span> grid[np.argmax(ei)]</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    ax.plot(grid, experiment(grid.ravel()), <span class="st">"k:"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"true (unknown)"</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    ax.plot(grid, mu, label<span class="op">=</span><span class="st">"GP mean"</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(grid.ravel(), mu <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> sd, mu <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> sd, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X_runs, y_runs, c<span class="op">=</span><span class="st">"C3"</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"runs"</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x_next[<span class="dv">0</span>], c<span class="op">=</span><span class="st">"C2"</span>, ls<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"next run"</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(y_runs)<span class="sc">}</span><span class="ss"> runs, best yield </span><span class="sc">{</span>best<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    X_runs <span class="op">=</span> np.vstack([X_runs, x_next])</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    y_runs <span class="op">=</span> np.append(y_runs, experiment(x_next[<span class="dv">0</span>]))</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>fig.supxlabel(<span class="st">"Temperature (°C)"</span>)<span class="op">;</span> fig.supylabel(<span class="st">"Yield (%)"</span>)</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fcabfa4d" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> experiment(temp):                       <span class="co"># unknown to the optimiser</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">40</span> <span class="op">+</span> <span class="dv">45</span> <span class="op">*</span> np.exp(<span class="op">-</span>((temp <span class="op">-</span> <span class="dv">172</span>) <span class="op">/</span> <span class="dv">25</span>) <span class="op">**</span> <span class="dv">2</span>) <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> np.sin(temp <span class="op">/</span> <span class="dv">9</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.linspace(<span class="dv">100</span>, <span class="dv">250</span>, <span class="dv">500</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>X_runs <span class="op">=</span> np.array([[<span class="fl">110.0</span>], [<span class="fl">180.0</span>], [<span class="fl">240.0</span>]])            <span class="co"># three initial runs</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>y_runs <span class="op">=</span> experiment(X_runs.ravel())</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axes.ravel():</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    gp_bo <span class="op">=</span> GaussianProcessRegressor(C(<span class="fl">1.0</span>) <span class="op">*</span> RBF(<span class="fl">20.0</span>), normalize_y<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">1e-6</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    gp_bo.fit(X_runs, y_runs)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    mu, sd <span class="op">=</span> gp_bo.predict(grid, return_std<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> y_runs.<span class="bu">max</span>()</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (mu <span class="op">-</span> best) <span class="op">/</span> np.maximum(sd, <span class="fl">1e-9</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    ei <span class="op">=</span> (mu <span class="op">-</span> best) <span class="op">*</span> norm.cdf(z) <span class="op">+</span> sd <span class="op">*</span> norm.pdf(z)       <span class="co"># expected improvement</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    x_next <span class="op">=</span> grid[np.argmax(ei)]</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    ax.plot(grid, experiment(grid.ravel()), <span class="st">"k:"</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"true (unknown)"</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    ax.plot(grid, mu, label<span class="op">=</span><span class="st">"GP mean"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(grid.ravel(), mu <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> sd, mu <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> sd, alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    ax.scatter(X_runs, y_runs, c<span class="op">=</span><span class="st">"C3"</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"runs"</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x_next[<span class="dv">0</span>], c<span class="op">=</span><span class="st">"C2"</span>, ls<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"next run"</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(y_runs)<span class="sc">}</span><span class="ss"> runs, best yield </span><span class="sc">{</span>best<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    X_runs <span class="op">=</span> np.vstack([X_runs, x_next])</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    y_runs <span class="op">=</span> np.append(y_runs, experiment(x_next[<span class="dv">0</span>]))</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>fig.supxlabel(<span class="st">"Temperature (°C)"</span>)<span class="op">;</span> fig.supylabel(<span class="st">"Yield (%)"</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-model-selection_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p><strong>Discussion.</strong> After a few iterations the algorithm concentrates its runs near the optimum, while regions that cannot contain a better result are not explored further. Compared with a classical grid (Chapter 5), Bayesian optimisation adapts the design sequentially to the results – very efficient when runs are expensive and can be done one after another. Once the optimum is found, EI becomes small everywhere and the proposals cluster; in practice one stops when the expected improvement falls below a threshold.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -722,8 +921,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.7</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.8</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Repeat the degree study for the power plant data (<code>pp</code>, target <code>PE</code>). Why does the curve look so different from the airfoil case?</li>
@@ -734,8 +933,8 @@ Key takeaways
 <li>(Extension) Bayesian optimisation: start with a different set of three runs. Does the algorithm still find the optimum? Compare with a regular grid of the same number of runs.</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="6.7.1">
-<h3 data-number="6.7.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">6.7.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">6.8.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -748,16 +947,64 @@ Solution to Exercise 1
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="43bce226" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X_pp, y_pp <span class="op">=</span> pp[[<span class="st">"AT"</span>, <span class="st">"V"</span>, <span class="st">"AP"</span>, <span class="st">"RH"</span>]], pp[<span class="st">"PE"</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    pipe <span class="op">=</span> make_pipeline(PolynomialFeatures(degree), StandardScaler(), LinearRegression())</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> cross_validate(pipe, X_pp, y_pp, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"neg_root_mean_squared_error"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                         return_train_score<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"degree"</span>: degree, <span class="st">"train RMSE"</span>: <span class="op">-</span>res[<span class="st">"train_score"</span>].mean(),</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"CV RMSE"</span>: <span class="op">-</span>res[<span class="st">"test_score"</span>].mean()})</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).set_index(<span class="st">"degree"</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7366d7a9" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X_pp, y_pp <span class="op">=</span> pp[[<span class="st">"AT"</span>, <span class="st">"V"</span>, <span class="st">"AP"</span>, <span class="st">"RH"</span>]], pp[<span class="st">"PE"</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    pipe <span class="op">=</span> make_pipeline(PolynomialFeatures(degree), StandardScaler(), LinearRegression())</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> cross_validate(pipe, X_pp, y_pp, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"neg_root_mean_squared_error"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                         return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"degree"</span>: degree, <span class="st">"train RMSE"</span>: <span class="op">-</span>res[<span class="st">"train_score"</span>].mean(),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"CV RMSE"</span>: <span class="op">-</span>res[<span class="st">"test_score"</span>].mean()})</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).set_index(<span class="st">"degree"</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">train RMSE</th>
+<th data-quarto-table-cell-role="th">CV RMSE</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">degree</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>4.557</td>
+<td>4.559</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>4.254</td>
+<td>4.260</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4.149</td>
+<td>4.162</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4.088</td>
+<td>4.118</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>4.030</td>
+<td>4.073</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <p>The power plant relationship is nearly linear, there are only four inputs and almost 10,000 observations. Higher degrees improve the fit only slightly, and training and CV errors stay close together – with this much data relative to the number of parameters, overfitting hardly occurs. The remaining error is dominated by the irreducible noise. The airfoil problem is more nonlinear and has six times less data, so flexibility helps first and then overfits.</p>
 </div>
@@ -776,18 +1023,21 @@ Solution to Exercise 2
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Fitting the scaler on all data uses the means and standard deviations of the test folds – a (here mild) form of leakage. The effect is small for scaling with many observations but becomes large for steps that use the target, e.g.&nbsp;selecting the features most correlated with <span class="math inline">\(y\)</span> before cross-validation:</p>
-<div id="a562d6ae" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest, f_regression</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> pd.DataFrame(rng.normal(size<span class="op">=</span>(<span class="dv">100</span>, <span class="dv">2000</span>)))          <span class="co"># pure noise features</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> pd.Series(rng.normal(size<span class="op">=</span><span class="dv">100</span>))                     <span class="co"># unrelated target</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>leaky_X <span class="op">=</span> SelectKBest(f_regression, k<span class="op">=</span><span class="dv">20</span>).fit_transform(noise, target)   <span class="co"># selection on ALL data</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>leaky <span class="op">=</span> cross_validate(LinearRegression(), leaky_X, target, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"r2"</span>)[<span class="st">"test_score"</span>].mean()</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>proper <span class="op">=</span> cross_validate(make_pipeline(SelectKBest(f_regression, k<span class="op">=</span><span class="dv">20</span>), LinearRegression()),</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                        noise, target, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"r2"</span>)[<span class="st">"test_score"</span>].mean()</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CV R² with leaky selection: </span><span class="sc">{</span>leaky<span class="sc">:.2f}</span><span class="ss">,  inside the pipeline: </span><span class="sc">{</span>proper<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5b925ea7" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest, f_regression</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> pd.DataFrame(rng.normal(size<span class="op">=</span>(<span class="dv">100</span>, <span class="dv">2000</span>)))          <span class="co"># pure noise features</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> pd.Series(rng.normal(size<span class="op">=</span><span class="dv">100</span>))                     <span class="co"># unrelated target</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>leaky_X <span class="op">=</span> SelectKBest(f_regression, k<span class="op">=</span><span class="dv">20</span>).fit_transform(noise, target)   <span class="co"># selection on ALL data</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>leaky <span class="op">=</span> cross_validate(LinearRegression(), leaky_X, target, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"r2"</span>)[<span class="st">"test_score"</span>].mean()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>proper <span class="op">=</span> cross_validate(make_pipeline(SelectKBest(f_regression, k<span class="op">=</span><span class="dv">20</span>), LinearRegression()),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                        noise, target, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"r2"</span>)[<span class="st">"test_score"</span>].mean()</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CV R² with leaky selection: </span><span class="sc">{</span>leaky<span class="sc">:.2f}</span><span class="ss">,  inside the pipeline: </span><span class="sc">{</span>proper<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CV R² with leaky selection: 0.47,  inside the pipeline: -0.32</code></pre>
+</div>
 </div>
 <p>With selection outside the pipeline, the “model” appears to predict pure noise; inside the pipeline the CV R² is correctly around zero or negative.</p>
 </div>
@@ -805,15 +1055,22 @@ Solution to Exercise 3
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="b5a486fe" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y_hat <span class="op">=</span> cross_val_predict(ridge, X, y, cv<span class="op">=</span>cv)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(y, y_hat, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>lims <span class="op">=</span> [y.<span class="bu">min</span>(), y.<span class="bu">max</span>()]</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.plot(lims, lims, <span class="st">"k--"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Measured SPL (dB)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Predicted SPL (dB)"</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="81d3026f" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y_hat <span class="op">=</span> cross_val_predict(ridge, X, y, cv<span class="op">=</span>cv)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(y, y_hat, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>lims <span class="op">=</span> [y.<span class="bu">min</span>(), y.<span class="bu">max</span>()]</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.plot(lims, lims, <span class="st">"k--"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Measured SPL (dB)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Predicted SPL (dB)"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-model-selection_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p><code>cross_val_predict</code> returns for each observation the prediction of the model that did <em>not</em> see it during training. Deviations are typically largest at the extremes – the quietest and loudest conditions are underrepresented, and the model shrinks predictions towards the mean (a typical effect of regularisation). Plotting the residuals against frequency shows that some frequency ranges are captured less well than others.</p>
 </div>
@@ -831,17 +1088,24 @@ Solution to Exercise 4
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="ea5cb2fc" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, n_train <span class="kw">in</span> <span class="bu">zip</span>(axes, [<span class="dv">15</span>, <span class="dv">50</span>, <span class="dv">200</span>]):</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> pp.sample(n_train, random_state<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> GaussianProcessRegressor(kernel<span class="op">=</span>kernel, normalize_y<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(sub[[<span class="st">"AT"</span>]], sub[<span class="st">"PE"</span>])</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    m, s <span class="op">=</span> g.predict(pd.DataFrame(T, columns<span class="op">=</span>[<span class="st">"AT"</span>]), return_std<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    ax.scatter(sub[<span class="st">"AT"</span>], sub[<span class="st">"PE"</span>], s<span class="op">=</span><span class="dv">8</span>, c<span class="op">=</span><span class="st">"C3"</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(T, m)<span class="op">;</span> ax.fill_between(T.ravel(), m <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> s, m <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> s, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(title<span class="op">=</span><span class="ss">f"n = </span><span class="sc">{</span>n_train<span class="sc">}</span><span class="ss">"</span>, xlabel<span class="op">=</span><span class="st">"AT (°C)"</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"PE (MW)"</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="792fa64a" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, n_train <span class="kw">in</span> <span class="bu">zip</span>(axes, [<span class="dv">15</span>, <span class="dv">50</span>, <span class="dv">200</span>]):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> pp.sample(n_train, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> GaussianProcessRegressor(kernel<span class="op">=</span>kernel, normalize_y<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(sub[[<span class="st">"AT"</span>]], sub[<span class="st">"PE"</span>])</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    m, s <span class="op">=</span> g.predict(pd.DataFrame(T, columns<span class="op">=</span>[<span class="st">"AT"</span>]), return_std<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    ax.scatter(sub[<span class="st">"AT"</span>], sub[<span class="st">"PE"</span>], s<span class="op">=</span><span class="dv">8</span>, c<span class="op">=</span><span class="st">"C3"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(T, m)<span class="op">;</span> ax.fill_between(T.ravel(), m <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> s, m <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> s, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(title<span class="op">=</span><span class="ss">f"n = </span><span class="sc">{</span>n_train<span class="sc">}</span><span class="ss">"</span>, xlabel<span class="op">=</span><span class="st">"AT (°C)"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"PE (MW)"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06-model-selection_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>With more data the band becomes narrower, but it does not shrink to zero: because the kernel contains a <code>WhiteKernel</code>, the predicted standard deviation includes the measurement noise, so the band approaches the scatter of individual observations (similar to a prediction interval). The uncertainty about the <em>trend</em> itself, however, decreases. Outside the data range the band still widens; with more points the trend is better determined, so the widening is less dramatic. Where there are no data at all, data elsewhere can only reduce the uncertainty as far as the kernel assumes smoothness.</p>
 </div>
@@ -859,15 +1123,31 @@ Solution to Exercise 5
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="7facd1e7" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>lasso <span class="op">=</span> make_pipeline(PolynomialFeatures(<span class="dv">3</span>), StandardScaler(),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                      LassoCV(cv<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">0</span>, max_iter<span class="op">=</span><span class="dv">50000</span>)).fit(X, y)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> lasso[<span class="op">-</span><span class="dv">1</span>].coef_</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> lasso[<span class="dv">0</span>].get_feature_names_out(X.columns)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>(coefs <span class="op">!=</span> <span class="dv">0</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span><span class="bu">len</span>(coefs)<span class="sc">}</span><span class="ss"> features survive"</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>pd.Series(coefs, index<span class="op">=</span>names)[coefs <span class="op">!=</span> <span class="dv">0</span>].sort_values(key<span class="op">=</span><span class="bu">abs</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="55393631" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>lasso <span class="op">=</span> make_pipeline(PolynomialFeatures(<span class="dv">3</span>), StandardScaler(),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                      LassoCV(cv<span class="op">=</span><span class="dv">5</span>, random_state<span class="op">=</span><span class="dv">0</span>, max_iter<span class="op">=</span><span class="dv">50000</span>)).fit(X, y)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> lasso[<span class="op">-</span><span class="dv">1</span>].coef_</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> lasso[<span class="dv">0</span>].get_feature_names_out(X.columns)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>(coefs <span class="op">!=</span> <span class="dv">0</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> of </span><span class="sc">{</span><span class="bu">len</span>(coefs)<span class="sc">}</span><span class="ss"> features survive"</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>pd.Series(coefs, index<span class="op">=</span>names)[coefs <span class="op">!=</span> <span class="dv">0</span>].sort_values(key<span class="op">=</span><span class="bu">abs</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>).<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>22 of 56 features survive</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>frequency chord         -5.804
+frequency thickness     -4.006
+frequency^2 chord        1.969
+frequency angle chord   -1.947
+angle                   -1.946
+angle chord velocity     1.935
+frequency chord^2        1.800
+chord                   -1.715
+frequency thickness^2    1.547
+frequency^2             -1.390
+dtype: float64</code></pre>
+</div>
 </div>
 <p>Lasso keeps only part of the polynomial terms. The surviving terms show which inputs and interactions matter most; frequency usually dominates, since the noise spectrum depends strongly on it. Note that with correlated features Lasso picks one of a group somewhat arbitrarily – the selection is not a proof of physical relevance.</p>
 </div>

@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -78,11 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-ef31e3f4d9d6eef55c54bdf6b9cd68ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-f92e9cd00cfa24dbc31d4226c6e5e52e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,10 +141,24 @@ window.Quarto = {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science in Engineering</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,33 +167,18 @@ window.Quarto = {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04-testing.html">Part B – Statistics for Engineers</a></li><li class="breadcrumb-item"><a href="../notebooks/04-testing.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Testing</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Data Science in Engineering</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -348,9 +350,10 @@ window.Quarto = {
   <li><a href="#live-coding-nox-emissions-20112015" id="toc-live-coding-nox-emissions-20112015" class="nav-link" data-scroll-target="#live-coding-nox-emissions-20112015"><span class="header-section-number">4.6</span> Live coding: NOx emissions 2011–2015</a></li>
   <li><a href="#live-coding-product-variant-and-machine-failures" id="toc-live-coding-product-variant-and-machine-failures" class="nav-link" data-scroll-target="#live-coding-product-variant-and-machine-failures"><span class="header-section-number">4.7</span> Live coding: product variant and machine failures</a></li>
   <li><a href="#how-many-measurements-do-we-need" id="toc-how-many-measurements-do-we-need" class="nav-link" data-scroll-target="#how-many-measurements-do-we-need"><span class="header-section-number">4.8</span> How many measurements do we need?</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">4.9</span> Exercises</a>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">4.9</span> Back to the decision</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">4.10</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">4.9.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">4.10.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -379,9 +382,11 @@ window.Quarto = {
 
 <p>A process engineer changes the supplier of a raw material, and the mean scrap rate in the following week is slightly lower. Is the new material better – or was it a good week by chance? Questions like this are everyday engineering questions, and statistical hypothesis tests are the standard tool to answer them. They provide a disciplined way to decide whether an observed difference is larger than what random variation alone would plausibly produce.</p>
 <p>Tests are also among the most misunderstood tools of statistics. A small p-value does not mean that an effect is large or important, and a large p-value does not prove that there is no effect. With the big datasets of modern production, almost every difference becomes “significant”. This chapter therefore puts as much weight on <strong>effect sizes</strong> and <strong>practical relevance</strong> as on p-values.</p>
-<blockquote class="blockquote">
-<p><strong>Engineering question:</strong> Have the NOx emissions of a gas turbine changed over the years – and does the product variant affect the failure rate of a machine?</p>
-</blockquote>
+<div class="scenario">
+<p><strong>Scenario: the consultant’s bonus</strong></p>
+<p>A gas turbine power plant hired a consultant in 2011 to reduce its NOx emissions through better operating practices. The contract promises a bonus if the emissions in 2015 are “demonstrably and relevantly lower” than in 2011; the contract defines <em>relevant</em> as a reduction of at least 5 % of the 2011 mean. The consultant presents a test with a tiny p-value and asks for payment. You are asked to review the claim for the plant management.</p>
+<p><strong>Your decision:</strong> Confirm the claim and approve the bonus – or not?</p>
+</div>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>formulate engineering questions as statistical hypotheses,</li>
@@ -545,7 +550,7 @@ Tests and confidence intervals are two sides of one coin
 </table>
 <p>The <strong>one-way ANOVA</strong> (analysis of variance) compares the variation <em>between</em> group means with the variation <em>within</em> the groups:</p>
 <p><span class="math display">\[F = \frac{\text{variance between groups}}{\text{variance within groups}} = \frac{\sum_j n_j(\bar x_j - \bar x)^2/(k-1)}{\sum_j \sum_i (x_{ij} - \bar x_j)^2/(N-k)}.\]</span></p>
-<p>A large <span class="math inline">\(F\)</span> indicates that at least one group mean differs. ANOVA does not say <em>which</em> one – this requires pairwise comparisons, which lead to the multiple-testing problem below.</p>
+<p>Here <span class="math inline">\(x_{ij}\)</span> is observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(j\)</span>, <span class="math inline">\(\bar x_j\)</span> the mean of group <span class="math inline">\(j\)</span> with <span class="math inline">\(n_j\)</span> observations, <span class="math inline">\(\bar x\)</span> the overall mean, <span class="math inline">\(k\)</span> the number of groups and <span class="math inline">\(N\)</span> the total number of observations. A large <span class="math inline">\(F\)</span> indicates that at least one group mean differs. ANOVA does not say <em>which</em> one – this requires pairwise comparisons, which lead to the multiple-testing problem below.</p>
 <p>The <strong>chi-squared test</strong> compares the observed counts <span class="math inline">\(O\)</span> in a contingency table with the counts <span class="math inline">\(E\)</span> expected if the variables were independent: <span class="math inline">\(\chi^2 = \sum (O - E)^2/E\)</span>.</p>
 </section>
 <section id="effect-size-and-practical-relevance" class="level2" data-number="4.4">
@@ -594,7 +599,7 @@ Correcting for multiple tests
 <p>The simplest correction is <strong>Bonferroni</strong>: with <span class="math inline">\(m\)</span> tests, use <span class="math inline">\(\alpha/m\)</span> for each. It is conservative. The <strong>Holm</strong> method is uniformly better and equally simple. Both are available in <code>statsmodels.stats.multitest.multipletests</code>. Most importantly: decide <em>before</em> looking at the data which comparisons you will test.</p>
 </div>
 </div>
-<div id="9f574f67" class="cell">
+<div id="ac90122f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>]:</span>
@@ -609,7 +614,7 @@ Correcting for multiple tests
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="07fe3358" class="cell">
+<div id="dc1b92d9" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -629,7 +634,7 @@ Correcting for multiple tests
 <section id="live-coding-nox-emissions-20112015" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="live-coding-nox-emissions-20112015"><span class="header-section-number">4.6</span> Live coding: NOx emissions 2011–2015</h2>
 <p>The dataset contains 36,733 hourly sensor values of a gas turbine in north-western Turkey, recorded over five years, with one CSV file per year. Besides ambient conditions and turbine process variables, it contains the emissions of carbon monoxide (<code>CO</code>) and nitrogen oxides (<code>NOX</code>), both in mg/m³. Emission limits make NOx a relevant quantity for plant operators and authorities.</p>
-<div id="a1208381" class="cell">
+<div id="a05c260d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://archive.ics.uci.edu/static/public/551/gas+turbine+co+and+nox+emission+data+set.zip"</span></span>
@@ -641,17 +646,114 @@ Correcting for multiple tests
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>gt <span class="op">=</span> pd.concat(frames, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>gt.columns <span class="op">=</span> gt.columns.<span class="bu">str</span>.upper()</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>gt.groupby(<span class="st">"YEAR"</span>)[<span class="st">"NOX"</span>].describe().<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">YEAR</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2011</td>
+<td>7411.0</td>
+<td>67.6</td>
+<td>10.7</td>
+<td>27.8</td>
+<td>60.4</td>
+<td>65.5</td>
+<td>74.3</td>
+<td>119.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2012</td>
+<td>7628.0</td>
+<td>68.8</td>
+<td>10.2</td>
+<td>41.8</td>
+<td>62.5</td>
+<td>67.2</td>
+<td>73.4</td>
+<td>119.9</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2013</td>
+<td>7152.0</td>
+<td>70.0</td>
+<td>12.0</td>
+<td>43.2</td>
+<td>62.3</td>
+<td>68.7</td>
+<td>76.0</td>
+<td>119.9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2014</td>
+<td>7158.0</td>
+<td>60.1</td>
+<td>10.0</td>
+<td>27.2</td>
+<td>53.9</td>
+<td>59.3</td>
+<td>64.0</td>
+<td>118.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2015</td>
+<td>7384.0</td>
+<td>59.9</td>
+<td>11.1</td>
+<td>25.9</td>
+<td>52.4</td>
+<td>56.8</td>
+<td>65.1</td>
+<td>119.7</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div id="f8d98635" class="cell">
+</div>
+</div>
+<div id="e45b15ec" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>gt, x<span class="op">=</span><span class="st">"YEAR"</span>, y<span class="op">=</span><span class="st">"NOX"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"NOx (mg/m³)"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-testing_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>The box plots show the distribution of NOx per year. Before testing, look at the size of the differences between the medians compared with the spread within each year – this is what the tests will formalise.</p>
-<div id="7d30f708" class="cell">
+<div id="e032c4d1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> [g[<span class="st">"NOX"</span>].values <span class="cf">for</span> _, g <span class="kw">in</span> gt.groupby(<span class="st">"YEAR"</span>)]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ANOVA:         "</span>, stats.f_oneway(<span class="op">*</span>groups))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Kruskal-Wallis:"</span>, stats.kruskal(<span class="op">*</span>groups))</span>
@@ -662,6 +764,12 @@ Correcting for multiple tests
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>cohens_d <span class="op">=</span> (a.mean() <span class="op">-</span> b.mean()) <span class="op">/</span> np.sqrt((a.var() <span class="op">+</span> b.var()) <span class="op">/</span> <span class="dv">2</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Welch t-test 2011 vs 2015: p = </span><span class="sc">{</span>res<span class="sc">.</span>pvalue<span class="sc">:.2e}</span><span class="ss">"</span>)</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"difference = </span><span class="sc">{</span>a<span class="sc">.</span>mean() <span class="op">-</span> b<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> mg/m³, 95 % CI [</span><span class="sc">{</span>ci<span class="sc">.</span>low<span class="sc">:.1f}</span><span class="ss">, </span><span class="sc">{</span>ci<span class="sc">.</span>high<span class="sc">:.1f}</span><span class="ss">], Cohen's d = </span><span class="sc">{</span>cohens_d<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ANOVA:          F_onewayResult(statistic=np.float64(1495.9585853305857), pvalue=np.float64(0.0))
+Kruskal-Wallis: KruskalResult(statistic=np.float64(6795.540640131331), pvalue=np.float64(0.0))
+Welch t-test 2011 vs 2015: p = 0.00e+00
+difference = 7.7 mg/m³, 95 % CI [7.3, 8.0], Cohen's d = 0.70</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> With several thousand hourly values per year, the p-values are astronomically small – any systematic difference between years is detected. The informative numbers are the difference in mg/m³ with its confidence interval and Cohen’s d.&nbsp;Whether the change matters depends on the distance to the emission limit and on the cause.</p>
 <p>And here an engineering caution is needed: the hourly values are <strong>not independent</strong> – consecutive hours are strongly correlated, so the effective sample size is much smaller than the number of rows, and the p-values are too optimistic. Moreover, differences between years can be caused by different ambient conditions (a hot year), different load profiles or maintenance work. A test can establish <em>that</em> the years differ, not <em>why</em>. To attribute the change to a cause we would need a model that accounts for these influences (Chapter 5).</p>
@@ -669,14 +777,29 @@ Correcting for multiple tests
 <section id="live-coding-product-variant-and-machine-failures" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="live-coding-product-variant-and-machine-failures"><span class="header-section-number">4.7</span> Live coding: product variant and machine failures</h2>
 <p>The AI4I dataset is a synthetic dataset modelled on a real milling process. Each of the 10,000 records belongs to a product of quality variant L (low, 50 % of products), M (medium, 30 %) or H (high, 20 %). Is the failure rate independent of the variant? Both variables are categorical, so we use the chi-squared test.</p>
-<div id="fdfd4e52" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ai4i <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">601</span>).data.original</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pd.crosstab(ai4i[<span class="st">"Type"</span>], ai4i[<span class="st">"Machine failure"</span>])</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>chi2, p, dof, expected <span class="op">=</span> stats.chi2_contingency(table)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table, <span class="ss">f"</span><span class="ch">\n</span><span class="ss">chi2 = </span><span class="sc">{</span>chi2<span class="sc">:.2f}</span><span class="ss">, dof = </span><span class="sc">{</span>dof<span class="sc">}</span><span class="ss">, p = </span><span class="sc">{</span>p<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>(table[<span class="dv">1</span>] <span class="op">/</span> table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)).rename(<span class="st">"failure rate"</span>).<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="02461643" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ai4i <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">601</span>).data.original</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pd.crosstab(ai4i[<span class="st">"Type"</span>], ai4i[<span class="st">"Machine failure"</span>])</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>chi2, p, dof, expected <span class="op">=</span> stats.chi2_contingency(table)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table, <span class="ss">f"</span><span class="ch">\n</span><span class="ss">chi2 = </span><span class="sc">{</span>chi2<span class="sc">:.2f}</span><span class="ss">, dof = </span><span class="sc">{</span>dof<span class="sc">}</span><span class="ss">, p = </span><span class="sc">{</span>p<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>(table[<span class="dv">1</span>] <span class="op">/</span> table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)).rename(<span class="st">"failure rate"</span>).<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Machine failure     0    1
+Type                      
+H                 982   21
+L                5765  235
+M                2914   83 
+chi2 = 13.75, dof = 2, p = 0.001</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>Type
+H    0.0209
+L    0.0392
+M    0.0277
+Name: failure rate, dtype: float64</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> Compare the failure rates per variant and the p-value. The chi-squared test needs sufficiently large expected counts (rule of thumb: at least 5 in every cell) – check <code>expected</code>. Even if the test is significant, ask whether the difference in failure rates is relevant, and whether the variants differ in other respects (e.g.&nbsp;tool wear or load) that could explain it.</p>
 </section>
@@ -684,15 +807,44 @@ Correcting for multiple tests
 <h2 data-number="4.8" class="anchored" data-anchor-id="how-many-measurements-do-we-need"><span class="header-section-number">4.8</span> How many measurements do we need?</h2>
 <p>Planning comes before testing. If a difference of <span class="math inline">\(\delta\)</span> is relevant, how many samples are needed to detect it with a power of, say, 80 %? For the two-sample t-test, the required number per group is approximately</p>
 <p><span class="math display">\[n \approx \frac{2\,(z_{1-\alpha/2} + z_{1-\beta})^2}{d^2}, \qquad d = \delta/\sigma,\]</span></p>
-<p>i.e.&nbsp;about <span class="math inline">\(16/d^2\)</span> for <span class="math inline">\(\alpha = 0.05\)</span> and power 0.8. Halving the detectable effect requires four times as many samples.</p>
-<div id="801f289d" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.power <span class="im">import</span> TTestIndPower</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>power_analysis <span class="op">=</span> TTestIndPower()</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> [<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>]:</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> power_analysis.solve_power(effect_size<span class="op">=</span>d, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">: n = </span><span class="sc">{</span>np<span class="sc">.</span>ceil(n)<span class="sc">:.0f}</span><span class="ss"> per group"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <span class="math inline">\(\delta\)</span> is the smallest relevant difference, <span class="math inline">\(\sigma\)</span> the standard deviation and <span class="math inline">\(z_q\)</span> the <span class="math inline">\(q\)</span>-quantile of the standard normal distribution. This gives about <span class="math inline">\(16/d^2\)</span> for <span class="math inline">\(\alpha = 0.05\)</span> and power 0.8. Halving the detectable effect requires four times as many samples.</p>
+<div id="08373200" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.power <span class="im">import</span> TTestIndPower</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>power_analysis <span class="op">=</span> TTestIndPower()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> [<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>]:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> power_analysis.solve_power(effect_size<span class="op">=</span>d, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"d = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">: n = </span><span class="sc">{</span>np<span class="sc">.</span>ceil(n)<span class="sc">:.0f}</span><span class="ss"> per group"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>d = 0.2: n = 394 per group
+d = 0.5: n = 64 per group
+d = 0.8: n = 26 per group</code></pre>
 </div>
+</div>
+</section>
+<section id="back-to-the-decision" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">4.9</span> Back to the decision</h2>
+<p>The contract requires two things: the reduction must be <em>demonstrable</em> (larger than random variation) and <em>relevant</em> (at least 5 % of the 2011 mean). A small p-value only covers the first part. We therefore look at the confidence interval of the difference: the bonus is justified only if the whole interval lies above the relevance threshold.</p>
+<div id="cb957019" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nox_2011 <span class="op">=</span> gt.loc[gt.YEAR <span class="op">==</span> <span class="dv">2011</span>, <span class="st">"NOX"</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nox_2015 <span class="op">=</span> gt.loc[gt.YEAR <span class="op">==</span> <span class="dv">2015</span>, <span class="st">"NOX"</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>res_bonus <span class="op">=</span> stats.ttest_ind(nox_2011, nox_2015, equal_var<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ci_red <span class="op">=</span> res_bonus.confidence_interval(<span class="fl">0.95</span>)              <span class="co"># CI of mean(2011) - mean(2015)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> <span class="fl">0.05</span> <span class="op">*</span> nox_2011.mean()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Reduction 2011 -&gt; 2015: </span><span class="sc">{</span>nox_2011<span class="sc">.</span>mean() <span class="op">-</span> nox_2015<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> mg/m³, "</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"95 % CI [</span><span class="sc">{</span>ci_red<span class="sc">.</span>low<span class="sc">:.1f}</span><span class="ss">, </span><span class="sc">{</span>ci_red<span class="sc">.</span>high<span class="sc">:.1f}</span><span class="ss">], relevance threshold </span><span class="sc">{</span>threshold<span class="sc">:.1f}</span><span class="ss"> mg/m³"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ci_red.low <span class="op">&gt;</span> threshold:</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Decision: claim confirmed – the reduction is demonstrable and relevant."</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> ci_red.low <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Decision: reduction demonstrable, but not demonstrably relevant – no bonus under the contract."</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Decision: no demonstrable reduction – claim rejected."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reduction 2011 -&gt; 2015: 7.7 mg/m³, 95 % CI [7.3, 8.0], relevance threshold 3.4 mg/m³
+Decision: claim confirmed – the reduction is demonstrable and relevant.</code></pre>
+</div>
+</div>
+<p>Two further points belong in the review. The hourly values are autocorrelated, so the true uncertainty is larger than the interval suggests – a borderline case should be decided against the claim. And even a confirmed reduction does not prove that the consultant <em>caused</em> it: different weather, load profiles or maintenance could have the same effect. A fair contract would have specified how such influences are accounted for – a lesson for the next one.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -713,8 +865,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4.9</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="exercises"><span class="header-section-number">4.10</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Check the normality assumption for NOx per year with QQ plots. Does a violation matter for the ANOVA with these sample sizes?</li>
@@ -724,8 +876,8 @@ Key takeaways
 <li>A new coating is supposed to reduce the wear of a tool by 10 µm. From previous tests the standard deviation of the wear is 25 µm. How many tools must be tested per variant to detect the improvement with 80 % power (<span class="math inline">\(\alpha = 0.05\)</span>)?</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="4.9.1">
-<h3 data-number="4.9.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">4.9.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="4.10.1">
+<h3 data-number="4.10.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">4.10.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -738,13 +890,20 @@ Solution to Exercise 1
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="66f596ee" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">sorted</span>(gt[<span class="st">"YEAR"</span>].unique())</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(years), figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="fl">3.5</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, yr <span class="kw">in</span> <span class="bu">zip</span>(axes, years):</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    stats.probplot(gt.loc[gt.YEAR <span class="op">==</span> yr, <span class="st">"NOX"</span>], dist<span class="op">=</span><span class="st">"norm"</span>, plot<span class="op">=</span>ax)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="bu">str</span>(yr))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1ebeecbb" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">sorted</span>(gt[<span class="st">"YEAR"</span>].unique())</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(years), figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="fl">3.5</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, yr <span class="kw">in</span> <span class="bu">zip</span>(axes, years):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    stats.probplot(gt.loc[gt.YEAR <span class="op">==</span> yr, <span class="st">"NOX"</span>], dist<span class="op">=</span><span class="st">"norm"</span>, plot<span class="op">=</span>ax)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="bu">str</span>(yr))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04-testing_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Deviations from the straight line at the ends indicate heavier or lighter tails than the normal distribution, curvature indicates skewness. With thousands of observations per group, the central limit theorem makes the group <em>means</em> approximately normal, so the ANOVA is robust against moderate non-normality. More critical are the unequal variances between years and above all the dependence of consecutive hourly values. The Kruskal–Wallis test, which does not assume normality, serves as a cross-check.</p>
 </div>
@@ -762,14 +921,19 @@ Solution to Exercise 2
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="4f6270f9" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    small <span class="op">=</span> gt.groupby(<span class="st">"YEAR"</span>, group_keys<span class="op">=</span><span class="va">False</span>).sample(<span class="dv">30</span>, random_state<span class="op">=</span>seed)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    groups_s <span class="op">=</span> [g[<span class="st">"NOX"</span>].values <span class="cf">for</span> _, g <span class="kw">in</span> small.groupby(<span class="st">"YEAR"</span>)]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    a_s <span class="op">=</span> small.loc[small.YEAR <span class="op">==</span> <span class="dv">2011</span>, <span class="st">"NOX"</span>]<span class="op">;</span> b_s <span class="op">=</span> small.loc[small.YEAR <span class="op">==</span> <span class="dv">2015</span>, <span class="st">"NOX"</span>]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"seed </span><span class="sc">{</span>seed<span class="sc">}</span><span class="ss">: ANOVA p = </span><span class="sc">{</span>stats<span class="sc">.</span>f_oneway(<span class="op">*</span>groups_s)<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">, "</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"t-test p = </span><span class="sc">{</span>stats<span class="sc">.</span>ttest_ind(a_s, b_s, equal_var<span class="op">=</span><span class="va">False</span>)<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">, "</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"difference = </span><span class="sc">{</span>a_s<span class="sc">.</span>mean() <span class="op">-</span> b_s<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> mg/m³"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="75e55197" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> seed <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    small <span class="op">=</span> gt.groupby(<span class="st">"YEAR"</span>, group_keys<span class="op">=</span><span class="va">False</span>).sample(<span class="dv">30</span>, random_state<span class="op">=</span>seed)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    groups_s <span class="op">=</span> [g[<span class="st">"NOX"</span>].values <span class="cf">for</span> _, g <span class="kw">in</span> small.groupby(<span class="st">"YEAR"</span>)]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    a_s <span class="op">=</span> small.loc[small.YEAR <span class="op">==</span> <span class="dv">2011</span>, <span class="st">"NOX"</span>]<span class="op">;</span> b_s <span class="op">=</span> small.loc[small.YEAR <span class="op">==</span> <span class="dv">2015</span>, <span class="st">"NOX"</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"seed </span><span class="sc">{</span>seed<span class="sc">}</span><span class="ss">: ANOVA p = </span><span class="sc">{</span>stats<span class="sc">.</span>f_oneway(<span class="op">*</span>groups_s)<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">, "</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"t-test p = </span><span class="sc">{</span>stats<span class="sc">.</span>ttest_ind(a_s, b_s, equal_var<span class="op">=</span><span class="va">False</span>)<span class="sc">.</span>pvalue<span class="sc">:.3g}</span><span class="ss">, "</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"difference = </span><span class="sc">{</span>a_s<span class="sc">.</span>mean() <span class="op">-</span> b_s<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> mg/m³"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>seed 0: ANOVA p = 0.000462, t-test p = 0.203, difference = 4.5 mg/m³
+seed 1: ANOVA p = 5.7e-07, t-test p = 0.000116, difference = 8.8 mg/m³
+seed 2: ANOVA p = 7.32e-06, t-test p = 0.0237, difference = 7.0 mg/m³</code></pre>
+</div>
 </div>
 <p>The estimated differences stay of similar size, but the p-values are much larger and vary from sample to sample: with 30 values per year, the standard error is roughly <span class="math inline">\(\sqrt{7000/30} \approx 15\)</span> times larger. Small differences that were “highly significant” with all data may no longer be detectable. The effect did not change – only the power of the test.</p>
 </div>
@@ -787,19 +951,96 @@ Solution to Exercise 3
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="ff9396d6" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.multitest <span class="im">import</span> multipletests</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>pairs, pvals <span class="op">=</span> [], []</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y1, y2 <span class="kw">in</span> itertools.combinations(years, <span class="dv">2</span>):</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    pairs.append(<span class="ss">f"</span><span class="sc">{</span>y1<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>y2<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    pvals.append(stats.ttest_ind(gt.loc[gt.YEAR <span class="op">==</span> y1, <span class="st">"NOX"</span>], gt.loc[gt.YEAR <span class="op">==</span> y2, <span class="st">"NOX"</span>],</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                                 equal_var<span class="op">=</span><span class="va">False</span>).pvalue)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.DataFrame({<span class="st">"p"</span>: pvals,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Bonferroni"</span>: multipletests(pvals, method<span class="op">=</span><span class="st">"bonferroni"</span>)[<span class="dv">1</span>],</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Holm"</span>: multipletests(pvals, method<span class="op">=</span><span class="st">"holm"</span>)[<span class="dv">1</span>]}, index<span class="op">=</span>pairs)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>result.style.<span class="bu">format</span>(<span class="st">"</span><span class="sc">{:.2e}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f179e12e" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.multitest <span class="im">import</span> multipletests</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>pairs, pvals <span class="op">=</span> [], []</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y1, y2 <span class="kw">in</span> itertools.combinations(years, <span class="dv">2</span>):</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    pairs.append(<span class="ss">f"</span><span class="sc">{</span>y1<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>y2<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    pvals.append(stats.ttest_ind(gt.loc[gt.YEAR <span class="op">==</span> y1, <span class="st">"NOX"</span>], gt.loc[gt.YEAR <span class="op">==</span> y2, <span class="st">"NOX"</span>],</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                                 equal_var<span class="op">=</span><span class="va">False</span>).pvalue)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.DataFrame({<span class="st">"p"</span>: pvals,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Bonferroni"</span>: multipletests(pvals, method<span class="op">=</span><span class="st">"bonferroni"</span>)[<span class="dv">1</span>],</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Holm"</span>: multipletests(pvals, method<span class="op">=</span><span class="st">"holm"</span>)[<span class="dv">1</span>]}, index<span class="op">=</span>pairs)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>result.style.<span class="bu">format</span>(<span class="st">"</span><span class="sc">{:.2e}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<style type="text/css">
+</style>
+
+<table id="T_2ba60" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_2ba60_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">p</th>
+<th id="T_2ba60_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Bonferroni</th>
+<th id="T_2ba60_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Holm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_2ba60_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2011-2012</td>
+<td id="T_2ba60_row0_col0" class="data row0 col0">1.18e-12</td>
+<td id="T_2ba60_row0_col1" class="data row0 col1">1.18e-11</td>
+<td id="T_2ba60_row0_col2" class="data row0 col2">3.55e-12</td>
+</tr>
+<tr class="even">
+<td id="T_2ba60_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2011-2013</td>
+<td id="T_2ba60_row1_col0" class="data row1 col0">1.01e-37</td>
+<td id="T_2ba60_row1_col1" class="data row1 col1">1.01e-36</td>
+<td id="T_2ba60_row1_col2" class="data row1 col2">4.06e-37</td>
+</tr>
+<tr class="odd">
+<td id="T_2ba60_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2011-2014</td>
+<td id="T_2ba60_row2_col0" class="data row2 col0">0.00e+00</td>
+<td id="T_2ba60_row2_col1" class="data row2 col1">0.00e+00</td>
+<td id="T_2ba60_row2_col2" class="data row2 col2">0.00e+00</td>
+</tr>
+<tr class="even">
+<td id="T_2ba60_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2011-2015</td>
+<td id="T_2ba60_row3_col0" class="data row3 col0">0.00e+00</td>
+<td id="T_2ba60_row3_col1" class="data row3 col1">0.00e+00</td>
+<td id="T_2ba60_row3_col2" class="data row3 col2">0.00e+00</td>
+</tr>
+<tr class="odd">
+<td id="T_2ba60_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2012-2013</td>
+<td id="T_2ba60_row4_col0" class="data row4 col0">3.97e-11</td>
+<td id="T_2ba60_row4_col1" class="data row4 col1">3.97e-10</td>
+<td id="T_2ba60_row4_col2" class="data row4 col2">7.94e-11</td>
+</tr>
+<tr class="even">
+<td id="T_2ba60_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2012-2014</td>
+<td id="T_2ba60_row5_col0" class="data row5 col0">0.00e+00</td>
+<td id="T_2ba60_row5_col1" class="data row5 col1">0.00e+00</td>
+<td id="T_2ba60_row5_col2" class="data row5 col2">0.00e+00</td>
+</tr>
+<tr class="odd">
+<td id="T_2ba60_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2012-2015</td>
+<td id="T_2ba60_row6_col0" class="data row6 col0">0.00e+00</td>
+<td id="T_2ba60_row6_col1" class="data row6 col1">0.00e+00</td>
+<td id="T_2ba60_row6_col2" class="data row6 col2">0.00e+00</td>
+</tr>
+<tr class="even">
+<td id="T_2ba60_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2013-2014</td>
+<td id="T_2ba60_row7_col0" class="data row7 col0">0.00e+00</td>
+<td id="T_2ba60_row7_col1" class="data row7 col1">0.00e+00</td>
+<td id="T_2ba60_row7_col2" class="data row7 col2">0.00e+00</td>
+</tr>
+<tr class="odd">
+<td id="T_2ba60_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2013-2015</td>
+<td id="T_2ba60_row8_col0" class="data row8 col0">0.00e+00</td>
+<td id="T_2ba60_row8_col1" class="data row8 col1">0.00e+00</td>
+<td id="T_2ba60_row8_col2" class="data row8 col2">0.00e+00</td>
+</tr>
+<tr class="even">
+<td id="T_2ba60_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2014-2015</td>
+<td id="T_2ba60_row9_col0" class="data row9 col0">3.14e-01</td>
+<td id="T_2ba60_row9_col1" class="data row9 col1">1.00e+00</td>
+<td id="T_2ba60_row9_col2" class="data row9 col2">3.14e-01</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <p>With 5 years there are <span class="math inline">\(\binom{5}{2} = 10\)</span> comparisons. Bonferroni multiplies each p-value by 10 (capped at 1); Holm multiplies the smallest by 10, the next by 9 and so on, and is therefore less conservative. With these large samples most comparisons remain significant even after correction – the correction matters most when p-values are close to <span class="math inline">\(\alpha\)</span>.</p>
 </div>
@@ -833,10 +1074,13 @@ Solution to Exercise 5
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="cf693cfd" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">25</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> TTestIndPower().solve_power(effect_size<span class="op">=</span>d, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"d = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">, n = </span><span class="sc">{</span>np<span class="sc">.</span>ceil(n)<span class="sc">:.0f}</span><span class="ss"> tools per variant (rule of thumb 16/d² = </span><span class="sc">{</span><span class="dv">16</span> <span class="op">/</span> d<span class="op">**</span><span class="dv">2</span><span class="sc">:.0f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="902d279c" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">25</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> TTestIndPower().solve_power(effect_size<span class="op">=</span>d, alpha<span class="op">=</span><span class="fl">0.05</span>, power<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"d = </span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">, n = </span><span class="sc">{</span>np<span class="sc">.</span>ceil(n)<span class="sc">:.0f}</span><span class="ss"> tools per variant (rule of thumb 16/d² = </span><span class="sc">{</span><span class="dv">16</span> <span class="op">/</span> d<span class="op">**</span><span class="dv">2</span><span class="sc">:.0f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>d = 0.4, n = 100 tools per variant (rule of thumb 16/d² = 100)</code></pre>
+</div>
 </div>
 <p>The effect size is <span class="math inline">\(d = 10/25 = 0.4\)</span>, which requires about 100 tools per variant. If that is too expensive, options are: reduce the noise (more homogeneous test conditions, paired design with both coatings on the same machine), accept a lower power, or test for a larger minimum effect.</p>
 </div>

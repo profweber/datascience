@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -78,11 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-ef31e3f4d9d6eef55c54bdf6b9cd68ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-f92e9cd00cfa24dbc31d4226c6e5e52e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,10 +141,24 @@ window.Quarto = {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science in Engineering</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,33 +167,18 @@ window.Quarto = {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/08-ensembles.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Data Science in Engineering</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -348,10 +350,11 @@ window.Quarto = {
   <li><a href="#multi-class-problems" id="toc-multi-class-problems" class="nav-link" data-scroll-target="#multi-class-problems"><span class="header-section-number">8.2</span> Multi-class problems</a></li>
   <li><a href="#interpreting-models" id="toc-interpreting-models" class="nav-link" data-scroll-target="#interpreting-models"><span class="header-section-number">8.3</span> Interpreting models</a></li>
   <li><a href="#live-coding-steel-plate-faults" id="toc-live-coding-steel-plate-faults" class="nav-link" data-scroll-target="#live-coding-steel-plate-faults"><span class="header-section-number">8.4</span> Live coding: steel plate faults</a></li>
-  <li><a href="#extension-shap-values" id="toc-extension-shap-values" class="nav-link" data-scroll-target="#extension-shap-values"><span class="header-section-number">8.5</span> Extension: SHAP values</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.6</span> Exercises</a>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">8.5</span> Back to the decision</a></li>
+  <li><a href="#extension-shap-values" id="toc-extension-shap-values" class="nav-link" data-scroll-target="#extension-shap-values"><span class="header-section-number">8.6</span> Extension: SHAP values</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.7</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">8.6.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">8.7.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -380,9 +383,11 @@ window.Quarto = {
 
 <p>A single decision tree is easy to understand but a poor predictor: it overfits, and a small change in the data can produce a completely different tree. The remedy is surprisingly simple – combine many trees. <strong>Ensemble methods</strong> such as random forests and gradient boosting are, for tabular data, among the most accurate general-purpose methods available. In industrial practice they are often the first choice for quality prediction, fault classification and virtual sensors.</p>
 <p>Their accuracy comes at a price: an ensemble of hundreds of trees is no longer transparent. Yet engineers need to know <em>why</em> a model predicts a defect – to trust it, to check it against physics and to derive process improvements. The second half of this chapter therefore introduces methods to interpret such models.</p>
-<blockquote class="blockquote">
-<p><strong>Engineering question:</strong> Which surface defect does a steel plate have, and which measurements drive the decision?</p>
-</blockquote>
+<div class="scenario">
+<p><strong>Scenario: which defects can be classified automatically?</strong></p>
+<p>The automatic inspection line of a steel mill detects surface defects reliably, but a human inspector still has to assign every defect to a defect class – the class decides whether a plate is reworked, downgraded or scrapped. The inspectors are overloaded. The quality manager proposes to let a model classify those defect classes it recognises reliably and to send only the rest to the inspectors. “Reliable” means: precision and recall of at least 90 % for that class.</p>
+<p><strong>Your decision:</strong> Which defect classes may be classified automatically, and how much inspector workload does that save?</p>
+</div>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>explain bagging and boosting and why they improve on a single tree,</li>
@@ -490,7 +495,7 @@ Pitfall: importance is not causality – and correlated features share importanc
 </div>
 </div>
 <p>A <strong>partial dependence plot</strong> (PDP) shows how the predicted probability changes on average when one feature is varied over its range while the others keep their observed values. It answers the engineering question “in which direction and how strongly does this measurement influence the prediction?” and reveals thresholds and nonlinearities.</p>
-<div id="8bbf63e6" class="cell">
+<div id="45c7b305" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>, <span class="st">"shap"</span>]:</span>
@@ -508,79 +513,175 @@ Pitfall: importance is not causality – and correlated features share importanc
 <section id="live-coding-steel-plate-faults" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="live-coding-steel-plate-faults"><span class="header-section-number">8.4</span> Live coding: steel plate faults</h2>
 <p>The dataset comes from the automatic inspection of steel plates. For 1,941 detected surface defects, 27 features were extracted from the inspection images and the production data: position and size of the defect (<code>X_Minimum</code>, <code>Pixels_Areas</code>, <code>Length_of_Conveyer</code>, …), luminosity statistics, shape indices, the steel type and the plate thickness. Each defect belongs to one of seven classes: <em>Pastry</em>, <em>Z_Scratch</em>, <em>K_Scatch</em>, <em>Stains</em>, <em>Dirtiness</em>, <em>Bumps</em> and <em>Other_Faults</em>.</p>
-<div id="1c862f0e" class="cell">
+<div id="f73cea35" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>steel <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">198</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> steel.data.features</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> steel.data.targets.idxmax(axis<span class="op">=</span><span class="dv">1</span>)      <span class="co"># 7 one-hot columns -&gt; one label</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>y.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>Other_Faults    673
+Bumps           402
+K_Scratch       391
+Z_Scratch       190
+Pastry          158
+Stains           72
+Dirtiness        55
+Name: count, dtype: int64</code></pre>
+</div>
 </div>
 <p>The classes are imbalanced: <em>Other_Faults</em> is by far the largest class, while <em>Dirtiness</em> and <em>Stains</em> are rare. “Other faults” is a heterogeneous rest category – we must expect it to be hard to classify.</p>
-<div id="9a500706" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score, StratifiedKFold</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier, HistGradientBoostingClassifier</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(<span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> {</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"logistic regression (baseline)"</span>: make_pipeline(StandardScaler(), LogisticRegression(max_iter<span class="op">=</span><span class="dv">3000</span>)),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"random forest"</span>: RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>),</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gradient boosting"</span>: HistGradientBoostingClassifier(random_state<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> candidates.items():</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> cross_val_score(m, X_train, y_train, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:32s}</span><span class="ss"> balanced accuracy = </span><span class="sc">{</span>s<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss"> ± </span><span class="sc">{</span>s<span class="sc">.</span>std()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0d24090a" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score, StratifiedKFold</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier, HistGradientBoostingClassifier</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.25</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> StratifiedKFold(<span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"logistic regression (baseline)"</span>: make_pipeline(StandardScaler(), LogisticRegression(max_iter<span class="op">=</span><span class="dv">3000</span>)),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"random forest"</span>: RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gradient boosting"</span>: HistGradientBoostingClassifier(random_state<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, m <span class="kw">in</span> candidates.items():</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> cross_val_score(m, X_train, y_train, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:32s}</span><span class="ss"> balanced accuracy = </span><span class="sc">{</span>s<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss"> ± </span><span class="sc">{</span>s<span class="sc">.</span>std()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>logistic regression (baseline)   balanced accuracy = 0.717 ± 0.019
+random forest                    balanced accuracy = 0.750 ± 0.019
+gradient boosting                balanced accuracy = 0.785 ± 0.022</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> Both ensembles should clearly outperform the logistic regression baseline. The standard deviation across folds indicates how much of the difference between the ensembles is real – differences smaller than this spread should not be over-interpreted. With seven classes, guessing would reach a balanced accuracy of about 1/7 ≈ 0.14.</p>
-<div id="f437f070" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, ConfusionMatrixDisplay</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>rf <span class="op">=</span> candidates[<span class="st">"random forest"</span>].fit(X_train, y_train)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, rf.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_estimator(rf, X_test, y_test, xticks_rotation<span class="op">=</span><span class="dv">45</span>, colorbar<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                      normalize<span class="op">=</span><span class="st">"true"</span>, values_format<span class="op">=</span><span class="st">".2f"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="81f92554" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, ConfusionMatrixDisplay</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>rf <span class="op">=</span> candidates[<span class="st">"random forest"</span>].fit(X_train, y_train)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, rf.predict(X_test), digits<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_estimator(rf, X_test, y_test, xticks_rotation<span class="op">=</span><span class="dv">45</span>, colorbar<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                      normalize<span class="op">=</span><span class="st">"true"</span>, values_format<span class="op">=</span><span class="st">".2f"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              precision    recall  f1-score   support
+
+       Bumps      0.771     0.733     0.751       101
+   Dirtiness      0.833     0.714     0.769        14
+   K_Scratch      0.967     0.908     0.937        98
+Other_Faults      0.692     0.804     0.744       168
+      Pastry      0.656     0.538     0.592        39
+      Stains      1.000     0.944     0.971        18
+   Z_Scratch      0.929     0.812     0.867        48
+
+    accuracy                          0.792       486
+   macro avg      0.836     0.779     0.804       486
+weighted avg      0.800     0.792     0.793       486
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-ensembles_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>The row-normalised confusion matrix shows for each true class where its defects end up. Typically, geometrically distinctive defects (scratches, pastry) are recognised well, while <em>Other_Faults</em> and <em>Bumps</em> are confused with each other.</p>
-<div id="ffaf64ea" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> permutation_importance</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> permutation_importance(rf, X_test, y_test, n_repeats<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                            scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>imp <span class="op">=</span> pd.Series(pi.importances_mean, index<span class="op">=</span>X.columns).sort_values()</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>imp.tail(<span class="dv">10</span>).plot.barh(xlabel<span class="op">=</span><span class="st">"Drop in balanced accuracy when shuffled"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="90a31036" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> permutation_importance</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> permutation_importance(rf, X_test, y_test, n_repeats<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                            scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>imp <span class="op">=</span> pd.Series(pi.importances_mean, index<span class="op">=</span>X.columns).sort_values()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>imp.tail(<span class="dv">10</span>).plot.barh(xlabel<span class="op">=</span><span class="st">"Drop in balanced accuracy when shuffled"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-ensembles_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<div id="13459e6d" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> PartialDependenceDisplay</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>top <span class="op">=</span> imp.index[<span class="op">-</span><span class="dv">1</span>]                       <span class="co"># most important feature</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>PartialDependenceDisplay.from_estimator(rf, X_test, [top], target<span class="op">=</span>rf.classes_[<span class="dv">0</span>], kind<span class="op">=</span><span class="st">"average"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Partial dependence for class '</span><span class="sc">{</span>rf<span class="sc">.</span>classes_[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Discussion.</strong> The importance ranking tells us which measurements the model relies on – for steel defects typically luminosity and geometry features as well as the steel type and plate thickness. The partial dependence plot shows <em>how</em> the predicted probability of one class changes along the most important feature. Look for thresholds: a steep step suggests a physical limit or a property of the inspection system worth discussing with the process engineers.</p>
+</div>
+<div id="a808129c" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> PartialDependenceDisplay</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The most important feature with a continuous range of values (binary features such as</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the steel type have no meaningful curve). Partial dependence needs floating-point data.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>top <span class="op">=</span> <span class="bu">next</span>(c <span class="cf">for</span> c <span class="kw">in</span> imp.index[::<span class="op">-</span><span class="dv">1</span>] <span class="cf">if</span> X_test[c].nunique() <span class="op">&gt;</span> <span class="dv">10</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Feature:"</span>, top)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>PartialDependenceDisplay.from_estimator(rf, X_test.astype(<span class="bu">float</span>), [top], target<span class="op">=</span>rf.classes_[<span class="dv">0</span>], kind<span class="op">=</span><span class="st">"average"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Partial dependence for class '</span><span class="sc">{</span>rf<span class="sc">.</span>classes_[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Feature: Length_of_Conveyer</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-ensembles_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Discussion.</strong> The importance ranking tells us which measurements the model relies on – for steel defects typically luminosity and geometry features as well as the steel type and plate thickness. The partial dependence plot shows <em>how</em> the predicted probability of one class changes along the most important continuous feature. Look for thresholds: a steep step suggests a physical limit or a property of the inspection system worth discussing with the process engineers.</p>
 </section>
-<section id="extension-shap-values" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="extension-shap-values"><span class="header-section-number">8.5</span> Extension: SHAP values</h2>
+<section id="back-to-the-decision" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">8.5</span> Back to the decision</h2>
+<p>For each class we need both high precision (when the model says “scratch”, it really is one) and high recall (it finds the scratches). We read both from the test set and apply the 90 % criterion.</p>
+<div id="8d81e854" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_recall_fscore_support</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>prec, rec, _, support <span class="op">=</span> precision_recall_fscore_support(y_test, rf.predict(X_test), labels<span class="op">=</span>rf.classes_, zero_division<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>per_class <span class="op">=</span> pd.DataFrame({<span class="st">"precision"</span>: prec, <span class="st">"recall"</span>: rec, <span class="st">"test cases"</span>: support}, index<span class="op">=</span>rf.classes_)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>per_class[<span class="st">"automate"</span>] <span class="op">=</span> (per_class[<span class="st">"precision"</span>] <span class="op">&gt;=</span> <span class="fl">0.9</span>) <span class="op">&amp;</span> (per_class[<span class="st">"recall"</span>] <span class="op">&gt;=</span> <span class="fl">0.9</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(per_class.<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>share <span class="op">=</span> per_class.loc[per_class[<span class="st">"automate"</span>], <span class="st">"test cases"</span>].<span class="bu">sum</span>() <span class="op">/</span> per_class[<span class="st">"test cases"</span>].<span class="bu">sum</span>()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>auto <span class="op">=</span> <span class="bu">list</span>(per_class.index[per_class[<span class="st">"automate"</span>]])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Decision: automate </span><span class="sc">{</span>auto <span class="cf">if</span> auto <span class="cf">else</span> <span class="st">'no class yet'</span><span class="sc">}</span><span class="ss"> – about </span><span class="sc">{</span>share<span class="sc">:.0%}</span><span class="ss"> of the defects would no longer need an inspector."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              precision  recall  test cases  automate
+Bumps              0.77    0.73         101     False
+Dirtiness          0.83    0.71          14     False
+K_Scratch          0.97    0.91          98      True
+Other_Faults       0.69    0.80         168     False
+Pastry             0.66    0.54          39     False
+Stains             1.00    0.94          18      True
+Z_Scratch          0.93    0.81          48     False
+Decision: automate ['K_Scratch', 'Stains'] – about 24% of the defects would no longer need an inspector.</code></pre>
+</div>
+</div>
+<p>With only a few dozen test cases per class, precision and recall are themselves uncertain – a class that just passes the 90 % mark should be monitored closely after go-live, for example by having inspectors check a random sample of automatically classified plates. Classes that fail the criterion are good candidates for better labels or additional features.</p>
+</section>
+<section id="extension-shap-values" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="extension-shap-values"><span class="header-section-number">8.6</span> Extension: SHAP values</h2>
 <p><em>Extension – optional material, not required for the exam.</em></p>
 <p>SHAP (<em>SHapley Additive exPlanations</em>) distributes a single prediction among the features, based on the Shapley value from cooperative game theory: each feature receives its average marginal contribution over all possible orders in which features could be added. The contributions add up exactly to the difference between the prediction and the average prediction. SHAP answers the question: <em>why</em> did the model classify <strong>this</strong> plate as K_Scatch?</p>
-<div id="944b0152" class="cell">
+<div id="2b6c5259" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.TreeExplainer(rf)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>sv <span class="op">=</span> explainer(X_test.iloc[:<span class="dv">200</span>])</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># SHAP values for one class, e.g. "K_Scatch"</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>cls <span class="op">=</span> <span class="bu">list</span>(rf.classes_).index(<span class="st">"K_Scatch"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>shap.plots.beeswarm(sv[:, :, cls], max_display<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.TreeExplainer(rf)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sv <span class="op">=</span> explainer(X_test.iloc[:<span class="dv">200</span>])</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># SHAP values for one class, e.g. "K_Scatch"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>cls <span class="op">=</span> <span class="bu">list</span>(rf.classes_).index(<span class="st">"K_Scatch"</span>) <span class="cf">if</span> <span class="st">"K_Scatch"</span> <span class="kw">in</span> rf.classes_ <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SHAP values for class:"</span>, rf.classes_[cls])</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>shap.plots.beeswarm(sv[:, :, cls], max_display<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>SHAP values for class: Bumps</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-ensembles_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Each dot is one plate; its horizontal position is the contribution of the feature to the K_Scatch score, its colour the feature value. Features at the top have the largest overall influence. Unlike permutation importance, the beeswarm plot also shows the <em>direction</em> of the effect.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -602,8 +703,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">8.6</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">8.7</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Tune <code>max_depth</code>, <code>learning_rate</code> and <code>max_iter</code> of the gradient boosting model with <code>RandomizedSearchCV</code>. How much does the tuning gain compared with the default?</li>
@@ -613,8 +714,8 @@ Key takeaways
 <li>(Extension) Explain one single prediction with a SHAP waterfall plot, as you would to a quality engineer.</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">8.6.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">8.7.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -627,18 +728,22 @@ Solution to Exercise 1
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="fb3d3482" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RandomizedSearchCV</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> loguniform, randint</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> RandomizedSearchCV(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    HistGradientBoostingClassifier(random_state<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"learning_rate"</span>: loguniform(<span class="fl">0.01</span>, <span class="fl">0.3</span>), <span class="st">"max_depth"</span>: randint(<span class="dv">2</span>, <span class="dv">10</span>),</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"max_iter"</span>: randint(<span class="dv">100</span>, <span class="dv">600</span>), <span class="st">"l2_regularization"</span>: loguniform(<span class="fl">1e-4</span>, <span class="dv">1</span>)},</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    n_iter<span class="op">=</span><span class="dv">25</span>, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>search.fit(X_train, y_train)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"best parameters:"</span>, search.best_params_)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CV balanced accuracy: tuned </span><span class="sc">{</span>search<span class="sc">.</span>best_score_<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a7267e33" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RandomizedSearchCV</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> loguniform, randint</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> RandomizedSearchCV(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    HistGradientBoostingClassifier(random_state<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"learning_rate"</span>: loguniform(<span class="fl">0.01</span>, <span class="fl">0.3</span>), <span class="st">"max_depth"</span>: randint(<span class="dv">2</span>, <span class="dv">10</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>     <span class="st">"max_iter"</span>: randint(<span class="dv">100</span>, <span class="dv">600</span>), <span class="st">"l2_regularization"</span>: loguniform(<span class="fl">1e-4</span>, <span class="dv">1</span>)},</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    n_iter<span class="op">=</span><span class="dv">25</span>, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"balanced_accuracy"</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>search.fit(X_train, y_train)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"best parameters:"</span>, search.best_params_)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"CV balanced accuracy: tuned </span><span class="sc">{</span>search<span class="sc">.</span>best_score_<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>best parameters: {'l2_regularization': np.float64(0.028079081078857277), 'learning_rate': np.float64(0.0815241575370242), 'max_depth': 9, 'max_iter': 488}
+CV balanced accuracy: tuned 0.783</code></pre>
+</div>
 </div>
 <p>Random search samples hyperparameter combinations instead of trying a full grid – usually more efficient when only a few parameters matter. The gain over the default is often modest (a few percentage points); compare it with the fold-to-fold standard deviation before concluding that tuning was worthwhile. The CV score of the best configuration is slightly optimistic, because it was selected among 25 candidates – an untouched test set gives the honest estimate.</p>
 </div>
@@ -672,10 +777,78 @@ Solution to Exercise 3
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="3b39632f" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cmp</span> <span class="op">=</span> pd.DataFrame({<span class="st">"impurity"</span>: pd.Series(rf.feature_importances_, index<span class="op">=</span>X.columns),</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"permutation"</span>: imp})</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cmp</span>.rank(ascending<span class="op">=</span><span class="va">False</span>).sort_values(<span class="st">"permutation"</span>).head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6dd15d25" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cmp</span> <span class="op">=</span> pd.DataFrame({<span class="st">"impurity"</span>: pd.Series(rf.feature_importances_, index<span class="op">=</span>X.columns),</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"permutation"</span>: imp})</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cmp</span>.rank(ascending<span class="op">=</span><span class="va">False</span>).sort_values(<span class="st">"permutation"</span>).head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">impurity</th>
+<th data-quarto-table-cell-role="th">permutation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Length_of_Conveyer</td>
+<td>2.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Steel_Plate_Thickness</td>
+<td>6.0</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Edges_Y_Index</td>
+<td>18.0</td>
+<td>3.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">TypeOfSteel_A400</td>
+<td>25.0</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Y_Maximum</td>
+<td>17.0</td>
+<td>5.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Square_Index</td>
+<td>14.0</td>
+<td>6.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">TypeOfSteel_A300</td>
+<td>26.0</td>
+<td>7.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Y_Minimum</td>
+<td>19.0</td>
+<td>8.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Edges_Index</td>
+<td>13.0</td>
+<td>9.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">X_Minimum</td>
+<td>8.0</td>
+<td>10.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <p>Impurity importance is computed on the training data during tree building and favours continuous features with many possible split points; it also distributes importance over correlated features. Permutation importance is computed on test data and measures what the model actually needs for its predictions. Strongly correlated features (e.g.&nbsp;different measures of the defect size) can have high impurity importance but low permutation importance, because shuffling one leaves the others intact.</p>
 </div>
@@ -693,15 +866,68 @@ Solution to Exercise 4
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="978f5724" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> recall_score</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>rf_bal <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">300</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>rf_bal.fit(X_train, y_train)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall (unweighted)"</span>: recall_score(y_test, rf.predict(X_test), average<span class="op">=</span><span class="va">None</span>, labels<span class="op">=</span>rf.classes_),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall (balanced)"</span>: recall_score(y_test, rf_bal.predict(X_test), average<span class="op">=</span><span class="va">None</span>, labels<span class="op">=</span>rf.classes_),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>rf.classes_).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="384674f1" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> recall_score</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>rf_bal <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">300</span>, class_weight<span class="op">=</span><span class="st">"balanced"</span>, random_state<span class="op">=</span><span class="dv">0</span>, n_jobs<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>rf_bal.fit(X_train, y_train)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall (unweighted)"</span>: recall_score(y_test, rf.predict(X_test), average<span class="op">=</span><span class="va">None</span>, labels<span class="op">=</span>rf.classes_),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recall (balanced)"</span>: recall_score(y_test, rf_bal.predict(X_test), average<span class="op">=</span><span class="va">None</span>, labels<span class="op">=</span>rf.classes_),</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>rf.classes_).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">recall (unweighted)</th>
+<th data-quarto-table-cell-role="th">recall (balanced)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Bumps</td>
+<td>0.73</td>
+<td>0.81</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Dirtiness</td>
+<td>0.71</td>
+<td>0.86</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">K_Scratch</td>
+<td>0.91</td>
+<td>0.91</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Other_Faults</td>
+<td>0.80</td>
+<td>0.62</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Pastry</td>
+<td>0.54</td>
+<td>0.77</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Stains</td>
+<td>0.94</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Z_Scratch</td>
+<td>0.81</td>
+<td>0.92</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <p>Class weights often increase the recall of rare classes slightly at the expense of frequent ones. For random forests the effect is usually small, because deep trees fit even small classes in the training data. With few test examples per rare class (only a dozen or so), recall estimates are very uncertain – one more or one fewer correct plate changes them by several percentage points.</p>
 </div>
@@ -719,12 +945,22 @@ Solution to Exercise 5
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="6629eb25" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>pred_class <span class="op">=</span> rf.predict(X_test.iloc[[i]])[<span class="dv">0</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">list</span>(rf.classes_).index(pred_class)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"predicted class:"</span>, pred_class, <span class="st">" true class:"</span>, y_test.iloc[i])</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>shap.plots.waterfall(sv[i, :, k], max_display<span class="op">=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0213f07f" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pred_class <span class="op">=</span> rf.predict(X_test.iloc[[i]])[<span class="dv">0</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">list</span>(rf.classes_).index(pred_class)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"predicted class:"</span>, pred_class, <span class="st">" true class:"</span>, y_test.iloc[i])</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>shap.plots.waterfall(sv[i, :, k], max_display<span class="op">=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>predicted class: Stains  true class: Stains</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-ensembles_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>The waterfall plot starts at the average model output for this class and adds the contribution of each feature until the prediction for this plate is reached. A good explanation for a quality engineer names the two or three largest contributions in physical terms, for example: “The model considers this a scratch mainly because the defect is long and narrow and its luminosity is low – typical for K_Scatch.” It should also state what the explanation is <em>not</em>: a causal statement about the production process.</p>
 </div>

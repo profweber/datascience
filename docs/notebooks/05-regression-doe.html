@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -78,11 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-ef31e3f4d9d6eef55c54bdf6b9cd68ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-f92e9cd00cfa24dbc31d4226c6e5e52e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -138,10 +141,24 @@ window.Quarto = {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science in Engineering</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,33 +167,18 @@ window.Quarto = {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04-testing.html">Part B – Statistics for Engineers</a></li><li class="breadcrumb-item"><a href="../notebooks/05-regression-doe.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Data Science in Engineering</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -352,10 +354,11 @@ window.Quarto = {
   <li><a href="#confidence-vs.-prediction-intervals" id="toc-confidence-vs.-prediction-intervals" class="nav-link" data-scroll-target="#confidence-vs.-prediction-intervals"><span class="header-section-number">5.2.1</span> Confidence vs.&nbsp;prediction intervals</a></li>
   </ul></li>
   <li><a href="#nonlinear-curve-fitting" id="toc-nonlinear-curve-fitting" class="nav-link" data-scroll-target="#nonlinear-curve-fitting"><span class="header-section-number">5.3</span> Nonlinear curve fitting</a></li>
-  <li><a href="#extension-design-of-experiments-a-2³-full-factorial-design" id="toc-extension-design-of-experiments-a-2³-full-factorial-design" class="nav-link" data-scroll-target="#extension-design-of-experiments-a-2³-full-factorial-design"><span class="header-section-number">5.4</span> Extension: design of experiments – a 2³ full factorial design</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.5</span> Exercises</a>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">5.4</span> Back to the decision</a></li>
+  <li><a href="#extension-design-of-experiments-a-2³-full-factorial-design" id="toc-extension-design-of-experiments-a-2³-full-factorial-design" class="nav-link" data-scroll-target="#extension-design-of-experiments-a-2³-full-factorial-design"><span class="header-section-number">5.5</span> Extension: design of experiments – a 2³ full factorial design</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.6</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">5.5.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">5.6.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -384,9 +387,11 @@ window.Quarto = {
 
 <p>Regression is the workhorse of engineering data analysis. Calibration curves, empirical material laws, characteristic maps of engines and process models are all regression models: they describe how a quantity of interest – the <em>response</em> – depends on one or more influencing quantities – the <em>inputs</em>, <em>factors</em> or <em>features</em>. A regression model can be used to <strong>understand</strong> a process (which factors matter, how strongly?) and to <strong>predict</strong> the response for new input values.</p>
 <p>This chapter starts with the multiple linear regression model, its estimation by least squares and the statistical tools to interpret and check it. We then fit nonlinear models with physical meaning, which are common in engineering. An extension section shows how designed experiments make sure that the data actually contain the information we need.</p>
-<blockquote class="blockquote">
-<p><strong>Engineering question:</strong> How do mixture components and age determine the compressive strength of concrete?</p>
-</blockquote>
+<div class="scenario">
+<p><strong>Scenario: releasing a precast element</strong></p>
+<p>A precast concrete plant wants to use a new, cheaper mix: 350 kg cement and 180 kg water per m³, 5 kg superplasticizer, no slag or fly ash. The elements require a compressive strength of 35 MPa before they may be loaded. No test specimens of the new mix exist yet, and the production manager asks: “Can we promise the customer 35 MPa after 28 days – and if not, when?”</p>
+<p><strong>Your decision:</strong> Approve the mix for the 28-day delivery promise – or name a later date?</p>
+</div>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>fit and interpret multiple linear regression models with statsmodels,</li>
@@ -511,7 +516,7 @@ Engineering practice: transformations
 <section id="collinearity" class="level3" data-number="5.1.4">
 <h3 data-number="5.1.4" class="anchored" data-anchor-id="collinearity"><span class="header-section-number">5.1.4</span> Collinearity</h3>
 <p>When inputs are strongly correlated, their individual effects cannot be separated well: the coefficients get large standard errors, can have implausible signs and change strongly when another input is added. The <strong>variance inflation factor</strong> <span class="math inline">\(\text{VIF}_j = 1/(1 - R_j^2)\)</span>, where <span class="math inline">\(R_j^2\)</span> is the <span class="math inline">\(R^2\)</span> of regressing <span class="math inline">\(x_j\)</span> on all other inputs, quantifies this; values above about 5–10 indicate problematic collinearity. Collinearity does not harm predictions within the range of the data, but it ruins the interpretation of individual coefficients.</p>
-<div id="3b896125" class="cell">
+<div id="f60578c7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> importlib.util, subprocess, sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> pkg <span class="kw">in</span> [<span class="st">"ucimlrepo"</span>]:</span>
@@ -532,7 +537,7 @@ Engineering practice: transformations
 <section id="live-coding-concrete-strength" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="live-coding-concrete-strength"><span class="header-section-number">5.2</span> Live coding: concrete strength</h2>
 <p>The dataset contains 1,030 laboratory tests of concrete. Each test is described by the amounts of seven mixture components in kg per m³ of concrete and the age of the specimen at testing (1 to 365 days); the response is the compressive strength in MPa. Concrete strength is a classic example of a highly nonlinear material property: it depends on the water/cement ratio, on supplementary materials such as blast furnace slag and fly ash, on the superplasticizer and on the curing time.</p>
-<div id="3102727c" class="cell">
+<div id="5d2b667c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>concrete <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">165</span>)</span>
@@ -541,8 +546,131 @@ Engineering practice: transformations
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"coarse_agg"</span>, <span class="st">"fine_agg"</span>, <span class="st">"age"</span>]          <span class="co"># kg/m³, age in days</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>conc[<span class="st">"strength"</span>] <span class="op">=</span> concrete.data.targets.iloc[:, <span class="dv">0</span>]        <span class="co"># MPa</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>conc.describe().T.<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">cement</td>
+<td>1030.0</td>
+<td>281.2</td>
+<td>104.5</td>
+<td>102.0</td>
+<td>192.4</td>
+<td>272.9</td>
+<td>350.0</td>
+<td>540.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">slag</td>
+<td>1030.0</td>
+<td>73.9</td>
+<td>86.3</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>22.0</td>
+<td>143.0</td>
+<td>359.4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">fly_ash</td>
+<td>1030.0</td>
+<td>54.2</td>
+<td>64.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>118.3</td>
+<td>200.1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">water</td>
+<td>1030.0</td>
+<td>181.6</td>
+<td>21.4</td>
+<td>121.8</td>
+<td>164.9</td>
+<td>185.0</td>
+<td>192.0</td>
+<td>247.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">superplasticizer</td>
+<td>1030.0</td>
+<td>6.2</td>
+<td>6.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>6.4</td>
+<td>10.2</td>
+<td>32.2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">coarse_agg</td>
+<td>1030.0</td>
+<td>972.9</td>
+<td>77.8</td>
+<td>801.0</td>
+<td>932.0</td>
+<td>968.0</td>
+<td>1029.4</td>
+<td>1145.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">fine_agg</td>
+<td>1030.0</td>
+<td>773.6</td>
+<td>80.2</td>
+<td>594.0</td>
+<td>731.0</td>
+<td>779.5</td>
+<td>824.0</td>
+<td>992.6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">age</td>
+<td>1030.0</td>
+<td>45.7</td>
+<td>63.2</td>
+<td>1.0</td>
+<td>7.0</td>
+<td>28.0</td>
+<td>56.0</td>
+<td>365.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">strength</td>
+<td>1030.0</td>
+<td>35.8</td>
+<td>16.7</td>
+<td>2.3</td>
+<td>23.7</td>
+<td>34.4</td>
+<td>46.1</td>
+<td>82.6</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div id="66fc5a73" class="cell">
+</div>
+</div>
+<div id="eb5cd700" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">4</span>))</span>
@@ -554,12 +682,55 @@ Engineering practice: transformations
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].<span class="bu">set</span>(xscale<span class="op">=</span><span class="st">"log"</span>, xlabel<span class="op">=</span><span class="st">"Age (days, log scale)"</span>, ylabel<span class="op">=</span><span class="st">"Strength (MPa)"</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-regression-doe_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Strength increases with the cement content, decreases with the water/cement ratio (a classical rule in concrete technology, known as Abrams’ law) and grows with age – roughly linearly in the <em>logarithm</em> of the age. We therefore enter age as <span class="math inline">\(\ln(\text{age})\)</span>:</p>
-<div id="11268ac8" class="cell">
+<div id="5158d8a3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(<span class="st">"strength ~ cement + slag + fly_ash + water + superplasticizer"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">" + coarse_agg + fine_agg + np.log(age)"</span>, data<span class="op">=</span>conc).fit()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               strength   R-squared:                       0.819
+Model:                            OLS   Adj. R-squared:                  0.817
+Method:                 Least Squares   F-statistic:                     575.6
+Date:                Wed, 14 Oct 2026   Prob (F-statistic):               0.00
+Time:                        11:48:23   Log-Likelihood:                -3482.4
+No. Observations:                1030   AIC:                             6983.
+Df Residuals:                    1021   BIC:                             7027.
+Df Model:                           8                                         
+Covariance Type:            nonrobust                                         
+====================================================================================
+                       coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Intercept          -77.5334     18.331     -4.230      0.000    -113.504     -41.563
+cement               0.1349      0.006     23.055      0.000       0.123       0.146
+slag                 0.1159      0.007     16.647      0.000       0.102       0.130
+fly_ash              0.0944      0.009     10.944      0.000       0.077       0.111
+water               -0.1288      0.028     -4.673      0.000      -0.183      -0.075
+superplasticizer     0.1188      0.064      1.846      0.065      -0.007       0.245
+coarse_agg           0.0297      0.006      4.593      0.000       0.017       0.042
+fine_agg             0.0360      0.007      4.886      0.000       0.022       0.050
+np.log(age)          8.7466      0.192     45.610      0.000       8.370       9.123
+==============================================================================
+Omnibus:                       19.634   Durbin-Watson:                   1.305
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               22.742
+Skew:                           0.266   Prob(JB):                     1.15e-05
+Kurtosis:                       3.496   Cond. No.                     1.06e+05
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.06e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> Read the summary from top to bottom:</p>
 <ul>
@@ -568,28 +739,46 @@ Engineering practice: transformations
 <li><strong>Holding constant is tricky here:</strong> the components add up to roughly the volume of one cubic metre. If we add more cement, something else must be reduced. This built-in dependence causes collinearity, which explains why some aggregate coefficients can be small or have surprising signs.</li>
 <li><strong>Notes at the bottom:</strong> statsmodels warns, for example, about a large condition number – a hint at collinearity or very differently scaled inputs.</li>
 </ul>
-<div id="b5a6181b" class="cell">
+<div id="95b2a8e5" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">4</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].scatter(model.fittedvalues, model.resid, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"k"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Fitted strength (MPa)"</span>, ylabel<span class="op">=</span><span class="st">"Residual (MPa)"</span>, title<span class="op">=</span><span class="st">"Residuals vs fitted"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sm.qqplot(model.resid, line<span class="op">=</span><span class="st">"45"</span>, fit<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])<span class="op">;</span> axes[<span class="dv">1</span>].set_title(<span class="st">"Normal QQ plot"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].scatter(conc[<span class="st">"age"</span>], model.resid, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].<span class="bu">set</span>(xscale<span class="op">=</span><span class="st">"log"</span>, xlabel<span class="op">=</span><span class="st">"Age (days)"</span>, ylabel<span class="op">=</span><span class="st">"Residual (MPa)"</span>, title<span class="op">=</span><span class="st">"Residuals vs age"</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">4</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].scatter(model.fittedvalues, model.resid, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"k"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Fitted strength (MPa)"</span>, ylabel<span class="op">=</span><span class="st">"Residual (MPa)"</span>, title<span class="op">=</span><span class="st">"Residuals vs fitted"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>sm.qqplot(model.resid, line<span class="op">=</span><span class="st">"45"</span>, fit<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>])<span class="op">;</span> axes[<span class="dv">1</span>].set_title(<span class="st">"Normal QQ plot"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].scatter(conc[<span class="st">"age"</span>], model.resid, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>].<span class="bu">set</span>(xscale<span class="op">=</span><span class="st">"log"</span>, xlabel<span class="op">=</span><span class="st">"Age (days)"</span>, ylabel<span class="op">=</span><span class="st">"Residual (MPa)"</span>, title<span class="op">=</span><span class="st">"Residuals vs age"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-regression-doe_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p><strong>Discussion.</strong> Look for patterns: a curved band in the residuals vs.&nbsp;fitted values indicates a missing nonlinearity; a funnel shape indicates non-constant variance; structure in the residuals vs.&nbsp;age shows that the <span class="math inline">\(\ln\)</span> transformation captures the age effect only approximately. Systematic patterns tell us that the linear model is an approximation – which is fine for interpretation of the main effects but limits its predictive accuracy. Flexible models in Chapters 6 and 8 will do better.</p>
-<div id="24ef30ce" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Xv <span class="op">=</span> sm.add_constant(conc[[<span class="st">"cement"</span>, <span class="st">"slag"</span>, <span class="st">"fly_ash"</span>, <span class="st">"water"</span>, <span class="st">"superplasticizer"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"coarse_agg"</span>, <span class="st">"fine_agg"</span>]].assign(log_age<span class="op">=</span>np.log(conc[<span class="st">"age"</span>])))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>vif <span class="op">=</span> pd.Series([variance_inflation_factor(Xv.values, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, Xv.shape[<span class="dv">1</span>])],</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                index<span class="op">=</span>Xv.columns[<span class="dv">1</span>:], name<span class="op">=</span><span class="st">"VIF"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>vif.<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="88245a3a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Xv <span class="op">=</span> sm.add_constant(conc[[<span class="st">"cement"</span>, <span class="st">"slag"</span>, <span class="st">"fly_ash"</span>, <span class="st">"water"</span>, <span class="st">"superplasticizer"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"coarse_agg"</span>, <span class="st">"fine_agg"</span>]].assign(log_age<span class="op">=</span>np.log(conc[<span class="st">"age"</span>])))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>vif <span class="op">=</span> pd.Series([variance_inflation_factor(Xv.values, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, Xv.shape[<span class="dv">1</span>])],</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                index<span class="op">=</span>Xv.columns[<span class="dv">1</span>:], name<span class="op">=</span><span class="st">"VIF"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>vif.<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>cement              7.5
+slag                7.3
+fly_ash             6.1
+water               7.0
+superplasticizer    3.0
+coarse_agg          5.1
+fine_agg            7.0
+log_age             1.1
+Name: VIF, dtype: float64</code></pre>
+</div>
 </div>
 <section id="confidence-vs.-prediction-intervals" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="confidence-vs.-prediction-intervals"><span class="header-section-number">5.2.1</span> Confidence vs.&nbsp;prediction intervals</h3>
@@ -621,11 +810,42 @@ Figure&nbsp;5.1: Confidence band of the regression line (mean response) and pred
 </figure>
 </div>
 <p>For an engineer who needs to know the strength of <em>the next</em> concrete batch, the prediction interval is the relevant one.</p>
-<div id="04ca8a72" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>new_mix <span class="op">=</span> pd.DataFrame({<span class="st">"cement"</span>: [<span class="dv">350</span>], <span class="st">"slag"</span>: [<span class="dv">0</span>], <span class="st">"fly_ash"</span>: [<span class="dv">0</span>], <span class="st">"water"</span>: [<span class="dv">180</span>],</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"superplasticizer"</span>: [<span class="dv">5</span>], <span class="st">"coarse_agg"</span>: [<span class="dv">1000</span>], <span class="st">"fine_agg"</span>: [<span class="dv">780</span>],</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"age"</span>: [<span class="dv">28</span>]})</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>model.get_prediction(new_mix).summary_frame(alpha<span class="op">=</span><span class="fl">0.05</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="155951bd" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>new_mix <span class="op">=</span> pd.DataFrame({<span class="st">"cement"</span>: [<span class="dv">350</span>], <span class="st">"slag"</span>: [<span class="dv">0</span>], <span class="st">"fly_ash"</span>: [<span class="dv">0</span>], <span class="st">"water"</span>: [<span class="dv">180</span>],</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"superplasticizer"</span>: [<span class="dv">5</span>], <span class="st">"coarse_agg"</span>: [<span class="dv">1000</span>], <span class="st">"fine_agg"</span>: [<span class="dv">780</span>],</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"age"</span>: [<span class="dv">28</span>]})</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>model.get_prediction(new_mix).summary_frame(alpha<span class="op">=</span><span class="fl">0.05</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">mean_se</th>
+<th data-quarto-table-cell-role="th">mean_ci_lower</th>
+<th data-quarto-table-cell-role="th">mean_ci_upper</th>
+<th data-quarto-table-cell-role="th">obs_ci_lower</th>
+<th data-quarto-table-cell-role="th">obs_ci_upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>34.0</td>
+<td>0.5</td>
+<td>32.9</td>
+<td>35.0</td>
+<td>19.9</td>
+<td>48.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <p><code>mean_ci_lower/upper</code> is the confidence interval of the mean strength of such mixes at 28 days, <code>obs_ci_lower/upper</code> the prediction interval for a single specimen. The difference shows how much individual tests scatter.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -670,44 +890,78 @@ Engineering practice: fitting physical models
 <p>As an example we model the strength development of one concrete mix over time with the hyperbolic model</p>
 <p><span class="math display">\[f_c(t) = f_\infty \, \frac{t}{a + t},\]</span></p>
 <p>with the final strength <span class="math inline">\(f_\infty\)</span> (MPa) and the time <span class="math inline">\(a\)</span> (days) at which half of it is reached. Physically it describes a hydration process that slows down over time.</p>
-<div id="87fb3e67" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mix_cols <span class="op">=</span> [<span class="st">"cement"</span>, <span class="st">"slag"</span>, <span class="st">"fly_ash"</span>, <span class="st">"water"</span>, <span class="st">"superplasticizer"</span>, <span class="st">"coarse_agg"</span>, <span class="st">"fine_agg"</span>]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>n_ages <span class="op">=</span> conc.groupby(mix_cols)[<span class="st">"age"</span>].nunique()</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> n_ages.idxmax()                                   <span class="co"># the mix tested at most ages</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>mix <span class="op">=</span> conc[(conc[mix_cols] <span class="op">==</span> pd.Series(best, index<span class="op">=</span>mix_cols)).<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>)].sort_values(<span class="st">"age"</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mix tested at </span><span class="sc">{</span>n_ages<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> different ages:"</span>, <span class="bu">dict</span>(<span class="bu">zip</span>(mix_cols, best)))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> strength_model(t, f_inf, a):</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f_inf <span class="op">*</span> t <span class="op">/</span> (a <span class="op">+</span> t)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>p0 <span class="op">=</span> [mix[<span class="st">"strength"</span>].<span class="bu">max</span>(), <span class="dv">7</span>]                          <span class="co"># starting values from the data</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>popt, pcov <span class="op">=</span> curve_fit(strength_model, mix[<span class="st">"age"</span>], mix[<span class="st">"strength"</span>], p0<span class="op">=</span>p0)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>perr <span class="op">=</span> np.sqrt(np.diag(pcov))</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> pcov[<span class="dv">0</span>, <span class="dv">1</span>] <span class="op">/</span> (perr[<span class="dv">0</span>] <span class="op">*</span> perr[<span class="dv">1</span>])</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"f_inf = </span><span class="sc">{</span>popt[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> ± </span><span class="sc">{</span>perr[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> MPa,  a = </span><span class="sc">{</span>popt[<span class="dv">1</span>]<span class="sc">:.1f}</span><span class="ss"> ± </span><span class="sc">{</span>perr[<span class="dv">1</span>]<span class="sc">:.1f}</span><span class="ss"> days,  "</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"correlation = </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1f87c178" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>mix_cols <span class="op">=</span> [<span class="st">"cement"</span>, <span class="st">"slag"</span>, <span class="st">"fly_ash"</span>, <span class="st">"water"</span>, <span class="st">"superplasticizer"</span>, <span class="st">"coarse_agg"</span>, <span class="st">"fine_agg"</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>n_ages <span class="op">=</span> conc.groupby(mix_cols)[<span class="st">"age"</span>].nunique()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> n_ages.idxmax()                                   <span class="co"># the mix tested at most ages</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>mix <span class="op">=</span> conc[(conc[mix_cols] <span class="op">==</span> pd.Series(best, index<span class="op">=</span>mix_cols)).<span class="bu">all</span>(axis<span class="op">=</span><span class="dv">1</span>)].sort_values(<span class="st">"age"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mix tested at </span><span class="sc">{</span>n_ages<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> different ages:"</span>, <span class="bu">dict</span>(<span class="bu">zip</span>(mix_cols, best)))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> strength_model(t, f_inf, a):</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f_inf <span class="op">*</span> t <span class="op">/</span> (a <span class="op">+</span> t)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>p0 <span class="op">=</span> [mix[<span class="st">"strength"</span>].<span class="bu">max</span>(), <span class="dv">7</span>]                          <span class="co"># starting values from the data</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>popt, pcov <span class="op">=</span> curve_fit(strength_model, mix[<span class="st">"age"</span>], mix[<span class="st">"strength"</span>], p0<span class="op">=</span>p0)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>perr <span class="op">=</span> np.sqrt(np.diag(pcov))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> pcov[<span class="dv">0</span>, <span class="dv">1</span>] <span class="op">/</span> (perr[<span class="dv">0</span>] <span class="op">*</span> perr[<span class="dv">1</span>])</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"f_inf = </span><span class="sc">{</span>popt[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> ± </span><span class="sc">{</span>perr[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> MPa,  a = </span><span class="sc">{</span>popt[<span class="dv">1</span>]<span class="sc">:.1f}</span><span class="ss"> ± </span><span class="sc">{</span>perr[<span class="dv">1</span>]<span class="sc">:.1f}</span><span class="ss"> days,  "</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"correlation = </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mix tested at 8 different ages: {'cement': np.float64(500.0), 'slag': np.float64(0.0), 'fly_ash': np.float64(0.0), 'water': np.float64(200.0), 'superplasticizer': np.float64(0.0), 'coarse_agg': np.float64(1125.0), 'fine_agg': np.float64(613.0)}
+f_inf = 51.3 ± 1.7 MPa,  a = 3.6 ± 0.6 days,  correlation = 0.62</code></pre>
 </div>
-<div id="28c7f0dd" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 95 % confidence band of the fitted curve (delta method)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">1</span>, mix[<span class="st">"age"</span>].<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.1</span>, <span class="dv">300</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>f_inf, a <span class="op">=</span> popt</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> np.column_stack([t <span class="op">/</span> (a <span class="op">+</span> t), <span class="op">-</span>f_inf <span class="op">*</span> t <span class="op">/</span> (a <span class="op">+</span> t) <span class="op">**</span> <span class="dv">2</span>])   <span class="co"># partial derivatives</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> np.sqrt(np.einsum(<span class="st">"ij,jk,ik-&gt;i"</span>, J, pcov, J))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> strength_model(t, <span class="op">*</span>popt)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(mix[<span class="st">"age"</span>], mix[<span class="st">"strength"</span>], label<span class="op">=</span><span class="st">"measurements"</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t, fit, label<span class="op">=</span><span class="st">"nonlinear fit"</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.fill_between(t, fit <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> se, fit <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> se, alpha<span class="op">=</span><span class="fl">0.25</span>, label<span class="op">=</span><span class="st">"95 </span><span class="sc">% c</span><span class="st">onfidence band"</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.axhline(f_inf, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"k"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Age (days)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Compressive strength (MPa)"</span>)<span class="op">;</span> plt.legend()</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="d4e8b3e0" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 95 % confidence band of the fitted curve (delta method)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">1</span>, mix[<span class="st">"age"</span>].<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.1</span>, <span class="dv">300</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>f_inf, a <span class="op">=</span> popt</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> np.column_stack([t <span class="op">/</span> (a <span class="op">+</span> t), <span class="op">-</span>f_inf <span class="op">*</span> t <span class="op">/</span> (a <span class="op">+</span> t) <span class="op">**</span> <span class="dv">2</span>])   <span class="co"># partial derivatives</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>se <span class="op">=</span> np.sqrt(np.einsum(<span class="st">"ij,jk,ik-&gt;i"</span>, J, pcov, J))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>fit <span class="op">=</span> strength_model(t, <span class="op">*</span>popt)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(mix[<span class="st">"age"</span>], mix[<span class="st">"strength"</span>], label<span class="op">=</span><span class="st">"measurements"</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.plot(t, fit, label<span class="op">=</span><span class="st">"nonlinear fit"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plt.fill_between(t, fit <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> se, fit <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> se, alpha<span class="op">=</span><span class="fl">0.25</span>, label<span class="op">=</span><span class="st">"95 </span><span class="sc">% c</span><span class="st">onfidence band"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>plt.axhline(f_inf, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"k"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Age (days)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Compressive strength (MPa)"</span>)<span class="op">;</span> plt.legend()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-regression-doe_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p><strong>Discussion.</strong> The two parameters have a direct engineering meaning and can be compared between mixes. The confidence band is computed with the <strong>delta method</strong>: the variance of the fitted curve is approximated by <span class="math inline">\(J\,\text{Cov}(\hat\theta)\,J^\top\)</span>, where <span class="math inline">\(J\)</span> contains the partial derivatives of the model with respect to the parameters. The band is narrow where many measurements exist and widens towards long ages. A strong correlation between <span class="math inline">\(\hat f_\infty\)</span> and <span class="math inline">\(\hat a\)</span> is typical for saturation models: if the data do not reach the plateau, a higher final strength reached later explains them almost equally well.</p>
 </section>
-<section id="extension-design-of-experiments-a-2³-full-factorial-design" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="extension-design-of-experiments-a-2³-full-factorial-design"><span class="header-section-number">5.4</span> Extension: design of experiments – a 2³ full factorial design</h2>
+<section id="back-to-the-decision" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">5.4</span> Back to the decision</h2>
+<p>A strength promise concerns <em>individual</em> elements, not the average of many – so the relevant interval is the <strong>prediction interval</strong>. To be on the safe side, we require that the lower end of the 95 % prediction interval reaches 35 MPa. We check 28 days and, if necessary, search for the earliest age at which the requirement is met.</p>
+<div id="043e1c6c" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>required <span class="op">=</span> <span class="fl">35.0</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">366</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> pd.concat([new_mix.drop(columns<span class="op">=</span><span class="st">"age"</span>)] <span class="op">*</span> <span class="bu">len</span>(ages), ignore_index<span class="op">=</span><span class="va">True</span>).assign(age<span class="op">=</span>ages)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>pi_low <span class="op">=</span> model.get_prediction(candidates).summary_frame(alpha<span class="op">=</span><span class="fl">0.05</span>)[<span class="st">"obs_ci_lower"</span>].values</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>low_28 <span class="op">=</span> pi_low[ages <span class="op">==</span> <span class="dv">28</span>][<span class="dv">0</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Lower 95 % prediction bound at 28 days: </span><span class="sc">{</span>low_28<span class="sc">:.1f}</span><span class="ss"> MPa"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> low_28 <span class="op">&gt;=</span> required:</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Decision: approve the mix for the 28-day promise."</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> (pi_low <span class="op">&gt;=</span> required).<span class="bu">any</span>():</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Decision: not at 28 days – promise </span><span class="sc">{</span>ages[np.argmax(pi_low <span class="op">&gt;=</span> required)]<span class="sc">}</span><span class="ss"> days, or confirm with test specimens."</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Decision: the model cannot guarantee 35 MPa within a year – adjust the mix (e.g. lower w/c ratio)."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Lower 95 % prediction bound at 28 days: 19.9 MPa
+Decision: not at 28 days – promise 158 days, or confirm with test specimens.</code></pre>
+</div>
+</div>
+<p>The recommendation should also state the limits of the model: it is a linear approximation fitted to laboratory specimens from one study, and the residual analysis showed systematic deviations. In practice, no plant would release a new mix on the basis of a regression model alone – but the model tells us whether the trial batches are worth casting and which test age to plan.</p>
+</section>
+<section id="extension-design-of-experiments-a-2³-full-factorial-design" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="extension-design-of-experiments-a-2³-full-factorial-design"><span class="header-section-number">5.5</span> Extension: design of experiments – a 2³ full factorial design</h2>
 <p><em>Extension – optional material, not required for the exam.</em></p>
 <p>The concrete data are <em>observational</em>: the mixes were not chosen to estimate effects efficiently, and the inputs are correlated. In a <strong>designed experiment</strong> we choose the factor settings ourselves, so that the effects can be separated cleanly with as few runs as possible.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -725,20 +979,35 @@ Definition: Full factorial design
 </div>
 <p>With three factors, 8 runs estimate 3 main effects, 3 two-factor interactions and 1 three-factor interaction. <strong>Replicates</strong> (repeating all runs) provide an estimate of the experimental error. <strong>Randomising</strong> the run order protects against drifts in the test setup.</p>
 <p>The example simulates such an experiment with a known “true” model, so we can check whether the analysis recovers it.</p>
-<div id="97720d1e" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(itertools.product([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], repeat<span class="op">=</span><span class="dv">3</span>)),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                      columns<span class="op">=</span>[<span class="st">"cement"</span>, <span class="st">"water"</span>, <span class="st">"age"</span>])</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> pd.concat([design, design], ignore_index<span class="op">=</span><span class="va">True</span>)        <span class="co"># 2 replicates</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>design[<span class="st">"strength"</span>] <span class="op">=</span> (<span class="dv">40</span> <span class="op">+</span> <span class="dv">8</span> <span class="op">*</span> design.cement <span class="op">-</span> <span class="dv">6</span> <span class="op">*</span> design.water <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> design.age</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                      <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> design.cement <span class="op">*</span> design.age <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="fl">1.5</span>, <span class="bu">len</span>(design)))</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>doe <span class="op">=</span> smf.ols(<span class="st">"strength ~ cement * water * age"</span>, data<span class="op">=</span>design).fit()</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doe.params.<span class="bu">round</span>(<span class="dv">2</span>))</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation between design columns:</span><span class="ch">\n</span><span class="st">"</span>,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      np.<span class="bu">round</span>(np.corrcoef(design[[<span class="st">"cement"</span>, <span class="st">"water"</span>, <span class="st">"age"</span>]].T.values), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5fa5b598" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(itertools.product([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], repeat<span class="op">=</span><span class="dv">3</span>)),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                      columns<span class="op">=</span>[<span class="st">"cement"</span>, <span class="st">"water"</span>, <span class="st">"age"</span>])</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>design <span class="op">=</span> pd.concat([design, design], ignore_index<span class="op">=</span><span class="va">True</span>)        <span class="co"># 2 replicates</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>design[<span class="st">"strength"</span>] <span class="op">=</span> (<span class="dv">40</span> <span class="op">+</span> <span class="dv">8</span> <span class="op">*</span> design.cement <span class="op">-</span> <span class="dv">6</span> <span class="op">*</span> design.water <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> design.age</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                      <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> design.cement <span class="op">*</span> design.age <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="fl">1.5</span>, <span class="bu">len</span>(design)))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>doe <span class="op">=</span> smf.ols(<span class="st">"strength ~ cement * water * age"</span>, data<span class="op">=</span>design).fit()</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doe.params.<span class="bu">round</span>(<span class="dv">2</span>))</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Correlation between design columns:</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>      np.<span class="bu">round</span>(np.corrcoef(design[[<span class="st">"cement"</span>, <span class="st">"water"</span>, <span class="st">"age"</span>]].T.values), <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Intercept           39.92
+cement               7.59
+water               -5.40
+cement:water        -0.33
+age                  4.80
+cement:age           2.19
+water:age           -0.11
+cement:water:age    -0.54
+dtype: float64
+Correlation between design columns:
+ [[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]</code></pre>
+</div>
 </div>
 <p>The estimated coefficients reproduce the true values (8, −6, 5 and 2 for the cement × age interaction) up to the noise, and the non-existing interactions are estimated near zero. With coded factors, a coefficient is half the <strong>effect</strong> (change of the response from the low to the high level). The design columns are uncorrelated – the exact opposite of the observational concrete data.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -761,8 +1030,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.5</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.6</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Replace <code>np.log(age)</code> by <code>age</code> in the linear model. How do R² and the residual plot change? Explain physically why the log transform helps.</li>
@@ -773,8 +1042,8 @@ Key takeaways
 <li>(Extension) Extend the DoE example to a <span class="math inline">\(2^4\)</span> design with a fourth factor. How many runs are needed? What is a fractional factorial design, and what is its price?</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">5.5.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">5.6.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -787,13 +1056,23 @@ Solution to Exercise 1
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="e47c5d6d" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model_lin_age <span class="op">=</span> smf.ols(<span class="st">"strength ~ cement + slag + fly_ash + water + superplasticizer"</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">" + coarse_agg + fine_agg + age"</span>, data<span class="op">=</span>conc).fit()</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R² with log(age): </span><span class="sc">{</span>model<span class="sc">.</span>rsquared<span class="sc">:.3f}</span><span class="ss">,  with age: </span><span class="sc">{</span>model_lin_age<span class="sc">.</span>rsquared<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(conc[<span class="st">"age"</span>], model_lin_age.resid, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, c<span class="op">=</span><span class="st">"k"</span>)<span class="op">;</span> plt.xscale(<span class="st">"log"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Age (days)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Residual (MPa)"</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5a9e7b29" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>model_lin_age <span class="op">=</span> smf.ols(<span class="st">"strength ~ cement + slag + fly_ash + water + superplasticizer"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                        <span class="st">" + coarse_agg + fine_agg + age"</span>, data<span class="op">=</span>conc).fit()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R² with log(age): </span><span class="sc">{</span>model<span class="sc">.</span>rsquared<span class="sc">:.3f}</span><span class="ss">,  with age: </span><span class="sc">{</span>model_lin_age<span class="sc">.</span>rsquared<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(conc[<span class="st">"age"</span>], model_lin_age.resid, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, c<span class="op">=</span><span class="st">"k"</span>)<span class="op">;</span> plt.xscale(<span class="st">"log"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Age (days)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Residual (MPa)"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R² with log(age): 0.819,  with age: 0.616</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-regression-doe_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>With a linear age term, R² drops noticeably and the residuals show a clear curved pattern over age: the model overestimates young and very old specimens and underestimates intermediate ages. Physically, hydration of cement is fast in the first days and slows down later – the strength gain per day decreases with age. <span class="math inline">\(\ln(\text{age})\)</span> captures this diminishing return.</p>
 </div>
@@ -811,14 +1090,28 @@ Solution to Exercise 2
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="5e3b3ef4" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>conc[<span class="st">"wc"</span>] <span class="op">=</span> conc[<span class="st">"water"</span>] <span class="op">/</span> conc[<span class="st">"cement"</span>]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>model_wc <span class="op">=</span> smf.ols(<span class="st">"strength ~ wc + slag + fly_ash + superplasticizer"</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">" + coarse_agg + fine_agg + np.log(age)"</span>, data<span class="op">=</span>conc).fit()</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R²: original </span><span class="sc">{</span>model<span class="sc">.</span>rsquared<span class="sc">:.3f}</span><span class="ss">, with w/c ratio </span><span class="sc">{</span>model_wc<span class="sc">.</span>rsquared<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>model_wc.params.<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1a1d142d" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>conc[<span class="st">"wc"</span>] <span class="op">=</span> conc[<span class="st">"water"</span>] <span class="op">/</span> conc[<span class="st">"cement"</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>model_wc <span class="op">=</span> smf.ols(<span class="st">"strength ~ wc + slag + fly_ash + superplasticizer"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">" + coarse_agg + fine_agg + np.log(age)"</span>, data<span class="op">=</span>conc).fit()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R²: original </span><span class="sc">{</span>model<span class="sc">.</span>rsquared<span class="sc">:.3f}</span><span class="ss">, with w/c ratio </span><span class="sc">{</span>model_wc<span class="sc">.</span>rsquared<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>model_wc.params.<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R²: original 0.819, with w/c ratio 0.759</code></pre>
 </div>
-<p>The fit is of similar quality – the w/c ratio carries most of the information of water and cement together. The advantage is interpretability: the coefficient of <code>wc</code> directly expresses the well-known strength loss with increasing water/cement ratio, a quantity concrete engineers think in. Strictly, Abrams’ law is nonlinear (strength ∝ <span class="math inline">\(B^{-wc}\)</span>), so <span class="math inline">\(\ln(\text{strength})\)</span> vs.&nbsp;<code>wc</code> might fit even better.</p>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>Intercept           21.087
+wc                 -35.379
+slag                 0.083
+fly_ash              0.036
+superplasticizer     0.475
+coarse_agg           0.001
+fine_agg             0.003
+np.log(age)          8.240
+dtype: float64</code></pre>
+</div>
+</div>
+<p>The fit is of similar quality – the w/c ratio carries most of the information of water and cement together. The advantage is interpretability: the coefficient of <code>wc</code> directly expresses the well-known strength loss with increasing water/cement ratio, a quantity concrete engineers think in. Strictly, Abrams’ law is nonlinear (strength ∝ <span class="math inline">\(B^{-w/c}\)</span> with a material constant <span class="math inline">\(B\)</span>), so <span class="math inline">\(\ln(\text{strength})\)</span> vs.&nbsp;<code>wc</code> might fit even better.</p>
 </div>
 </div>
 </div>
@@ -834,8 +1127,87 @@ Solution to Exercise 3
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="4d2d4a79" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">"coef"</span>: model.params, <span class="st">"p"</span>: model.pvalues, <span class="st">"VIF"</span>: vif}).<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8aeb0aad" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">"coef"</span>: model.params, <span class="st">"p"</span>: model.pvalues, <span class="st">"VIF"</span>: vif}).<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">coef</th>
+<th data-quarto-table-cell-role="th">p</th>
+<th data-quarto-table-cell-role="th">VIF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Intercept</td>
+<td>-77.5334</td>
+<td>0.0000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">cement</td>
+<td>0.1349</td>
+<td>0.0000</td>
+<td>7.5324</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">coarse_agg</td>
+<td>0.0297</td>
+<td>0.0000</td>
+<td>5.0890</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">fine_agg</td>
+<td>0.0360</td>
+<td>0.0000</td>
+<td>7.0304</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">fly_ash</td>
+<td>0.0944</td>
+<td>0.0000</td>
+<td>6.1411</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">log_age</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.0523</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">np.log(age)</td>
+<td>8.7466</td>
+<td>0.0000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">slag</td>
+<td>0.1159</td>
+<td>0.0000</td>
+<td>7.2792</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">superplasticizer</td>
+<td>0.1188</td>
+<td>0.0652</td>
+<td>2.9803</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">water</td>
+<td>-0.1288</td>
+<td>0.0000</td>
+<td>6.9839</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <p>Expected signs: cement, slag and fly ash (binders) and superplasticizer positive; water negative; age positive. Coefficients that are not significant or have counterintuitive signs typically belong to inputs with high VIF – the aggregates, which are strongly linked to the other components through the fixed total volume. Their individual coefficients cannot be interpreted reliably, even though the model as a whole predicts reasonably.</p>
 </div>
@@ -853,23 +1225,33 @@ Solution to Exercise 4
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="07e52313" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, g <span class="kw">in</span> conc.groupby(mix_cols):</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> g[<span class="st">"age"</span>].nunique() <span class="op">&lt;</span> <span class="dv">4</span>:</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        p, _ <span class="op">=</span> curve_fit(strength_model, g[<span class="st">"age"</span>], g[<span class="st">"strength"</span>],</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                         p0<span class="op">=</span>[g[<span class="st">"strength"</span>].<span class="bu">max</span>(), <span class="dv">7</span>], maxfev<span class="op">=</span><span class="dv">5000</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">RuntimeError</span>:</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span>                                          <span class="co"># fit did not converge</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"wc"</span>: g[<span class="st">"water"</span>].iloc[<span class="dv">0</span>] <span class="op">/</span> g[<span class="st">"cement"</span>].iloc[<span class="dv">0</span>], <span class="st">"f_inf"</span>: p[<span class="dv">0</span>], <span class="st">"a"</span>: p[<span class="dv">1</span>]})</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>fits <span class="op">=</span> pd.DataFrame(rows)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>fits <span class="op">=</span> fits[(fits[<span class="st">"a"</span>] <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">&amp;</span> (fits[<span class="st">"f_inf"</span>] <span class="op">&lt;</span> <span class="dv">200</span>)]        <span class="co"># drop physically meaningless fits</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>plt.scatter(fits[<span class="st">"wc"</span>], fits[<span class="st">"f_inf"</span>])</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Water/cement ratio"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Fitted final strength f_inf (MPa)"</span>)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(fits)<span class="sc">}</span><span class="ss"> mixes fitted"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8ad1e43e" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, g <span class="kw">in</span> conc.groupby(mix_cols):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> g[<span class="st">"age"</span>].nunique() <span class="op">&lt;</span> <span class="dv">4</span>:</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        p, _ <span class="op">=</span> curve_fit(strength_model, g[<span class="st">"age"</span>], g[<span class="st">"strength"</span>],</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                         p0<span class="op">=</span>[g[<span class="st">"strength"</span>].<span class="bu">max</span>(), <span class="dv">7</span>], maxfev<span class="op">=</span><span class="dv">5000</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">RuntimeError</span>:</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span>                                          <span class="co"># fit did not converge</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"wc"</span>: g[<span class="st">"water"</span>].iloc[<span class="dv">0</span>] <span class="op">/</span> g[<span class="st">"cement"</span>].iloc[<span class="dv">0</span>], <span class="st">"f_inf"</span>: p[<span class="dv">0</span>], <span class="st">"a"</span>: p[<span class="dv">1</span>]})</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>fits <span class="op">=</span> pd.DataFrame(rows)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>fits <span class="op">=</span> fits[(fits[<span class="st">"a"</span>] <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">&amp;</span> (fits[<span class="st">"f_inf"</span>] <span class="op">&lt;</span> <span class="dv">200</span>)]        <span class="co"># drop physically meaningless fits</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>plt.scatter(fits[<span class="st">"wc"</span>], fits[<span class="st">"f_inf"</span>])</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Water/cement ratio"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Fitted final strength f_inf (MPa)"</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(fits)<span class="sc">}</span><span class="ss"> mixes fitted"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-regression-doe_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>131 mixes fitted</code></pre>
+</div>
 </div>
 <p>The final strength decreases clearly with increasing water/cement ratio – the same relationship as in the linear model, but now expressed through a physically meaningful parameter. Some fits must be discarded because the mix was tested at too few or too early ages to determine the plateau (the parameters are then not identifiable). Checking plausibility of fitted parameters is an essential step when fitting many curves automatically.</p>
 </div>
@@ -887,15 +1269,22 @@ Solution to Exercise 5
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="61733742" class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>c1, c0 <span class="op">=</span> np.polyfit(np.log(mix[<span class="st">"age"</span>]), mix[<span class="st">"strength"</span>], deg<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>t_long <span class="op">=</span> np.linspace(<span class="dv">1</span>, <span class="dv">1000</span>, <span class="dv">400</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(mix[<span class="st">"age"</span>], mix[<span class="st">"strength"</span>], zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"measurements"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.plot(t_long, strength_model(t_long, <span class="op">*</span>popt), label<span class="op">=</span><span class="st">"hyperbolic"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.plot(t_long, c0 <span class="op">+</span> c1 <span class="op">*</span> np.log(t_long), label<span class="op">=</span><span class="st">"logarithmic"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.axvline(mix[<span class="st">"age"</span>].<span class="bu">max</span>(), ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Age (days)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Strength (MPa)"</span>)<span class="op">;</span> plt.legend()</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="99c4d332" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>c1, c0 <span class="op">=</span> np.polyfit(np.log(mix[<span class="st">"age"</span>]), mix[<span class="st">"strength"</span>], deg<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>t_long <span class="op">=</span> np.linspace(<span class="dv">1</span>, <span class="dv">1000</span>, <span class="dv">400</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(mix[<span class="st">"age"</span>], mix[<span class="st">"strength"</span>], zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"measurements"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>plt.plot(t_long, strength_model(t_long, <span class="op">*</span>popt), label<span class="op">=</span><span class="st">"hyperbolic"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plt.plot(t_long, c0 <span class="op">+</span> c1 <span class="op">*</span> np.log(t_long), label<span class="op">=</span><span class="st">"logarithmic"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>plt.axvline(mix[<span class="st">"age"</span>].<span class="bu">max</span>(), ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Age (days)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Strength (MPa)"</span>)<span class="op">;</span> plt.legend()</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-regression-doe_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Within the measured range both models can fit similarly well. Beyond it, the logarithmic model grows without bound, while the hyperbolic model approaches a final strength – physically more plausible, since hydration eventually stops. But neither model is validated beyond the last measurement: long-term effects (e.g.&nbsp;carbonation, drying) are not in the data. Extrapolation relies on the model <em>form</em>, not on data – and different plausible forms can give very different answers.</p>
 </div>
@@ -914,10 +1303,86 @@ Solution to Exercise 6
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A <span class="math inline">\(2^4\)</span> full factorial design needs <span class="math inline">\(2^4 = 16\)</span> runs (32 with two replicates). It estimates 4 main effects, 6 two-factor, 4 three-factor and 1 four-factor interaction. A <strong>fractional factorial design</strong> <span class="math inline">\(2^{4-1}\)</span> uses only 8 runs, chosen such that the main effects remain orthogonal. The price is <strong>aliasing</strong>: some effects can no longer be distinguished – in the <span class="math inline">\(2^{4-1}\)</span> design with generator <span class="math inline">\(D = ABC\)</span>, each main effect is aliased with a three-factor interaction and the two-factor interactions are aliased in pairs. This is acceptable when higher-order interactions are negligible, which is often the case in screening experiments.</p>
-<div id="2871b1d5" class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>design4 <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(itertools.product([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], repeat<span class="op">=</span><span class="dv">3</span>)), columns<span class="op">=</span><span class="bu">list</span>(<span class="st">"ABC"</span>))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>design4[<span class="st">"D"</span>] <span class="op">=</span> design4[<span class="st">"A"</span>] <span class="op">*</span> design4[<span class="st">"B"</span>] <span class="op">*</span> design4[<span class="st">"C"</span>]       <span class="co"># generator D = ABC</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>design4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c8781634" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>design4 <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(itertools.product([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], repeat<span class="op">=</span><span class="dv">3</span>)), columns<span class="op">=</span><span class="bu">list</span>(<span class="st">"ABC"</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>design4[<span class="st">"D"</span>] <span class="op">=</span> design4[<span class="st">"A"</span>] <span class="op">*</span> design4[<span class="st">"B"</span>] <span class="op">*</span> design4[<span class="st">"C"</span>]       <span class="co"># generator D = ABC</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>design4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">A</th>
+<th data-quarto-table-cell-role="th">B</th>
+<th data-quarto-table-cell-role="th">C</th>
+<th data-quarto-table-cell-role="th">D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>-1</td>
+<td>-1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-1</td>
+<td>1</td>
+<td>-1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>-1</td>
+<td>1</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1</td>
+<td>-1</td>
+<td>-1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>1</td>
+<td>-1</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>1</td>
+<td>1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 </div>
 </div>

@@ -78,11 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-ef31e3f4d9d6eef55c54bdf6b9cd68ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-f92e9cd00cfa24dbc31d4226c6e5e52e.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -138,10 +138,24 @@ window.Quarto = {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science in Engineering</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,33 +164,18 @@ window.Quarto = {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html">Part A – Understanding Data</a></li><li class="breadcrumb-item"><a href="../notebooks/03-uncertainty.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../logo.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Data Science in Engineering</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Data-Science-in-Engineering.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
       </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -347,11 +346,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#live-coding-lifetimes-of-turbofan-engines" id="toc-live-coding-lifetimes-of-turbofan-engines" class="nav-link" data-scroll-target="#live-coding-lifetimes-of-turbofan-engines"><span class="header-section-number">3.3</span> Live coding: lifetimes of turbofan engines</a></li>
   <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">3.4</span> Confidence intervals</a></li>
-  <li><a href="#bayes-theorem-how-much-should-we-trust-an-alarm" id="toc-bayes-theorem-how-much-should-we-trust-an-alarm" class="nav-link" data-scroll-target="#bayes-theorem-how-much-should-we-trust-an-alarm"><span class="header-section-number">3.5</span> Bayes’ theorem: how much should we trust an alarm?</a></li>
-  <li><a href="#extension-bayesian-estimation-with-prior-knowledge" id="toc-extension-bayesian-estimation-with-prior-knowledge" class="nav-link" data-scroll-target="#extension-bayesian-estimation-with-prior-knowledge"><span class="header-section-number">3.6</span> Extension: Bayesian estimation with prior knowledge</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.7</span> Exercises</a>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">3.5</span> Back to the decision</a></li>
+  <li><a href="#bayes-theorem-how-much-should-we-trust-an-alarm" id="toc-bayes-theorem-how-much-should-we-trust-an-alarm" class="nav-link" data-scroll-target="#bayes-theorem-how-much-should-we-trust-an-alarm"><span class="header-section-number">3.6</span> Bayes’ theorem: how much should we trust an alarm?</a></li>
+  <li><a href="#extension-bayesian-estimation-with-prior-knowledge" id="toc-extension-bayesian-estimation-with-prior-knowledge" class="nav-link" data-scroll-target="#extension-bayesian-estimation-with-prior-knowledge"><span class="header-section-number">3.7</span> Extension: Bayesian estimation with prior knowledge</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.8</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">3.7.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">3.8.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -380,9 +380,11 @@ window.Quarto = {
 
 <p>No two measurements are identical, no two components have the same lifetime, and every estimate computed from a sample would come out slightly differently with another sample. Engineers deal with this variability every day – in tolerances, safety factors, reliability targets and maintenance plans. Probability theory provides the language to describe it, and statistics provides the tools to quantify how certain our estimates are.</p>
 <p>In this chapter we model the lifetimes of jet engines with a probability distribution, derive reliability figures such as the B10 life, and quantify the uncertainty of our estimates with confidence intervals – computed both with a classical formula and with the bootstrap. Finally we meet Bayes’ theorem, which tells us how to update probabilities when new information arrives.</p>
-<blockquote class="blockquote">
-<p><strong>Engineering question:</strong> How long does a jet engine run before it fails, and how certain are we about that estimate?</p>
-</blockquote>
+<div class="scenario">
+<p><strong>Scenario: the replacement interval</strong></p>
+<p>You are the reliability engineer of an airline that operates a fleet of turbofan engines of one type. The airworthiness authority requires a maintenance programme in which, with 95 % confidence, at most 10 % of the engines reach a critical degradation state before they are taken off wing for overhaul. Your data: the complete run-to-failure histories of 100 engines of the same type. The fleet manager wants the interval as long as possible – every additional cycle on wing saves money.</p>
+<p><strong>Your decision:</strong> After how many flight cycles should engines be overhauled preventively?</p>
+</div>
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>describe random quantities with probability density, distribution function, expected value and variance,</li>
@@ -536,7 +538,7 @@ Definition: Maximum likelihood estimation (MLE)
 </div>
 <p>For the normal distribution, MLE leads to the familiar mean and (biased) standard deviation. For the Weibull distribution, there is no closed-form solution; <code>scipy.stats.weibull_min.fit</code> maximises the likelihood numerically.</p>
 <p>To check whether the fitted distribution describes the data, we use a <strong>probability plot</strong> (Q–Q plot): the sorted data are plotted against the corresponding quantiles of the fitted distribution. If the model fits, the points lie on a straight line. Systematic curvature at the ends reveals a wrong tail behaviour – exactly where reliability questions are decided.</p>
-<div id="68f550a9" class="cell">
+<div id="af966859" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup: works locally and in Google Colab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -551,40 +553,79 @@ Definition: Maximum likelihood estimation (MLE)
 <section id="live-coding-lifetimes-of-turbofan-engines" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="live-coding-lifetimes-of-turbofan-engines"><span class="header-section-number">3.3</span> Live coding: lifetimes of turbofan engines</h2>
 <p>C-MAPSS (<em>Commercial Modular Aero-Propulsion System Simulation</em>) is a NASA simulation of a large turbofan engine. The dataset contains run-to-failure trajectories of a fleet of engines with different initial wear and manufacturing variation. In the training file <code>train_FD001.txt</code>, every one of the 100 engines runs until failure, so the last recorded cycle of each engine is its lifetime (in flight cycles). We will use the sensor data of the same file in Chapter 12.</p>
-<p><strong>Data access.</strong> Download <code>CMAPSSData.zip</code> from the NASA Open Data Portal (link above) and extract it into the folder <code>data/CMAPSSData/</code>. In Colab, upload the zip file via the file browser and run the cell below.</p>
-<div id="fc7c3af3" class="cell">
+<p><strong>Data access.</strong> The cell below downloads <code>CMAPSSData.zip</code> (about 12 MB) from the NASA Open Data Portal once and extracts it into the folder <code>data/CMAPSSData/</code>.</p>
+<div id="9310d61d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile, io, requests</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> Path(<span class="st">"CMAPSSData.zip"</span>).exists() <span class="kw">and</span> <span class="kw">not</span> (DATA <span class="op">/</span> <span class="st">"CMAPSSData"</span>).exists():</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    zipfile.ZipFile(<span class="st">"CMAPSSData.zip"</span>).extractall(DATA <span class="op">/</span> <span class="st">"CMAPSSData"</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"unit"</span>, <span class="st">"cycle"</span>, <span class="st">"op1"</span>, <span class="st">"op2"</span>, <span class="st">"op3"</span>] <span class="op">+</span> [<span class="ss">f"s</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">22</span>)]</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_csv(DATA <span class="op">/</span> <span class="st">"CMAPSSData"</span> <span class="op">/</span> <span class="st">"train_FD001.txt"</span>, sep<span class="op">=</span><span class="vs">r"\s+"</span>, header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>cols)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>lifetimes <span class="op">=</span> train.groupby(<span class="st">"unit"</span>)[<span class="st">"cycle"</span>].<span class="bu">max</span>()</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>lifetimes.describe().<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cmapss_dir(root<span class="op">=</span>Path(<span class="st">"data"</span>)):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Download and extract the NASA C-MAPSS data once; return the folder with train_FD001.txt."""</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    root.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    target <span class="op">=</span> root <span class="op">/</span> <span class="st">"CMAPSSData"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">any</span>(target.rglob(<span class="st">"train_FD001.txt"</span>)):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        zip_path <span class="op">=</span> root <span class="op">/</span> <span class="st">"CMAPSSData.zip"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> zip_path.exists():</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            r <span class="op">=</span> requests.get(<span class="st">"https://data.nasa.gov/docs/legacy/CMAPSSData.zip"</span>, timeout<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            r.raise_for_status()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            zip_path.write_bytes(r.content)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> zipfile.ZipFile(zip_path) <span class="im">as</span> z:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            z.extractall(target)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> inner <span class="kw">in</span> <span class="bu">list</span>(target.rglob(<span class="st">"*.zip"</span>)):          <span class="co"># some versions contain a nested zip</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            zipfile.ZipFile(inner).extractall(inner.parent)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">next</span>(target.rglob(<span class="st">"train_FD001.txt"</span>)).parent</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>CMAPSS <span class="op">=</span> cmapss_dir()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"unit"</span>, <span class="st">"cycle"</span>, <span class="st">"op1"</span>, <span class="st">"op2"</span>, <span class="st">"op3"</span>] <span class="op">+</span> [<span class="ss">f"s</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">22</span>)]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_csv(CMAPSS <span class="op">/</span> <span class="st">"train_FD001.txt"</span>, sep<span class="op">=</span><span class="vs">r"\s+"</span>, header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>cols)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>lifetimes <span class="op">=</span> train.groupby(<span class="st">"unit"</span>)[<span class="st">"cycle"</span>].<span class="bu">max</span>()</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>lifetimes.describe().<span class="bu">round</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>count    100.0
+mean     206.3
+std       46.3
+min      128.0
+25%      177.0
+50%      199.0
+75%      229.2
+max      362.0
+Name: cycle, dtype: float64</code></pre>
 </div>
-<div id="e9c87b76" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>beta, loc, eta <span class="op">=</span> stats.weibull_min.fit(lifetimes, floc<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Weibull fit: shape beta = </span><span class="sc">{</span>beta<span class="sc">:.2f}</span><span class="ss">, scale eta = </span><span class="sc">{</span>eta<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">4</span>))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, lifetimes.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.1</span>, <span class="dv">300</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].hist(lifetimes, bins<span class="op">=</span><span class="dv">15</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"data"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(t, stats.weibull_min.pdf(t, beta, scale<span class="op">=</span>eta), label<span class="op">=</span><span class="st">"Weibull fit"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Lifetime (cycles)"</span>, ylabel<span class="op">=</span><span class="st">"Density"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].legend()</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>stats.probplot(lifetimes, dist<span class="op">=</span>stats.weibull_min, sparams<span class="op">=</span>(beta, <span class="dv">0</span>, eta), plot<span class="op">=</span>axes[<span class="dv">1</span>])</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Probability plot (Weibull)"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="7f7c436f" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>beta, loc, eta <span class="op">=</span> stats.weibull_min.fit(lifetimes, floc<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Weibull fit: shape beta = </span><span class="sc">{</span>beta<span class="sc">:.2f}</span><span class="ss">, scale eta = </span><span class="sc">{</span>eta<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">4</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, lifetimes.<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.1</span>, <span class="dv">300</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].hist(lifetimes, bins<span class="op">=</span><span class="dv">15</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"data"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(t, stats.weibull_min.pdf(t, beta, scale<span class="op">=</span>eta), label<span class="op">=</span><span class="st">"Weibull fit"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Lifetime (cycles)"</span>, ylabel<span class="op">=</span><span class="st">"Density"</span>)<span class="op">;</span> axes[<span class="dv">0</span>].legend()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>stats.probplot(lifetimes, dist<span class="op">=</span>stats.weibull_min, sparams<span class="op">=</span>(beta, <span class="dv">0</span>, eta), plot<span class="op">=</span>axes[<span class="dv">1</span>])</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_title(<span class="st">"Probability plot (Weibull)"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Weibull fit: shape beta = 4.41, scale eta = 225.0 cycles</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-uncertainty_files/figure-html/cell-4-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p><strong>Discussion.</strong> We fixed the location parameter at zero (<code>floc=0</code>), i.e.&nbsp;we use the two-parameter Weibull distribution. The estimated shape parameter is clearly larger than 1 – the engines show <strong>wear-out behaviour</strong>, as expected for a degradation simulation. The probability plot tells us whether the Weibull model is adequate over the whole range; pay particular attention to the lower tail, which determines the B10 life.</p>
 <p>Note that no engine fails very early: the shortest lifetime is well above zero. A three-parameter Weibull distribution with a <em>failure-free time</em> (location parameter <span class="math inline">\(t_0 &gt; 0\)</span>) could describe this better – a question for Exercise 1.</p>
-<div id="a5cd171c" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>b10 <span class="op">=</span> stats.weibull_min.ppf(<span class="fl">0.10</span>, beta, scale<span class="op">=</span>eta)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 life from the fit:    </span><span class="sc">{</span>b10<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 from the formula:     </span><span class="sc">{</span>eta <span class="op">*</span> (<span class="op">-</span>np.log(<span class="fl">0.9</span>)) <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> beta)<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Empirical 10 % quantile:  </span><span class="sc">{</span>lifetimes<span class="sc">.</span>quantile(<span class="fl">0.10</span>)<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f70653b3" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>b10 <span class="op">=</span> stats.weibull_min.ppf(<span class="fl">0.10</span>, beta, scale<span class="op">=</span>eta)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 life from the fit:    </span><span class="sc">{</span>b10<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 from the formula:     </span><span class="sc">{</span>eta <span class="op">*</span> (<span class="op">-</span>np.log(<span class="fl">0.9</span>)) <span class="op">**</span> (<span class="dv">1</span> <span class="op">/</span> beta)<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Empirical 10 % quantile:  </span><span class="sc">{</span>lifetimes<span class="sc">.</span>quantile(<span class="fl">0.10</span>)<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>B10 life from the fit:    135 cycles
+B10 from the formula:     135 cycles
+Empirical 10 % quantile:  155 cycles</code></pre>
+</div>
 </div>
 </section>
 <section id="confidence-intervals" class="level2" data-number="3.4">
@@ -641,19 +682,46 @@ Definition: Bootstrap
 <p>Draw <span class="math inline">\(B\)</span> (e.g.&nbsp;10,000) samples of size <span class="math inline">\(n\)</span> <strong>with replacement</strong> from the observed data and compute the statistic of interest for each. The distribution of these bootstrap replicates approximates the sampling distribution of the statistic; its 2.5 % and 97.5 % quantiles give an approximate 95 % confidence interval (percentile method; SciPy uses the refined BCa method by default).</p>
 </div>
 </div>
-<div id="0c54b59f" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ci_t <span class="op">=</span> stats.t.interval(<span class="fl">0.95</span>, df<span class="op">=</span><span class="bu">len</span>(lifetimes) <span class="op">-</span> <span class="dv">1</span>,</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                        loc<span class="op">=</span>lifetimes.mean(), scale<span class="op">=</span>stats.sem(lifetimes))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>boot <span class="op">=</span> stats.bootstrap((lifetimes.values,), np.mean, confidence_level<span class="op">=</span><span class="fl">0.95</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                       random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean lifetime: </span><span class="sc">{</span>lifetimes<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t-interval:        "</span>, np.<span class="bu">round</span>(ci_t, <span class="dv">1</span>))</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"bootstrap interval:"</span>, np.<span class="bu">round</span>(boot.confidence_interval, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="53d5eb38" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ci_t <span class="op">=</span> stats.t.interval(<span class="fl">0.95</span>, df<span class="op">=</span><span class="bu">len</span>(lifetimes) <span class="op">-</span> <span class="dv">1</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                        loc<span class="op">=</span>lifetimes.mean(), scale<span class="op">=</span>stats.sem(lifetimes))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>boot <span class="op">=</span> stats.bootstrap((lifetimes.values,), np.mean, confidence_level<span class="op">=</span><span class="fl">0.95</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                       random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean lifetime: </span><span class="sc">{</span>lifetimes<span class="sc">.</span>mean()<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"t-interval:        "</span>, np.<span class="bu">round</span>(ci_t, <span class="dv">1</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"bootstrap interval:"</span>, np.<span class="bu">round</span>(boot.confidence_interval, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mean lifetime: 206.3 cycles
+t-interval:         [197.1 215.5]
+bootstrap interval: [197.9 215.8]</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> For the mean of 100 observations both methods give almost the same interval – the central limit theorem makes the t-interval reliable here. The bootstrap becomes valuable for statistics without a known formula (Exercise 2) and for small or strongly skewed samples.</p>
 </section>
-<section id="bayes-theorem-how-much-should-we-trust-an-alarm" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="bayes-theorem-how-much-should-we-trust-an-alarm"><span class="header-section-number">3.5</span> Bayes’ theorem: how much should we trust an alarm?</h2>
+<section id="back-to-the-decision" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">3.5</span> Back to the decision</h2>
+<p>The requirement “at most 10 % failures with 95 % confidence” has two parts. The 10 % defines the B10 life. The 95 % confidence means that we must not use the point estimate of B10 but a value that is, with 95 % confidence, <em>below</em> the true B10 – the lower bound of a one-sided 95 % confidence interval, which we obtain with the bootstrap. And preventive overhaul only makes sense if the failure rate increases with age, i.e.&nbsp;<span class="math inline">\(\beta &gt; 1\)</span>.</p>
+<div id="76374339" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> b10_of(x):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    c, _, scale <span class="op">=</span> stats.weibull_min.fit(x, floc<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> stats.weibull_min.ppf(<span class="fl">0.10</span>, c, scale<span class="op">=</span>scale)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>boot_b10 <span class="op">=</span> stats.bootstrap((lifetimes.values,), b10_of, n_resamples<span class="op">=</span><span class="dv">1000</span>, confidence_level<span class="op">=</span><span class="fl">0.90</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                           method<span class="op">=</span><span class="st">"percentile"</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>b10_lower <span class="op">=</span> boot_b10.confidence_interval.low      <span class="co"># lower end of a 90 % two-sided = 95 % one-sided bound</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Weibull shape beta = </span><span class="sc">{</span>beta<span class="sc">:.2f}</span><span class="ss">  -&gt;  </span><span class="sc">{</span><span class="st">'wear-out: preventive overhaul is sensible'</span> <span class="cf">if</span> beta <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'no wear-out: preventive overhaul does not help'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 point estimate: </span><span class="sc">{</span>b10<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % lower confidence bound: </span><span class="sc">{</span>b10_lower<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Decision: overhaul after </span><span class="sc">{</span><span class="bu">int</span>(np.floor(b10_lower))<span class="sc">}</span><span class="ss"> flight cycles at the latest."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Weibull shape beta = 4.41  -&gt;  wear-out: preventive overhaul is sensible
+B10 point estimate: 135 cycles, 95 % lower confidence bound: 128 cycles
+Decision: overhaul after 128 flight cycles at the latest.</code></pre>
+</div>
+</div>
+<p>The difference between the point estimate and the lower bound is the price of having data from only 100 engines – more data would allow a longer interval. In the real world, the decision would also consider that C-MAPSS is a <em>simulation</em>: before an interval is approved, the model would have to be validated against field data of real engines.</p>
+</section>
+<section id="bayes-theorem-how-much-should-we-trust-an-alarm" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="bayes-theorem-how-much-should-we-trust-an-alarm"><span class="header-section-number">3.6</span> Bayes’ theorem: how much should we trust an alarm?</h2>
 <p>So far we have treated probabilities as long-run frequencies. <strong>Conditional probabilities</strong> describe how the probability of an event changes when we know that another event has occurred.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -684,41 +752,59 @@ Pitfall: base rate neglect
 <p>Intuition tends to confuse <span class="math inline">\(P(A \mid F)\)</span> (“the system detects 95 % of all faults”) with <span class="math inline">\(P(F \mid A)\)</span> (“95 % of all alarms are real”). When the base rate <span class="math inline">\(P(F)\)</span> is small, the two differ dramatically. This effect returns in Chapter 7 as the <em>precision</em> of a classifier.</p>
 </div>
 </div>
-<div id="5845e43d" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sens, false_alarm <span class="op">=</span> <span class="fl">0.95</span>, <span class="fl">0.05</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>prevalence <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="dv">200</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> sens <span class="op">*</span> prevalence <span class="op">/</span> (sens <span class="op">*</span> prevalence <span class="op">+</span> false_alarm <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> prevalence))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.semilogx(prevalence, posterior)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="fl">0.01</span>, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Share of damaged bearings P(F)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"P(fault | alarm)"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Same sensor, very different meaning of an alarm"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c29d325f" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sens, false_alarm <span class="op">=</span> <span class="fl">0.95</span>, <span class="fl">0.05</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>prevalence <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="dv">200</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> sens <span class="op">*</span> prevalence <span class="op">/</span> (sens <span class="op">*</span> prevalence <span class="op">+</span> false_alarm <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> prevalence))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.semilogx(prevalence, posterior)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="fl">0.01</span>, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Share of damaged bearings P(F)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"P(fault | alarm)"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Same sensor, very different meaning of an alarm"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-uncertainty_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
-<section id="extension-bayesian-estimation-with-prior-knowledge" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="extension-bayesian-estimation-with-prior-knowledge"><span class="header-section-number">3.6</span> Extension: Bayesian estimation with prior knowledge</h2>
+<section id="extension-bayesian-estimation-with-prior-knowledge" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="extension-bayesian-estimation-with-prior-knowledge"><span class="header-section-number">3.7</span> Extension: Bayesian estimation with prior knowledge</h2>
 <p><em>Extension – optional material, not required for the exam.</em></p>
 <p>Classical (frequentist) statistics uses only the current data. Bayesian statistics treats an unknown parameter <span class="math inline">\(\theta\)</span> itself as uncertain, describes the knowledge before the experiment by a <strong>prior distribution</strong> and updates it with the data to a <strong>posterior distribution</strong>:</p>
 <p><span class="math display">\[p(\theta \mid \text{data}) \propto p(\text{data} \mid \theta)\; p(\theta).\]</span></p>
 <p>This is attractive in engineering, where tests are expensive but experience from predecessor products exists. Example: a new product variant is tested, 3 of 50 parts are defective. From the predecessor product we know a defect rate of about 2 %.</p>
-<p>For a proportion, the <strong>beta distribution</strong> is a convenient prior: with prior <span class="math inline">\(\text{Beta}(\alpha, \beta)\)</span> and <span class="math inline">\(k\)</span> defects in <span class="math inline">\(n\)</span> parts, the posterior is again a beta distribution, <span class="math inline">\(\text{Beta}(\alpha + k,\; \beta + n - k)\)</span>. The prior <span class="math inline">\(\text{Beta}(2, 98)\)</span> has mean <span class="math inline">\(2/(2+98) = 2\,\%\)</span> and carries roughly the weight of 100 previously inspected parts.</p>
-<div id="daa37b7d" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>k, n <span class="op">=</span> <span class="dv">3</span>, <span class="dv">50</span>                       <span class="co"># new tests: defects, parts</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>a0, b0 <span class="op">=</span> <span class="dv">2</span>, <span class="dv">98</span>                     <span class="co"># prior from the predecessor product</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>a1, b1 <span class="op">=</span> a0 <span class="op">+</span> k, b0 <span class="op">+</span> n <span class="op">-</span> k        <span class="co"># posterior</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">0.20</span>, <span class="dv">500</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.plot(p, stats.beta.pdf(p, a0, b0), label<span class="op">=</span><span class="st">"prior (predecessor)"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.plot(p, stats.beta.pdf(p, <span class="dv">1</span> <span class="op">+</span> k, <span class="dv">1</span> <span class="op">+</span> n <span class="op">-</span> k), label<span class="op">=</span><span class="st">"data only (flat prior)"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.plot(p, stats.beta.pdf(p, a1, b1), label<span class="op">=</span><span class="st">"posterior"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Defect rate"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Density"</span>)<span class="op">;</span> plt.legend()</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>ci_freq <span class="op">=</span> stats.binomtest(k, n).proportion_ci(<span class="fl">0.95</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Frequentist: </span><span class="sc">{</span>k<span class="op">/</span>n<span class="sc">:.1%}</span><span class="ss">, 95 % CI [</span><span class="sc">{</span>ci_freq<span class="sc">.</span>low<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>ci_freq<span class="sc">.</span>high<span class="sc">:.1%}</span><span class="ss">]"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>lo, hi <span class="op">=</span> stats.beta.interval(<span class="fl">0.95</span>, a1, b1)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bayesian:    </span><span class="sc">{</span>a1<span class="op">/</span>(a1<span class="op">+</span>b1)<span class="sc">:.1%}</span><span class="ss">, 95 % credible interval [</span><span class="sc">{</span>lo<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>hi<span class="sc">:.1%}</span><span class="ss">]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For a proportion, the <strong>beta distribution</strong> is a convenient prior: with prior <span class="math inline">\(\text{Beta}(a, b)\)</span> and <span class="math inline">\(k\)</span> defects in <span class="math inline">\(n\)</span> parts, the posterior is again a beta distribution, <span class="math inline">\(\text{Beta}(a + k,\; b + n - k)\)</span>. (We write <span class="math inline">\(a, b\)</span> for the beta parameters to avoid confusion with the Weibull shape <span class="math inline">\(\beta\)</span>.) The prior mean is <span class="math inline">\(a/(a+b)\)</span>, so <span class="math inline">\(\text{Beta}(2, 98)\)</span> has mean <span class="math inline">\(2/(2+98) = 2\,\%\)</span> and carries roughly the weight of 100 previously inspected parts.</p>
+<div id="ca496dba" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>k, n <span class="op">=</span> <span class="dv">3</span>, <span class="dv">50</span>                       <span class="co"># new tests: defects, parts</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>a0, b0 <span class="op">=</span> <span class="dv">2</span>, <span class="dv">98</span>                     <span class="co"># prior from the predecessor product</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>a1, b1 <span class="op">=</span> a0 <span class="op">+</span> k, b0 <span class="op">+</span> n <span class="op">-</span> k        <span class="co"># posterior</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">0.20</span>, <span class="dv">500</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.plot(p, stats.beta.pdf(p, a0, b0), label<span class="op">=</span><span class="st">"prior (predecessor)"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.plot(p, stats.beta.pdf(p, <span class="dv">1</span> <span class="op">+</span> k, <span class="dv">1</span> <span class="op">+</span> n <span class="op">-</span> k), label<span class="op">=</span><span class="st">"data only (flat prior)"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.plot(p, stats.beta.pdf(p, a1, b1), label<span class="op">=</span><span class="st">"posterior"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Defect rate"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Density"</span>)<span class="op">;</span> plt.legend()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>ci_freq <span class="op">=</span> stats.binomtest(k, n).proportion_ci(<span class="fl">0.95</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Frequentist: </span><span class="sc">{</span>k<span class="op">/</span>n<span class="sc">:.1%}</span><span class="ss">, 95 % CI [</span><span class="sc">{</span>ci_freq<span class="sc">.</span>low<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>ci_freq<span class="sc">.</span>high<span class="sc">:.1%}</span><span class="ss">]"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>lo, hi <span class="op">=</span> stats.beta.interval(<span class="fl">0.95</span>, a1, b1)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bayesian:    </span><span class="sc">{</span>a1<span class="op">/</span>(a1<span class="op">+</span>b1)<span class="sc">:.1%}</span><span class="ss">, 95 % credible interval [</span><span class="sc">{</span>lo<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>hi<span class="sc">:.1%}</span><span class="ss">]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-uncertainty_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Frequentist: 6.0%, 95 % CI [1.3%, 16.5%]
+Bayesian:    3.3%, 95 % credible interval [1.1%, 6.7%]</code></pre>
+</div>
 </div>
 <p><strong>Discussion.</strong> The posterior lies between prior and data: the new tests suggest a higher defect rate than the predecessor, but 50 parts are not enough to overrule the experience from 100 parts completely. The Bayesian <strong>credible interval</strong> has the intuitive interpretation that the classical confidence interval lacks: given prior and data, the defect rate lies in this interval with 95 % probability. The price is that the result depends on the prior – which must therefore be justified and documented. Whether the predecessor is really comparable is an engineering judgement, not a statistical one.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -740,8 +826,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.7</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.8</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Fit a lognormal, a normal and a three-parameter Weibull distribution (free location parameter) to the lifetimes. Compare the fits with probability plots and the Kolmogorov–Smirnov statistic.</li>
@@ -752,8 +838,8 @@ Key takeaways
 <li>(Extension) Repeat the defect-rate analysis with a weak prior Beta(0.2, 9.8) and a strong prior Beta(20, 980). When does the prior dominate, when the data?</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">3.7.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">3.8.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -766,19 +852,26 @@ Solution to Exercise 1
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="75850e45" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fits <span class="op">=</span> {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weibull (2p)"</span>: (stats.weibull_min, stats.weibull_min.fit(lifetimes, floc<span class="op">=</span><span class="dv">0</span>)),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weibull (3p)"</span>: (stats.weibull_min, stats.weibull_min.fit(lifetimes)),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lognormal"</span>:    (stats.lognorm, stats.lognorm.fit(lifetimes, floc<span class="op">=</span><span class="dv">0</span>)),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"normal"</span>:       (stats.norm, stats.norm.fit(lifetimes)),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">4</span>))</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (name, (dist, params)) <span class="kw">in</span> <span class="bu">zip</span>(axes, fits.items()):</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    stats.probplot(lifetimes, dist<span class="op">=</span>dist, sparams<span class="op">=</span>params, plot<span class="op">=</span>ax)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    ks <span class="op">=</span> stats.kstest(lifetimes, dist.cdf, args<span class="op">=</span>params)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ch">\n</span><span class="ss">KS D = </span><span class="sc">{</span>ks<span class="sc">.</span>statistic<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1ba7d7a2" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fits <span class="op">=</span> {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weibull (2p)"</span>: (stats.weibull_min, stats.weibull_min.fit(lifetimes, floc<span class="op">=</span><span class="dv">0</span>)),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weibull (3p)"</span>: (stats.weibull_min, stats.weibull_min.fit(lifetimes)),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lognormal"</span>:    (stats.lognorm, stats.lognorm.fit(lifetimes, floc<span class="op">=</span><span class="dv">0</span>)),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"normal"</span>:       (stats.norm, stats.norm.fit(lifetimes)),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">4</span>))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, (name, (dist, params)) <span class="kw">in</span> <span class="bu">zip</span>(axes, fits.items()):</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    stats.probplot(lifetimes, dist<span class="op">=</span>dist, sparams<span class="op">=</span>params, plot<span class="op">=</span>ax)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    ks <span class="op">=</span> stats.kstest(lifetimes, dist.cdf, args<span class="op">=</span>params)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ch">\n</span><span class="ss">KS D = </span><span class="sc">{</span>ks<span class="sc">.</span>statistic<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-uncertainty_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>The model with the smallest KS statistic and the straightest probability plot fits best. The three-parameter Weibull has one more parameter and therefore always fits at least as well as the two-parameter version; its location parameter estimates a failure-free time. Caution: the p-values of the KS test are not valid when the parameters were estimated from the same data, so use the statistic for comparison only. With 100 observations, several distributions usually fit acceptably – the choice should also be guided by physics (Weibull for wear-out).</p>
 </div>
@@ -796,16 +889,20 @@ Solution to Exercise 2
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="14014c8f" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> b10_stat(x):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    c, _, scale <span class="op">=</span> stats.weibull_min.fit(x, floc<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> stats.weibull_min.ppf(<span class="fl">0.10</span>, c, scale<span class="op">=</span>scale)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>boot_b10 <span class="op">=</span> stats.bootstrap((lifetimes.values,), b10_stat, n_resamples<span class="op">=</span><span class="dv">1000</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                           method<span class="op">=</span><span class="st">"percentile"</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>lo, hi <span class="op">=</span> boot_b10.confidence_interval</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 = </span><span class="sc">{</span>b10<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % CI [</span><span class="sc">{</span>lo<span class="sc">:.0f}</span><span class="ss">, </span><span class="sc">{</span>hi<span class="sc">:.0f}</span><span class="ss">]  (relative width </span><span class="sc">{</span>(hi <span class="op">-</span> lo) <span class="op">/</span> b10<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean: relative width </span><span class="sc">{</span>(ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>]) <span class="op">/</span> lifetimes<span class="sc">.</span>mean()<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="32d8491a" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> b10_stat(x):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    c, _, scale <span class="op">=</span> stats.weibull_min.fit(x, floc<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> stats.weibull_min.ppf(<span class="fl">0.10</span>, c, scale<span class="op">=</span>scale)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>boot_b10 <span class="op">=</span> stats.bootstrap((lifetimes.values,), b10_stat, n_resamples<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                           method<span class="op">=</span><span class="st">"percentile"</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>lo, hi <span class="op">=</span> boot_b10.confidence_interval</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 = </span><span class="sc">{</span>b10<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % CI [</span><span class="sc">{</span>lo<span class="sc">:.0f}</span><span class="ss">, </span><span class="sc">{</span>hi<span class="sc">:.0f}</span><span class="ss">]  (relative width </span><span class="sc">{</span>(hi <span class="op">-</span> lo) <span class="op">/</span> b10<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean: relative width </span><span class="sc">{</span>(ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>]) <span class="op">/</span> lifetimes<span class="sc">.</span>mean()<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>B10 = 135 cycles, 95 % CI [127, 146]  (relative width 14%)
+Mean: relative width 9%</code></pre>
+</div>
 </div>
 <p>The B10 life is a statement about the <strong>lower tail</strong> of the distribution, where only about 10 of the 100 engines contribute information. In addition, it depends on two estimated parameters, and the shape parameter enters as an exponent. The mean uses all observations equally. Reliability figures in the tails are therefore always much more uncertain than averages – a reason for large safety factors.</p>
 </div>
@@ -823,15 +920,19 @@ Solution to Exercise 3
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="b98a75de" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>widths <span class="op">=</span> []</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2000</span>):</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> rng.choice(lifetimes.values, size<span class="op">=</span><span class="dv">20</span>, replace<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    lo_, hi_ <span class="op">=</span> stats.t.interval(<span class="fl">0.95</span>, df<span class="op">=</span><span class="dv">19</span>, loc<span class="op">=</span>sub.mean(), scale<span class="op">=</span>stats.sem(sub))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    widths.append(hi_ <span class="op">-</span> lo_)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = 100: width </span><span class="sc">{</span>ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = 20:  mean width </span><span class="sc">{</span>np<span class="sc">.</span>mean(widths)<span class="sc">:.1f}</span><span class="ss"> cycles (ratio </span><span class="sc">{</span>np<span class="sc">.</span>mean(widths) <span class="op">/</span> (ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>])<span class="sc">:.2f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f6636af7" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>widths <span class="op">=</span> []</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2000</span>):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> rng.choice(lifetimes.values, size<span class="op">=</span><span class="dv">20</span>, replace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    lo_, hi_ <span class="op">=</span> stats.t.interval(<span class="fl">0.95</span>, df<span class="op">=</span><span class="dv">19</span>, loc<span class="op">=</span>sub.mean(), scale<span class="op">=</span>stats.sem(sub))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    widths.append(hi_ <span class="op">-</span> lo_)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = 100: width </span><span class="sc">{</span>ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = 20:  mean width </span><span class="sc">{</span>np<span class="sc">.</span>mean(widths)<span class="sc">:.1f}</span><span class="ss"> cycles (ratio </span><span class="sc">{</span>np<span class="sc">.</span>mean(widths) <span class="op">/</span> (ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>])<span class="sc">:.2f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n = 100: width 18.4 cycles
+n = 20:  mean width 42.6 cycles (ratio 2.32)</code></pre>
+</div>
 </div>
 <p>The width scales approximately with <span class="math inline">\(1/\sqrt{n}\)</span>, so going from 100 to 20 engines should make the interval about <span class="math inline">\(\sqrt{5} \approx 2.2\)</span> times wider; the t-quantile for 19 degrees of freedom (2.09 instead of 1.98) adds a little more. (Subsampling without replacement from only 100 engines slightly reduces the spread, so the simulated ratio can be a bit smaller.)</p>
 </div>
@@ -849,9 +950,12 @@ Solution to Exercise 4
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="d2ceb4b3" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>t05 <span class="op">=</span> stats.weibull_min.ppf(<span class="fl">0.05</span>, beta, scale<span class="op">=</span>eta)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"beta = </span><span class="sc">{</span>beta<span class="sc">:.2f}</span><span class="ss"> &gt; 1 -&gt; wear-out; replacement age for 5 % failures: </span><span class="sc">{</span>t05<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5eb7fd5c" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>t05 <span class="op">=</span> stats.weibull_min.ppf(<span class="fl">0.05</span>, beta, scale<span class="op">=</span>eta)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"beta = </span><span class="sc">{</span>beta<span class="sc">:.2f}</span><span class="ss"> &gt; 1 -&gt; wear-out; replacement age for 5 % failures: </span><span class="sc">{</span>t05<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>beta = 4.41 &gt; 1 -&gt; wear-out; replacement age for 5 % failures: 115 cycles</code></pre>
+</div>
 </div>
 <p>Since <span class="math inline">\(\beta &gt; 1\)</span>, the failure rate increases with age, so preventive replacement reduces failures. The replacement age for at most 5 % failures is the 5 % quantile <span class="math inline">\(B_5 = \eta(-\ln 0.95)^{1/\beta}\)</span>. Given the large uncertainty of tail estimates (Exercise 2), one would in practice use the lower confidence bound of <span class="math inline">\(B_5\)</span> rather than the point estimate. Whether replacement is economical depends additionally on the cost ratio of planned replacement and unplanned failure.</p>
 </div>
@@ -869,7 +973,7 @@ Solution to Exercise 5
 </div>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>With <span class="math inline">\(P(F) = 0.001\)</span>: <span class="math display">\[P(F \mid A) = \frac{0.95 \cdot 0.001}{0.95 \cdot 0.001 + 0.05 \cdot 0.999} \approx 0.019,\]</span> i.e.&nbsp;only about 2 % of the alarms are real. For <span class="math inline">\(P(F \mid A) = 0.5\)</span> we need <span class="math inline">\(0.95 \cdot 0.001 = \alpha \cdot 0.999\)</span>, where <span class="math inline">\(\alpha\)</span> is the false alarm rate, so <span class="math inline">\(\alpha \approx 0.00095\)</span> – roughly one false alarm per thousand healthy bearings. The better the fleet, the more specific the monitoring must be.</p>
+<p>With <span class="math inline">\(P(F) = 0.001\)</span>: <span class="math display">\[P(F \mid A) = \frac{0.95 \cdot 0.001}{0.95 \cdot 0.001 + 0.05 \cdot 0.999} \approx 0.019,\]</span> i.e.&nbsp;only about 2 % of the alarms are real. For <span class="math inline">\(P(F \mid A) = 0.5\)</span> we need <span class="math inline">\(0.95 \cdot 0.001 = q \cdot 0.999\)</span>, where <span class="math inline">\(q = P(A \mid \bar F)\)</span> is the false alarm rate, so <span class="math inline">\(q \approx 0.00095\)</span> – roughly one false alarm per thousand healthy bearings. The better the fleet, the more specific the monitoring must be.</p>
 </div>
 </div>
 </div>
@@ -885,13 +989,18 @@ Solution to Exercise 6
 </div>
 <div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="7b05e869" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (a, b) <span class="kw">in</span> {<span class="st">"weak"</span>: (<span class="fl">0.2</span>, <span class="fl">9.8</span>), <span class="st">"medium"</span>: (<span class="dv">2</span>, <span class="dv">98</span>), <span class="st">"strong"</span>: (<span class="dv">20</span>, <span class="dv">980</span>)}.items():</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> stats.beta(a <span class="op">+</span> k, b <span class="op">+</span> n <span class="op">-</span> k)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    lo_, hi_ <span class="op">=</span> post.interval(<span class="fl">0.95</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:6s}</span><span class="ss"> prior: posterior mean </span><span class="sc">{</span>post<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">, 95 % credible interval [</span><span class="sc">{</span>lo_<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>hi_<span class="sc">:.1%}</span><span class="ss">]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b050c42b" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (a, b) <span class="kw">in</span> {<span class="st">"weak"</span>: (<span class="fl">0.2</span>, <span class="fl">9.8</span>), <span class="st">"medium"</span>: (<span class="dv">2</span>, <span class="dv">98</span>), <span class="st">"strong"</span>: (<span class="dv">20</span>, <span class="dv">980</span>)}.items():</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> stats.beta(a <span class="op">+</span> k, b <span class="op">+</span> n <span class="op">-</span> k)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    lo_, hi_ <span class="op">=</span> post.interval(<span class="fl">0.95</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:6s}</span><span class="ss"> prior: posterior mean </span><span class="sc">{</span>post<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">, 95 % credible interval [</span><span class="sc">{</span>lo_<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>hi_<span class="sc">:.1%}</span><span class="ss">]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>weak   prior: posterior mean 5.3%, 95 % credible interval [1.2%, 12.2%]
+medium prior: posterior mean 3.3%, 95 % credible interval [1.1%, 6.7%]
+strong prior: posterior mean 2.2%, 95 % credible interval [1.4%, 3.2%]</code></pre>
 </div>
-<p>All three priors have a mean of 2 % but different weights (<span class="math inline">\(\alpha + \beta\)</span> = 10, 100, 1000 “virtual parts”). The weak prior is dominated by the 50 real parts: the posterior mean is close to the observed 6 %. The strong prior hardly moves – 50 parts are not enough to overrule 1,000 virtual ones. Rule of thumb: the data dominate once <span class="math inline">\(n\)</span> is large compared with <span class="math inline">\(\alpha + \beta\)</span>.</p>
+</div>
+<p>All three priors have a mean of 2 % but different weights (<span class="math inline">\(a + b\)</span> = 10, 100, 1000 “virtual parts”). The weak prior is dominated by the 50 real parts: the posterior mean is close to the observed 6 %. The strong prior hardly moves – 50 parts are not enough to overrule 1,000 virtual ones. Rule of thumb: the data dominate once <span class="math inline">\(n\)</span> is large compared with <span class="math inline">\(a + b\)</span>.</p>
 </div>
 </div>
 </div>
