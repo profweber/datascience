@@ -1,0 +1,80 @@
+.exercises {
+    background-color: lightblue;
+    padding: 10px
+}
+
+/* Dark Mode */
+body.quarto-dark .exercises {
+  background-color: #1e2f44;
+  padding: 10px
+}
+
+/* Dark Mode: weniger grelle Code-Blöcke */
+body.quarto-dark pre,
+body.quarto-dark code {
+  background-color: #1c1c1c;
+}
+.exercises ul,
+.exercises ol {
+    margin-top: 0;
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+.exercises li {
+    margin-bottom: 0.5em;
+}
+
+/* Solutions: neutral grey instead of the caution colour */
+.callout.solution {
+  border-left-color: #6c757d !important;
+}
+.callout.solution > .callout-header {
+  background-color: rgba(108, 117, 125, 0.10) !important;
+}
+.callout.solution .callout-icon::before,
+.callout.solution .callout-toggle::before {
+  filter: grayscale(100%);
+}
+body.quarto-dark .callout.solution > .callout-header {
+  background-color: rgba(173, 181, 189, 0.12) !important;
+}
+
+/* Concept figures have a white background; soften them in dark mode */
+body.quarto-dark img[src*="images/"] {
+  filter: brightness(0.92);
+  border-radius: 4px;
+}
+
+/* Navbar tools: make the dark-mode toggle and the PDF download clearly visible */
+.quarto-color-scheme-toggle,
+.quarto-navigation-tool[href$=".pdf"] {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem !important;
+  margin-left: 0.4rem;
+  border: 1px solid rgba(128, 128, 128, 0.45);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.quarto-color-scheme-toggle .bi::before,
+.quarto-navigation-tool[href$=".pdf"] .bi::before {
+  font-size: 1.1rem;
+}
+.quarto-navigation-tool[href$=".pdf"]::after { content: "PDF"; }
+.quarto-color-scheme-toggle::after { content: "Dark mode"; }
+body.quarto-dark .quarto-color-scheme-toggle::after { content: "Light mode"; }
+
+/* Scenario boxes at the beginning of each chapter */
+.scenario {
+  border-left: 5px solid #7b4fb8;
+  background-color: rgba(123, 79, 184, 0.07);
+  padding: 0.9rem 1.1rem 0.4rem 1.1rem;
+  margin: 1.2rem 0 1.6rem 0;
+  border-radius: 4px;
+}
+body.quarto-dark .scenario {
+  background-color: rgba(123, 79, 184, 0.20);
+}

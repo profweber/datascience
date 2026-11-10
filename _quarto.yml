@@ -1,0 +1,80 @@
+project:
+  type: book
+  output-dir: docs          # für GitHub Pages; gilt für HTML und PDF
+
+book:
+  title: "Data Science in Engineering"
+  subtitle: "Statistics and Machine Learning with Real Engineering Data"
+  author: "Prof. Dr. Maik Weber"
+  date: today
+  search: true
+  downloads: [pdf]          # PDF-Download-Button in der Seitenleiste
+  # repo-url: https://github.com/<user>/<repo>   # sobald ein Repository existiert
+  sidebar:
+    logo: logo.jpg
+  navbar:                   # Kopfleiste: Titel links, PDF-Download und Hell/Dunkel-Schalter rechts
+    search: true
+  chapters:
+    - index.qmd
+    - part: "Part A – Understanding Data"
+      chapters:
+        - notebooks/01-workflow.ipynb
+        - notebooks/02-eda.ipynb
+        - notebooks/03-uncertainty.ipynb
+    - part: "Part B – Statistics for Engineers"
+      chapters:
+        - notebooks/04-testing.ipynb
+        - notebooks/05-regression-doe.ipynb
+        - notebooks/06-model-selection.ipynb
+    - part: "Part C – Machine Learning"
+      chapters:
+        - notebooks/07-classification.ipynb
+        - notebooks/08-ensembles.ipynb
+        - notebooks/09-unsupervised.ipynb
+        - notebooks/10-signals.ipynb
+    - part: "Part D – Time Series, Deep Learning and Review"
+      chapters:
+        - notebooks/11-time-series.ipynb
+        - notebooks/12-neural-networks.ipynb
+        - notebooks/13-review.ipynb
+  appendices:
+    - notebooks/appendix-databases.ipynb
+    - datasets.qmd
+    - references.qmd
+
+# Dokument-Metadaten (auf oberster Ebene, damit {{< meta ... >}} sie findet)
+lang: en
+version: "0.1"
+# license: "CC BY-SA 4.0"
+number-sections: true
+toc: true
+
+# Code-Ausführung beim Rendern:
+# - enabled: true  -> Quarto führt jedes Notebook beim Rendern aus (alle Ausgaben, Grafiken, Lösungen).
+# - freeze: auto   -> ein Notebook wird nur neu ausgeführt, wenn es sich geändert hat; die Ergebnisse
+#                     liegen im Ordner _freeze/ (bitte mit ins Git aufnehmen).
+# Voraussetzung: Python-Umgebung mit den Paketen aus requirements.txt (pip install -r requirements.txt).
+# Ein Notebook gezielt neu ausführen: quarto render notebooks/03-uncertainty.ipynb
+# Alles neu ausführen: Ordner _freeze/ löschen, dann quarto render
+execute:
+  enabled: true
+  freeze: auto
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: style.css
+    code-fold: true
+    code-tools: true
+    highlight-style: pygments
+  pdf:
+    documentclass: scrreprt   # KOMA-Script
+    include-in-header:
+      text: |
+        % lange Codezeilen umbrechen statt über den Rand laufen lassen
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+    keep-tex: true
+    fig-pos: "H"

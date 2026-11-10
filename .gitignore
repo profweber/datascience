@@ -1,0 +1,9 @@
+/.quarto/
+**/*.quarto_ipynb
+.ipynb_checkpoints/
+__pycache__/
+# heruntergeladene Datensätze nicht versionieren
+notebooks/data/
+# Jupyter-Checkpoints in Unterordnern
+**/.ipynb_checkpoints/
+# _freeze/ enthält die Ergebnisse der Code-Ausführung und gehört ins Repository

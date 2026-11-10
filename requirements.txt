@@ -1,0 +1,22 @@
+# Python-Pakete für das Skript "Data Science in Engineering"
+# Installation:  pip install -r requirements.txt
+# (Quarto führt die Notebooks beim Rendern mit dieser Umgebung aus.)
+jupyter
+ipykernel
+nbformat
+nbclient
+pyyaml
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+statsmodels
+scikit-learn
+shap
+requests
+ucimlrepo
+holidays
+pillow
+torch
+torchvision

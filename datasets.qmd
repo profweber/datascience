@@ -1,0 +1,22 @@
+# Datasets {#sec-datasets}
+
+All datasets used in this script are publicly available. Please cite the original sources when you use them.
+
+| Dataset | Domain | Size | License | Chapters |
+| --- | --- | --- | --- | --- |
+| [Combined Cycle Power Plant](https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant) | power generation | 9,568 rows, 4 features | CC BY 4.0 | 1, 6 |
+| [Appliances Energy Prediction](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction) | building services, sensor network | 19,735 rows, 10-min intervals | CC BY 4.0 | 2 |
+| [SECOM](https://archive.ics.uci.edu/dataset/179/secom) | semiconductor manufacturing | 1,567 rows, 591 features | CC BY 4.0 | 2, 9 |
+| [NASA C-MAPSS](https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data) | turbofan degradation | 4 subsets, 21 sensors | NASA Open Data | 3, 12 |
+| [Gas Turbine CO and NOx Emission](https://archive.ics.uci.edu/dataset/551/gas+turbine+co+and+nox+emission+data+set) | gas turbine emissions | 36,733 rows, 2011–2015 | CC BY 4.0 | 4 |
+| [AI4I 2020 Predictive Maintenance](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset) | manufacturing (synthetic) | 10,000 rows, 5 failure modes | CC BY 4.0 | 4, 7 |
+| [Concrete Compressive Strength](https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength) | materials, civil engineering | 1,030 rows, 8 features | CC BY 4.0 | 5 |
+| [Airfoil Self-Noise](https://archive.ics.uci.edu/dataset/291/airfoil+self+noise) | aerodynamics, acoustics | 1,503 rows, 5 features | CC BY 4.0 | 6 |
+| [Steel Plates Faults](https://archive.ics.uci.edu/dataset/198/steel+plates+faults) | quality inspection | 1,941 rows, 27 features, 7 classes | CC BY 4.0 | 8 |
+| [Condition Monitoring of Hydraulic Systems](https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems) | hydraulic test rig | 2,205 cycles, 17 sensors up to 100 Hz | CC BY 4.0 | 9, 10 |
+| [CWRU Bearing Data Center](https://engineering.case.edu/bearingdatacenter) | rolling bearings, vibration | normal and faulty bearings, 0–3 hp | freely available | 10 |
+| [Open Power System Data – Time Series](https://data.open-power-system-data.org/time_series/) | European power grid | 32 countries, 2015–2020, hourly | open (sources: ENTSO-E and others) | 11 |
+| [DWD Climate Data Center](https://opendata.dwd.de/climate_environment/CDC/) | weather in Germany | station data | DWD open data | 2, 11 |
+| [MVTec AD](https://www.mvtec.com/company/research/datasets/mvtec-ad) | industrial visual inspection | > 5,000 images, 15 categories | CC BY-NC-SA 4.0 | 12 |
+
+**Loading.** UCI datasets are loaded with the package [`ucimlrepo`](https://pypi.org/project/ucimlrepo/). MVTec AD has to be downloaded manually after accepting its license (see Chapter 12). All other files are downloaded by the code of the respective chapter and cached in a local `data/` folder.

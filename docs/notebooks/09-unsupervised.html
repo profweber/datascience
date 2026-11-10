@@ -611,8 +611,8 @@ Engineering practice: evaluating unsupervised detectors
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  SPE:              </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, spe)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ROC AUC  Isolation Forest: 0.571
-ROC AUC  T²:               0.531
-ROC AUC  SPE:              0.737</code></pre>
+ROC AUC  T²:               0.532
+ROC AUC  SPE:              0.735</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -835,7 +835,7 @@ Solution to Exercise 1
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC SPE (proper):              </span><span class="sc">{</span>roc_auc_score(y_eval, spe2)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ROC AUC Isolation Forest (proper): 0.577
-ROC AUC SPE (proper):              0.591</code></pre>
+ROC AUC SPE (proper):              0.592</code></pre>
 </div>
 </div>
 <p>The SPE in particular drops when evaluated properly: the PCA model reconstructs its own training runs better than new runs, so in the optimistic evaluation the normal runs looked “too normal” compared with the failed ones. Proper separation of training and evaluation data is just as important in unsupervised as in supervised learning.</p>
@@ -890,14 +890,12 @@ C:\Tools\Anaconda\Lib\site-packages\sklearn\cluster\_kmeans.py:1424: UserWarning
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>k = 4: failure rate per cluster [0.08, 0.25, 0.047, 0.212]
-k = 5: failure rate per cluster [0.06, 0.072, 0.05, 0.25, 0.219]</code></pre>
+k = 5: failure rate per cluster [0.06, 0.072, 0.05, 0.25, 0.219]
+k = 6: failure rate per cluster [0.137, 0.041, 0.055, 0.219, 0.051, 0.25]</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Tools\Anaconda\Lib\site-packages\sklearn\cluster\_kmeans.py:1424: UserWarning: KMeans is known to have a memory leak on Windows with MKL, when there are less chunks than available threads. You can avoid it by setting the environment variable OMP_NUM_THREADS=7.
   warnings.warn(</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>k = 6: failure rate per cluster [0.137, 0.041, 0.055, 0.219, 0.051, 0.25]</code></pre>
 </div>
 </div>
 <p>The failed runs are scattered among the passed ones in the first two components, and the failure rate per cluster stays close to the overall rate of about 6–7 %. The dominant sources of variation in SECOM (e.g.&nbsp;tool or recipe changes) are not related to the pass/fail outcome. Clustering finds the largest structure in the data – which need not be the structure we are interested in.</p>
@@ -917,15 +915,15 @@ Solution to Exercise 3
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="8847b8bf" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    ps <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"PS1"</span>, <span class="st">"PS2"</span>, <span class="st">"PS3"</span>, <span class="st">"PS4"</span>, <span class="st">"PS5"</span>, <span class="st">"PS6"</span>]}</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>feat_ps <span class="op">=</span> pd.DataFrame({<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">"</span>: <span class="bu">getattr</span>(np, stat)(v, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">for</span> s, v <span class="kw">in</span> ps.items() <span class="cf">for</span> stat <span class="kw">in</span> [<span class="st">"mean"</span>, <span class="st">"std"</span>, <span class="st">"max"</span>]})</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>Zp <span class="op">=</span> StandardScaler().fit_transform(feat_ps)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>lab_ps <span class="op">=</span> KMeans(<span class="dv">4</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zp)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> adjusted_rand_score</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>{c: <span class="bu">round</span>(adjusted_rand_score(profile[c], lab_ps), <span class="dv">3</span>) <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>]}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    ps <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"PS1"</span>, <span class="st">"PS2"</span>, <span class="st">"PS3"</span>, <span class="st">"PS4"</span>, <span class="st">"PS5"</span>, <span class="st">"PS6"</span>]}</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>feat_ps <span class="op">=</span> pd.DataFrame({<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">"</span>: <span class="bu">getattr</span>(np, stat)(v, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">for</span> s, v <span class="kw">in</span> ps.items() <span class="cf">for</span> stat <span class="kw">in</span> [<span class="st">"mean"</span>, <span class="st">"std"</span>, <span class="st">"max"</span>]})</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>Zp <span class="op">=</span> StandardScaler().fit_transform(feat_ps)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>lab_ps <span class="op">=</span> KMeans(<span class="dv">4</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zp)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> adjusted_rand_score</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>{c: <span class="bu">round</span>(adjusted_rand_score(profile[c], lab_ps), <span class="dv">3</span>) <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>]}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Tools\Anaconda\Lib\site-packages\sklearn\cluster\_kmeans.py:1424: UserWarning: KMeans is known to have a memory leak on Windows with MKL, when there are less chunks than available threads. You can avoid it by setting the environment variable OMP_NUM_THREADS=9.
   warnings.warn(</code></pre>

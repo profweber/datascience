@@ -1,0 +1,8 @@
+# Further Reading {#sec-references}
+
+- G. James, D. Witten, T. Hastie, R. Tibshirani, J. Taylor: *An Introduction to Statistical Learning with Applications in Python*. Springer, 2023. Free PDF: <https://www.statlearning.com> – core textbook for Chapters 5–10.
+- S. L. Brunton, J. N. Kutz: *Data-Driven Science and Engineering*. 2nd ed., Cambridge University Press, 2022 – SVD/PCA, Fourier analysis, engineering perspective.
+- J. VanderPlas: *Python Data Science Handbook*. Free online: <https://jakevdp.github.io/PythonDataScienceHandbook/> – NumPy, pandas, Matplotlib (Chapters 1–2).
+- NIST/SEMATECH: *e-Handbook of Statistical Methods*. Free online: <https://www.itl.nist.gov/div898/handbook/> – distributions, tests, reliability, DoE (Chapters 3–5).
+- D. C. Montgomery: *Design and Analysis of Experiments*. Wiley – design of experiments in depth.
+- A. Géron: *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow*. 3rd ed., O'Reilly, 2022 – practical machine learning.

@@ -1,0 +1,93 @@
+# Preface {.unnumbered}
+
+Version: {{< meta version >}}
+
+Welcome to *Data Science in Engineering*, a master's course at Trier University of Applied Sciences for students of mechanical engineering, electrical engineering and industrial engineering.
+
+## What this course is about
+
+Every method in this script is introduced together with a real, publicly available engineering dataset – from power plants and gas turbines to rolling bearings, semiconductor production and jet engines. Theory and practice go hand in hand: each chapter starts with a (fictional) engineering scenario that calls for a decision, explains the methods needed to make it, applies them in Python – and returns to the scenario at the end to make the decision with the results.
+
+The course has four parts:
+
+| Part | Topics | Chapters |
+| --- | --- | --- |
+| A – Understanding Data | workflow, exploratory analysis, data quality, uncertainty | 1–3 |
+| B – Statistics for Engineers | hypothesis tests, regression, design of experiments, model selection | 4–6 |
+| C – Machine Learning | classification, ensembles, unsupervised learning, signal features | 7–10 |
+| D – Time Series, Deep Learning and Review | forecasting, neural networks, review | 11–13 |
+
+## Prerequisites
+
+Basic Python programming and mathematics at bachelor level (linear algebra, calculus, introductory statistics).
+
+## How to work with this script
+
+The script is meant to be read in the browser or as a PDF. Every result in it was computed with Python, and the code is part of the script: in the HTML version, click *Code* above a result to show it. You can copy it into your own notebook to reproduce or vary an analysis.
+
+During the semester, the demo code from the lectures is provided as Jupyter notebooks.
+
+### Software
+
+You can work with any development environment you like (e.g. JupyterLab, VS Code or PyCharm), as long as it can open, run and edit Jupyter notebooks. We recommend Google Colab; a local installation is an alternative:
+
+- **Google Colab (recommended):** [Colab](https://colab.research.google.com) runs notebooks in the browser – no installation required, on a laptop or a tablet (an external keyboard helps a lot). Sign in with a Google account and open a notebook via *File → Upload notebook*. Most packages used in this course are pre-installed.
+- **Alternative – local installation:** The [Anaconda Distribution](https://www.anaconda.com/download) installs Python, Jupyter and the most important data science packages in one go – a good choice if you prefer to work offline and with files on your own computer.
+
+Packages that are missing can be installed directly from a notebook cell with `%pip install`, e.g. `%pip install ucimlrepo`.
+
+### Reading guide
+
+Each chapter opens with a scenario (purple box) and closes it in a section *Back to the decision*. The people and situations are invented; the data are real (or, where stated, simulated).
+
+Coloured boxes highlight what matters most:
+
+::: {.callout-note}
+## Definitions
+Blue boxes define the central concepts.
+:::
+
+::: {.callout-important}
+## Key results
+Red boxes contain theorems, key results and the takeaways at the end of each chapter.
+:::
+
+::: {.callout-warning}
+## Pitfalls
+Yellow boxes warn of typical mistakes – in data science, many of them lead to results that look convincing but are wrong.
+:::
+
+::: {.callout-tip}
+## Engineering practice
+Green boxes give practical advice for engineering projects.
+:::
+
+Each chapter ends with exercises (highlighted boxes) followed by **solutions**, which are collapsed in the HTML version – try the exercise first, then open the solution. The lab assignments of the course build on the exercises.
+
+Sections and exercises marked **Extension** go beyond the core of the course. They are optional and not required for the exam – use them to dig deeper into topics that matter for your own work.
+
+### Notation
+
+The script uses the following conventions throughout:
+
+| Symbol | Meaning |
+| --- | --- |
+| $x_1, \dots, x_n$ | observations (sample of size $n$); $x_i$ is the $i$-th observation |
+| $\bar x$, $s$ | sample mean and sample standard deviation |
+| $\tilde x$ | sample median |
+| $\mu$, $\sigma$ | mean and standard deviation of the population or distribution |
+| $\hat\theta$ | estimate of a parameter $\theta$ (the hat marks anything computed from data) |
+| $y$, $\hat y$ | response (target) and its prediction |
+| $X$ | matrix of inputs: one row per observation, one column per input |
+| $P(A)$, $P(A \mid B)$ | probability, conditional probability |
+| $E[X]$, $\text{Var}(X)$ | expected value and variance of a random variable $X$ |
+| $\ln$ | natural logarithm |
+
+The Greek alphabet is small, and the standard symbols of different fields overlap. Where a symbol has different meanings in different chapters, the meaning is stated where it is used. The most important cases: $\beta$ is the Weibull shape parameter (Chapter 3), the probability of a type II error (Chapter 4) and a regression coefficient (Chapters 5–7); $\eta$ is the Weibull scale parameter (Chapter 3) and the learning rate (Chapter 12); $\sigma$ denotes a standard deviation and, in Chapters 7 and 12, an activation function.
+
+## Assessment
+
+- **Lab assignments** (coursework, pass/fail): four assignments during the semester.
+- **Written exam** (90 minutes, without computer): method choice, interpretation of results, short calculations and code reading.
+
+Both parts must be passed; they can be completed in different semesters.

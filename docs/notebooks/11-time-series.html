@@ -605,7 +605,7 @@ gradient boosting      MAE = 0.88 GW,  MAPE = 1.6%</code></pre>
 </div>
 </div>
 <p><strong>Discussion.</strong> All features are available at forecast time: lags 1, 7 and 14 days, the calendar and the holiday calendar, which is known in advance. <code>TimeSeriesSplit</code> trains on an expanding window and always tests on the following block; the error per fold shows how stable the model is over time. The comparison with the baselines on the same test year shows how much the model really adds.</p>
-<p><strong>Weather as an input.</strong> Temperature drives heating and cooling demand. Historical hourly temperatures are available from the DWD (see Chapter 1 and Exercise 2). For a real day-ahead forecast, the model must be trained and operated with temperature <em>forecasts</em> – using measured temperatures overstates the accuracy.</p>
+<p><strong>Weather as an input.</strong> Temperature drives heating and cooling demand. Historical hourly temperatures are available from the DWD (see Chapter 2 and Exercise 2). For a real day-ahead forecast, the model must be trained and operated with temperature <em>forecasts</em> – using measured temperatures overstates the accuracy.</p>
 </section>
 </section>
 <section id="back-to-the-decision" class="level2" data-number="11.5">
