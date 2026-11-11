@@ -38,6 +38,7 @@ book:
         - notebooks/12-neural-networks.ipynb
         - notebooks/13-review.ipynb
   appendices:
+    - python-reference.qmd
     - notebooks/appendix-databases.ipynb
     - datasets.qmd
     - references.qmd
@@ -50,15 +51,19 @@ number-sections: true
 toc: true
 
 # Code-Ausführung beim Rendern:
-# - enabled: true  -> Quarto führt jedes Notebook beim Rendern aus (alle Ausgaben, Grafiken, Lösungen).
-# - freeze: auto   -> ein Notebook wird nur neu ausgeführt, wenn es sich geändert hat; die Ergebnisse
-#                     liegen im Ordner _freeze/ (bitte mit ins Git aufnehmen).
-# Voraussetzung: Python-Umgebung mit den Paketen aus requirements.txt (pip install -r requirements.txt).
-# Ein Notebook gezielt neu ausführen: quarto render notebooks/03-uncertainty.ipynb
-# Alles neu ausführen: Ordner _freeze/ löschen, dann quarto render
+# - enabled: false -> Quarto führt beim Rendern KEINEN Code aus, sondern übernimmt die Ausgaben
+#                     (Tabellen, Grafiken, Lösungen), die in den Notebooks gespeichert sind.
+# - warning: false -> Warnungen (z. B. sklearn-Hinweise unter Windows) erscheinen nicht im Buch,
+#                     wohl aber weiterhin beim Ausführen in Jupyter.
+# Arbeitsablauf nach einer Änderung an einem Kapitel:
+#   1. Notebook in Jupyter öffnen, "Restart Kernel and Run All Cells", speichern.
+#   2. quarto render   (HTML und PDF; geht schnell, da nichts ausgeführt wird)
+# Hinweis: freeze ist hier nicht sinnvoll – beim Ausführen ändern sich die gespeicherten Ausgaben
+# und damit der Hash der .ipynb-Datei, sodass jedes Notebook immer wieder neu ausgeführt würde.
+# Voraussetzung für Schritt 1: Python-Umgebung mit den Paketen aus requirements.txt.
 execute:
-  enabled: true
-  freeze: auto
+  enabled: false
+  warning: false
 
 format:
   html:

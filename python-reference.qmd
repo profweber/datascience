@@ -1,0 +1,182 @@
+# Python Quick Reference {#sec-python-reference}
+
+This appendix collects the Python functions used in this script, ordered by **task** – the question you have in mind ("How do I count the missing values?") rather than the library. Each entry says what the function does, gives a short example and names where it is used first.
+
+Notation: `df` is a DataFrame (a table), `s` a single column (a Series), `m` a mask of truth values. `np`, `pd`, `plt` and `sns` are the usual short names for NumPy, pandas, Matplotlib and seaborn (Chapter 1).
+
+## Getting an overview
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `df.info()` | number of rows, column names, data types, non-missing values | `df.info()` | Ch. 1 |
+| `df.describe()` | count, mean, standard deviation, minimum, quartiles, maximum of every numeric column | `df.describe().round(2)` | Ch. 1 |
+| `df.head(n)`, `df.tail(n)` | first or last `n` rows (default: 5) | `df.head(10)` | Ch. 2 |
+| `df.shape` | number of rows and columns – an attribute, therefore without brackets | `n_rows, n_cols = df.shape` | Ch. 2 |
+| `s.value_counts()` | frequency of each value – the description of a categorical variable | `label.value_counts()` | Ch. 2 |
+| `df.nunique()` | number of different values per column | `(df.nunique() <= 1).sum()` counts constant columns | Ch. 2 |
+| `df.corr()` | Pearson correlation of every pair of columns | `sns.heatmap(df.corr(), annot=True)` | Ch. 1 |
+| `df.corrwith(s)` | correlation of every column of `df` with one series `s` | `df.corrwith(df["PE"])` | Ch. 2 |
+
+## Missing values
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `df.isna()` | `True` wherever a value is missing (`NaN`, `None`, `NaT`) | `df.isna().sum()` counts missing values per column | Ch. 2 |
+| `df.notna()` | the opposite: `True` wherever a value is present | `t.notna().all()` – are all values present? | Ch. 2 |
+| `df.dropna()` | removes rows with missing values | `s.diff().dropna()` | Ch. 2 |
+| `df.fillna(value)` | replaces missing values | `X.fillna(X.median())` – median imputation | Ch. 2 |
+| `na_values=[...]` in `pd.read_csv` | treats codes such as `-999` as missing while reading | `pd.read_csv(f, na_values=[-999])` | Ch. 2 |
+
+::: {.callout-warning}
+## Pitfall: `is None`, `isna()` and `==`
+- `x is None` checks whether *nothing* was given, e.g. an optional argument of a function: `if fname is None:`. Use `is` only for `None` – for numbers and text always use `==`.
+- `s.isna()` checks whether *measured values* are missing. Never test with `== np.nan`: `NaN` is by definition not equal to anything, not even to itself – `np.nan == np.nan` is `False`.
+- `s == None` on a column does not help either: it gives a mask in which even the missing values are `False`, and `if s == None:` raises an error.
+:::
+
+## Selecting rows and columns
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `df["a"]` | one column, as a Series | `df["PE"]` | Ch. 1 |
+| `df[["a", "b"]]` | several columns, as a DataFrame (note the double brackets) | `df[["T1", "T_out"]]` | Ch. 2 |
+| `df[m]` | the rows where the mask `m` is `True` | `df[df["AT"] > 30]` | Ch. 2 |
+| `df.loc[rows, columns]` | rows and columns by label or mask | `X.loc[:, X.nunique() > 1]` – all rows, non-constant columns | Ch. 2 |
+| `df.iloc[rows, columns]` | rows and columns by position, counting from 0 | `y.iloc[:, 0]` – first column; `s.iloc[0]` – first value | Ch. 5 |
+| `df.select_dtypes("number")` | only the numeric columns | `df.select_dtypes("number")` | Ch. 2 |
+| `df.drop(columns=[...])` | removes columns | `df.drop(columns=["rv1", "rv2"])` | Ch. 2 |
+| `df.sample(n, random_state=0)` | `n` random rows, reproducibly | `df.sample(1000, random_state=0)` | Ch. 1 |
+| `df.sort_values("a")` | sorts the rows by a column | `df.sort_values("RMSE", ascending=False)` | Ch. 1 |
+
+::: {.callout-warning}
+## Pitfall: `and`, `or`, `not` do not work on columns
+Python's `and`, `or` and `not` handle a *single* truth value. For masks – NumPy arrays and pandas columns – use `&`, `|` and `~`, which work element by element, and put every condition in brackets:
+
+| | single value | mask (array, column) |
+| --- | --- | --- |
+| and | `and` | `&` |
+| or | `or` | `\|` |
+| not | `not` | `~` |
+
+```python
+df[(df["machine_id"] == "M4") & (df["shift"] == "night")]   # correct
+df[df["machine_id"] == "M4" & df["shift"] == "night"]       # error: & binds before ==
+```
+
+`not m` on a mask raises an error ("the truth value of an array is ambiguous"), and `~True` on a single value gives `-2`, because `~` is originally a bitwise operator on integers.
+:::
+
+## Transforming values
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `np.where(m, a, b)` | element-wise "if – then – else": `a` where `m` is `True`, otherwise `b` | `np.where(m, estimate, temp)` | Ch. 2 |
+| `s.astype(type)` | converts the data type | `s.astype(str)` | Ch. 2 |
+| `s.map({...})` | replaces values according to a dictionary, e.g. codes by names | `y.map({-1: "pass", 1: "fail"})` | Ch. 2 |
+| `pd.to_datetime(s, format=...)` | turns text into time stamps; always give the format explicitly | `pd.to_datetime(s, format="%Y%m%d%H")` | Ch. 2 |
+| `df.set_index("a")`, `df.sort_index()` | uses a column as row index, e.g. the time; sorts by the index | `df.set_index("time").sort_index()` | Ch. 2 |
+| `df.rename(columns={...})` | gives columns new names | `df.rename(columns={"TT_TU": "temp_C"})` | Ch. 2 |
+| `s.str.strip()` | removes blanks at the beginning and end of text | `df.columns.str.strip()` | Ch. 2 |
+| `s.tz_localize(...)`, `s.tz_convert(...)` | declares the time zone of time stamps, converts to another one | `s.tz_localize("UTC").tz_convert("Europe/Berlin")` | Ch. 2 |
+| `np.log(s)`, `s.abs()` | logarithm (for skewed data), absolute value | `np.log(energy["Appliances"])` | Ch. 1, 2 |
+
+::: {.callout-tip}
+## `np.where` with one argument
+With three arguments, `np.where(m, a, b)` selects values. With only one argument, `np.where(m)` does something different: it returns the *positions* where `m` is `True`. For positions, `np.flatnonzero(m)` is clearer.
+:::
+
+::: {.callout-tip}
+## `.str` and `.dt`: functions for every entry of a column
+Text functions such as `strip()` work on a *single* text. To apply them to every entry of a column, pandas offers the accessor `.str`: `s.str.strip()`, `s.str.lower()`, `s.str.startswith("produkt")`. The column must contain text – hence `s.astype(str).str.strip()`. In the same way, `.dt` gives access to the parts of time stamps: `s.dt.hour`, `s.dt.day_name()`. For a time *index*, these are available directly: `df.index.hour`, `df.index.dayofweek`.
+
+Pitfall: some functions exist twice with different meanings.
+
+```python
+s = pd.Series(["1,5", "2,0"])
+s.replace(",", ".")        # replaces entries that are exactly "," – here: no change
+s.str.replace(",", ".")    # replaces "," inside every text – "1.5", "2.0"
+```
+
+Forgetting `.str` raises no error – the data simply remain unchanged.
+:::
+
+::: {.callout-tip}
+## Format codes for time stamps
+In `pd.to_datetime(s, format=...)`, every code stands for one complete field of the date; its length is part of its definition:
+
+| Code | Meaning | Digits | Example |
+| --- | --- | --- | --- |
+| `%Y` | year | 4 | `2025` |
+| `%y` | year without century | 2 | `25` |
+| `%m` | month | 2 | `04` |
+| `%d` | day | 2 | `11` |
+| `%H` | hour (00–23) | 2 | `13` |
+| `%M` | minute | 2 | `05` |
+| `%S` | second | 2 | `00` |
+
+All other characters (`-`, `.`, `:`, blanks) must appear in the format exactly as in the data. Upper and lower case matter: `%m` is the month, `%M` the minute – a classic error that often raises no error message. Other tools write formats differently, e.g. `YYYYMMDDHH` in Excel, databases or the DWD documentation; such formats have to be translated.
+
+Formats you will meet in practice:
+
+| Data look like | Typical source | Reading in pandas |
+| --- | --- | --- |
+| `2025-04-11 13:00:00`, `2025-04-11T13:00:00+02:00` | international standard ISO 8601: databases, web services, modern loggers | `pd.to_datetime(s, format="ISO8601")` |
+| `11.04.2025 13:00` | German software, Excel exports | `format="%d.%m.%Y %H:%M"` |
+| `2025041113` | compact formats of older systems, e.g. the DWD | `format="%Y%m%d%H"` (text, not number) |
+| `1744376400` | seconds since 1 January 1970 (Unix time): sensors, IoT, log files | `pd.to_datetime(s, unit="s")` |
+:::
+
+## Summarising and grouping
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `s.mean()`, `s.median()`, `s.std()`, `s.min()`, `s.max()`, `s.sum()` | the usual summary statistics; the mean of a mask is the share of `True` values | `(s == "scrap").mean()` – scrap rate | Ch. 1, 2 |
+| `s.quantile([0.25, 0.75])` | quantiles, here the quartiles | `q1, q3 = s.quantile([0.25, 0.75])` | Ch. 2 |
+| `s.idxmax()` | the label (e.g. the time) of the largest value | `cycle.idxmax()` | Ch. 2 |
+| `df.groupby("g")["x"].mean()` | one summary per group | `df.groupby("machine_id")["diameter_mm"].mean()` | Ch. 2 |
+| `.agg([...])` | several summaries at once | `.agg(["min", "mean", "max"])` | Ch. 2 |
+| `s.resample("D")` | groups a time series into intervals (`"h"` hour, `"D"` day, …) | `s.resample("D").mean()` | Ch. 2 |
+| `s.rolling("1D")` | moving window, e.g. a 24 h rolling mean | `s.rolling("1D").mean()` | Ch. 2 |
+| `s.diff()`, `s.shift()`, `s.cumsum()` | difference to the previous value, shifted series, running sum | `s.index.to_series().diff()` – time steps | Ch. 2 |
+
+## Reshaping and combining tables
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `pd.concat([a, b], axis=1)` | puts tables side by side (`axis=0`: one below the other) | `pd.concat([features, targets], axis=1)` | Ch. 1 |
+| `df.merge(other, on="key")` | combines two tables via a key column – like SQL `JOIN` | `parts.merge(orders, on="order_id")` | SQL app. |
+| `df.pivot(index=..., columns=..., values=...)` | long table → wide table | `rates.pivot(index="machine_id", columns="shift", values="scrap_rate")` | SQL app. |
+| `.unstack()` | moves an index level into the columns, e.g. after a `groupby` with two keys | `df.groupby([a, b])["x"].mean().unstack()` | Ch. 2 |
+| `df.melt(...)` | wide table → long (tidy) table | `df.melt(id_vars="time")` | Ch. 1 (text) |
+
+## Reading data
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `fetch_ucirepo(id=...)` | loads a dataset from the UCI repository (package `ucimlrepo`) | `fetch_ucirepo(id=294)` | Ch. 1 |
+| `pd.read_csv(f, sep=..., decimal=..., na_values=...)` | reads a text file with separated values; `decimal=","` for numbers with a decimal comma | `pd.read_csv(f, sep=";", na_values=[-999])` | Ch. 2 |
+| `zipfile.ZipFile(path)` | opens a zip archive; `.namelist()` lists its files | see Chapter 2 | Ch. 2 |
+| `pd.read_sql(query, con)` | runs an SQL query and returns the result as a DataFrame | `pd.read_sql("SELECT * FROM machines", con)` | SQL app. |
+
+## Random numbers and simple models
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `rng = np.random.default_rng(0)` | random number generator with a fixed start value: the same "random" numbers in every run | `rng = np.random.default_rng(0)` | Ch. 2 |
+| `rng.random(n)`, `rng.uniform(a, b, n)`, `rng.normal(mu, sigma, n)` | `n` random numbers: uniform in [0, 1), uniform in [a, b), normally distributed | `rng.normal(0, 15, 10_000)` | Ch. 2 |
+| `rng.integers(a, b)`, `rng.choice(values, p=...)` | random integer, random choice with given probabilities | `rng.choice(["C45", "42CrMo4"], p=[0.7, 0.3])` | SQL app. |
+| `np.polyfit(x, y, deg=1)` | least-squares polynomial; with `deg=1` a straight line → slope and intercept | `slope, intercept = np.polyfit(x, y, deg=1)` | Ch. 1 |
+
+## Plots
+
+| Function | What it does | Used in |
+| --- | --- | --- |
+| `sns.set_theme(style="whitegrid")` | common style for all plots | Ch. 1 |
+| `sns.histplot(s)` | histogram – the shape of a distribution | Ch. 2 |
+| `sns.boxplot(x=s)` | box plot – compact, good for comparing groups | Ch. 2 |
+| `sns.pairplot(df)` | scatter plots of all pairs of columns | Ch. 1 |
+| `sns.heatmap(table)` | coloured table, e.g. a correlation matrix or a profile hour × weekday | Ch. 1, 2 |
+| `s.plot()`, `df.plot()` | quick line plot directly from pandas, e.g. of a time series | Ch. 2 |
+| `s.plot.bar()` | bar chart, e.g. of the frequencies from `value_counts()` | Ch. 2 |
+| `fig, axes = plt.subplots(rows, cols)` | several plots in one figure | Ch. 2 |
+| `plt.show()` | displays the figure | Ch. 1 |

@@ -320,14 +320,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../python-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Python Quick Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/appendix-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data from Databases</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Further Reading</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Further Reading</span></span></a>
   </div>
 </li>
       </ul>
@@ -615,20 +627,23 @@ Correcting for multiple tests
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="dc1b92d9" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>DATA.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> download(url, fname<span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Download a file once and cache it in ./data."""</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> DATA <span class="op">/</span> (fname <span class="kw">or</span> url.split(<span class="st">"/"</span>)[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> path.exists():</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> requests.get(url, timeout<span class="op">=</span><span class="dv">120</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        path.write_bytes(r.content)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download helper, as in Chapter 2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>DATA.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)                         <span class="co"># create the folder ./data if it does not exist</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> download(url, fname<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Download a file once and cache it in ./data."""</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> fname <span class="kw">is</span> <span class="va">None</span>:                             <span class="co"># no file name given:</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        fname <span class="op">=</span> url.split(<span class="st">"/"</span>)[<span class="op">-</span><span class="dv">1</span>]                <span class="co"># use the last part of the URL</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> DATA <span class="op">/</span> fname                           <span class="co"># "/" joins folder and file name</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> path.exists():                         <span class="co"># download only if not cached yet</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> requests.get(url, timeout<span class="op">=</span><span class="dv">120</span>)        <span class="co"># give up after 120 s without response</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()                      <span class="co"># stop with an error if the download failed</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        path.write_bytes(r.content)               <span class="co"># open, write and close the file in one step</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="live-coding-nox-emissions-20112015" class="level2" data-number="4.6">
@@ -968,75 +983,75 @@ Solution to Exercise 3
 <style type="text/css">
 </style>
 
-<table id="T_856b7" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_2574b" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_856b7_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">p</th>
-<th id="T_856b7_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Bonferroni</th>
-<th id="T_856b7_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Holm</th>
+<th id="T_2574b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">p</th>
+<th id="T_2574b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Bonferroni</th>
+<th id="T_2574b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Holm</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_856b7_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2011-2012</td>
-<td id="T_856b7_row0_col0" class="data row0 col0">1.18e-12</td>
-<td id="T_856b7_row0_col1" class="data row0 col1">1.18e-11</td>
-<td id="T_856b7_row0_col2" class="data row0 col2">3.55e-12</td>
+<td id="T_2574b_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">2011-2012</td>
+<td id="T_2574b_row0_col0" class="data row0 col0">1.18e-12</td>
+<td id="T_2574b_row0_col1" class="data row0 col1">1.18e-11</td>
+<td id="T_2574b_row0_col2" class="data row0 col2">3.55e-12</td>
 </tr>
 <tr class="even">
-<td id="T_856b7_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2011-2013</td>
-<td id="T_856b7_row1_col0" class="data row1 col0">1.01e-37</td>
-<td id="T_856b7_row1_col1" class="data row1 col1">1.01e-36</td>
-<td id="T_856b7_row1_col2" class="data row1 col2">4.06e-37</td>
+<td id="T_2574b_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">2011-2013</td>
+<td id="T_2574b_row1_col0" class="data row1 col0">1.01e-37</td>
+<td id="T_2574b_row1_col1" class="data row1 col1">1.01e-36</td>
+<td id="T_2574b_row1_col2" class="data row1 col2">4.06e-37</td>
 </tr>
 <tr class="odd">
-<td id="T_856b7_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2011-2014</td>
-<td id="T_856b7_row2_col0" class="data row2 col0">0.00e+00</td>
-<td id="T_856b7_row2_col1" class="data row2 col1">0.00e+00</td>
-<td id="T_856b7_row2_col2" class="data row2 col2">0.00e+00</td>
+<td id="T_2574b_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2011-2014</td>
+<td id="T_2574b_row2_col0" class="data row2 col0">0.00e+00</td>
+<td id="T_2574b_row2_col1" class="data row2 col1">0.00e+00</td>
+<td id="T_2574b_row2_col2" class="data row2 col2">0.00e+00</td>
 </tr>
 <tr class="even">
-<td id="T_856b7_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2011-2015</td>
-<td id="T_856b7_row3_col0" class="data row3 col0">0.00e+00</td>
-<td id="T_856b7_row3_col1" class="data row3 col1">0.00e+00</td>
-<td id="T_856b7_row3_col2" class="data row3 col2">0.00e+00</td>
+<td id="T_2574b_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">2011-2015</td>
+<td id="T_2574b_row3_col0" class="data row3 col0">0.00e+00</td>
+<td id="T_2574b_row3_col1" class="data row3 col1">0.00e+00</td>
+<td id="T_2574b_row3_col2" class="data row3 col2">0.00e+00</td>
 </tr>
 <tr class="odd">
-<td id="T_856b7_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2012-2013</td>
-<td id="T_856b7_row4_col0" class="data row4 col0">3.97e-11</td>
-<td id="T_856b7_row4_col1" class="data row4 col1">3.97e-10</td>
-<td id="T_856b7_row4_col2" class="data row4 col2">7.94e-11</td>
+<td id="T_2574b_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">2012-2013</td>
+<td id="T_2574b_row4_col0" class="data row4 col0">3.97e-11</td>
+<td id="T_2574b_row4_col1" class="data row4 col1">3.97e-10</td>
+<td id="T_2574b_row4_col2" class="data row4 col2">7.94e-11</td>
 </tr>
 <tr class="even">
-<td id="T_856b7_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2012-2014</td>
-<td id="T_856b7_row5_col0" class="data row5 col0">0.00e+00</td>
-<td id="T_856b7_row5_col1" class="data row5 col1">0.00e+00</td>
-<td id="T_856b7_row5_col2" class="data row5 col2">0.00e+00</td>
+<td id="T_2574b_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">2012-2014</td>
+<td id="T_2574b_row5_col0" class="data row5 col0">0.00e+00</td>
+<td id="T_2574b_row5_col1" class="data row5 col1">0.00e+00</td>
+<td id="T_2574b_row5_col2" class="data row5 col2">0.00e+00</td>
 </tr>
 <tr class="odd">
-<td id="T_856b7_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2012-2015</td>
-<td id="T_856b7_row6_col0" class="data row6 col0">0.00e+00</td>
-<td id="T_856b7_row6_col1" class="data row6 col1">0.00e+00</td>
-<td id="T_856b7_row6_col2" class="data row6 col2">0.00e+00</td>
+<td id="T_2574b_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">2012-2015</td>
+<td id="T_2574b_row6_col0" class="data row6 col0">0.00e+00</td>
+<td id="T_2574b_row6_col1" class="data row6 col1">0.00e+00</td>
+<td id="T_2574b_row6_col2" class="data row6 col2">0.00e+00</td>
 </tr>
 <tr class="even">
-<td id="T_856b7_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2013-2014</td>
-<td id="T_856b7_row7_col0" class="data row7 col0">0.00e+00</td>
-<td id="T_856b7_row7_col1" class="data row7 col1">0.00e+00</td>
-<td id="T_856b7_row7_col2" class="data row7 col2">0.00e+00</td>
+<td id="T_2574b_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">2013-2014</td>
+<td id="T_2574b_row7_col0" class="data row7 col0">0.00e+00</td>
+<td id="T_2574b_row7_col1" class="data row7 col1">0.00e+00</td>
+<td id="T_2574b_row7_col2" class="data row7 col2">0.00e+00</td>
 </tr>
 <tr class="odd">
-<td id="T_856b7_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2013-2015</td>
-<td id="T_856b7_row8_col0" class="data row8 col0">0.00e+00</td>
-<td id="T_856b7_row8_col1" class="data row8 col1">0.00e+00</td>
-<td id="T_856b7_row8_col2" class="data row8 col2">0.00e+00</td>
+<td id="T_2574b_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">2013-2015</td>
+<td id="T_2574b_row8_col0" class="data row8 col0">0.00e+00</td>
+<td id="T_2574b_row8_col1" class="data row8 col1">0.00e+00</td>
+<td id="T_2574b_row8_col2" class="data row8 col2">0.00e+00</td>
 </tr>
 <tr class="even">
-<td id="T_856b7_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2014-2015</td>
-<td id="T_856b7_row9_col0" class="data row9 col0">3.14e-01</td>
-<td id="T_856b7_row9_col1" class="data row9 col1">1.00e+00</td>
-<td id="T_856b7_row9_col2" class="data row9 col2">3.14e-01</td>
+<td id="T_2574b_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">2014-2015</td>
+<td id="T_2574b_row9_col0" class="data row9 col0">3.14e-01</td>
+<td id="T_2574b_row9_col1" class="data row9 col1">1.00e+00</td>
+<td id="T_2574b_row9_col2" class="data row9 col2">3.14e-01</td>
 </tr>
 </tbody>
 </table>

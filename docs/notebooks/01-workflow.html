@@ -320,14 +320,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../python-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Python Quick Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/appendix-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data from Databases</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Further Reading</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Further Reading</span></span></a>
   </div>
 </li>
       </ul>
@@ -1426,9 +1438,12 @@ Solution to Exercise 4
 </div>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ol type="a">
-<li><strong>Statistics</strong> – inference about a difference with quantified uncertainty, no prediction task. (b) <strong>Deep learning</strong> (and thus ML and AI) – a neural network learns features from raw images. (c) <strong>AI without machine learning</strong> – A* is a search algorithm; nothing is learned from data. (d) <strong>Machine learning</strong> – a flexible model optimised for predictive accuracy; it is not deep learning. (e) The <strong>overlap of statistics and machine learning</strong>: the same linear model, used here in the statistical way (interpretation of the slope and its uncertainty). Used purely to predict output for the day-ahead market and validated on test data, it would be viewed as machine learning. The examples show that the method alone does not determine the category – the purpose matters too.</li>
-</ol>
+<p>(a) <strong>Statistics</strong> – inference about a difference with quantified uncertainty, no prediction task.</p>
+<p>(b) <strong>Deep learning</strong> (and thus ML and AI) – a neural network learns features from raw images.</p>
+<p>(c) <strong>AI without machine learning</strong> – A* is a search algorithm; nothing is learned from data.</p>
+<p>(d) <strong>Machine learning</strong> – a flexible model optimised for predictive accuracy; it is not deep learning.</p>
+<p>(e) The <strong>overlap of statistics and machine learning</strong>: the same linear model, used here in the statistical way (interpretation of the slope and its uncertainty). Used purely to predict output for the day-ahead market and validated on test data, it would be viewed as machine learning.</p>
+<p>The examples show that the method alone does not determine the category – the purpose matters too.</p>
 </div>
 </div>
 </div>
@@ -1444,9 +1459,11 @@ Solution to Exercise 5
 </div>
 <div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<ol type="a">
-<li><strong>Data</strong> – recorded observations of real screw joints (provided we know the unit and which joint each value belongs to). (b) <strong>Not data</strong> – a specification of what the tool is designed for, not an observation. (c) <strong>Not data</strong> about any real joint – the table only re-expresses the formula; a model fitted to it would rediscover the formula. (d) <strong>Data about a model</strong> – valid observations of the simulation; conclusions hold for real products only as far as the simulation is valid. (e) <strong>Not usable as data</strong> – the numbers might be temperatures in kelvin, but without unit, sensor and time stamp they cannot be interpreted. They become data once the context is recovered.</li>
-</ol>
+<p>(a) <strong>Data</strong> – recorded observations of real screw joints (provided we know the unit and which joint each value belongs to).</p>
+<p>(b) <strong>Not data</strong> – a specification of what the tool is designed for, not an observation.</p>
+<p>(c) <strong>Not data</strong> about any real joint – the table only re-expresses the formula; a model fitted to it would rediscover the formula.</p>
+<p>(d) <strong>Data about a model</strong> – valid observations of the simulation; conclusions hold for real products only as far as the simulation is valid.</p>
+<p>(e) <strong>Not usable as data</strong> – the numbers might be temperatures in kelvin, but without unit, sensor and time stamp they cannot be interpreted. They become data once the context is recovered.</p>
 </div>
 </div>
 </div>
@@ -1474,10 +1491,9 @@ Solution to Exercise 6
 (b) break-even deviation: 14.7 MW (today: 4.3 MW, flat rule: 14.8 MW)</code></pre>
 </div>
 </div>
-<ol type="a">
-<li><p>Even a deviation price far below 1 € per MWh would cover the cost of the rule – real prices are much higher. (b) The rule pays off as long as it is even slightly better than the flat commitment: the break-even deviation lies only about 0.1 MW below that of the flat rule. With well over 100,000 MWh of deviation per year, even small improvements are worth a lot of money.</p></li>
-<li><p>For example: deviations in the two directions are usually priced differently, and the price depends on the state of the grid; the plant does not run at full load in every hour (maintenance, partial load), so fewer hours mean smaller savings; the forecast error of the temperature increases the deviation of the new rule; and the cost of the new rule may be underestimated (staff time, IT). None of these is likely to reverse the decision here – but in a project with a smaller margin, each of them could.</p></li>
-</ol>
+<p>(a) Even a deviation price far below 1 € per MWh would cover the cost of the rule – real prices are much higher.</p>
+<p>(b) The rule pays off as long as it is even slightly better than the flat commitment: the break-even deviation lies only about 0.1 MW below that of the flat rule. With well over 100,000 MWh of deviation per year, even small improvements are worth a lot of money.</p>
+<p>(c) For example: deviations in the two directions are usually priced differently, and the price depends on the state of the grid; the plant does not run at full load in every hour (maintenance, partial load), so fewer hours mean smaller savings; the forecast error of the temperature increases the deviation of the new rule; and the cost of the new rule may be underestimated (staff time, IT). None of these is likely to reverse the decision here – but in a project with a smaller margin, each of them could.</p>
 </div>
 </div>
 </div>

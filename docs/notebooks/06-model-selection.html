@@ -320,14 +320,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../python-reference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Python Quick Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/appendix-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Data from Databases</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Further Reading</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Further Reading</span></span></a>
   </div>
 </li>
       </ul>
@@ -468,6 +480,25 @@ Pitfall: data leakage
 </div>
 <div class="callout-body-container callout-body">
 <p>Any information from the test data that influences training makes the test error too optimistic. Typical leaks: scaling or imputing with statistics of the full dataset, selecting features by their correlation with the target on all data, random splits of time series (Chapter 11), or several rows of the same part/machine in both training and test set. In scikit-learn, putting all preprocessing steps into a <code>Pipeline</code> ensures that they are fitted inside each training fold only.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Engineering practice: one median for training and test data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In Chapter 2, the gaps in SECOM were filled with medians. Which median fills the gaps in the <em>test</em> data? The <strong>training</strong> median – not one computed from the test data. The median is a parameter of the model, just like a regression coefficient: it is estimated once from the training data and then applied unchanged to all new data. Three reasons:</p>
+<ul>
+<li>In operation there is no “test median”: new data often arrive one observation at a time – a single production run, a single sensor reading – and a median cannot be computed from one value.</li>
+<li>The model must always receive the same preprocessing. If a gap was filled with 52.3 during training but with 48.9 during testing, the model sees inputs it was not trained on.</li>
+<li>A test median would itself be a small leak: the prediction for one test point would depend on the other test points.</li>
+</ul>
+<p>The same holds for scaling, PCA and every other preprocessing step: <code>fit</code> on the training data, <code>transform</code> on training <em>and</em> test data – exactly what a <code>Pipeline</code> does. If the distribution of new data drifts away from the training data, the remedy is to monitor the drift and retrain – not to compute statistics on the test data. (One legitimate exception: if a whole batch – say all wafers of a lot – is always available at prediction time, statistics per batch may be used, but then in exactly the same way during training.)</p>
 </div>
 </div>
 </section>
@@ -936,7 +967,7 @@ Key takeaways
 <section id="solutions" class="level3" data-number="6.8.1">
 <h3 data-number="6.8.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">6.8.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -945,7 +976,7 @@ Solution to Exercise 1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="7366d7a9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X_pp, y_pp <span class="op">=</span> pp[[<span class="st">"AT"</span>, <span class="st">"V"</span>, <span class="st">"AP"</span>, <span class="st">"RH"</span>]], pp[<span class="st">"PE"</span>]</span>
@@ -1011,7 +1042,7 @@ Solution to Exercise 1
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1020,7 +1051,7 @@ Solution to Exercise 2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Fitting the scaler on all data uses the means and standard deviations of the test folds – a (here mild) form of leakage. The effect is small for scaling with many observations but becomes large for steps that use the target, e.g.&nbsp;selecting the features most correlated with <span class="math inline">\(y\)</span> before cross-validation:</p>
 <div id="5b925ea7" class="cell" data-execution_count="10">
@@ -1044,7 +1075,7 @@ Solution to Exercise 2
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1053,7 +1084,7 @@ Solution to Exercise 3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="81d3026f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
@@ -1077,7 +1108,7 @@ Solution to Exercise 3
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1086,7 +1117,7 @@ Solution to Exercise 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="792fa64a" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
@@ -1112,7 +1143,7 @@ Solution to Exercise 4
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1121,7 +1152,7 @@ Solution to Exercise 5
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="55393631" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
@@ -1154,7 +1185,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1163,7 +1194,7 @@ Solution to Exercise 6
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Change <code>X_runs</code> to, e.g., <code>[[100.0], [130.0], [250.0]]</code> and rerun the loop. Usually the algorithm still finds the region of the optimum, because the large uncertainty in unexplored regions makes EI large there. With an unlucky start and a misleading local maximum (the sine term), it may need more iterations. A regular grid of 8 runs over 100–250 °C has a spacing of about 21 °C; the best grid point can easily be several percent below the true optimum, and the grid cannot refine itself. Bayesian optimisation pays off when each run is expensive and runs can be performed one after another.</p>
 </div>
