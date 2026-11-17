@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; The Data Science Workflow in Engineering – Data Science in Engineering</title>
+<title>2&nbsp; The Data Science Workflow in Engineering – Data Science in Engineering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../notebooks/02-eda.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../notebooks/00-pandas.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html">Part A – Understanding Data</a></li><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html">Part A – Understanding Data</a></li><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -187,6 +187,12 @@ window.Quarto = {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/00-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with pandas</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -199,19 +205,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/01-workflow.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/02-eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/03-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></span></a>
   </div>
 </li>
       </ul>
@@ -228,19 +234,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/04-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/06-model-selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></span></a>
   </div>
 </li>
       </ul>
@@ -257,25 +263,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/07-classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/08-ensembles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/09-unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/10-signals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,19 +298,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/11-time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -354,29 +360,29 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-are-data" id="toc-what-are-data" class="nav-link active" data-scroll-target="#what-are-data"><span class="header-section-number">1.1</span> What are data?</a>
+  <li><a href="#what-are-data" id="toc-what-are-data" class="nav-link active" data-scroll-target="#what-are-data"><span class="header-section-number">2.1</span> What are data?</a>
   <ul class="collapse">
-  <li><a href="#data-as-a-table" id="toc-data-as-a-table" class="nav-link" data-scroll-target="#data-as-a-table"><span class="header-section-number">1.1.1</span> Data as a table</a></li>
-  <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables"><span class="header-section-number">1.1.2</span> Types of variables</a></li>
-  <li><a href="#roles-of-variables-target-and-features" id="toc-roles-of-variables-target-and-features" class="nav-link" data-scroll-target="#roles-of-variables-target-and-features"><span class="header-section-number">1.1.3</span> Roles of variables: target and features</a></li>
-  <li><a href="#something-that-looks-like-data-but-is-not" id="toc-something-that-looks-like-data-but-is-not" class="nav-link" data-scroll-target="#something-that-looks-like-data-but-is-not"><span class="header-section-number">1.1.4</span> Something that looks like data – but is not</a></li>
+  <li><a href="#data-as-a-table" id="toc-data-as-a-table" class="nav-link" data-scroll-target="#data-as-a-table"><span class="header-section-number">2.1.1</span> Data as a table</a></li>
+  <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables"><span class="header-section-number">2.1.2</span> Types of variables</a></li>
+  <li><a href="#roles-of-variables-target-and-features" id="toc-roles-of-variables-target-and-features" class="nav-link" data-scroll-target="#roles-of-variables-target-and-features"><span class="header-section-number">2.1.3</span> Roles of variables: target and features</a></li>
+  <li><a href="#something-that-looks-like-data-but-is-not" id="toc-something-that-looks-like-data-but-is-not" class="nav-link" data-scroll-target="#something-that-looks-like-data-but-is-not"><span class="header-section-number">2.1.4</span> Something that looks like data – but is not</a></li>
   </ul></li>
-  <li><a href="#what-is-data-science-in-engineering" id="toc-what-is-data-science-in-engineering" class="nav-link" data-scroll-target="#what-is-data-science-in-engineering"><span class="header-section-number">1.2</span> What is data science in engineering?</a></li>
-  <li><a href="#statistics-machine-learning-deep-learning-ai-sorting-the-terms" id="toc-statistics-machine-learning-deep-learning-ai-sorting-the-terms" class="nav-link" data-scroll-target="#statistics-machine-learning-deep-learning-ai-sorting-the-terms"><span class="header-section-number">1.3</span> Statistics, machine learning, deep learning, AI: sorting the terms</a>
+  <li><a href="#what-is-data-science-in-engineering" id="toc-what-is-data-science-in-engineering" class="nav-link" data-scroll-target="#what-is-data-science-in-engineering"><span class="header-section-number">2.2</span> What is data science in engineering?</a></li>
+  <li><a href="#statistics-machine-learning-deep-learning-ai-sorting-the-terms" id="toc-statistics-machine-learning-deep-learning-ai-sorting-the-terms" class="nav-link" data-scroll-target="#statistics-machine-learning-deep-learning-ai-sorting-the-terms"><span class="header-section-number">2.3</span> Statistics, machine learning, deep learning, AI: sorting the terms</a>
   <ul class="collapse">
-  <li><a href="#extension-and-what-about-ai" id="toc-extension-and-what-about-ai" class="nav-link" data-scroll-target="#extension-and-what-about-ai"><span class="header-section-number">1.3.1</span> Extension: And what about AI?</a></li>
-  <li><a href="#where-statistics-and-machine-learning-differ-and-where-they-overlap" id="toc-where-statistics-and-machine-learning-differ-and-where-they-overlap" class="nav-link" data-scroll-target="#where-statistics-and-machine-learning-differ-and-where-they-overlap"><span class="header-section-number">1.3.2</span> Where statistics and machine learning differ – and where they overlap</a></li>
+  <li><a href="#where-statistics-and-machine-learning-differ-and-where-they-overlap" id="toc-where-statistics-and-machine-learning-differ-and-where-they-overlap" class="nav-link" data-scroll-target="#where-statistics-and-machine-learning-differ-and-where-they-overlap"><span class="header-section-number">2.3.1</span> Where statistics and machine learning differ – and where they overlap</a></li>
+  <li><a href="#extension-and-what-about-ai" id="toc-extension-and-what-about-ai" class="nav-link" data-scroll-target="#extension-and-what-about-ai"><span class="header-section-number">2.3.2</span> Extension: And what about AI?</a></li>
   </ul></li>
-  <li><a href="#the-crisp-dm-process-model" id="toc-the-crisp-dm-process-model" class="nav-link" data-scroll-target="#the-crisp-dm-process-model"><span class="header-section-number">1.4</span> The CRISP-DM process model</a></li>
-  <li><a href="#tools-the-python-data-stack" id="toc-tools-the-python-data-stack" class="nav-link" data-scroll-target="#tools-the-python-data-stack"><span class="header-section-number">1.5</span> Tools: the Python data stack</a></li>
-  <li><a href="#live-coding-a-first-look-at-the-power-plant-data" id="toc-live-coding-a-first-look-at-the-power-plant-data" class="nav-link" data-scroll-target="#live-coding-a-first-look-at-the-power-plant-data"><span class="header-section-number">1.6</span> Live coding: a first look at the power plant data</a>
+  <li><a href="#the-crisp-dm-process-model" id="toc-the-crisp-dm-process-model" class="nav-link" data-scroll-target="#the-crisp-dm-process-model"><span class="header-section-number">2.4</span> The CRISP-DM process model</a></li>
+  <li><a href="#tools-the-python-data-stack" id="toc-tools-the-python-data-stack" class="nav-link" data-scroll-target="#tools-the-python-data-stack"><span class="header-section-number">2.5</span> Tools: the Python data stack</a></li>
+  <li><a href="#live-coding-a-first-look-at-the-power-plant-data" id="toc-live-coding-a-first-look-at-the-power-plant-data" class="nav-link" data-scroll-target="#live-coding-a-first-look-at-the-power-plant-data"><span class="header-section-number">2.6</span> Live coding: a first look at the power plant data</a>
   <ul class="collapse">
-  <li><a href="#a-first-simple-model" id="toc-a-first-simple-model" class="nav-link" data-scroll-target="#a-first-simple-model"><span class="header-section-number">1.6.1</span> A first simple model</a></li>
+  <li><a href="#a-first-simple-model" id="toc-a-first-simple-model" class="nav-link" data-scroll-target="#a-first-simple-model"><span class="header-section-number">2.6.1</span> A first simple model</a></li>
   </ul></li>
-  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">1.7</span> Back to the decision</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.8</span> Exercises</a>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">2.7</span> Back to the decision</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.8</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">1.8.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">2.8.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -384,9 +390,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html">Part A – Understanding Data</a></li><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html">Part A – Understanding Data</a></li><li class="breadcrumb-item"><a href="../notebooks/01-workflow.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -425,8 +431,8 @@ window.Quarto = {
 <ul>
 <li><a href="https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant">Combined Cycle Power Plant (UCI)</a> – original publication: P. Tüfekci, <em>Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods</em>, International Journal of Electrical Power &amp; Energy Systems 60 (2014), 126–140, <a href="https://doi.org/10.1016/j.ijepes.2014.02.027">doi:10.1016/j.ijepes.2014.02.027</a></li>
 </ul>
-<section id="what-are-data" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="what-are-data"><span class="header-section-number">1.1</span> What are data?</h2>
+<section id="what-are-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="what-are-data"><span class="header-section-number">2.1</span> What are data?</h2>
 <p>Before we talk about data <em>science</em>, we should be clear about what we mean by <em>data</em>. The word is used loosely – for a spreadsheet, a database, a folder of images, “the numbers”. For this course we use a sharper definition.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -459,8 +465,8 @@ Pitfall: numbers without context
 <p>In 1999 NASA lost the <em>Mars Climate Orbiter</em> because one software component delivered thruster impulse data in pound-force seconds while the receiving component expected newton seconds. Every number was correct – the context was not. Before analysing a dataset, make sure you know the unit and the meaning of every column.</p>
 </div>
 </div>
-<section id="data-as-a-table" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="data-as-a-table"><span class="header-section-number">1.1.1</span> Data as a table</h3>
+<section id="data-as-a-table" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="data-as-a-table"><span class="header-section-number">2.1.1</span> Data as a table</h3>
 <p>Most methods in this course expect data as a table whose layout follows directly from the definition. This layout is called <em>tidy data</em>:</p>
 <ul>
 <li>each <strong>row</strong> is one observation – one unit, or one unit at one point in time,</li>
@@ -469,16 +475,16 @@ Pitfall: numbers without context
 </ul>
 <p>Many real files are not tidy – a separate column for every day, two quantities in one cell – and must be reshaped first (in pandas with <code>melt</code> or <code>pivot</code>). Signals and images are data, too, even though they do not come as such a table (see below).</p>
 </section>
-<section id="types-of-variables" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="types-of-variables"><span class="header-section-number">1.1.2</span> Types of variables</h3>
-<p>The type of a variable determines which summaries, plots and models make sense (<a href="#fig-variable-types" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>). A variable is either <strong>categorical</strong> – its values are labels such as “supplier B” – or <strong>numeric</strong> – its values are amounts such as 3.2 mm or 5 defects. Categorical variables are <em>nominal</em> (unordered) or <em>ordinal</em> (ordered); a nominal variable with only two categories, such as failure yes/no, is called <strong>binary</strong>. Numeric variables are <em>discrete</em> (countable) or <em>continuous</em> (any value in a range).</p>
+<section id="types-of-variables" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="types-of-variables"><span class="header-section-number">2.1.2</span> Types of variables</h3>
+<p>The type of a variable determines which summaries, plots and models make sense (<a href="#fig-variable-types" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>). A variable is either <strong>categorical</strong> – its values are labels such as “supplier B” – or <strong>numeric</strong> – its values are amounts such as 3.2 mm or 5 defects. Categorical variables are <em>nominal</em> (unordered) or <em>ordinal</em> (ordered); a nominal variable with only two categories, such as failure yes/no, is called <strong>binary</strong>. Numeric variables are <em>discrete</em> (countable) or <em>continuous</em> (any value in a range).</p>
 <div id="fig-variable-types" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-variable-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/variable-types.png" class="img-fluid figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-variable-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: Types of variables with engineering examples.
+Figure&nbsp;2.1: Types of variables with engineering examples.
 </figcaption>
 </figure>
 </div>
@@ -489,8 +495,8 @@ Figure&nbsp;1.1: Types of variables with engineering examples.
 <li><strong>Signals, images and texts</strong> consist of many values per unit, e.g.&nbsp;thousands of samples of a vibration recording. They are condensed into a few informative variables, so-called <em>features</em> (next section) – either computed by hand, such as the RMS value of a signal (Chapter 10), or learned by a neural network (Chapter 12).</li>
 </ul>
 </section>
-<section id="roles-of-variables-target-and-features" class="level3" data-number="1.1.3">
-<h3 data-number="1.1.3" class="anchored" data-anchor-id="roles-of-variables-target-and-features"><span class="header-section-number">1.1.3</span> Roles of variables: target and features</h3>
+<section id="roles-of-variables-target-and-features" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="roles-of-variables-target-and-features"><span class="header-section-number">2.1.3</span> Roles of variables: target and features</h3>
 <p>Besides its type, a variable has a role in an analysis. In the power plant example, we want to predict the electrical output from the ambient conditions and the condenser pressure:</p>
 <ul>
 <li>The <strong>target</strong> is the variable we want to explain or predict – here the net electrical output (<code>PE</code>). It is also called <em>output</em>; in classification (Chapter 7), the target is usually called <em>label</em>.</li>
@@ -499,8 +505,8 @@ Figure&nbsp;1.1: Types of variables with engineering examples.
 <p>Features can be measured directly or derived from other variables – the hour of the day from a time stamp, the RMS value from a vibration signal. Constructing such features is called <strong>feature engineering</strong>; it is where engineering knowledge enters a model most directly (Chapters 10 and 11).</p>
 <p>The role depends on the question, not on the variable: the ambient temperature is a feature when we predict the power output, but the target when we forecast the weather. And not every analysis has a target – in unsupervised learning (Chapter 9), we look for structure among the features alone.</p>
 </section>
-<section id="something-that-looks-like-data-but-is-not" class="level3" data-number="1.1.4">
-<h3 data-number="1.1.4" class="anchored" data-anchor-id="something-that-looks-like-data-but-is-not"><span class="header-section-number">1.1.4</span> Something that looks like data – but is not</h3>
+<section id="something-that-looks-like-data-but-is-not" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="something-that-looks-like-data-but-is-not"><span class="header-section-number">2.1.4</span> Something that looks like data – but is not</h3>
 <p>Consider a table with one row per dimension of a turned shaft – diameter at bearing seat, length, roundness – and columns <em>nominal value</em>, <em>upper tolerance</em>, <em>lower tolerance</em>. It has rows, columns, numbers and units. Is it data?</p>
 <p>In the sense of our definition: <strong>no</strong>. The table comes from the technical drawing and describes how the shaft <em>should</em> be – a <strong>specification</strong>. It contains no observation of any real shaft. Fitting a model to it would tell us something about the designer’s choices, not about the manufacturing process. The <strong>data</strong> are the values the coordinate measuring machine records on the shafts actually produced. Only by comparing them with the specification can we learn something about the process – for example its capability.</p>
 <p>Similar cases: a table computed from a formula (a steam table) contains no information beyond the formula; a production plan is not a record of production.</p>
@@ -519,8 +525,8 @@ Simulated data
 </div>
 </section>
 </section>
-<section id="what-is-data-science-in-engineering" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="what-is-data-science-in-engineering"><span class="header-section-number">1.2</span> What is data science in engineering?</h2>
+<section id="what-is-data-science-in-engineering" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="what-is-data-science-in-engineering"><span class="header-section-number">2.2</span> What is data science in engineering?</h2>
 <p>Put briefly, data science is the systematic extraction of knowledge and decisions from data. It combines <em>statistics</em> (how to reason under uncertainty), <em>computer science</em> (how to process data and fit models efficiently) and <em>domain knowledge</em> (what the data mean and which questions matter). How this relates to statistics, machine learning and AI is sorted out in the next section.</p>
 <p>The third ingredient is where engineers have a decisive advantage. A data scientist without engineering background may find that the vibration level of a pump correlates with the time of day; an engineer knows that this is because the pump runs at higher load during the day shift – and asks the right follow-up question.</p>
 <p>Typical tasks fall into four groups:</p>
@@ -575,8 +581,8 @@ Simulated data
 <li><strong>High cost of errors.</strong> A wrong prediction can mean an unplanned standstill or a safety issue. Uncertainty must be quantified and communicated.</li>
 </ul>
 </section>
-<section id="statistics-machine-learning-deep-learning-ai-sorting-the-terms" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="statistics-machine-learning-deep-learning-ai-sorting-the-terms"><span class="header-section-number">1.3</span> Statistics, machine learning, deep learning, AI: sorting the terms</h2>
+<section id="statistics-machine-learning-deep-learning-ai-sorting-the-terms" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="statistics-machine-learning-deep-learning-ai-sorting-the-terms"><span class="header-section-number">2.3</span> Statistics, machine learning, deep learning, AI: sorting the terms</h2>
 <p>You have certainly heard all of these terms – and probably noticed that they are used inconsistently. Product brochures call a linear regression “AI”, job advertisements use “data science” and “machine learning” interchangeably, and research communities draw the borders differently. There is no official definition. For this course we therefore fix <strong>working definitions</strong>: not the only possible ones, but clear enough to know what we are talking about.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -603,25 +609,14 @@ Working definitions used in this course
 <img src="images/ds-terms.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-terms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Working definitions used in this course. (a) Competences: data science lives where statistics, computer science and domain knowledge meet; any two of them alone fall short. (b) Methods: deep learning is part of machine learning, which is part of AI; statistics overlaps strongly with machine learning (“statistical learning”) but also covers methods outside of it, which are not AI.
+Figure&nbsp;2.2: Working definitions used in this course. (a) Competences: data science lives where statistics, computer science and domain knowledge meet; any two of them alone fall short. (b) Methods: deep learning is part of machine learning, which is part of AI; statistics overlaps strongly with machine learning (“statistical learning”) but also covers methods outside of it, which are not AI.
 </figcaption>
 </figure>
 </div>
 <p>The two panels answer different questions. Panel (a) asks what you need to <em>know</em>: data science combines three <strong>competences</strong>, and leaving out any one of them leads to typical problems – models that answer the wrong engineering question, analyses that do not scale to large data, or powerful tools used without an understanding of uncertainty. Panel (b) asks what kind of <em>method</em> you use and arranges the <strong>method families</strong>.</p>
 <p>This is why statistics appears in both panels, with different meanings. In (a), it is a competence that every data analysis needs – machine learning included. In (b), it is a family of methods, of which only one part, statistical learning, also belongs to machine learning and thus to AI; a hypothesis test or a confidence interval is statistics, but not AI. Data science itself does not appear in (b) as a separate region, because it is defined by its process and purpose, not by a particular class of methods.</p>
-<section id="extension-and-what-about-ai" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="extension-and-what-about-ai"><span class="header-section-number">1.3.1</span> Extension: And what about AI?</h3>
-<p>“Artificial intelligence” is the oldest and the broadest of the terms – and today the most overloaded one. The field was founded in the 1950s with the goal of making machines perform tasks that require intelligence. For decades, the dominant approach was <strong>symbolic AI</strong>: knowledge was written down by experts as rules (“if bearing temperature &gt; 90 °C and vibration rising, then …”) and combined by logical inference. Such <em>expert systems</em> worked in narrow domains but were laborious to build and brittle when reality deviated from the rules.</p>
-<p>The alternative is to <strong>learn</strong> the behaviour from data – machine learning. Since around 2012, deep neural networks have achieved breakthroughs in image recognition, speech and text, and today’s <em>generative AI</em> (large language models such as the chatbots you know, image generators) is deep learning trained on enormous amounts of data. This is why “AI” in everyday language now usually means deep learning – but the term formally covers much more.</p>
-<p>Two distinctions help to keep a clear head:</p>
-<ul>
-<li><strong>Narrow vs.&nbsp;general AI.</strong> All AI systems in practical use, including large language models, are built for specific kinds of tasks. A system that matches humans across all intellectual tasks (<em>artificial general intelligence</em>) does not exist and remains a matter of research and debate.</li>
-<li><strong>Legal vs.&nbsp;technical meaning.</strong> The EU AI Act defines “AI system” broadly – roughly, a machine-based system that infers from its input how to produce outputs such as predictions, recommendations or decisions – and attaches obligations depending on the risk of the application. For engineers this means that even a fairly simple machine learning model in a safety-relevant product can fall under regulation.</li>
-</ul>
-<p>In this course we rarely use the word AI. We say precisely which method we use – a test, a regression, a random forest, a neural network – because that determines its assumptions, its limits and how it must be validated.</p>
-</section>
-<section id="where-statistics-and-machine-learning-differ-and-where-they-overlap" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="where-statistics-and-machine-learning-differ-and-where-they-overlap"><span class="header-section-number">1.3.2</span> Where statistics and machine learning differ – and where they overlap</h3>
+<section id="where-statistics-and-machine-learning-differ-and-where-they-overlap" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="where-statistics-and-machine-learning-differ-and-where-they-overlap"><span class="header-section-number">2.3.1</span> Where statistics and machine learning differ – and where they overlap</h3>
 <p>The boundary between statistics and machine learning is the most blurred one, because both fit models to data and many methods belong to both. The difference lies mainly in the <strong>goal</strong> and the <strong>culture</strong> – the statistician Leo Breiman famously spoke of “two cultures”:</p>
 <table class="caption-top table">
 <colgroup>
@@ -702,9 +697,20 @@ Pitfall: buzzwords instead of methods
 </div>
 </div>
 </section>
+<section id="extension-and-what-about-ai" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="extension-and-what-about-ai"><span class="header-section-number">2.3.2</span> Extension: And what about AI?</h3>
+<p>“Artificial intelligence” is the oldest and the broadest of the terms – and today the most overloaded one. The field was founded in the 1950s with the goal of making machines perform tasks that require intelligence. For decades, the dominant approach was <strong>symbolic AI</strong>: knowledge was written down by experts as rules (“if bearing temperature &gt; 90 °C and vibration rising, then …”) and combined by logical inference. Such <em>expert systems</em> worked in narrow domains but were laborious to build and brittle when reality deviated from the rules.</p>
+<p>The alternative is to <strong>learn</strong> the behaviour from data – machine learning. Since around 2012, deep neural networks have achieved breakthroughs in image recognition, speech and text, and today’s <em>generative AI</em> (large language models such as the chatbots you know, image generators) is deep learning trained on enormous amounts of data. This is why “AI” in everyday language now usually means deep learning – but the term formally covers much more.</p>
+<p>Two distinctions help to keep a clear head:</p>
+<ul>
+<li><strong>Narrow vs.&nbsp;general AI.</strong> All AI systems in practical use, including large language models, are built for specific kinds of tasks. A system that matches humans across all intellectual tasks (<em>artificial general intelligence</em>) does not exist and remains a matter of research and debate.</li>
+<li><strong>Legal vs.&nbsp;technical meaning.</strong> The EU AI Act defines “AI system” broadly – roughly, a machine-based system that infers from its input how to produce outputs such as predictions, recommendations or decisions – and attaches obligations depending on the risk of the application. For engineers this means that even a fairly simple machine learning model in a safety-relevant product can fall under regulation.</li>
+</ul>
+<p>In this course we rarely use the word AI. We say precisely which method we use – a test, a regression, a random forest, a neural network – because that determines its assumptions, its limits and how it must be validated.</p>
 </section>
-<section id="the-crisp-dm-process-model" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="the-crisp-dm-process-model"><span class="header-section-number">1.4</span> The CRISP-DM process model</h2>
+</section>
+<section id="the-crisp-dm-process-model" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="the-crisp-dm-process-model"><span class="header-section-number">2.4</span> The CRISP-DM process model</h2>
 <p>Data science projects fail more often for organisational reasons than for mathematical ones: the wrong question was answered, the data did not contain the necessary information, or the model was never used. Process models help to avoid this. The most widely used is CRISP-DM.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -725,7 +731,7 @@ Definition: CRISP-DM
 <img src="images/crisp-dm.png" class="img-fluid figure-img" style="width:65.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crisp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.3: The CRISP-DM process model. The phases form a cycle around the data; in practice, the project moves back and forth between them.
+Figure&nbsp;2.3: The CRISP-DM process model. The phases form a cycle around the data; in practice, the project moves back and forth between them.
 </figcaption>
 </figure>
 </div>
@@ -765,8 +771,8 @@ Pitfall: answering the wrong question
 </div>
 </div>
 </section>
-<section id="tools-the-python-data-stack" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="tools-the-python-data-stack"><span class="header-section-number">1.5</span> Tools: the Python data stack</h2>
+<section id="tools-the-python-data-stack" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="tools-the-python-data-stack"><span class="header-section-number">2.5</span> Tools: the Python data stack</h2>
 <p>Python has become the standard language for data science because of its readable syntax and a large ecosystem of open-source libraries. We use the following packages:</p>
 <table class="caption-top table">
 <colgroup>
@@ -824,20 +830,7 @@ Pitfall: answering the wrong question
 </tr>
 </tbody>
 </table>
-<p>The central data structure is the pandas <strong>DataFrame</strong>: a table whose columns have names and data types and whose rows have an index – for time series typically a time stamp. Most operations are <em>vectorised</em>: instead of looping over rows, we apply an operation to a whole column at once, which is shorter and much faster.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Working with notebooks
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The demo notebooks of the lectures run in <a href="https://colab.research.google.com">Google Colab</a> as well as in a local installation (see the Preface). Packages that are not preinstalled can be installed from a notebook cell with <code>%pip install</code>. In Colab, files you download or upload live only as long as the session; save results you want to keep to Google Drive or download them.</p>
-</div>
-</div>
+<p>The central data structure is the pandas <strong>DataFrame</strong>: a table whose columns have names and data types and whose rows have an index – for time series typically a time stamp. Most operations are <em>vectorised</em>: instead of looping over rows, we apply an operation to a whole column at once, which is shorter and much faster. If pandas is new to you, work through <a href="../notebooks/00-pandas.html">Getting Started with pandas</a> first.</p>
 <div id="bbdfadf9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup – every chapter starts with a cell like this one.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -859,16 +852,16 @@ Working with notebooks
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)                     <span class="co"># common style for all plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="live-coding-a-first-look-at-the-power-plant-data" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="live-coding-a-first-look-at-the-power-plant-data"><span class="header-section-number">1.6</span> Live coding: a first look at the power plant data</h2>
-<p>A combined cycle power plant (CCPP) combines a gas turbine with a steam turbine (<a href="#fig-ccpp" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>). The gas turbine draws in ambient air, compresses it, burns natural gas in it and drives a generator. Its exhaust gas is still hot enough to raise steam in a heat recovery steam generator; the steam drives a second turbine and generator. Behind the steam turbine, the steam is condensed again in a condenser cooled by water or air. The plant that supplied our dataset, located in Turkey, has a nominal capacity of 480 MW: two gas turbines of 160 MW each, two heat recovery steam generators and one steam turbine of 160 MW (<a href="https://doi.org/10.1016/j.ijepes.2014.02.027">Tüfekci 2014</a>).</p>
+<section id="live-coding-a-first-look-at-the-power-plant-data" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="live-coding-a-first-look-at-the-power-plant-data"><span class="header-section-number">2.6</span> Live coding: a first look at the power plant data</h2>
+<p>A combined cycle power plant (CCPP) combines a gas turbine with a steam turbine (<a href="#fig-ccpp" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>). The gas turbine draws in ambient air, compresses it, burns natural gas in it and drives a generator. Its exhaust gas is still hot enough to raise steam in a heat recovery steam generator; the steam drives a second turbine and generator. Behind the steam turbine, the steam is condensed again in a condenser cooled by water or air. The plant that supplied our dataset, located in Turkey, has a nominal capacity of 480 MW: two gas turbines of 160 MW each, two heat recovery steam generators and one steam turbine of 160 MW (<a href="https://doi.org/10.1016/j.ijepes.2014.02.027">Tüfekci 2014</a>).</p>
 <div id="fig-ccpp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ccpp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ccpp.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ccpp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.4: Simplified block diagram of a combined cycle power plant with the variables of the dataset. The features (blue) describe the ambient air and the condenser; the target (orange) is the net electrical output of gas turbine and steam turbine together.
+Figure&nbsp;2.4: Simplified block diagram of a combined cycle power plant with the variables of the dataset. The features (blue) describe the ambient air and the condenser; the target (orange) is the net electrical output of gas turbine and steam turbine together.
 </figcaption>
 </figure>
 </div>
@@ -957,7 +950,7 @@ dtypes: float64(5)
 memory usage: 373.9 KB</code></pre>
 </div>
 </div>
-<p><code>df.info()</code> tells us the number of rows, the column names, the data types and the number of non-missing values per column. Check the data types first: pandas stores a column as numbers (<code>float64</code>, <code>int64</code>) only if <em>every</em> entry can be read as a number. A single entry such as <code>12,5</code> (decimal comma) or <code>n/a</code> (a text marker for a missing value) turns the whole column into text, shown as <code>object</code>. Calculations then fail or give nonsense – sorted as text, <code>"10"</code> comes before <code>"9"</code>. The fix is usually an argument of <code>read_csv</code>, e.g.&nbsp;<code>decimal=","</code> or <code>na_values=["n/a"]</code>. A numeric missing value code such as <code>-999</code> does not change the type; it shows up only in the summary statistics (see the weather data in Chapter 2).</p>
+<p><code>df.info()</code> tells us the number of rows, the column names, the data types and the number of non-missing values per column. Check the data types first: pandas stores a column as numbers (<code>float64</code>, <code>int64</code>) only if <em>every</em> entry can be read as a number. A single entry such as <code>12,5</code> (decimal comma) or <code>n/a</code> (a text marker for a missing value) turns the whole column into text, shown as <code>str</code> (in pandas versions before 3.0: <code>object</code>). Calculations then fail or give nonsense – sorted as text, <code>"10"</code> comes before <code>"9"</code>. The fix is usually an argument of <code>read_csv</code>, e.g.&nbsp;<code>decimal=","</code> or <code>na_values=["n/a"]</code>. A numeric missing value code such as <code>-999</code> does not change the type; it shows up only in the summary statistics (see the weather data in Chapter 2).</p>
 <p>Here, all five columns are numeric and complete. The repository also supplies metadata – part of the <em>context</em> in the sense of our definition:</p>
 <div id="cc63b18c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ccpp.variables   <span class="co"># metadata supplied by the repository: name, role, type, description, unit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1170,8 +1163,8 @@ How to read <code>describe()</code>
 <p><strong>Discussion.</strong> The pair plot is the most informative single figure for a small tabular dataset. Several observations stand out:</p>
 <ul>
 <li><code>PE</code> decreases almost linearly with ambient temperature <code>AT</code> – this is the strongest relationship in the data and has a clear physical explanation (air density and mass flow).</li>
-<li><code>PE</code> also decreases with the condenser pressure <code>V</code>, as expected from the plant (<a href="#fig-ccpp" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>).</li>
-<li><code>AT</code> and <code>V</code> are strongly correlated with each other – warm weather means warmer cooling. Such correlated features (<em>collinearity</em>) make it hard to separate their individual effects – we will return to this in Chapter 5.</li>
+<li><code>PE</code> also decreases with the condenser pressure <code>V</code>, as expected from the plant (<a href="#fig-ccpp" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>).</li>
+<li><code>AT</code> and <code>V</code> are strongly correlated with each other – warm weather means warmer cooling water. Such correlated features (<em>collinearity</em>) make it hard to separate their individual effects – we will return to this in Chapter 5.</li>
 <li>Ambient pressure and humidity show weaker, more diffuse relationships with the output.</li>
 </ul>
 <p>We plotted a random sample of 1,000 points; with all 9,568 points the scatter plots would be overplotted. Sampling is a simple and legitimate trick for visual exploration – but never for computing the final statistics.</p>
@@ -1221,8 +1214,8 @@ Pitfall: correlation is not causation – and not every relationship is linear
 <p>A correlation near zero does not mean “no relationship”: <span class="math inline">\(y = x^2\)</span> on a symmetric interval has <span class="math inline">\(r = 0\)</span>. And a strong correlation does not prove a causal effect: both variables may be driven by a third one. In the power plant, <code>V</code> correlates with <code>PE</code> partly <em>because</em> both depend on the ambient temperature.</p>
 </div>
 </div>
-<section id="a-first-simple-model" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="a-first-simple-model"><span class="header-section-number">1.6.1</span> A first simple model</h3>
+<section id="a-first-simple-model" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="a-first-simple-model"><span class="header-section-number">2.6.1</span> A first simple model</h3>
 <p>To make the engineering question concrete, we fit the simplest possible model: a straight line for <code>PE</code> as a function of <code>AT</code>. We will treat regression properly in Chapter 5; here we only compare the line with the trivial baseline that always predicts the mean.</p>
 <div id="ccc027bf" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(df[<span class="st">"AT"</span>], df[<span class="st">"PE"</span>], deg<span class="op">=</span><span class="dv">1</span>)   <span class="co"># least-squares straight line</span></span>
@@ -1240,8 +1233,8 @@ Baseline 'always predict the mean': RMSE = 17.1 MW</code></pre>
 <p>The line explains most of the variation: its error (root mean squared error, RMSE) is a fraction of the error of the trivial mean-value baseline. Each additional degree Celsius costs about two megawatts of output. Whether an error of a few MW is “good enough” is not a statistical question – it depends on the use case defined in CRISP-DM phase 1.</p>
 </section>
 </section>
-<section id="back-to-the-decision" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">1.7</span> Back to the decision</h2>
+<section id="back-to-the-decision" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">2.7</span> Back to the decision</h2>
 <p>In terms of CRISP-DM, this is phase 5, evaluation: we check the result against the criterion fixed in phase 1. The trading desk compares two rules for the committed output: the flat long-term average and the straight-line estimate from the ambient temperature. To turn the comparison into an economic decision, we use a deliberately simple cost model. All figures are assumptions for illustration:</p>
 <ul>
 <li><strong>Deviation cost:</strong> every MWh delivered more or less than committed costs 30 € extra. (Real imbalance prices vary strongly from hour to hour and can be much higher.)</li>
@@ -1307,22 +1300,22 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.8</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.8</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Which columns of the power plant data are features, which is the target? Which physical relationships between them do you expect, and which signs of the correlations follow from them?</li>
 <li>Fit straight lines for <code>PE</code> against each of the four features separately and compare their RMSE. Which single feature is the best predictor? Does the ranking agree with the correlation matrix?</li>
 <li>Sketch the six CRISP-DM phases for a project from your own engineering background. Which phase do you expect to be the most difficult?</li>
-<li>Place the following in <a href="#fig-terms" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> (b) and justify: (a) a t-test whether a new supplier changes the scrap rate; (b) a convolutional neural network that detects cracks in X-ray images; (c) route planning for automated guided vehicles with the A* search algorithm; (d) a random forest that predicts tool breakage; (e) a straight line for power output vs.&nbsp;temperature with a confidence interval for the slope.</li>
+<li>Place the following in <a href="#fig-terms" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> (b) and justify: (a) a t-test whether a new supplier changes the scrap rate; (b) a convolutional neural network that detects cracks in X-ray images; (c) route planning for automated guided vehicles with the A* search algorithm; (d) a random forest that predicts tool breakage; (e) a straight line for power output vs.&nbsp;temperature with a confidence interval for the slope.</li>
 <li>Which of the following are data in the sense of our definition? (a) The torque values logged by a screwdriving station for every screw joint; (b) the maximum torque in the screwdriver’s datasheet; (c) a table of thread friction coefficients computed with a formula from a handbook; (d) 10,000 lifetimes generated by a reliability simulation; (e) a column <code>T</code> with values between 280 and 320, without any further information.</li>
 <li>Use the cost model from <em>Back to the decision</em>. (a) At which deviation price would the savings just cover the cost of the new rule (break-even)? (b) How large may the average deviation of the temperature-based rule become in operation before switching no longer pays off? (c) Which simplifications of the cost model would you question first, and in which direction would they change the result?</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="1.8.1">
-<h3 data-number="1.8.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">1.8.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">2.8.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1331,15 +1324,15 @@ Solution to Exercise 1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The features are the ambient conditions <code>AT</code>, <code>AP</code>, <code>RH</code> and the condenser pressure <code>V</code>; the target is <code>PE</code>. Strictly speaking, <code>V</code> is not an ambient condition but a plant variable – it depends on the cooling water temperature and therefore also on the weather (<a href="#fig-ccpp" class="quarto-xref">Figure&nbsp;<span>1.4</span></a>).</p>
+<p>The features are the ambient conditions <code>AT</code>, <code>AP</code>, <code>RH</code> and the condenser pressure <code>V</code>; the target is <code>PE</code>. Strictly speaking, <code>V</code> is not an ambient condition but a plant variable – it depends on the cooling water temperature and therefore also on the weather (<a href="#fig-ccpp" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>).</p>
 <p>Expected signs: higher ambient temperature lowers air density and thus the mass flow and power of the gas turbine → negative correlation of <code>AT</code> with <code>PE</code>. A higher condenser pressure (worse vacuum, larger <code>V</code> in this dataset) reduces the pressure difference across the steam turbine → negative correlation of <code>V</code> with <code>PE</code>. Higher ambient pressure increases air density → positive correlation. Humidity has a smaller, less obvious effect. The correlation matrix confirms these signs.</p>
 </div>
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1348,7 +1341,7 @@ Solution to Exercise 2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="587eb935" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
@@ -1411,7 +1404,7 @@ Solution to Exercise 2
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1420,14 +1413,14 @@ Solution to Exercise 3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>There is no single correct answer. A good sketch states a concrete decision in phase 1 (e.g.&nbsp;“decide weekly which tools to replace”), names the data sources and their owners in phase 2, lists expected preparation steps in phase 3 (merging, time alignment), names a baseline in phase 4, an evaluation criterion tied to the decision in phase 5 (e.g.&nbsp;cost of unplanned stops), and a realistic deployment path in phase 6. Many practitioners name phase 2/3 (data access and quality) or phase 6 (deployment and acceptance) as the hardest.</p>
 </div>
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1436,7 +1429,7 @@ Solution to Exercise 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>(a) <strong>Statistics</strong> – inference about a difference with quantified uncertainty, no prediction task.</p>
 <p>(b) <strong>Deep learning</strong> (and thus ML and AI) – a neural network learns features from raw images.</p>
@@ -1448,7 +1441,7 @@ Solution to Exercise 4
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1457,7 +1450,7 @@ Solution to Exercise 5
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>(a) <strong>Data</strong> – recorded observations of real screw joints (provided we know the unit and which joint each value belongs to).</p>
 <p>(b) <strong>Not data</strong> – a specification of what the tool is designed for, not an observation.</p>
@@ -1468,7 +1461,7 @@ Solution to Exercise 5
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1477,7 +1470,7 @@ Solution to Exercise 6
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="aeec3d0e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (a) price at which the savings equal the cost of the rule</span></span>
@@ -2117,13 +2110,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="../notebooks/00-pandas.html" class="pagination-link" aria-label="Getting Started with pandas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with pandas</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../notebooks/02-eda.html" class="pagination-link" aria-label="Exploratory Data Analysis and Data Quality">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

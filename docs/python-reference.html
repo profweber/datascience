@@ -105,6 +105,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -155,6 +184,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks/00-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with pandas</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -167,19 +202,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/01-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/02-eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/03-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></span></a>
   </div>
 </li>
       </ul>
@@ -196,19 +231,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/04-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/06-model-selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></span></a>
   </div>
 </li>
       </ul>
@@ -225,25 +260,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/07-classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/08-ensembles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/09-unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/10-signals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></span></a>
   </div>
 </li>
       </ul>
@@ -260,19 +295,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/11-time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/13-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -356,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This appendix collects the Python functions used in this script, ordered by <strong>task</strong> – the question you have in mind (“How do I count the missing values?”) rather than the library. Each entry says what the function does, gives a short example and names where it is used first.</p>
+<p>This appendix collects the Python functions used in this script, ordered by <strong>task</strong> – the question you have in mind (“How do I count the missing values?”) rather than the library. Each entry says what the function does, gives a short example and names where it is used first. The pandas basics are introduced step by step in <em>Getting Started with pandas</em> before Chapter 1.</p>
 <p>Notation: <code>df</code> is a DataFrame (a table), <code>s</code> a single column (a Series), <code>m</code> a mask of truth values. <code>np</code>, <code>pd</code>, <code>plt</code> and <code>sns</code> are the usual short names for NumPy, pandas, Matplotlib and seaborn (Chapter 1).</p>
 <section id="getting-an-overview" class="level2" data-number="A.1">
 <h2 data-number="A.1" class="anchored" data-anchor-id="getting-an-overview"><span class="header-section-number">A.1</span> Getting an overview</h2>
@@ -452,24 +487,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Ch. 2</td>
 </tr>
 <tr class="even">
-<td><code>df.notna()</code></td>
-<td>the opposite: <code>True</code> wherever a value is present</td>
-<td><code>t.notna().all()</code> – are all values present?</td>
-<td>Ch. 2</td>
-</tr>
-<tr class="odd">
 <td><code>df.dropna()</code></td>
 <td>removes rows with missing values</td>
 <td><code>s.diff().dropna()</code></td>
 <td>Ch. 2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>df.fillna(value)</code></td>
 <td>replaces missing values</td>
 <td><code>X.fillna(X.median())</code> – median imputation</td>
 <td>Ch. 2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>na_values=[...]</code> in <code>pd.read_csv</code></td>
 <td>treats codes such as <code>-999</code> as missing while reading</td>
 <td><code>pd.read_csv(f, na_values=[-999])</code></td>
@@ -547,7 +576,7 @@ Pitfall: <code>is None</code>, <code>isna()</code> and <code>==</code>
 <td><code>df.select_dtypes("number")</code></td>
 <td>only the numeric columns</td>
 <td><code>df.select_dtypes("number")</code></td>
-<td>Ch. 2</td>
+<td>Ch. 9</td>
 </tr>
 <tr class="odd">
 <td><code>df.drop(columns=[...])</code></td>
@@ -569,6 +598,24 @@ Pitfall: <code>is None</code>, <code>isna()</code> and <code>==</code>
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>loc</code> or <code>iloc</code>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Every row has a <strong>label</strong> – the index shown on the left – and a <strong>position</strong>: first row, second row, … <code>loc</code> selects by label, <code>iloc</code> by integer position (memory aid: <em>i</em> for <em>integer</em>). As long as the index is 0, 1, 2, …, both give the same result. After sorting or filtering, they no longer do:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"T"</span>: [<span class="dv">25</span>, <span class="dv">18</span>, <span class="dv">31</span>]})   <span class="co"># labels 0, 1, 2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> df.sort_values(<span class="st">"T"</span>)                  <span class="co"># order now: labels 1, 0, 2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s.loc[<span class="dv">0</span>]     <span class="co"># row with the LABEL 0 → T = 25</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>s.iloc[<span class="dv">0</span>]    <span class="co"># FIRST row            → T = 18</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ranges differ, too: <code>df.loc[0:2]</code> includes the end (labels 0, 1 <strong>and</strong> 2), <code>df.iloc[0:2]</code> does not (positions 0 and 1, as for Python lists). For time series, including the end is convenient: <code>s.loc["2015-01-01":"2019-12-31"]</code> contains 31 December.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -606,9 +653,9 @@ Pitfall: <code>and</code>, <code>or</code>, <code>not</code> do not work on colu
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df[(df[<span class="st">"machine_id"</span>] <span class="op">==</span> <span class="st">"M4"</span>) <span class="op">&amp;</span> (df[<span class="st">"shift"</span>] <span class="op">==</span> <span class="st">"night"</span>)]   <span class="co"># correct</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"machine_id"</span>] <span class="op">==</span> <span class="st">"M4"</span> <span class="op">&amp;</span> df[<span class="st">"shift"</span>] <span class="op">==</span> <span class="st">"night"</span>]       <span class="co"># error: &amp; binds before ==</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>not m</code> on a mask raises an error (“the truth value of an array is ambiguous”), and <code>~True</code> on a single value gives <code>-2</code>, because <code>~</code> is originally a bitwise operator on integers.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df[(df[<span class="st">"machine_id"</span>] <span class="op">==</span> <span class="st">"M4"</span>) <span class="op">&amp;</span> (df[<span class="st">"shift"</span>] <span class="op">==</span> <span class="st">"night"</span>)]   <span class="co"># correct</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"machine_id"</span>] <span class="op">==</span> <span class="st">"M4"</span> <span class="op">&amp;</span> df[<span class="st">"shift"</span>] <span class="op">==</span> <span class="st">"night"</span>]       <span class="co"># error: &amp; binds before ==</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>not m</code> on a mask raises an error (“the truth value of an array is ambiguous”), and <code>~True</code> on a single value gives <code>-2</code>, because <code>~</code> is originally a bitwise operator on integers (newer Python versions warn about this).</p>
 </div>
 </div>
 </section>
@@ -630,6 +677,18 @@ Pitfall: <code>and</code>, <code>or</code>, <code>not</code> do not work on colu
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td><code>s.mask(m)</code></td>
+<td>sets the values where the mask <code>m</code> is <code>True</code> to <code>NaN</code></td>
+<td><code>df["RH_1"].mask(bad)</code> – remove wrong values, keep the rows</td>
+<td>Ch. 2</td>
+</tr>
+<tr class="even">
+<td><code>s.clip(lower, upper)</code></td>
+<td>caps values at fixed limits</td>
+<td><code>s.clip(lower=-40, upper=60)</code></td>
+<td>Ch. 2</td>
+</tr>
 <tr class="odd">
 <td><code>np.where(m, a, b)</code></td>
 <td>element-wise “if – then – else”: <code>a</code> where <code>m</code> is <code>True</code>, otherwise <code>b</code></td>
@@ -711,9 +770,9 @@ Pitfall: <code>and</code>, <code>or</code>, <code>not</code> do not work on colu
 <div class="callout-body-container callout-body">
 <p>Text functions such as <code>strip()</code> work on a <em>single</em> text. To apply them to every entry of a column, pandas offers the accessor <code>.str</code>: <code>s.str.strip()</code>, <code>s.str.lower()</code>, <code>s.str.startswith("produkt")</code>. The column must contain text – hence <code>s.astype(str).str.strip()</code>. In the same way, <code>.dt</code> gives access to the parts of time stamps: <code>s.dt.hour</code>, <code>s.dt.day_name()</code>. For a time <em>index</em>, these are available directly: <code>df.index.hour</code>, <code>df.index.dayofweek</code>.</p>
 <p>Pitfall: some functions exist twice with different meanings.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="st">"1,5"</span>, <span class="st">"2,0"</span>])</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s.replace(<span class="st">","</span>, <span class="st">"."</span>)        <span class="co"># replaces entries that are exactly "," – here: no change</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>)    <span class="co"># replaces "," inside every text – "1.5", "2.0"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="st">"1,5"</span>, <span class="st">"2,0"</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>s.replace(<span class="st">","</span>, <span class="st">"."</span>)        <span class="co"># replaces entries that are exactly "," – here: no change</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>)    <span class="co"># replaces "," inside every text – "1.5", "2.0"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Forgetting <code>.str</code> raises no error – the data simply remain unchanged.</p>
 </div>
 </div>
@@ -727,7 +786,7 @@ Format codes for time stamps
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In <code>pd.to_datetime(s, format=...)</code>, every code stands for one complete field of the date; its length is part of its definition:</p>
+<p>In <code>pd.to_datetime(s, format=...)</code>, every code stands for one complete field of the date. <code>%Y</code> always has four digits; the two-digit codes also accept a single digit when reading, so <code>%d/%m/%Y</code> reads <code>19/07/2008</code> as well as <code>1/8/2008</code>:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -782,7 +841,7 @@ Format codes for time stamps
 </tr>
 </tbody>
 </table>
-<p>All other characters (<code>-</code>, <code>.</code>, <code>:</code>, blanks) must appear in the format exactly as in the data. Upper and lower case matter: <code>%m</code> is the month, <code>%M</code> the minute – a classic error that often raises no error message. Other tools write formats differently, e.g.&nbsp;<code>YYYYMMDDHH</code> in Excel, databases or the DWD documentation; such formats have to be translated.</p>
+<p>All other characters (<code>-</code>, <code>.</code>, <code>:</code>, blanks) must appear in the format exactly as in the data. Upper and lower case matter: <code>%m</code> is the month, <code>%M</code> the minute – a classic error that often raises no error message. Other tools write formats with letters instead, e.g.&nbsp;<code>yyyy-mm-dd hh:mm</code> in Excel or <code>YYYYMMDDHH24</code> in the DWD documentation; such formats have to be translated.</p>
 <p>Formats you will meet in practice:</p>
 <table class="caption-top table">
 <colgroup>
@@ -861,7 +920,7 @@ Format codes for time stamps
 </tr>
 <tr class="even">
 <td><code>df.groupby("g")["x"].mean()</code></td>
-<td>one summary per group</td>
+<td>one summary per group; the key can be any column or series, e.g.&nbsp;the hour of the day</td>
 <td><code>df.groupby("machine_id")["diameter_mm"].mean()</code></td>
 <td>Ch. 2</td>
 </tr>
@@ -873,14 +932,14 @@ Format codes for time stamps
 </tr>
 <tr class="even">
 <td><code>s.resample("D")</code></td>
-<td>groups a time series into intervals (<code>"h"</code> hour, <code>"D"</code> day, …)</td>
+<td>groups a time series into consecutive intervals (<code>"h"</code> hour, <code>"D"</code> day, …); needs time stamps as index</td>
 <td><code>s.resample("D").mean()</code></td>
 <td>Ch. 2</td>
 </tr>
 <tr class="odd">
 <td><code>s.rolling("1D")</code></td>
-<td>moving window, e.g.&nbsp;a 24 h rolling mean</td>
-<td><code>s.rolling("1D").mean()</code></td>
+<td>window that slides along the time axis (<code>"1D"</code> = one day; <code>rolling(144)</code> = 144 values), followed by a summary such as <code>.mean()</code></td>
+<td><code>s.rolling("1D").mean()</code> – 24 h rolling mean</td>
 <td>Ch. 2</td>
 </tr>
 <tr class="even">
@@ -891,6 +950,36 @@ Format codes for time stamps
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Method chaining – and why pandas makes it possible
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <code>energy.set_index("date").sort_index()</code>, the second method is applied directly to the result of the first. This works because of three design decisions in pandas:</p>
+<ol type="1">
+<li><strong>Methods return a new object and leave the original unchanged.</strong> <code>df.sort_values("a")</code> returns a sorted copy; <code>df</code> stays as it is. Plain Python does the opposite for lists: <code>values.sort()</code> sorts the list itself and returns <code>None</code> – so <code>values.sort().reverse()</code> fails, while <code>df.sort_values("a").head()</code> works.</li>
+<li><strong>The type stays the same.</strong> A table becomes a table, a column a column – so the next method always fits. <code>.str</code> and <code>.dt</code> also return a column.</li>
+<li><strong>Methods instead of statements.</strong> An assignment such as <code>df["temp_K"] = df["temp_C"] + 273.15</code> cannot be chained; <code>df.assign(temp_K=df["temp_C"] + 273.15)</code> returns a new table with the additional column. For the same reason, avoid the older option <code>inplace=True</code>: it changes the table itself and returns <code>None</code>, which breaks the chain.</li>
+</ol>
+<p>Returning new tables might sound expensive. Since pandas 3.0 (“copy-on-write”), however, data are only copied when they are actually changed.</p>
+<p>Many NumPy functions also exist as pandas methods – <code>s.abs()</code>, <code>s.median()</code>, <code>s.std()</code>. For pandas data, prefer the methods: they fit into a chain, and they skip missing values, which NumPy functions do not:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, np.nan, <span class="dv">3</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">abs</span>().median()            <span class="co"># 3.0 – pandas skips the missing value</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>np.median(np.<span class="bu">abs</span>(s))        <span class="co"># nan – one missing value makes the result missing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The standard deviation differs, too: <code>s.std()</code> divides by <span class="math inline">\(n-1\)</span> (sample standard deviation, Chapter 2), <code>np.std(...)</code> by <span class="math inline">\(n\)</span> unless you write <code>ddof=1</code>.</p>
+<p>For longer chains, put the whole expression in brackets – inside brackets, Python continues on the next line – and write one step per line:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>daily <span class="op">=</span> (weather</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>         .dropna()            <span class="co"># remove rows with missing values</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         .resample(<span class="st">"D"</span>)       <span class="co"># group by day</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         .mean())             <span class="co"># one mean per day</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Chains are compact; separate steps are easier to check. A good habit: build a chain step by step, and if it fails, remove the last steps until it works again – this shows which step causes the error.</p>
+</div>
+</div>
 </section>
 <section id="reshaping-and-combining-tables" class="level2" data-number="A.6">
 <h2 data-number="A.6" class="anchored" data-anchor-id="reshaping-and-combining-tables"><span class="header-section-number">A.6</span> Reshaping and combining tables</h2>
@@ -926,7 +1015,7 @@ Format codes for time stamps
 <td><code>df.pivot(index=..., columns=..., values=...)</code></td>
 <td>long table → wide table</td>
 <td><code>rates.pivot(index="machine_id", columns="shift", values="scrap_rate")</code></td>
-<td>SQL app.</td>
+<td>Ch. 2</td>
 </tr>
 <tr class="even">
 <td><code>.unstack()</code></td>
@@ -1096,6 +1185,24 @@ Format codes for time stamps
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+pandas, seaborn and Matplotlib
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>pandas and seaborn do not draw themselves – they call Matplotlib. These three lines produce essentially the same line plot:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ax.plot(df.index, df[<span class="st">"Appliances"</span>], lw<span class="op">=</span><span class="fl">0.3</span>)        <span class="co"># Matplotlib</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Appliances"</span>].plot(ax<span class="op">=</span>ax, lw<span class="op">=</span><span class="fl">0.3</span>)                <span class="co"># pandas</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>df.index, y<span class="op">=</span>df[<span class="st">"Appliances"</span>], ax<span class="op">=</span>ax) <span class="co"># seaborn</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>pandas takes the x-axis from the index (a time index gives a date axis) and draws one line per column, labelled with its name. Matplotlib options such as <code>lw</code>, <code>alpha</code>, <code>color</code> or <code>label</code> are passed on. With <code>ax=...</code>, pandas and seaborn draw into an existing field created by <code>plt.subplots</code>; without it, they create a new figure. Both return this field (<code>ax</code>), so you can continue with the usual Matplotlib commands, e.g.&nbsp;<code>ax.set(ylabel="...")</code>.</p>
+<p>Rule of thumb: pandas for quick plots directly from a table, seaborn for statistical plots (histogram, box plot, heatmap), Matplotlib via <code>ax</code> for fine-tuning.</p>
+</div>
+</div>
 
 
 <!-- -->
@@ -1718,7 +1825,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./notebooks/13-review.html" class="pagination-link" aria-label="Review and Exam Preparation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1727,188 +1834,250 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Python Quick Reference {#sec-python-reference}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>This appendix collects the Python functions used in this script, ordered by **task** – the question you have in mind ("How do I count the missing values?") rather than the library. Each entry says what the function does, gives a short example and names where it is used first.</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Notation: <span class="in">`df`</span> is a DataFrame (a table), <span class="in">`s`</span> a single column (a Series), <span class="in">`m`</span> a mask of truth values. <span class="in">`np`</span>, <span class="in">`pd`</span>, <span class="in">`plt`</span> and <span class="in">`sns`</span> are the usual short names for NumPy, pandas, Matplotlib and seaborn (Chapter 1).</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting an overview</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.info()`</span> | number of rows, column names, data types, non-missing values | <span class="in">`df.info()`</span> | Ch. 1 |</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.describe()`</span> | count, mean, standard deviation, minimum, quartiles, maximum of every numeric column | <span class="in">`df.describe().round(2)`</span> | Ch. 1 |</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.head(n)`</span>, <span class="in">`df.tail(n)`</span> | first or last <span class="in">`n`</span> rows (default: 5) | <span class="in">`df.head(10)`</span> | Ch. 2 |</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.shape`</span> | number of rows and columns – an attribute, therefore without brackets | <span class="in">`n_rows, n_cols = df.shape`</span> | Ch. 2 |</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.value_counts()`</span> | frequency of each value – the description of a categorical variable | <span class="in">`label.value_counts()`</span> | Ch. 2 |</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.nunique()`</span> | number of different values per column | <span class="in">`(df.nunique() &lt;= 1).sum()`</span> counts constant columns | Ch. 2 |</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.corr()`</span> | Pearson correlation of every pair of columns | <span class="in">`sns.heatmap(df.corr(), annot=True)`</span> | Ch. 1 |</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.corrwith(s)`</span> | correlation of every column of <span class="in">`df`</span> with one series <span class="in">`s`</span> | <span class="in">`df.corrwith(df["PE"])`</span> | Ch. 2 |</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Missing values</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.isna()`</span> | <span class="in">`True`</span> wherever a value is missing (<span class="in">`NaN`</span>, <span class="in">`None`</span>, <span class="in">`NaT`</span>) | <span class="in">`df.isna().sum()`</span> counts missing values per column | Ch. 2 |</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.notna()`</span> | the opposite: <span class="in">`True`</span> wherever a value is present | <span class="in">`t.notna().all()`</span> – are all values present? | Ch. 2 |</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.dropna()`</span> | removes rows with missing values | <span class="in">`s.diff().dropna()`</span> | Ch. 2 |</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.fillna(value)`</span> | replaces missing values | <span class="in">`X.fillna(X.median())`</span> – median imputation | Ch. 2 |</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>| <span class="in">`na_values=[...]`</span> in <span class="in">`pd.read_csv`</span> | treats codes such as <span class="in">`-999`</span> as missing while reading | <span class="in">`pd.read_csv(f, na_values=[-999])`</span> | Ch. 2 |</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pitfall: `is None`, `isna()` and `==`</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`x is None`</span> checks whether *nothing* was given, e.g. an optional argument of a function: <span class="in">`if fname is None:`</span>. Use <span class="in">`is`</span> only for <span class="in">`None`</span> – for numbers and text always use <span class="in">`==`</span>.</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`s.isna()`</span> checks whether *measured values* are missing. Never test with <span class="in">`== np.nan`</span>: <span class="in">`NaN`</span> is by definition not equal to anything, not even to itself – <span class="in">`np.nan == np.nan`</span> is <span class="in">`False`</span>.</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`s == None`</span> on a column does not help either: it gives a mask in which even the missing values are <span class="in">`False`</span>, and <span class="in">`if s == None:`</span> raises an error.</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selecting rows and columns</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df["a"]`</span> | one column, as a Series | <span class="in">`df["PE"]`</span> | Ch. 1 |</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df[["a", "b"]]`</span> | several columns, as a DataFrame (note the double brackets) | <span class="in">`df[["T1", "T_out"]]`</span> | Ch. 2 |</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df[m]`</span> | the rows where the mask <span class="in">`m`</span> is <span class="in">`True`</span> | <span class="in">`df[df["AT"] &gt; 30]`</span> | Ch. 2 |</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.loc[rows, columns]`</span> | rows and columns by label or mask | <span class="in">`X.loc[:, X.nunique() &gt; 1]`</span> – all rows, non-constant columns | Ch. 2 |</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.iloc[rows, columns]`</span> | rows and columns by position, counting from 0 | <span class="in">`y.iloc[:, 0]`</span> – first column; <span class="in">`s.iloc[0]`</span> – first value | Ch. 5 |</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.select_dtypes("number")`</span> | only the numeric columns | <span class="in">`df.select_dtypes("number")`</span> | Ch. 2 |</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.drop(columns=[...])`</span> | removes columns | <span class="in">`df.drop(columns=["rv1", "rv2"])`</span> | Ch. 2 |</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.sample(n, random_state=0)`</span> | <span class="in">`n`</span> random rows, reproducibly | <span class="in">`df.sample(1000, random_state=0)`</span> | Ch. 1 |</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.sort_values("a")`</span> | sorts the rows by a column | <span class="in">`df.sort_values("RMSE", ascending=False)`</span> | Ch. 1 |</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pitfall: `and`, `or`, `not` do not work on columns</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>Python's <span class="in">`and`</span>, <span class="in">`or`</span> and <span class="in">`not`</span> handle a *single* truth value. For masks – NumPy arrays and pandas columns – use <span class="in">`&amp;`</span>, <span class="in">`|`</span> and <span class="in">`~`</span>, which work element by element, and put every condition in brackets:</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>| | single value | mask (array, column) |</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- |</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>| and | <span class="in">`and`</span> | <span class="in">`&amp;`</span> |</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>| or | <span class="in">`or`</span> | <span class="in">`\|`</span> |</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>| not | <span class="in">`not`</span> | <span class="in">`~`</span> |</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>df[(df[<span class="st">"machine_id"</span>] <span class="op">==</span> <span class="st">"M4"</span>) <span class="op">&amp;</span> (df[<span class="st">"shift"</span>] <span class="op">==</span> <span class="st">"night"</span>)]   <span class="co"># correct</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"machine_id"</span>] <span class="op">==</span> <span class="st">"M4"</span> <span class="op">&amp;</span> df[<span class="st">"shift"</span>] <span class="op">==</span> <span class="st">"night"</span>]       <span class="co"># error: &amp; binds before ==</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="in">`not m`</span> on a mask raises an error ("the truth value of an array is ambiguous"), and <span class="in">`~True`</span> on a single value gives <span class="in">`-2`</span>, because <span class="in">`~`</span> is originally a bitwise operator on integers.</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Transforming values</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>| <span class="in">`np.where(m, a, b)`</span> | element-wise "if – then – else": <span class="in">`a`</span> where <span class="in">`m`</span> is <span class="in">`True`</span>, otherwise <span class="in">`b`</span> | <span class="in">`np.where(m, estimate, temp)`</span> | Ch. 2 |</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.astype(type)`</span> | converts the data type | <span class="in">`s.astype(str)`</span> | Ch. 2 |</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.map({...})`</span> | replaces values according to a dictionary, e.g. codes by names | <span class="in">`y.map({-1: "pass", 1: "fail"})`</span> | Ch. 2 |</span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>| <span class="in">`pd.to_datetime(s, format=...)`</span> | turns text into time stamps; always give the format explicitly | <span class="in">`pd.to_datetime(s, format="%Y%m%d%H")`</span> | Ch. 2 |</span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.set_index("a")`</span>, <span class="in">`df.sort_index()`</span> | uses a column as row index, e.g. the time; sorts by the index | <span class="in">`df.set_index("time").sort_index()`</span> | Ch. 2 |</span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.rename(columns={...})`</span> | gives columns new names | <span class="in">`df.rename(columns={"TT_TU": "temp_C"})`</span> | Ch. 2 |</span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.str.strip()`</span> | removes blanks at the beginning and end of text | <span class="in">`df.columns.str.strip()`</span> | Ch. 2 |</span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.tz_localize(...)`</span>, <span class="in">`s.tz_convert(...)`</span> | declares the time zone of time stamps, converts to another one | <span class="in">`s.tz_localize("UTC").tz_convert("Europe/Berlin")`</span> | Ch. 2 |</span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>| <span class="in">`np.log(s)`</span>, <span class="in">`s.abs()`</span> | logarithm (for skewed data), absolute value | <span class="in">`np.log(energy["Appliances"])`</span> | Ch. 1, 2 |</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## `np.where` with one argument</span></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>With three arguments, <span class="in">`np.where(m, a, b)`</span> selects values. With only one argument, <span class="in">`np.where(m)`</span> does something different: it returns the *positions* where <span class="in">`m`</span> is <span class="in">`True`</span>. For positions, <span class="in">`np.flatnonzero(m)`</span> is clearer.</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## `.str` and `.dt`: functions for every entry of a column</span></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>Text functions such as <span class="in">`strip()`</span> work on a *single* text. To apply them to every entry of a column, pandas offers the accessor `.str`: `s.str.strip()`, `s.str.lower()`, `s.str.startswith("produkt")`. The column must contain text – hence `s.astype(str).str.strip()`. In the same way, `.dt` gives access to the parts of time stamps: `s.dt.hour`, `s.dt.day_name()`. For a time *index*, these are available directly: <span class="in">`df.index.hour`</span>, <span class="in">`df.index.dayofweek`</span>.</span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>Pitfall: some functions exist twice with different meanings.</span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="st">"1,5"</span>, <span class="st">"2,0"</span>])</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>s.replace(<span class="st">","</span>, <span class="st">"."</span>)        <span class="co"># replaces entries that are exactly "," – here: no change</span></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>)    <span class="co"># replaces "," inside every text – "1.5", "2.0"</span></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>Forgetting <span class="in">`.str`</span> raises no error – the data simply remain unchanged.</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Format codes for time stamps</span></span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>In <span class="in">`pd.to_datetime(s, format=...)`</span>, every code stands for one complete field of the date; its length is part of its definition:</span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>| Code | Meaning | Digits | Example |</span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%Y`</span> | year | 4 | <span class="in">`2025`</span> |</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%y`</span> | year without century | 2 | <span class="in">`25`</span> |</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%m`</span> | month | 2 | <span class="in">`04`</span> |</span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%d`</span> | day | 2 | <span class="in">`11`</span> |</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%H`</span> | hour (00–23) | 2 | <span class="in">`13`</span> |</span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%M`</span> | minute | 2 | <span class="in">`05`</span> |</span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%S`</span> | second | 2 | <span class="in">`00`</span> |</span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>All other characters (<span class="in">`-`</span>, <span class="in">`.`</span>, <span class="in">`:`</span>, blanks) must appear in the format exactly as in the data. Upper and lower case matter: <span class="in">`%m`</span> is the month, <span class="in">`%M`</span> the minute – a classic error that often raises no error message. Other tools write formats differently, e.g. <span class="in">`YYYYMMDDHH`</span> in Excel, databases or the DWD documentation; such formats have to be translated.</span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>Formats you will meet in practice:</span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>| Data look like | Typical source | Reading in pandas |</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- |</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>| <span class="in">`2025-04-11 13:00:00`</span>, <span class="in">`2025-04-11T13:00:00+02:00`</span> | international standard ISO 8601: databases, web services, modern loggers | <span class="in">`pd.to_datetime(s, format="ISO8601")`</span> |</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>| <span class="in">`11.04.2025 13:00`</span> | German software, Excel exports | <span class="in">`format="%d.%m.%Y %H:%M"`</span> |</span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>| <span class="in">`2025041113`</span> | compact formats of older systems, e.g. the DWD | <span class="in">`format="%Y%m%d%H"`</span> (text, not number) |</span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>| <span class="in">`1744376400`</span> | seconds since 1 January 1970 (Unix time): sensors, IoT, log files | <span class="in">`pd.to_datetime(s, unit="s")`</span> |</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summarising and grouping</span></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.mean()`</span>, <span class="in">`s.median()`</span>, <span class="in">`s.std()`</span>, <span class="in">`s.min()`</span>, <span class="in">`s.max()`</span>, <span class="in">`s.sum()`</span> | the usual summary statistics; the mean of a mask is the share of <span class="in">`True`</span> values | <span class="in">`(s == "scrap").mean()`</span> – scrap rate | Ch. 1, 2 |</span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.quantile([0.25, 0.75])`</span> | quantiles, here the quartiles | <span class="in">`q1, q3 = s.quantile([0.25, 0.75])`</span> | Ch. 2 |</span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.idxmax()`</span> | the label (e.g. the time) of the largest value | <span class="in">`cycle.idxmax()`</span> | Ch. 2 |</span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.groupby("g")["x"].mean()`</span> | one summary per group | <span class="in">`df.groupby("machine_id")["diameter_mm"].mean()`</span> | Ch. 2 |</span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>| <span class="in">`.agg([...])`</span> | several summaries at once | <span class="in">`.agg(["min", "mean", "max"])`</span> | Ch. 2 |</span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.resample("D")`</span> | groups a time series into intervals (<span class="in">`"h"`</span> hour, <span class="in">`"D"`</span> day, …) | <span class="in">`s.resample("D").mean()`</span> | Ch. 2 |</span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.rolling("1D")`</span> | moving window, e.g. a 24 h rolling mean | <span class="in">`s.rolling("1D").mean()`</span> | Ch. 2 |</span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.diff()`</span>, <span class="in">`s.shift()`</span>, <span class="in">`s.cumsum()`</span> | difference to the previous value, shifted series, running sum | <span class="in">`s.index.to_series().diff()`</span> – time steps | Ch. 2 |</span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reshaping and combining tables</span></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>| <span class="in">`pd.concat([a, b], axis=1)`</span> | puts tables side by side (<span class="in">`axis=0`</span>: one below the other) | <span class="in">`pd.concat([features, targets], axis=1)`</span> | Ch. 1 |</span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.merge(other, on="key")`</span> | combines two tables via a key column – like SQL <span class="in">`JOIN`</span> | <span class="in">`parts.merge(orders, on="order_id")`</span> | SQL app. |</span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.pivot(index=..., columns=..., values=...)`</span> | long table → wide table | <span class="in">`rates.pivot(index="machine_id", columns="shift", values="scrap_rate")`</span> | SQL app. |</span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>| <span class="in">`.unstack()`</span> | moves an index level into the columns, e.g. after a <span class="in">`groupby`</span> with two keys | <span class="in">`df.groupby([a, b])["x"].mean().unstack()`</span> | Ch. 2 |</span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.melt(...)`</span> | wide table → long (tidy) table | <span class="in">`df.melt(id_vars="time")`</span> | Ch. 1 (text) |</span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading data</span></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>| <span class="in">`fetch_ucirepo(id=...)`</span> | loads a dataset from the UCI repository (package <span class="in">`ucimlrepo`</span>) | <span class="in">`fetch_ucirepo(id=294)`</span> | Ch. 1 |</span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>| <span class="in">`pd.read_csv(f, sep=..., decimal=..., na_values=...)`</span> | reads a text file with separated values; <span class="in">`decimal=","`</span> for numbers with a decimal comma | <span class="in">`pd.read_csv(f, sep=";", na_values=[-999])`</span> | Ch. 2 |</span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>| <span class="in">`zipfile.ZipFile(path)`</span> | opens a zip archive; <span class="in">`.namelist()`</span> lists its files | see Chapter 2 | Ch. 2 |</span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>| <span class="in">`pd.read_sql(query, con)`</span> | runs an SQL query and returns the result as a DataFrame | <span class="in">`pd.read_sql("SELECT * FROM machines", con)`</span> | SQL app. |</span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random numbers and simple models</span></span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>| <span class="in">`rng = np.random.default_rng(0)`</span> | random number generator with a fixed start value: the same "random" numbers in every run | <span class="in">`rng = np.random.default_rng(0)`</span> | Ch. 2 |</span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>| <span class="in">`rng.random(n)`</span>, <span class="in">`rng.uniform(a, b, n)`</span>, <span class="in">`rng.normal(mu, sigma, n)`</span> | <span class="in">`n`</span> random numbers: uniform in [0, 1), uniform in [a, b), normally distributed | <span class="in">`rng.normal(0, 15, 10_000)`</span> | Ch. 2 |</span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>| <span class="in">`rng.integers(a, b)`</span>, <span class="in">`rng.choice(values, p=...)`</span> | random integer, random choice with given probabilities | <span class="in">`rng.choice(["C45", "42CrMo4"], p=[0.7, 0.3])`</span> | SQL app. |</span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>| <span class="in">`np.polyfit(x, y, deg=1)`</span> | least-squares polynomial; with <span class="in">`deg=1`</span> a straight line → slope and intercept | <span class="in">`slope, intercept = np.polyfit(x, y, deg=1)`</span> | Ch. 1 |</span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plots</span></span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Used in |</span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- |</span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.set_theme(style="whitegrid")`</span> | common style for all plots | Ch. 1 |</span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.histplot(s)`</span> | histogram – the shape of a distribution | Ch. 2 |</span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.boxplot(x=s)`</span> | box plot – compact, good for comparing groups | Ch. 2 |</span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.pairplot(df)`</span> | scatter plots of all pairs of columns | Ch. 1 |</span>
-<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.heatmap(table)`</span> | coloured table, e.g. a correlation matrix or a profile hour × weekday | Ch. 1, 2 |</span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.plot()`</span>, <span class="in">`df.plot()`</span> | quick line plot directly from pandas, e.g. of a time series | Ch. 2 |</span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.plot.bar()`</span> | bar chart, e.g. of the frequencies from <span class="in">`value_counts()`</span> | Ch. 2 |</span>
-<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>| <span class="in">`fig, axes = plt.subplots(rows, cols)`</span> | several plots in one figure | Ch. 2 |</span>
-<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>| <span class="in">`plt.show()`</span> | displays the figure | Ch. 1 |</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Python Quick Reference {#sec-python-reference}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>This appendix collects the Python functions used in this script, ordered by **task** – the question you have in mind ("How do I count the missing values?") rather than the library. Each entry says what the function does, gives a short example and names where it is used first. The pandas basics are introduced step by step in *Getting Started with pandas* before Chapter 1.</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Notation: <span class="in">`df`</span> is a DataFrame (a table), <span class="in">`s`</span> a single column (a Series), <span class="in">`m`</span> a mask of truth values. <span class="in">`np`</span>, <span class="in">`pd`</span>, <span class="in">`plt`</span> and <span class="in">`sns`</span> are the usual short names for NumPy, pandas, Matplotlib and seaborn (Chapter 1).</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting an overview</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.info()`</span> | number of rows, column names, data types, non-missing values | <span class="in">`df.info()`</span> | Ch. 1 |</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.describe()`</span> | count, mean, standard deviation, minimum, quartiles, maximum of every numeric column | <span class="in">`df.describe().round(2)`</span> | Ch. 1 |</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.head(n)`</span>, <span class="in">`df.tail(n)`</span> | first or last <span class="in">`n`</span> rows (default: 5) | <span class="in">`df.head(10)`</span> | Ch. 2 |</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.shape`</span> | number of rows and columns – an attribute, therefore without brackets | <span class="in">`n_rows, n_cols = df.shape`</span> | Ch. 2 |</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.value_counts()`</span> | frequency of each value – the description of a categorical variable | <span class="in">`label.value_counts()`</span> | Ch. 2 |</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.nunique()`</span> | number of different values per column | <span class="in">`(df.nunique() &lt;= 1).sum()`</span> counts constant columns | Ch. 2 |</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.corr()`</span> | Pearson correlation of every pair of columns | <span class="in">`sns.heatmap(df.corr(), annot=True)`</span> | Ch. 1 |</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.corrwith(s)`</span> | correlation of every column of <span class="in">`df`</span> with one series <span class="in">`s`</span> | <span class="in">`df.corrwith(df["PE"])`</span> | Ch. 2 |</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Missing values</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.isna()`</span> | <span class="in">`True`</span> wherever a value is missing (<span class="in">`NaN`</span>, <span class="in">`None`</span>, <span class="in">`NaT`</span>) | <span class="in">`df.isna().sum()`</span> counts missing values per column | Ch. 2 |</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.dropna()`</span> | removes rows with missing values | <span class="in">`s.diff().dropna()`</span> | Ch. 2 |</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.fillna(value)`</span> | replaces missing values | <span class="in">`X.fillna(X.median())`</span> – median imputation | Ch. 2 |</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>| <span class="in">`na_values=[...]`</span> in <span class="in">`pd.read_csv`</span> | treats codes such as <span class="in">`-999`</span> as missing while reading | <span class="in">`pd.read_csv(f, na_values=[-999])`</span> | Ch. 2 |</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pitfall: `is None`, `isna()` and `==`</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`x is None`</span> checks whether *nothing* was given, e.g. an optional argument of a function: <span class="in">`if fname is None:`</span>. Use <span class="in">`is`</span> only for <span class="in">`None`</span> – for numbers and text always use <span class="in">`==`</span>.</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`s.isna()`</span> checks whether *measured values* are missing. Never test with <span class="in">`== np.nan`</span>: <span class="in">`NaN`</span> is by definition not equal to anything, not even to itself – <span class="in">`np.nan == np.nan`</span> is <span class="in">`False`</span>.</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`s == None`</span> on a column does not help either: it gives a mask in which even the missing values are <span class="in">`False`</span>, and <span class="in">`if s == None:`</span> raises an error.</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selecting rows and columns</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df["a"]`</span> | one column, as a Series | <span class="in">`df["PE"]`</span> | Ch. 1 |</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df[["a", "b"]]`</span> | several columns, as a DataFrame (note the double brackets) | <span class="in">`df[["T1", "T_out"]]`</span> | Ch. 2 |</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df[m]`</span> | the rows where the mask <span class="in">`m`</span> is <span class="in">`True`</span> | <span class="in">`df[df["AT"] &gt; 30]`</span> | Ch. 2 |</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.loc[rows, columns]`</span> | rows and columns by label or mask | <span class="in">`X.loc[:, X.nunique() &gt; 1]`</span> – all rows, non-constant columns | Ch. 2 |</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.iloc[rows, columns]`</span> | rows and columns by position, counting from 0 | <span class="in">`y.iloc[:, 0]`</span> – first column; <span class="in">`s.iloc[0]`</span> – first value | Ch. 5 |</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.select_dtypes("number")`</span> | only the numeric columns | <span class="in">`df.select_dtypes("number")`</span> | Ch. 9 |</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.drop(columns=[...])`</span> | removes columns | <span class="in">`df.drop(columns=["rv1", "rv2"])`</span> | Ch. 2 |</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.sample(n, random_state=0)`</span> | <span class="in">`n`</span> random rows, reproducibly | <span class="in">`df.sample(1000, random_state=0)`</span> | Ch. 1 |</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.sort_values("a")`</span> | sorts the rows by a column | <span class="in">`df.sort_values("RMSE", ascending=False)`</span> | Ch. 1 |</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## `loc` or `iloc`?</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>Every row has a **label** – the index shown on the left – and a **position**: first row, second row, … <span class="in">`loc`</span> selects by label, <span class="in">`iloc`</span> by integer position (memory aid: *i* for *integer*). As long as the index is 0, 1, 2, …, both give the same result. After sorting or filtering, they no longer do:</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"T"</span>: [<span class="dv">25</span>, <span class="dv">18</span>, <span class="dv">31</span>]})   <span class="co"># labels 0, 1, 2</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> df.sort_values(<span class="st">"T"</span>)                  <span class="co"># order now: labels 1, 0, 2</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>s.loc[<span class="dv">0</span>]     <span class="co"># row with the LABEL 0 → T = 25</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>s.iloc[<span class="dv">0</span>]    <span class="co"># FIRST row            → T = 18</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>Ranges differ, too: <span class="in">`df.loc[0:2]`</span> includes the end (labels 0, 1 **and** 2), <span class="in">`df.iloc[0:2]`</span> does not (positions 0 and 1, as for Python lists). For time series, including the end is convenient: <span class="in">`s.loc["2015-01-01":"2019-12-31"]`</span> contains 31 December.</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pitfall: `and`, `or`, `not` do not work on columns</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>Python's <span class="in">`and`</span>, <span class="in">`or`</span> and <span class="in">`not`</span> handle a *single* truth value. For masks – NumPy arrays and pandas columns – use <span class="in">`&amp;`</span>, <span class="in">`|`</span> and <span class="in">`~`</span>, which work element by element, and put every condition in brackets:</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>| | single value | mask (array, column) |</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- |</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>| and | <span class="in">`and`</span> | <span class="in">`&amp;`</span> |</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>| or | <span class="in">`or`</span> | <span class="in">`\|`</span> |</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>| not | <span class="in">`not`</span> | <span class="in">`~`</span> |</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>df[(df[<span class="st">"machine_id"</span>] <span class="op">==</span> <span class="st">"M4"</span>) <span class="op">&amp;</span> (df[<span class="st">"shift"</span>] <span class="op">==</span> <span class="st">"night"</span>)]   <span class="co"># correct</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">"machine_id"</span>] <span class="op">==</span> <span class="st">"M4"</span> <span class="op">&amp;</span> df[<span class="st">"shift"</span>] <span class="op">==</span> <span class="st">"night"</span>]       <span class="co"># error: &amp; binds before ==</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="in">`not m`</span> on a mask raises an error ("the truth value of an array is ambiguous"), and <span class="in">`~True`</span> on a single value gives <span class="in">`-2`</span>, because <span class="in">`~`</span> is originally a bitwise operator on integers (newer Python versions warn about this).</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Transforming values</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.mask(m)`</span> | sets the values where the mask <span class="in">`m`</span> is <span class="in">`True`</span> to <span class="in">`NaN`</span> | <span class="in">`df["RH_1"].mask(bad)`</span> – remove wrong values, keep the rows | Ch. 2 |</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.clip(lower, upper)`</span> | caps values at fixed limits | <span class="in">`s.clip(lower=-40, upper=60)`</span> | Ch. 2 |</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>| <span class="in">`np.where(m, a, b)`</span> | element-wise "if – then – else": <span class="in">`a`</span> where <span class="in">`m`</span> is <span class="in">`True`</span>, otherwise <span class="in">`b`</span> | <span class="in">`np.where(m, estimate, temp)`</span> | Ch. 2 |</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.astype(type)`</span> | converts the data type | <span class="in">`s.astype(str)`</span> | Ch. 2 |</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.map({...})`</span> | replaces values according to a dictionary, e.g. codes by names | <span class="in">`y.map({-1: "pass", 1: "fail"})`</span> | Ch. 2 |</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>| <span class="in">`pd.to_datetime(s, format=...)`</span> | turns text into time stamps; always give the format explicitly | <span class="in">`pd.to_datetime(s, format="%Y%m%d%H")`</span> | Ch. 2 |</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.set_index("a")`</span>, <span class="in">`df.sort_index()`</span> | uses a column as row index, e.g. the time; sorts by the index | <span class="in">`df.set_index("time").sort_index()`</span> | Ch. 2 |</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.rename(columns={...})`</span> | gives columns new names | <span class="in">`df.rename(columns={"TT_TU": "temp_C"})`</span> | Ch. 2 |</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.str.strip()`</span> | removes blanks at the beginning and end of text | <span class="in">`df.columns.str.strip()`</span> | Ch. 2 |</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.tz_localize(...)`</span>, <span class="in">`s.tz_convert(...)`</span> | declares the time zone of time stamps, converts to another one | <span class="in">`s.tz_localize("UTC").tz_convert("Europe/Berlin")`</span> | Ch. 2 |</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>| <span class="in">`np.log(s)`</span>, <span class="in">`s.abs()`</span> | logarithm (for skewed data), absolute value | <span class="in">`np.log(energy["Appliances"])`</span> | Ch. 1, 2 |</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## `np.where` with one argument</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>With three arguments, <span class="in">`np.where(m, a, b)`</span> selects values. With only one argument, <span class="in">`np.where(m)`</span> does something different: it returns the *positions* where <span class="in">`m`</span> is <span class="in">`True`</span>. For positions, <span class="in">`np.flatnonzero(m)`</span> is clearer.</span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## `.str` and `.dt`: functions for every entry of a column</span></span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>Text functions such as <span class="in">`strip()`</span> work on a *single* text. To apply them to every entry of a column, pandas offers the accessor `.str`: `s.str.strip()`, `s.str.lower()`, `s.str.startswith("produkt")`. The column must contain text – hence `s.astype(str).str.strip()`. In the same way, `.dt` gives access to the parts of time stamps: `s.dt.hour`, `s.dt.day_name()`. For a time *index*, these are available directly: <span class="in">`df.index.hour`</span>, <span class="in">`df.index.dayofweek`</span>.</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>Pitfall: some functions exist twice with different meanings.</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="st">"1,5"</span>, <span class="st">"2,0"</span>])</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>s.replace(<span class="st">","</span>, <span class="st">"."</span>)        <span class="co"># replaces entries that are exactly "," – here: no change</span></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">str</span>.replace(<span class="st">","</span>, <span class="st">"."</span>)    <span class="co"># replaces "," inside every text – "1.5", "2.0"</span></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>Forgetting <span class="in">`.str`</span> raises no error – the data simply remain unchanged.</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## Format codes for time stamps</span></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>In <span class="in">`pd.to_datetime(s, format=...)`</span>, every code stands for one complete field of the date. <span class="in">`%Y`</span> always has four digits; the two-digit codes also accept a single digit when reading, so <span class="in">`%d/%m/%Y`</span> reads <span class="in">`19/07/2008`</span> as well as <span class="in">`1/8/2008`</span>:</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>| Code | Meaning | Digits | Example |</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%Y`</span> | year | 4 | <span class="in">`2025`</span> |</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%y`</span> | year without century | 2 | <span class="in">`25`</span> |</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%m`</span> | month | 2 | <span class="in">`04`</span> |</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%d`</span> | day | 2 | <span class="in">`11`</span> |</span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%H`</span> | hour (00–23) | 2 | <span class="in">`13`</span> |</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%M`</span> | minute | 2 | <span class="in">`05`</span> |</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>| <span class="in">`%S`</span> | second | 2 | <span class="in">`00`</span> |</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>All other characters (<span class="in">`-`</span>, <span class="in">`.`</span>, <span class="in">`:`</span>, blanks) must appear in the format exactly as in the data. Upper and lower case matter: <span class="in">`%m`</span> is the month, <span class="in">`%M`</span> the minute – a classic error that often raises no error message. Other tools write formats with letters instead, e.g. <span class="in">`yyyy-mm-dd hh:mm`</span> in Excel or <span class="in">`YYYYMMDDHH24`</span> in the DWD documentation; such formats have to be translated.</span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>Formats you will meet in practice:</span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>| Data look like | Typical source | Reading in pandas |</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- |</span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>| <span class="in">`2025-04-11 13:00:00`</span>, <span class="in">`2025-04-11T13:00:00+02:00`</span> | international standard ISO 8601: databases, web services, modern loggers | <span class="in">`pd.to_datetime(s, format="ISO8601")`</span> |</span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a>| <span class="in">`11.04.2025 13:00`</span> | German software, Excel exports | <span class="in">`format="%d.%m.%Y %H:%M"`</span> |</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>| <span class="in">`2025041113`</span> | compact formats of older systems, e.g. the DWD | <span class="in">`format="%Y%m%d%H"`</span> (text, not number) |</span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a>| <span class="in">`1744376400`</span> | seconds since 1 January 1970 (Unix time): sensors, IoT, log files | <span class="in">`pd.to_datetime(s, unit="s")`</span> |</span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summarising and grouping</span></span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.mean()`</span>, <span class="in">`s.median()`</span>, <span class="in">`s.std()`</span>, <span class="in">`s.min()`</span>, <span class="in">`s.max()`</span>, <span class="in">`s.sum()`</span> | the usual summary statistics; the mean of a mask is the share of <span class="in">`True`</span> values | <span class="in">`(s == "scrap").mean()`</span> – scrap rate | Ch. 1, 2 |</span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.quantile([0.25, 0.75])`</span> | quantiles, here the quartiles | <span class="in">`q1, q3 = s.quantile([0.25, 0.75])`</span> | Ch. 2 |</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.idxmax()`</span> | the label (e.g. the time) of the largest value | <span class="in">`cycle.idxmax()`</span> | Ch. 2 |</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.groupby("g")["x"].mean()`</span> | one summary per group; the key can be any column or series, e.g. the hour of the day | <span class="in">`df.groupby("machine_id")["diameter_mm"].mean()`</span> | Ch. 2 |</span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>| <span class="in">`.agg([...])`</span> | several summaries at once | <span class="in">`.agg(["min", "mean", "max"])`</span> | Ch. 2 |</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.resample("D")`</span> | groups a time series into consecutive intervals (<span class="in">`"h"`</span> hour, <span class="in">`"D"`</span> day, …); needs time stamps as index | <span class="in">`s.resample("D").mean()`</span> | Ch. 2 |</span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.rolling("1D")`</span> | window that slides along the time axis (<span class="in">`"1D"`</span> = one day; <span class="in">`rolling(144)`</span> = 144 values), followed by a summary such as <span class="in">`.mean()`</span> | <span class="in">`s.rolling("1D").mean()`</span> – 24 h rolling mean | Ch. 2 |</span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.diff()`</span>, <span class="in">`s.shift()`</span>, <span class="in">`s.cumsum()`</span> | difference to the previous value, shifted series, running sum | <span class="in">`s.index.to_series().diff()`</span> – time steps | Ch. 2 |</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a><span class="fu">## Method chaining – and why pandas makes it possible</span></span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>In <span class="in">`energy.set_index("date").sort_index()`</span>, the second method is applied directly to the result of the first. This works because of three design decisions in pandas:</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Methods return a new object and leave the original unchanged.** <span class="in">`df.sort_values("a")`</span> returns a sorted copy; <span class="in">`df`</span> stays as it is. Plain Python does the opposite for lists: <span class="in">`values.sort()`</span> sorts the list itself and returns <span class="in">`None`</span> – so <span class="in">`values.sort().reverse()`</span> fails, while <span class="in">`df.sort_values("a").head()`</span> works.</span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**The type stays the same.** A table becomes a table, a column a column – so the next method always fits. <span class="in">`.str`</span> and <span class="in">`.dt`</span> also return a column.</span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Methods instead of statements.** An assignment such as <span class="in">`df["temp_K"] = df["temp_C"] + 273.15`</span> cannot be chained; <span class="in">`df.assign(temp_K=df["temp_C"] + 273.15)`</span> returns a new table with the additional column. For the same reason, avoid the older option <span class="in">`inplace=True`</span>: it changes the table itself and returns <span class="in">`None`</span>, which breaks the chain.</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>Returning new tables might sound expensive. Since pandas 3.0 ("copy-on-write"), however, data are only copied when they are actually changed.</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>Many NumPy functions also exist as pandas methods – <span class="in">`s.abs()`</span>, <span class="in">`s.median()`</span>, <span class="in">`s.std()`</span>. For pandas data, prefer the methods: they fit into a chain, and they skip missing values, which NumPy functions do not:</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, np.nan, <span class="dv">3</span>])</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>s.<span class="bu">abs</span>().median()            <span class="co"># 3.0 – pandas skips the missing value</span></span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>np.median(np.<span class="bu">abs</span>(s))        <span class="co"># nan – one missing value makes the result missing</span></span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a>The standard deviation differs, too: <span class="in">`s.std()`</span> divides by $n-1$ (sample standard deviation, Chapter 2), <span class="in">`np.std(...)`</span> by $n$ unless you write <span class="in">`ddof=1`</span>.</span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a>For longer chains, put the whole expression in brackets – inside brackets, Python continues on the next line – and write one step per line:</span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>daily <span class="op">=</span> (weather</span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a>         .dropna()            <span class="co"># remove rows with missing values</span></span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a>         .resample(<span class="st">"D"</span>)       <span class="co"># group by day</span></span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a>         .mean())             <span class="co"># one mean per day</span></span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a>Chains are compact; separate steps are easier to check. A good habit: build a chain step by step, and if it fails, remove the last steps until it works again – this shows which step causes the error.</span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reshaping and combining tables</span></span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a>| <span class="in">`pd.concat([a, b], axis=1)`</span> | puts tables side by side (<span class="in">`axis=0`</span>: one below the other) | <span class="in">`pd.concat([features, targets], axis=1)`</span> | Ch. 1 |</span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.merge(other, on="key")`</span> | combines two tables via a key column – like SQL <span class="in">`JOIN`</span> | <span class="in">`parts.merge(orders, on="order_id")`</span> | SQL app. |</span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.pivot(index=..., columns=..., values=...)`</span> | long table → wide table | <span class="in">`rates.pivot(index="machine_id", columns="shift", values="scrap_rate")`</span> | Ch. 2 |</span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a>| <span class="in">`.unstack()`</span> | moves an index level into the columns, e.g. after a <span class="in">`groupby`</span> with two keys | <span class="in">`df.groupby([a, b])["x"].mean().unstack()`</span> | Ch. 2 |</span>
+<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a>| <span class="in">`df.melt(...)`</span> | wide table → long (tidy) table | <span class="in">`df.melt(id_vars="time")`</span> | Ch. 1 (text) |</span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading data</span></span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a>| <span class="in">`fetch_ucirepo(id=...)`</span> | loads a dataset from the UCI repository (package <span class="in">`ucimlrepo`</span>) | <span class="in">`fetch_ucirepo(id=294)`</span> | Ch. 1 |</span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a>| <span class="in">`pd.read_csv(f, sep=..., decimal=..., na_values=...)`</span> | reads a text file with separated values; <span class="in">`decimal=","`</span> for numbers with a decimal comma | <span class="in">`pd.read_csv(f, sep=";", na_values=[-999])`</span> | Ch. 2 |</span>
+<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a>| <span class="in">`zipfile.ZipFile(path)`</span> | opens a zip archive; <span class="in">`.namelist()`</span> lists its files | see Chapter 2 | Ch. 2 |</span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a>| <span class="in">`pd.read_sql(query, con)`</span> | runs an SQL query and returns the result as a DataFrame | <span class="in">`pd.read_sql("SELECT * FROM machines", con)`</span> | SQL app. |</span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a><span class="fu">## Random numbers and simple models</span></span>
+<span id="cb7-209"><a href="#cb7-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Example | Used in |</span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- | --- |</span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a>| <span class="in">`rng = np.random.default_rng(0)`</span> | random number generator with a fixed start value: the same "random" numbers in every run | <span class="in">`rng = np.random.default_rng(0)`</span> | Ch. 2 |</span>
+<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a>| <span class="in">`rng.random(n)`</span>, <span class="in">`rng.uniform(a, b, n)`</span>, <span class="in">`rng.normal(mu, sigma, n)`</span> | <span class="in">`n`</span> random numbers: uniform in [0, 1), uniform in [a, b), normally distributed | <span class="in">`rng.normal(0, 15, 10_000)`</span> | Ch. 2 |</span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a>| <span class="in">`rng.integers(a, b)`</span>, <span class="in">`rng.choice(values, p=...)`</span> | random integer, random choice with given probabilities | <span class="in">`rng.choice(["C45", "42CrMo4"], p=[0.7, 0.3])`</span> | SQL app. |</span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a>| <span class="in">`np.polyfit(x, y, deg=1)`</span> | least-squares polynomial; with <span class="in">`deg=1`</span> a straight line → slope and intercept | <span class="in">`slope, intercept = np.polyfit(x, y, deg=1)`</span> | Ch. 1 |</span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plots</span></span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a>| Function | What it does | Used in |</span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a>| --- | --- | --- |</span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.set_theme(style="whitegrid")`</span> | common style for all plots | Ch. 1 |</span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.histplot(s)`</span> | histogram – the shape of a distribution | Ch. 2 |</span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.boxplot(x=s)`</span> | box plot – compact, good for comparing groups | Ch. 2 |</span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.pairplot(df)`</span> | scatter plots of all pairs of columns | Ch. 1 |</span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a>| <span class="in">`sns.heatmap(table)`</span> | coloured table, e.g. a correlation matrix or a profile hour × weekday | Ch. 1, 2 |</span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.plot()`</span>, <span class="in">`df.plot()`</span> | quick line plot directly from pandas, e.g. of a time series | Ch. 2 |</span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a>| <span class="in">`s.plot.bar()`</span> | bar chart, e.g. of the frequencies from <span class="in">`value_counts()`</span> | Ch. 2 |</span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>| <span class="in">`fig, axes = plt.subplots(rows, cols)`</span> | several plots in one figure | Ch. 2 |</span>
+<span id="cb7-229"><a href="#cb7-229" aria-hidden="true" tabindex="-1"></a>| <span class="in">`plt.show()`</span> | displays the figure | Ch. 1 |</span>
+<span id="cb7-230"><a href="#cb7-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-231"><a href="#cb7-231" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb7-232"><a href="#cb7-232" aria-hidden="true" tabindex="-1"></a><span class="fu">## pandas, seaborn and Matplotlib</span></span>
+<span id="cb7-233"><a href="#cb7-233" aria-hidden="true" tabindex="-1"></a>pandas and seaborn do not draw themselves – they call Matplotlib. These three lines produce essentially the same line plot:</span>
+<span id="cb7-234"><a href="#cb7-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-235"><a href="#cb7-235" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb7-236"><a href="#cb7-236" aria-hidden="true" tabindex="-1"></a>ax.plot(df.index, df[<span class="st">"Appliances"</span>], lw<span class="op">=</span><span class="fl">0.3</span>)        <span class="co"># Matplotlib</span></span>
+<span id="cb7-237"><a href="#cb7-237" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Appliances"</span>].plot(ax<span class="op">=</span>ax, lw<span class="op">=</span><span class="fl">0.3</span>)                <span class="co"># pandas</span></span>
+<span id="cb7-238"><a href="#cb7-238" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>df.index, y<span class="op">=</span>df[<span class="st">"Appliances"</span>], ax<span class="op">=</span>ax) <span class="co"># seaborn</span></span>
+<span id="cb7-239"><a href="#cb7-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-240"><a href="#cb7-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-241"><a href="#cb7-241" aria-hidden="true" tabindex="-1"></a>pandas takes the x-axis from the index (a time index gives a date axis) and draws one line per column, labelled with its name. Matplotlib options such as <span class="in">`lw`</span>, <span class="in">`alpha`</span>, <span class="in">`color`</span> or <span class="in">`label`</span> are passed on. With <span class="in">`ax=...`</span>, pandas and seaborn draw into an existing field created by <span class="in">`plt.subplots`</span>; without it, they create a new figure. Both return this field (<span class="in">`ax`</span>), so you can continue with the usual Matplotlib commands, e.g. <span class="in">`ax.set(ylabel="...")`</span>.</span>
+<span id="cb7-242"><a href="#cb7-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-243"><a href="#cb7-243" aria-hidden="true" tabindex="-1"></a>Rule of thumb: pandas for quick plots directly from a table, seaborn for statistical plots (histogram, box plot, heatmap), Matplotlib via <span class="in">`ax`</span> for fine-tuning.</span>
+<span id="cb7-244"><a href="#cb7-244" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

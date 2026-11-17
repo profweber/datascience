@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Model Selection, Regularisation and Gaussian Processes – Data Science in Engineering</title>
+<title>7&nbsp; Model Selection, Regularisation and Gaussian Processes – Data Science in Engineering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04-testing.html">Part B – Statistics for Engineers</a></li><li class="breadcrumb-item"><a href="../notebooks/06-model-selection.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04-testing.html">Part B – Statistics for Engineers</a></li><li class="breadcrumb-item"><a href="../notebooks/06-model-selection.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -187,6 +187,12 @@ window.Quarto = {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/00-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with pandas</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -199,19 +205,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/01-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/02-eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/03-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></span></a>
   </div>
 </li>
       </ul>
@@ -228,19 +234,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/04-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/06-model-selection.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></span></a>
   </div>
 </li>
       </ul>
@@ -257,25 +263,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/07-classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/08-ensembles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/09-unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/10-signals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,19 +298,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/11-time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -354,20 +360,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#training-error-test-error-and-overfitting" id="toc-training-error-test-error-and-overfitting" class="nav-link active" data-scroll-target="#training-error-test-error-and-overfitting"><span class="header-section-number">6.1</span> Training error, test error and overfitting</a></li>
-  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><span class="header-section-number">6.2</span> Cross-validation</a></li>
-  <li><a href="#regularisation-ridge-and-lasso" id="toc-regularisation-ridge-and-lasso" class="nav-link" data-scroll-target="#regularisation-ridge-and-lasso"><span class="header-section-number">6.3</span> Regularisation: Ridge and Lasso</a></li>
-  <li><a href="#live-coding-airfoil-self-noise" id="toc-live-coding-airfoil-self-noise" class="nav-link" data-scroll-target="#live-coding-airfoil-self-noise"><span class="header-section-number">6.4</span> Live coding: airfoil self-noise</a>
+  <li><a href="#training-error-test-error-and-overfitting" id="toc-training-error-test-error-and-overfitting" class="nav-link active" data-scroll-target="#training-error-test-error-and-overfitting"><span class="header-section-number">7.1</span> Training error, test error and overfitting</a></li>
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><span class="header-section-number">7.2</span> Cross-validation</a></li>
+  <li><a href="#regularisation-ridge-and-lasso" id="toc-regularisation-ridge-and-lasso" class="nav-link" data-scroll-target="#regularisation-ridge-and-lasso"><span class="header-section-number">7.3</span> Regularisation: Ridge and Lasso</a></li>
+  <li><a href="#live-coding-airfoil-self-noise" id="toc-live-coding-airfoil-self-noise" class="nav-link" data-scroll-target="#live-coding-airfoil-self-noise"><span class="header-section-number">7.4</span> Live coding: airfoil self-noise</a>
   <ul class="collapse">
-  <li><a href="#how-complex-should-the-model-be" id="toc-how-complex-should-the-model-be" class="nav-link" data-scroll-target="#how-complex-should-the-model-be"><span class="header-section-number">6.4.1</span> How complex should the model be?</a></li>
-  <li><a href="#regularisation-in-action" id="toc-regularisation-in-action" class="nav-link" data-scroll-target="#regularisation-in-action"><span class="header-section-number">6.4.2</span> Regularisation in action</a></li>
+  <li><a href="#how-complex-should-the-model-be" id="toc-how-complex-should-the-model-be" class="nav-link" data-scroll-target="#how-complex-should-the-model-be"><span class="header-section-number">7.4.1</span> How complex should the model be?</a></li>
+  <li><a href="#regularisation-in-action" id="toc-regularisation-in-action" class="nav-link" data-scroll-target="#regularisation-in-action"><span class="header-section-number">7.4.2</span> Regularisation in action</a></li>
   </ul></li>
-  <li><a href="#gaussian-process-regression-predictions-with-uncertainty" id="toc-gaussian-process-regression-predictions-with-uncertainty" class="nav-link" data-scroll-target="#gaussian-process-regression-predictions-with-uncertainty"><span class="header-section-number">6.5</span> Gaussian process regression: predictions with uncertainty</a></li>
-  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">6.6</span> Back to the decision</a></li>
-  <li><a href="#extension-bayesian-optimisation-design-of-experiments-with-a-gp" id="toc-extension-bayesian-optimisation-design-of-experiments-with-a-gp" class="nav-link" data-scroll-target="#extension-bayesian-optimisation-design-of-experiments-with-a-gp"><span class="header-section-number">6.7</span> Extension: Bayesian optimisation – design of experiments with a GP</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">6.8</span> Exercises</a>
+  <li><a href="#gaussian-process-regression-predictions-with-uncertainty" id="toc-gaussian-process-regression-predictions-with-uncertainty" class="nav-link" data-scroll-target="#gaussian-process-regression-predictions-with-uncertainty"><span class="header-section-number">7.5</span> Gaussian process regression: predictions with uncertainty</a></li>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">7.6</span> Back to the decision</a></li>
+  <li><a href="#extension-bayesian-optimisation-design-of-experiments-with-a-gp" id="toc-extension-bayesian-optimisation-design-of-experiments-with-a-gp" class="nav-link" data-scroll-target="#extension-bayesian-optimisation-design-of-experiments-with-a-gp"><span class="header-section-number">7.7</span> Extension: Bayesian optimisation – design of experiments with a GP</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.8</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">6.8.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">7.8.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -375,9 +381,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04-testing.html">Part B – Statistics for Engineers</a></li><li class="breadcrumb-item"><a href="../notebooks/06-model-selection.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/04-testing.html">Part B – Statistics for Engineers</a></li><li class="breadcrumb-item"><a href="../notebooks/06-model-selection.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></h1>
 </div>
 
 
@@ -415,8 +421,8 @@ window.Quarto = {
 <li><a href="https://archive.ics.uci.edu/dataset/291/airfoil+self+noise">Airfoil Self-Noise (UCI)</a></li>
 <li><a href="https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant">Combined Cycle Power Plant (UCI)</a></li>
 </ul>
-<section id="training-error-test-error-and-overfitting" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="training-error-test-error-and-overfitting"><span class="header-section-number">6.1</span> Training error, test error and overfitting</h2>
+<section id="training-error-test-error-and-overfitting" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="training-error-test-error-and-overfitting"><span class="header-section-number">7.1</span> Training error, test error and overfitting</h2>
 <p>Suppose the data are generated by <span class="math inline">\(y = f(x) + \varepsilon\)</span> with an unknown function <span class="math inline">\(f\)</span> and noise <span class="math inline">\(\varepsilon\)</span> with variance <span class="math inline">\(\sigma^2\)</span>. We fit a model <span class="math inline">\(\hat f\)</span> on a training set. Its error on the <strong>training data</strong> is always optimistic: the model was tuned to exactly these points. The relevant quantity is the expected error on <strong>new data</strong> from the same process – the <em>generalisation error</em> or <em>test error</em>.</p>
 <div id="fig-overfitting" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -424,7 +430,7 @@ window.Quarto = {
 <img src="images/overfitting.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1: Under- and overfitting. A model that is too simple (left) misses the structure; a model that is too flexible (centre) follows the noise of the training data. The test error is U-shaped in model complexity (right), while the training error keeps decreasing.
+Figure&nbsp;7.1: Under- and overfitting. A model that is too simple (left) misses the structure; a model that is too flexible (centre) follows the noise of the training data. The test error is U-shaped in model complexity (right), while the training error keeps decreasing.
 </figcaption>
 </figure>
 </div>
@@ -443,8 +449,8 @@ Bias–variance decomposition
 </div>
 <p>The practical consequence: <strong>never judge a model by its training error.</strong> Set data aside for testing, or use cross-validation.</p>
 </section>
-<section id="cross-validation" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="cross-validation"><span class="header-section-number">6.2</span> Cross-validation</h2>
+<section id="cross-validation" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="cross-validation"><span class="header-section-number">7.2</span> Cross-validation</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -464,7 +470,7 @@ Definition: k-fold cross-validation
 <img src="images/kfold.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kfold-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.2: 5-fold cross-validation: each observation is used for testing exactly once and for training four times.
+Figure&nbsp;7.2: 5-fold cross-validation: each observation is used for testing exactly once and for training four times.
 </figcaption>
 </figure>
 </div>
@@ -502,8 +508,8 @@ Engineering practice: one median for training and test data
 </div>
 </div>
 </section>
-<section id="regularisation-ridge-and-lasso" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="regularisation-ridge-and-lasso"><span class="header-section-number">6.3</span> Regularisation: Ridge and Lasso</h2>
+<section id="regularisation-ridge-and-lasso" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="regularisation-ridge-and-lasso"><span class="header-section-number">7.3</span> Regularisation: Ridge and Lasso</h2>
 <p>Instead of choosing between few and many features, we can keep a flexible model and penalise large coefficients:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -534,8 +540,8 @@ Definition: Ridge and Lasso regression
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="live-coding-airfoil-self-noise" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="live-coding-airfoil-self-noise"><span class="header-section-number">6.4</span> Live coding: airfoil self-noise</h2>
+<section id="live-coding-airfoil-self-noise" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="live-coding-airfoil-self-noise"><span class="header-section-number">7.4</span> Live coding: airfoil self-noise</h2>
 <p>NASA measured the self-noise of airfoil sections (NACA 0012 profiles of different chord lengths) in an anechoic wind tunnel. The noise is generated by the interaction of the turbulent boundary layer with the trailing edge – a physically complex mechanism that is hard to model from first principles. The dataset has 1,503 measurements:</p>
 <table class="caption-top table">
 <thead>
@@ -666,8 +672,8 @@ Definition: Ridge and Lasso regression
 </div>
 </div>
 </div>
-<section id="how-complex-should-the-model-be" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="how-complex-should-the-model-be"><span class="header-section-number">6.4.1</span> How complex should the model be?</h3>
+<section id="how-complex-should-the-model-be" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="how-complex-should-the-model-be"><span class="header-section-number">7.4.1</span> How complex should the model be?</h3>
 <p>We fit polynomial models of increasing degree – with five inputs, degree 6 already produces several hundred terms – and compare training and cross-validation errors.</p>
 <div id="77576d5d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
@@ -759,8 +765,8 @@ Definition: Ridge and Lasso regression
 </div>
 <p><strong>Discussion.</strong> The training error decreases steadily with the degree – more terms can always fit the training data better. The cross-validation error first decreases (less bias) and eventually increases again (more variance); its minimum indicates a good degree. The growing gap between training and CV error is the signature of overfitting. Note also the scale: a straight-line model leaves errors of several dB, which matters for acoustic requirements.</p>
 </section>
-<section id="regularisation-in-action" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="regularisation-in-action"><span class="header-section-number">6.4.2</span> Regularisation in action</h3>
+<section id="regularisation-in-action" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="regularisation-in-action"><span class="header-section-number">7.4.2</span> Regularisation in action</h3>
 <p>Instead of picking the degree exactly, we can use a rich model and let Ridge regression control its complexity. <code>RidgeCV</code> selects <span class="math inline">\(\lambda\)</span> by internal cross-validation; the outer cross-validation evaluates the whole procedure.</p>
 <div id="e1a9b9e0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> make_pipeline(PolynomialFeatures(<span class="dv">5</span>), StandardScaler(),</span>
@@ -786,8 +792,8 @@ Engineering practice: nested model selection
 </div>
 </section>
 </section>
-<section id="gaussian-process-regression-predictions-with-uncertainty" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="gaussian-process-regression-predictions-with-uncertainty"><span class="header-section-number">6.5</span> Gaussian process regression: predictions with uncertainty</h2>
+<section id="gaussian-process-regression-predictions-with-uncertainty" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="gaussian-process-regression-predictions-with-uncertainty"><span class="header-section-number">7.5</span> Gaussian process regression: predictions with uncertainty</h2>
 <p>Polynomial and linear models assume a fixed functional form. A <strong>Gaussian process (GP)</strong> places a probability distribution directly over functions – it is the Bayesian approach to regression.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -809,7 +815,7 @@ Definition: Gaussian process
 <img src="images/gp-prior-posterior.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.3: A Gaussian process before and after observing data. Left: functions drawn from the prior. Right: after five noisy observations, the posterior mean interpolates the data and the uncertainty band is narrow near the observations and wide in between and outside.
+Figure&nbsp;7.3: A Gaussian process before and after observing data. Left: functions drawn from the prior. Right: after five noisy observations, the posterior mean interpolates the data and the uncertainty band is narrow near the observations and wide in between and outside.
 </figcaption>
 </figure>
 </div>
@@ -860,8 +866,8 @@ Figure&nbsp;6.3: A Gaussian process before and after observing data. Left: funct
 </div>
 <p>Here we use one length scale per input (an <em>anisotropic</em> or ARD kernel). After fitting, a long length scale indicates that the output changes slowly with that input – a built-in measure of relevance.</p>
 </section>
-<section id="back-to-the-decision" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">6.6</span> Back to the decision</h2>
+<section id="back-to-the-decision" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">7.6</span> Back to the decision</h2>
 <p>The requirement refers to new conditions, so we compare the cross-validation errors – never the training errors. Among the models that meet the 2 dB requirement, we release the simplest one; if none meets it, the tunnel cannot yet be replaced.</p>
 <div id="2fd37d1b" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cv_rmse <span class="op">=</span> {</span>
@@ -884,8 +890,8 @@ Decision: release 'Gaussian process' for the screening.</code></pre>
 </div>
 <p>The models are listed from simple to complex, so the first model that meets the requirement is released. Two caveats belong in the recommendation: cross-validation estimates the error for conditions <em>similar</em> to the measured ones – for configurations outside the measured ranges (e.g.&nbsp;larger chords or higher speeds) the error can be much larger, and the Gaussian process at least signals this through its uncertainty. And the best candidates of the screening should still be confirmed in the tunnel.</p>
 </section>
-<section id="extension-bayesian-optimisation-design-of-experiments-with-a-gp" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="extension-bayesian-optimisation-design-of-experiments-with-a-gp"><span class="header-section-number">6.7</span> Extension: Bayesian optimisation – design of experiments with a GP</h2>
+<section id="extension-bayesian-optimisation-design-of-experiments-with-a-gp" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="extension-bayesian-optimisation-design-of-experiments-with-a-gp"><span class="header-section-number">7.7</span> Extension: Bayesian optimisation – design of experiments with a GP</h2>
 <p><em>Extension – optional material, not required for the exam.</em></p>
 <p>When every experiment is expensive – a test bench run, a CFD simulation, a production trial – we want to find the optimum with as few runs as possible. <strong>Bayesian optimisation</strong> fits a GP to the runs so far and chooses the next run where an <em>acquisition function</em> is largest. The popular <strong>expected improvement</strong> (EI) is</p>
 <p><span class="math display">\[\text{EI}(x) = (\mu(x) - y^*)\,\Phi(z) + \sigma(x)\,\varphi(z), \qquad z = \frac{\mu(x) - y^*}{\sigma(x)},\]</span></p>
@@ -952,8 +958,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">6.8</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.8</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>Repeat the degree study for the power plant data (<code>pp</code>, target <code>PE</code>). Why does the curve look so different from the airfoil case?</li>
@@ -964,8 +970,8 @@ Key takeaways
 <li>(Extension) Bayesian optimisation: start with a different set of three runs. Does the algorithm still find the optimum? Compare with a regular grid of the same number of runs.</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="6.8.1">
-<h3 data-number="6.8.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">6.8.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="7.8.1">
+<h3 data-number="7.8.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">7.8.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1821,12 +1827,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../notebooks/05-regression-doe.html" class="pagination-link" aria-label="Linear and Nonlinear Regression">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../notebooks/07-classification.html" class="pagination-link" aria-label="Classification">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Classification</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

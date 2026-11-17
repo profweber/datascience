@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Signals and Feature Engineering – Data Science in Engineering</title>
+<title>11&nbsp; Signals and Feature Engineering – Data Science in Engineering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -164,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/10-signals.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/10-signals.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -187,6 +187,12 @@ window.Quarto = {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/00-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting Started with pandas</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -199,19 +205,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/01-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Data Science Workflow in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/02-eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Data Quality</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/03-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Probability and Uncertainty</span></span></a>
   </div>
 </li>
       </ul>
@@ -228,19 +234,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/04-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Statistical Testing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/05-regression-doe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear and Nonlinear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/06-model-selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Selection, Regularisation and Gaussian Processes</span></span></a>
   </div>
 </li>
       </ul>
@@ -257,25 +263,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/07-classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Classification</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/08-ensembles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ensembles and Interpretability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/09-unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/10-signals.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></span></a>
   </div>
 </li>
       </ul>
@@ -292,19 +298,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/11-time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/12-neural-networks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deep Learning in Engineering</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notebooks/13-review.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Review and Exam Preparation</span></span></a>
   </div>
 </li>
       </ul>
@@ -354,18 +360,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sampling-and-aliasing" id="toc-sampling-and-aliasing" class="nav-link active" data-scroll-target="#sampling-and-aliasing"><span class="header-section-number">10.1</span> Sampling and aliasing</a></li>
-  <li><a href="#the-frequency-domain" id="toc-the-frequency-domain" class="nav-link" data-scroll-target="#the-frequency-domain"><span class="header-section-number">10.2</span> The frequency domain</a></li>
-  <li><a href="#bearing-fault-frequencies" id="toc-bearing-fault-frequencies" class="nav-link" data-scroll-target="#bearing-fault-frequencies"><span class="header-section-number">10.3</span> Bearing fault frequencies</a></li>
-  <li><a href="#statistical-features-of-a-signal-window" id="toc-statistical-features-of-a-signal-window" class="nav-link" data-scroll-target="#statistical-features-of-a-signal-window"><span class="header-section-number">10.4</span> Statistical features of a signal window</a></li>
-  <li><a href="#live-coding-healthy-vs.-inner-race-fault" id="toc-live-coding-healthy-vs.-inner-race-fault" class="nav-link" data-scroll-target="#live-coding-healthy-vs.-inner-race-fault"><span class="header-section-number">10.5</span> Live coding: healthy vs.&nbsp;inner-race fault</a></li>
-  <li><a href="#live-coding-amplitude-spectrum" id="toc-live-coding-amplitude-spectrum" class="nav-link" data-scroll-target="#live-coding-amplitude-spectrum"><span class="header-section-number">10.6</span> Live coding: amplitude spectrum</a></li>
-  <li><a href="#extension-envelope-analysis" id="toc-extension-envelope-analysis" class="nav-link" data-scroll-target="#extension-envelope-analysis"><span class="header-section-number">10.7</span> Extension: envelope analysis</a></li>
-  <li><a href="#live-coding-statistical-features" id="toc-live-coding-statistical-features" class="nav-link" data-scroll-target="#live-coding-statistical-features"><span class="header-section-number">10.8</span> Live coding: statistical features</a></li>
-  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">10.9</span> Back to the decision</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">10.10</span> Exercises</a>
+  <li><a href="#sampling-and-aliasing" id="toc-sampling-and-aliasing" class="nav-link active" data-scroll-target="#sampling-and-aliasing"><span class="header-section-number">11.1</span> Sampling and aliasing</a></li>
+  <li><a href="#the-frequency-domain" id="toc-the-frequency-domain" class="nav-link" data-scroll-target="#the-frequency-domain"><span class="header-section-number">11.2</span> The frequency domain</a></li>
+  <li><a href="#bearing-fault-frequencies" id="toc-bearing-fault-frequencies" class="nav-link" data-scroll-target="#bearing-fault-frequencies"><span class="header-section-number">11.3</span> Bearing fault frequencies</a></li>
+  <li><a href="#statistical-features-of-a-signal-window" id="toc-statistical-features-of-a-signal-window" class="nav-link" data-scroll-target="#statistical-features-of-a-signal-window"><span class="header-section-number">11.4</span> Statistical features of a signal window</a></li>
+  <li><a href="#live-coding-healthy-vs.-inner-race-fault" id="toc-live-coding-healthy-vs.-inner-race-fault" class="nav-link" data-scroll-target="#live-coding-healthy-vs.-inner-race-fault"><span class="header-section-number">11.5</span> Live coding: healthy vs.&nbsp;inner-race fault</a></li>
+  <li><a href="#live-coding-amplitude-spectrum" id="toc-live-coding-amplitude-spectrum" class="nav-link" data-scroll-target="#live-coding-amplitude-spectrum"><span class="header-section-number">11.6</span> Live coding: amplitude spectrum</a></li>
+  <li><a href="#extension-envelope-analysis" id="toc-extension-envelope-analysis" class="nav-link" data-scroll-target="#extension-envelope-analysis"><span class="header-section-number">11.7</span> Extension: envelope analysis</a></li>
+  <li><a href="#live-coding-statistical-features" id="toc-live-coding-statistical-features" class="nav-link" data-scroll-target="#live-coding-statistical-features"><span class="header-section-number">11.8</span> Live coding: statistical features</a></li>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">11.9</span> Back to the decision</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.10</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">10.10.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">11.10.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -373,9 +379,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/10-signals.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notebooks/07-classification.html">Part C – Machine Learning</a></li><li class="breadcrumb-item"><a href="../notebooks/10-signals.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Signals and Feature Engineering</span></h1>
 </div>
 
 
@@ -413,8 +419,8 @@ window.Quarto = {
 <li><a href="https://engineering.case.edu/bearingdatacenter">CWRU Bearing Data Center</a></li>
 <li><a href="https://archive.ics.uci.edu/dataset/447/condition+monitoring+of+hydraulic+systems">Condition Monitoring of Hydraulic Systems (UCI)</a></li>
 </ul>
-<section id="sampling-and-aliasing" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="sampling-and-aliasing"><span class="header-section-number">10.1</span> Sampling and aliasing</h2>
+<section id="sampling-and-aliasing" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="sampling-and-aliasing"><span class="header-section-number">11.1</span> Sampling and aliasing</h2>
 <p>A sensor signal is continuous; the data acquisition system samples it at discrete times <span class="math inline">\(t_n = n/f_s\)</span> with the <strong>sampling rate</strong> <span class="math inline">\(f_s\)</span>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -435,14 +441,14 @@ Sampling theorem (Nyquist–Shannon)
 <img src="images/aliasing.png" class="img-fluid figure-img" style="width:85.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aliasing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.1: Aliasing. A 9 Hz sine sampled at 10 Hz (dots) produces exactly the same samples as a 1 Hz sine. After sampling, the two cannot be distinguished.
+Figure&nbsp;11.1: Aliasing. A 9 Hz sine sampled at 10 Hz (dots) produces exactly the same samples as a 1 Hz sine. After sampling, the two cannot be distinguished.
 </figcaption>
 </figure>
 </div>
 <p>A component at frequency <span class="math inline">\(f\)</span> with <span class="math inline">\(f_N &lt; f &lt; f_s\)</span> appears at <span class="math inline">\(|f - f_s|\)</span>. This is why data acquisition systems use an analogue <strong>anti-aliasing filter</strong> before the A/D converter. Once aliasing has happened, no digital processing can undo it.</p>
 </section>
-<section id="the-frequency-domain" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="the-frequency-domain"><span class="header-section-number">10.2</span> The frequency domain</h2>
+<section id="the-frequency-domain" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="the-frequency-domain"><span class="header-section-number">11.2</span> The frequency domain</h2>
 <p>Rotating machines produce periodic excitations: imbalance at the shaft frequency, gear meshing at the tooth frequency, bearing defects at characteristic frequencies. In the time domain these components overlap; in the frequency domain they separate into peaks.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -463,8 +469,8 @@ Definition: Discrete Fourier transform and amplitude spectrum
 <li><strong>Leakage:</strong> the FFT assumes the signal window repeats periodically. If a component does not complete an integer number of periods in the window, its energy “leaks” into neighbouring bins. Multiplying the window by a smooth <strong>window function</strong> (e.g.&nbsp;Hann) reduces leakage at the price of slightly wider peaks.</li>
 </ul>
 </section>
-<section id="bearing-fault-frequencies" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="bearing-fault-frequencies"><span class="header-section-number">10.3</span> Bearing fault frequencies</h2>
+<section id="bearing-fault-frequencies" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="bearing-fault-frequencies"><span class="header-section-number">11.3</span> Bearing fault frequencies</h2>
 <p>When a rolling element passes a local defect on a raceway, it produces a short impact. These impacts repeat at frequencies that follow from the bearing geometry: with shaft frequency <span class="math inline">\(f_r\)</span>, number of rolling elements <span class="math inline">\(n_b\)</span>, rolling element diameter <span class="math inline">\(d\)</span>, pitch diameter <span class="math inline">\(D\)</span> and contact angle <span class="math inline">\(\phi\)</span>,</p>
 <p><span class="math display">\[\text{BPFO} = \frac{n_b f_r}{2}\left(1 - \frac{d}{D}\cos\phi\right), \qquad \text{BPFI} = \frac{n_b f_r}{2}\left(1 + \frac{d}{D}\cos\phi\right).\]</span></p>
 <p>BPFO and BPFI are the <em>ball pass frequencies</em> of the outer and inner race. For the drive-end bearing of the CWRU test rig (SKF 6205), the CWRU documentation gives BPFI ≈ 5.415 <span class="math inline">\(f_r\)</span> and BPFO ≈ 3.585 <span class="math inline">\(f_r\)</span> – check the bearing specification page before relying on these factors.</p>
@@ -482,8 +488,8 @@ Engineering practice: let physics tell you where to look
 </div>
 </div>
 </section>
-<section id="statistical-features-of-a-signal-window" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="statistical-features-of-a-signal-window"><span class="header-section-number">10.4</span> Statistical features of a signal window</h2>
+<section id="statistical-features-of-a-signal-window" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="statistical-features-of-a-signal-window"><span class="header-section-number">11.4</span> Statistical features of a signal window</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -549,8 +555,8 @@ Pitfall: splitting windows of the same recording
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="live-coding-healthy-vs.-inner-race-fault" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="live-coding-healthy-vs.-inner-race-fault"><span class="header-section-number">10.5</span> Live coding: healthy vs.&nbsp;inner-race fault</h2>
+<section id="live-coding-healthy-vs.-inner-race-fault" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="live-coding-healthy-vs.-inner-race-fault"><span class="header-section-number">11.5</span> Live coding: healthy vs.&nbsp;inner-race fault</h2>
 <p>The Case Western Reserve University (CWRU) bearing data are a widely used benchmark. Faults of defined size were introduced into the bearings of a 2 hp motor test rig by electro-discharge machining; vibration was measured with accelerometers at the drive end and fan end. We use two files: normal baseline (<code>97.mat</code>) and a 0.007-inch inner race fault at the drive end (<code>105.mat</code>), both at 0 hp motor load (approx. 1797 rpm).</p>
 <p><strong>Check the file numbers and the sampling rates (12 kHz or 48 kHz) on the CWRU download pages before using them</strong> – the values below are set accordingly and marked.</p>
 <div id="0d0df6f1" class="cell" data-execution_count="3">
@@ -579,8 +585,8 @@ Pitfall: splitting windows of the same recording
 </div>
 <p><strong>Discussion.</strong> Already in the time domain the faulty bearing looks different: short, regularly spaced impacts are visible on top of the background vibration. Count the impacts in 0.1 s – their rate should match the BPFI of about 5.4 × 30 Hz ≈ 162 Hz.</p>
 </section>
-<section id="live-coding-amplitude-spectrum" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="live-coding-amplitude-spectrum"><span class="header-section-number">10.6</span> Live coding: amplitude spectrum</h2>
+<section id="live-coding-amplitude-spectrum" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="live-coding-amplitude-spectrum"><span class="header-section-number">11.6</span> Live coding: amplitude spectrum</h2>
 <div id="a2a0b720" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, (x, fs) <span class="kw">in</span> signals.items():</span>
@@ -600,8 +606,8 @@ Pitfall: splitting windows of the same recording
 </div>
 <p><strong>Discussion.</strong> The faulty bearing shows much more energy at high frequencies, in the range of several kilohertz. These are <strong>structural resonances</strong> of the bearing and housing, excited by the impacts – not the fault frequency itself. The impact rate of about 162 Hz modulates these resonances but is hard to see directly in this spectrum. Envelope analysis makes it visible.</p>
 </section>
-<section id="extension-envelope-analysis" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="extension-envelope-analysis"><span class="header-section-number">10.7</span> Extension: envelope analysis</h2>
+<section id="extension-envelope-analysis" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="extension-envelope-analysis"><span class="header-section-number">11.7</span> Extension: envelope analysis</h2>
 <p><em>Extension – optional material, not required for the exam.</em></p>
 <div id="fig-envelope" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -609,7 +615,7 @@ Pitfall: splitting windows of the same recording
 <img src="images/envelope.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-envelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.2: Envelope analysis. Periodic impacts excite a high-frequency resonance (1). A band-pass filter isolates the resonance band (2). The envelope – the magnitude of the analytic signal from the Hilbert transform – recovers the impact pattern (3). Its spectrum shows peaks at the impact frequency and its harmonics (4).
+Figure&nbsp;11.2: Envelope analysis. Periodic impacts excite a high-frequency resonance (1). A band-pass filter isolates the resonance band (2). The envelope – the magnitude of the analytic signal from the Hilbert transform – recovers the impact pattern (3). Its spectrum shows peaks at the impact frequency and its harmonics (4).
 </figcaption>
 </figure>
 </div>
@@ -644,8 +650,8 @@ Figure&nbsp;10.2: Envelope analysis. Periodic impacts excite a high-frequency re
 </div>
 <p>For the inner race fault, peaks appear at BPFI and its harmonics; often there are also sidebands spaced at the shaft frequency, because the defect on the rotating inner ring moves in and out of the load zone once per revolution. The choice of the band (here 2–5 kHz) matters: it should contain the resonance excited by the impacts. Methods such as the <em>kurtogram</em> select it automatically.</p>
 </section>
-<section id="live-coding-statistical-features" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="live-coding-statistical-features"><span class="header-section-number">10.8</span> Live coding: statistical features</h2>
+<section id="live-coding-statistical-features" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="live-coding-statistical-features"><span class="header-section-number">11.8</span> Live coding: statistical features</h2>
 <div id="2d87f708" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> features(x):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    rms <span class="op">=</span> np.sqrt(np.mean(x<span class="op">**</span><span class="dv">2</span>))</span>
@@ -707,8 +713,8 @@ Figure&nbsp;10.2: Envelope analysis. Periodic impacts excite a high-frequency re
 </div>
 <p><strong>Discussion.</strong> The faulty bearing has a clearly higher kurtosis and crest factor – the signature of impacts. Such features can feed a classifier (Exercise 3). They are cheap to compute, which matters for monitoring systems running on embedded hardware, and they have an intuitive meaning that maintenance staff understand.</p>
 </section>
-<section id="back-to-the-decision" class="level2" data-number="10.9">
-<h2 data-number="10.9" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">10.9</span> Back to the decision</h2>
+<section id="back-to-the-decision" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">11.9</span> Back to the decision</h2>
 <p>A single-feature threshold works if the feature values of healthy and faulty windows do not overlap. We check kurtosis and crest factor and, if they separate, place the threshold in the middle of the gap.</p>
 <div id="fdfa52eb" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f_name <span class="kw">in</span> [<span class="st">"kurtosis"</span>, <span class="st">"crest"</span>]:</span>
@@ -744,8 +750,8 @@ Key takeaways
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="10.10">
-<h2 data-number="10.10" class="anchored" data-anchor-id="exercises"><span class="header-section-number">10.10</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="11.10">
+<h2 data-number="11.10" class="anchored" data-anchor-id="exercises"><span class="header-section-number">11.10</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
 <li>A vibration signal contains a component at 7 kHz. It is sampled at 10 kHz without anti-aliasing filter. At which frequency does the component appear in the spectrum? What sampling rate would be needed?</li>
@@ -755,8 +761,8 @@ Key takeaways
 <li>(Extension) Compare the plain amplitude spectrum with the envelope spectrum around BPFI. Then download an outer race fault file and check whether a peak appears at BPFO.</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="10.10.1">
-<h3 data-number="10.10.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">10.10.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="11.10.1">
+<h3 data-number="11.10.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">11.10.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1553,12 +1559,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../notebooks/09-unsupervised.html" class="pagination-link" aria-label="Unsupervised Learning and Anomaly Detection">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unsupervised Learning and Anomaly Detection</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../notebooks/11-time-series.html" class="pagination-link" aria-label="Time Series Forecasting">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Time Series Forecasting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

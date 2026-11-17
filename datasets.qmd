@@ -6,7 +6,7 @@ All datasets used in this script are publicly available. Please cite the origina
 | --- | --- | --- | --- | --- |
 | [Combined Cycle Power Plant](https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant) | power generation | 9,568 rows, 4 features | CC BY 4.0 | 1, 6 |
 | [Appliances Energy Prediction](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction) | building services, sensor network | 19,735 rows, 10-min intervals | CC BY 4.0 | 2 |
-| [SECOM](https://archive.ics.uci.edu/dataset/179/secom) | semiconductor manufacturing | 1,567 rows, 591 features | CC BY 4.0 | 2, 9 |
+| [SECOM](https://archive.ics.uci.edu/dataset/179/secom) | semiconductor manufacturing | 1,567 rows, 590 features | CC BY 4.0 | 2, 9 |
 | [NASA C-MAPSS](https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data) | turbofan degradation | 4 subsets, 21 sensors | NASA Open Data | 3, 12 |
 | [Gas Turbine CO and NOx Emission](https://archive.ics.uci.edu/dataset/551/gas+turbine+co+and+nox+emission+data+set) | gas turbine emissions | 36,733 rows, 2011–2015 | CC BY 4.0 | 4 |
 | [AI4I 2020 Predictive Maintenance](https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset) | manufacturing (synthetic) | 10,000 rows, 5 failure modes | CC BY 4.0 | 4, 7 |

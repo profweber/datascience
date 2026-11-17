@@ -16,6 +16,7 @@ book:
     search: true
   chapters:
     - index.qmd
+    - notebooks/00-pandas.ipynb
     - part: "Part A – Understanding Data"
       chapters:
         - notebooks/01-workflow.ipynb

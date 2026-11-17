@@ -17,9 +17,11 @@ The course has four parts:
 | C – Machine Learning | classification, ensembles, unsupervised learning, signal features | 7–10 |
 | D – Time Series, Deep Learning and Review | forecasting, neural networks, review | 11–13 |
 
+Before Part A, the short lesson [Getting Started with pandas](notebooks/00-pandas.ipynb) introduces the Python library pandas for everyone who has not used it before.
+
 ## Prerequisites
 
-Basic Python programming and mathematics at bachelor level (linear algebra, calculus, introductory statistics).
+Basic Python programming and mathematics at bachelor level (linear algebra, calculus, introductory statistics). If you have not worked with the Python library pandas before, start with the short introduction [Getting Started with pandas](notebooks/00-pandas.ipynb) before Chapter 1.
 
 ## How to work with this script
 
@@ -31,7 +33,7 @@ During the semester, the demo code from the lectures is provided as Jupyter note
 
 You can work with any development environment you like (e.g. JupyterLab, VS Code or PyCharm), as long as it can open, run and edit Jupyter notebooks. We recommend Google Colab; a local installation is an alternative:
 
-- **Google Colab (recommended):** [Colab](https://colab.research.google.com) runs notebooks in the browser – no installation required, on a laptop or a tablet (an external keyboard helps a lot). Sign in with a Google account and open a notebook via *File → Upload notebook*. Most packages used in this course are pre-installed.
+- **Google Colab (recommended):** [Colab](https://colab.research.google.com) runs notebooks in the browser – no installation required, on a laptop or a tablet (an external keyboard helps a lot). Sign in with a Google account and open a notebook via *File → Upload notebook*. Most packages used in this course are pre-installed. Files you download or upload in Colab live only as long as the session; save results you want to keep to Google Drive or download them.
 - **Alternative – local installation:** The [Anaconda Distribution](https://www.anaconda.com/download) installs Python, Jupyter and the most important data science packages in one go – a good choice if you prefer to work offline and with files on your own computer.
 
 Packages that are missing can be installed directly from a notebook cell with `%pip install`, e.g. `%pip install ucimlrepo`.

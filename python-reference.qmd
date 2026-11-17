@@ -1,6 +1,6 @@
 # Python Quick Reference {#sec-python-reference}
 
-This appendix collects the Python functions used in this script, ordered by **task** – the question you have in mind ("How do I count the missing values?") rather than the library. Each entry says what the function does, gives a short example and names where it is used first.
+This appendix collects the Python functions used in this script, ordered by **task** – the question you have in mind ("How do I count the missing values?") rather than the library. Each entry says what the function does, gives a short example and names where it is used first. The pandas basics are introduced step by step in *Getting Started with pandas* before Chapter 1.
 
 Notation: `df` is a DataFrame (a table), `s` a single column (a Series), `m` a mask of truth values. `np`, `pd`, `plt` and `sns` are the usual short names for NumPy, pandas, Matplotlib and seaborn (Chapter 1).
 
@@ -22,7 +22,6 @@ Notation: `df` is a DataFrame (a table), `s` a single column (a Series), `m` a m
 | Function | What it does | Example | Used in |
 | --- | --- | --- | --- |
 | `df.isna()` | `True` wherever a value is missing (`NaN`, `None`, `NaT`) | `df.isna().sum()` counts missing values per column | Ch. 2 |
-| `df.notna()` | the opposite: `True` wherever a value is present | `t.notna().all()` – are all values present? | Ch. 2 |
 | `df.dropna()` | removes rows with missing values | `s.diff().dropna()` | Ch. 2 |
 | `df.fillna(value)` | replaces missing values | `X.fillna(X.median())` – median imputation | Ch. 2 |
 | `na_values=[...]` in `pd.read_csv` | treats codes such as `-999` as missing while reading | `pd.read_csv(f, na_values=[-999])` | Ch. 2 |
@@ -43,10 +42,24 @@ Notation: `df` is a DataFrame (a table), `s` a single column (a Series), `m` a m
 | `df[m]` | the rows where the mask `m` is `True` | `df[df["AT"] > 30]` | Ch. 2 |
 | `df.loc[rows, columns]` | rows and columns by label or mask | `X.loc[:, X.nunique() > 1]` – all rows, non-constant columns | Ch. 2 |
 | `df.iloc[rows, columns]` | rows and columns by position, counting from 0 | `y.iloc[:, 0]` – first column; `s.iloc[0]` – first value | Ch. 5 |
-| `df.select_dtypes("number")` | only the numeric columns | `df.select_dtypes("number")` | Ch. 2 |
+| `df.select_dtypes("number")` | only the numeric columns | `df.select_dtypes("number")` | Ch. 9 |
 | `df.drop(columns=[...])` | removes columns | `df.drop(columns=["rv1", "rv2"])` | Ch. 2 |
 | `df.sample(n, random_state=0)` | `n` random rows, reproducibly | `df.sample(1000, random_state=0)` | Ch. 1 |
 | `df.sort_values("a")` | sorts the rows by a column | `df.sort_values("RMSE", ascending=False)` | Ch. 1 |
+
+::: {.callout-tip}
+## `loc` or `iloc`?
+Every row has a **label** – the index shown on the left – and a **position**: first row, second row, … `loc` selects by label, `iloc` by integer position (memory aid: *i* for *integer*). As long as the index is 0, 1, 2, …, both give the same result. After sorting or filtering, they no longer do:
+
+```python
+df = pd.DataFrame({"T": [25, 18, 31]})   # labels 0, 1, 2
+s = df.sort_values("T")                  # order now: labels 1, 0, 2
+s.loc[0]     # row with the LABEL 0 → T = 25
+s.iloc[0]    # FIRST row            → T = 18
+```
+
+Ranges differ, too: `df.loc[0:2]` includes the end (labels 0, 1 **and** 2), `df.iloc[0:2]` does not (positions 0 and 1, as for Python lists). For time series, including the end is convenient: `s.loc["2015-01-01":"2019-12-31"]` contains 31 December.
+:::
 
 ::: {.callout-warning}
 ## Pitfall: `and`, `or`, `not` do not work on columns
@@ -63,13 +76,15 @@ df[(df["machine_id"] == "M4") & (df["shift"] == "night")]   # correct
 df[df["machine_id"] == "M4" & df["shift"] == "night"]       # error: & binds before ==
 ```
 
-`not m` on a mask raises an error ("the truth value of an array is ambiguous"), and `~True` on a single value gives `-2`, because `~` is originally a bitwise operator on integers.
+`not m` on a mask raises an error ("the truth value of an array is ambiguous"), and `~True` on a single value gives `-2`, because `~` is originally a bitwise operator on integers (newer Python versions warn about this).
 :::
 
 ## Transforming values
 
 | Function | What it does | Example | Used in |
 | --- | --- | --- | --- |
+| `s.mask(m)` | sets the values where the mask `m` is `True` to `NaN` | `df["RH_1"].mask(bad)` – remove wrong values, keep the rows | Ch. 2 |
+| `s.clip(lower, upper)` | caps values at fixed limits | `s.clip(lower=-40, upper=60)` | Ch. 2 |
 | `np.where(m, a, b)` | element-wise "if – then – else": `a` where `m` is `True`, otherwise `b` | `np.where(m, estimate, temp)` | Ch. 2 |
 | `s.astype(type)` | converts the data type | `s.astype(str)` | Ch. 2 |
 | `s.map({...})` | replaces values according to a dictionary, e.g. codes by names | `y.map({-1: "pass", 1: "fail"})` | Ch. 2 |
@@ -102,7 +117,7 @@ Forgetting `.str` raises no error – the data simply remain unchanged.
 
 ::: {.callout-tip}
 ## Format codes for time stamps
-In `pd.to_datetime(s, format=...)`, every code stands for one complete field of the date; its length is part of its definition:
+In `pd.to_datetime(s, format=...)`, every code stands for one complete field of the date. `%Y` always has four digits; the two-digit codes also accept a single digit when reading, so `%d/%m/%Y` reads `19/07/2008` as well as `1/8/2008`:
 
 | Code | Meaning | Digits | Example |
 | --- | --- | --- | --- |
@@ -114,7 +129,7 @@ In `pd.to_datetime(s, format=...)`, every code stands for one complete field of 
 | `%M` | minute | 2 | `05` |
 | `%S` | second | 2 | `00` |
 
-All other characters (`-`, `.`, `:`, blanks) must appear in the format exactly as in the data. Upper and lower case matter: `%m` is the month, `%M` the minute – a classic error that often raises no error message. Other tools write formats differently, e.g. `YYYYMMDDHH` in Excel, databases or the DWD documentation; such formats have to be translated.
+All other characters (`-`, `.`, `:`, blanks) must appear in the format exactly as in the data. Upper and lower case matter: `%m` is the month, `%M` the minute – a classic error that often raises no error message. Other tools write formats with letters instead, e.g. `yyyy-mm-dd hh:mm` in Excel or `YYYYMMDDHH24` in the DWD documentation; such formats have to be translated.
 
 Formats you will meet in practice:
 
@@ -133,11 +148,43 @@ Formats you will meet in practice:
 | `s.mean()`, `s.median()`, `s.std()`, `s.min()`, `s.max()`, `s.sum()` | the usual summary statistics; the mean of a mask is the share of `True` values | `(s == "scrap").mean()` – scrap rate | Ch. 1, 2 |
 | `s.quantile([0.25, 0.75])` | quantiles, here the quartiles | `q1, q3 = s.quantile([0.25, 0.75])` | Ch. 2 |
 | `s.idxmax()` | the label (e.g. the time) of the largest value | `cycle.idxmax()` | Ch. 2 |
-| `df.groupby("g")["x"].mean()` | one summary per group | `df.groupby("machine_id")["diameter_mm"].mean()` | Ch. 2 |
+| `df.groupby("g")["x"].mean()` | one summary per group; the key can be any column or series, e.g. the hour of the day | `df.groupby("machine_id")["diameter_mm"].mean()` | Ch. 2 |
 | `.agg([...])` | several summaries at once | `.agg(["min", "mean", "max"])` | Ch. 2 |
-| `s.resample("D")` | groups a time series into intervals (`"h"` hour, `"D"` day, …) | `s.resample("D").mean()` | Ch. 2 |
-| `s.rolling("1D")` | moving window, e.g. a 24 h rolling mean | `s.rolling("1D").mean()` | Ch. 2 |
+| `s.resample("D")` | groups a time series into consecutive intervals (`"h"` hour, `"D"` day, …); needs time stamps as index | `s.resample("D").mean()` | Ch. 2 |
+| `s.rolling("1D")` | window that slides along the time axis (`"1D"` = one day; `rolling(144)` = 144 values), followed by a summary such as `.mean()` | `s.rolling("1D").mean()` – 24 h rolling mean | Ch. 2 |
 | `s.diff()`, `s.shift()`, `s.cumsum()` | difference to the previous value, shifted series, running sum | `s.index.to_series().diff()` – time steps | Ch. 2 |
+
+::: {.callout-tip}
+## Method chaining – and why pandas makes it possible
+In `energy.set_index("date").sort_index()`, the second method is applied directly to the result of the first. This works because of three design decisions in pandas:
+
+1. **Methods return a new object and leave the original unchanged.** `df.sort_values("a")` returns a sorted copy; `df` stays as it is. Plain Python does the opposite for lists: `values.sort()` sorts the list itself and returns `None` – so `values.sort().reverse()` fails, while `df.sort_values("a").head()` works.
+2. **The type stays the same.** A table becomes a table, a column a column – so the next method always fits. `.str` and `.dt` also return a column.
+3. **Methods instead of statements.** An assignment such as `df["temp_K"] = df["temp_C"] + 273.15` cannot be chained; `df.assign(temp_K=df["temp_C"] + 273.15)` returns a new table with the additional column. For the same reason, avoid the older option `inplace=True`: it changes the table itself and returns `None`, which breaks the chain.
+
+Returning new tables might sound expensive. Since pandas 3.0 ("copy-on-write"), however, data are only copied when they are actually changed.
+
+Many NumPy functions also exist as pandas methods – `s.abs()`, `s.median()`, `s.std()`. For pandas data, prefer the methods: they fit into a chain, and they skip missing values, which NumPy functions do not:
+
+```python
+s = pd.Series([1, -4, np.nan, 3])
+s.abs().median()            # 3.0 – pandas skips the missing value
+np.median(np.abs(s))        # nan – one missing value makes the result missing
+```
+
+The standard deviation differs, too: `s.std()` divides by $n-1$ (sample standard deviation, Chapter 2), `np.std(...)` by $n$ unless you write `ddof=1`.
+
+For longer chains, put the whole expression in brackets – inside brackets, Python continues on the next line – and write one step per line:
+
+```python
+daily = (weather
+         .dropna()            # remove rows with missing values
+         .resample("D")       # group by day
+         .mean())             # one mean per day
+```
+
+Chains are compact; separate steps are easier to check. A good habit: build a chain step by step, and if it fails, remove the last steps until it works again – this shows which step causes the error.
+:::
 
 ## Reshaping and combining tables
 
@@ -145,7 +192,7 @@ Formats you will meet in practice:
 | --- | --- | --- | --- |
 | `pd.concat([a, b], axis=1)` | puts tables side by side (`axis=0`: one below the other) | `pd.concat([features, targets], axis=1)` | Ch. 1 |
 | `df.merge(other, on="key")` | combines two tables via a key column – like SQL `JOIN` | `parts.merge(orders, on="order_id")` | SQL app. |
-| `df.pivot(index=..., columns=..., values=...)` | long table → wide table | `rates.pivot(index="machine_id", columns="shift", values="scrap_rate")` | SQL app. |
+| `df.pivot(index=..., columns=..., values=...)` | long table → wide table | `rates.pivot(index="machine_id", columns="shift", values="scrap_rate")` | Ch. 2 |
 | `.unstack()` | moves an index level into the columns, e.g. after a `groupby` with two keys | `df.groupby([a, b])["x"].mean().unstack()` | Ch. 2 |
 | `df.melt(...)` | wide table → long (tidy) table | `df.melt(id_vars="time")` | Ch. 1 (text) |
 
@@ -180,3 +227,18 @@ Formats you will meet in practice:
 | `s.plot.bar()` | bar chart, e.g. of the frequencies from `value_counts()` | Ch. 2 |
 | `fig, axes = plt.subplots(rows, cols)` | several plots in one figure | Ch. 2 |
 | `plt.show()` | displays the figure | Ch. 1 |
+
+::: {.callout-tip}
+## pandas, seaborn and Matplotlib
+pandas and seaborn do not draw themselves – they call Matplotlib. These three lines produce essentially the same line plot:
+
+```python
+ax.plot(df.index, df["Appliances"], lw=0.3)        # Matplotlib
+df["Appliances"].plot(ax=ax, lw=0.3)                # pandas
+sns.lineplot(x=df.index, y=df["Appliances"], ax=ax) # seaborn
+```
+
+pandas takes the x-axis from the index (a time index gives a date axis) and draws one line per column, labelled with its name. Matplotlib options such as `lw`, `alpha`, `color` or `label` are passed on. With `ax=...`, pandas and seaborn draw into an existing field created by `plt.subplots`; without it, they create a new figure. Both return this field (`ax`), so you can continue with the usual Matplotlib commands, e.g. `ax.set(ylabel="...")`.
+
+Rule of thumb: pandas for quick plots directly from a table, seaborn for statistical plots (histogram, box plot, heatmap), Matplotlib via `ax` for fine-tuning.
+:::
