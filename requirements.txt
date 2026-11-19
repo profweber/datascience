@@ -11,7 +11,7 @@ numpy
 pandas
 matplotlib
 seaborn
-scipy
+scipy>=1.15          # rng argument in stats.bootstrap
 statsmodels
 scikit-learn
 shap
