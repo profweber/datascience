@@ -1,0 +1,98 @@
+# Formula Collection {#sec-formulas}
+
+This appendix collects the formulas of the script, ordered by task. It contains no explanations: what a formula means and when it applies is explained in the chapter named in the last column.
+
+Notation: $x_1, \dots, x_n$ are observations, $n$ is the sample size, $\bar x$ the mean, $\tilde x$ the median and $s$ the sample standard deviation. $\sum_i$ runs over all observations.
+
+## Describing data
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Mean | $\bar x = \dfrac{1}{n}\sum_i x_i$ | Ch. 2 |
+| Sample standard deviation | $s = \sqrt{\dfrac{1}{n-1}\sum_i (x_i - \bar x)^2}$ | Ch. 2 |
+| Interquartile range | $\text{IQR} = Q_3 - Q_1$ (quartiles: 25 % and 75 % quantiles) | Ch. 2 |
+| Median absolute deviation | $\text{MAD} = \operatorname{median}\big(\lvert x_1 - \tilde x \rvert, \dots, \lvert x_n - \tilde x \rvert\big)$ | Ch. 2 |
+| IQR rule (Tukey) | flag $x_i$ if $x_i < Q_1 - 1.5\,\text{IQR}$ or $x_i > Q_3 + 1.5\,\text{IQR}$ | Ch. 2 |
+| Robust z-score | $z_i = \dfrac{x_i - \tilde x}{1.4826 \cdot \text{MAD}}$, flag $x_i$ if $\lvert z_i \rvert > 3.5$ | Ch. 2 |
+| Pearson correlation | $r_{xy} = \dfrac{\sum_i (x_i - \bar x)(y_i - \bar y)}{\sqrt{\sum_i (x_i - \bar x)^2}\,\sqrt{\sum_i (y_i - \bar y)^2}}$ | Ch. 1 |
+
+## Probability and lifetimes
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Distribution function, density | $F(x) = P(X \le x)$, $\quad f(x) = F'(x)$ | Ch. 3 |
+| Probability of an interval | $P(a < X \le b) = F(b) - F(a) = \int_a^b f(x)\,dx$ | Ch. 3 |
+| Quantile | $F^{-1}(p)$: the value below which a share $p$ lies | Ch. 3 |
+| Expected value, variance | $E[X] = \int x\,f(x)\,dx$, $\quad \text{Var}(X) = E\big[(X - E[X])^2\big]$ | Ch. 3 |
+| Central limit theorem | $\bar X_n$ is approximately normal with mean $\mu$ and standard deviation $\sigma/\sqrt{n}$ | Ch. 3 |
+| Reliability (lifetime $X$) | $R(t) = 1 - F(t) = P(X > t)$ | Ch. 3 |
+| Weibull distribution | $F(t) = 1 - \exp\left[-\left(\dfrac{t}{\eta}\right)^{\beta}\right]$ | Ch. 3 |
+| Three-parameter Weibull | $F(t) = 1 - \exp\left[-\left(\dfrac{t - t_0}{\eta}\right)^{\beta}\right]$ for $t > t_0$, $\quad F(t) = 0$ for $t \le t_0$ | Ch. 3 |
+| Hazard rate | $h(t) = \dfrac{f(t)}{R(t)}$; Weibull: $h(t) = \dfrac{\beta}{\eta}\left(\dfrac{t}{\eta}\right)^{\beta - 1}$ | Ch. 3 |
+| B10 life (Weibull) | $B_{10} = \eta\,(-\ln 0.9)^{1/\beta}$ | Ch. 3 |
+| Log-likelihood | $\ell(\theta) = \sum_i \ln f(x_i; \theta)$, maximised by the estimate $\hat\theta$ | Ch. 3 |
+| Akaike information criterion | $\mathrm{AIC} = 2k - 2\,\ell(\hat\theta)$, $\quad k$ = number of fitted parameters | Ch. 3 |
+| Bayes' theorem | $P(F \mid A) = \dfrac{P(A \mid F)\,P(F)}{P(A)}$, $\quad P(A) = P(A \mid F)\,P(F) + P(A \mid \bar F)\,P(\bar F)$ | Ch. 3 |
+
+## Confidence intervals
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Standard error of the mean | $\text{SE} = \dfrac{s}{\sqrt n}$ | Ch. 3 |
+| 95 % confidence interval for the mean | $\bar x \pm t_{n-1,\,0.975}\,\dfrac{s}{\sqrt n}$ | Ch. 3 |
+| Bootstrap (percentile method) | 95 % interval: 2.5 % and 97.5 % quantiles of the bootstrap replicates | Ch. 3 |
+| 95 % confidence interval for a regression coefficient | $\hat\beta_j \pm t_{n-p-1,\,0.975}\,\text{SE}(\hat\beta_j)$ | Ch. 5 |
+
+## Hypothesis tests
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Welch t-test | $t = \dfrac{\bar x_1 - \bar x_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}$ | Ch. 4 |
+| Degrees of freedom (Welch) | $\nu = \dfrac{\left(s_1^2/n_1 + s_2^2/n_2\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1 - 1} + \dfrac{(s_2^2/n_2)^2}{n_2 - 1}}$ | Ch. 4 |
+| Range of $\nu$ | $\min(n_1, n_2) - 1 \le \nu \le n_1 + n_2 - 2$ | Ch. 4 |
+| Cohen's d | $d = \dfrac{\bar x_1 - \bar x_2}{s_p}$, $\quad s_p = \sqrt{\dfrac{s_1^2 + s_2^2}{2}}$ | Ch. 4 |
+| One-way ANOVA ($k$ groups, $N$ observations) | $F = \dfrac{\sum_j n_j(\bar x_j - \bar x)^2/(k-1)}{\sum_j \sum_i (x_{ij} - \bar x_j)^2/(N-k)}$ | Ch. 4 |
+| Chi-squared test | $\chi^2 = \sum \dfrac{(O - E)^2}{E}$, $\quad E = \dfrac{\text{row total} \cdot \text{column total}}{\text{total count}}$ | Ch. 4 |
+| False alarms in $m$ independent tests | $P(\text{at least one}) = 1 - (1 - \alpha)^m$ | Ch. 4 |
+| Bonferroni correction | significance level $\alpha/m$ for each of $m$ tests | Ch. 4 |
+| Sample size per group (two-sample t-test) | $n \approx \dfrac{2\,(z_{1-\alpha/2} + z_{1-\beta})^2}{d^2}$, $\quad d = \delta/\sigma$; $\quad n \approx 16/d^2$ for $\alpha = 0.05$ and power 0.8 | Ch. 4 |
+
+## Regression
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Multiple linear regression | $y_i = \beta_0 + \beta_1 x_{i1} + \dots + \beta_p x_{ip} + \varepsilon_i$, $\quad \varepsilon_i \sim N(0, \sigma^2)$ independent | Ch. 5 |
+| Least squares estimate | $\hat\beta = (X^\top X)^{-1} X^\top y$, $\quad \widehat{\text{Cov}}(\hat\beta) = \hat\sigma^2 (X^\top X)^{-1}$ | Ch. 5 |
+| Residual variance | $\hat\sigma^2 = \dfrac{1}{n - p - 1}\sum_i (y_i - \hat y_i)^2$ | Ch. 5 |
+| Coefficient of determination | $R^2 = 1 - \dfrac{\sum_i (y_i - \hat y_i)^2}{\sum_i (y_i - \bar y)^2}$ | Ch. 5 |
+| Variance inflation factor | $\text{VIF}_j = \dfrac{1}{1 - R_j^2}$, $\quad R_j^2$: $R^2$ of $x_j$ regressed on all other inputs | Ch. 5 |
+| Nonlinear least squares | $\hat\theta = \arg\min_{\theta} \sum_i \big(y_i - f(x_i; \theta)\big)^2$ | Ch. 5 |
+
+## Quantile tables
+
+Quantiles $z_q$ of the standard normal distribution:
+
+| $q$ | 0.80 | 0.90 | 0.95 | 0.975 | 0.99 | 0.995 |
+| --- | --- | --- | --- | --- | --- | --- |
+| $z_q$ | 0.84 | 1.28 | 1.64 | 1.96 | 2.33 | 2.58 |
+
+Quantiles $t_{\nu,\,q}$ of the t-distribution with $\nu$ degrees of freedom:
+
+| $\nu$ | $t_{\nu,\,0.95}$ | $t_{\nu,\,0.975}$ |
+| --- | --- | --- |
+| 1 | 6.31 | 12.71 |
+| 2 | 2.92 | 4.30 |
+| 3 | 2.35 | 3.18 |
+| 4 | 2.13 | 2.78 |
+| 5 | 2.02 | 2.57 |
+| 6 | 1.94 | 2.45 |
+| 7 | 1.89 | 2.36 |
+| 8 | 1.86 | 2.31 |
+| 9 | 1.83 | 2.26 |
+| 10 | 1.81 | 2.23 |
+| 15 | 1.75 | 2.13 |
+| 20 | 1.72 | 2.09 |
+| 30 | 1.70 | 2.04 |
+| 50 | 1.68 | 2.01 |
+| 100 | 1.66 | 1.98 |
+| $\infty$ | 1.64 | 1.96 |

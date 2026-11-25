@@ -12,12 +12,29 @@ The course has four parts:
 
 | Part | Topics | Chapters |
 | --- | --- | --- |
-| A – Understanding Data | workflow, exploratory analysis, data quality, uncertainty | 1–3 |
-| B – Statistics for Engineers | hypothesis tests, regression, design of experiments, model selection | 4–6 |
-| C – Machine Learning | classification, ensembles, unsupervised learning, signal features | 7–10 |
-| D – Time Series, Deep Learning and Review | forecasting, neural networks, review | 11–13 |
+| A – Understanding Data | workflow, exploratory analysis, data quality | 1–2 |
+| B – Statistical Inference | probability and uncertainty, hypothesis tests, regression, design of experiments | 3–5 |
+| C – Prediction and Monitoring | model selection and validation, classification, ensembles, unsupervised learning | 6–9 |
+| D – Signals, Time Series and Deep Learning | from diagnosis to prognosis: signal features, forecasting, remaining useful life with neural networks; review | 10–13 |
 
 Before Part A, the short lesson [Getting Started with pandas](notebooks/00-pandas.ipynb) introduces the Python library pandas for everyone who has not used it before.
+
+## What you will be able to do
+
+By the end of the course, you will be able to tackle an engineering question you have not seen before with data – on your own and from start to finish: prepare real measurement data, choose and validate suitable methods from statistics or machine learning, and derive a recommendation for a decision. A good analysis quantifies the uncertainty of its results and explains the recommendation – including the limits of data and model – so that others can follow and check it.
+
+Engineers increasingly face exactly such questions: Is a test result strong enough to confirm a claimed improvement? Can a cheaper concrete mix be approved before any specimens exist? Is a failure alarm worth its false alarms? Which safety margin does a lifetime prediction need? The scenarios of the chapters are modelled on situations like these.
+
+The course builds up this ability along the steps of such an analysis:
+
+1. **Translate the question** into a data science task: target, influencing variables, type of task, and the information available at the time of the decision.
+2. **Check and prepare the data:** judge whether a dataset is fit for the question, and clean it (Part A).
+3. **Quantify effects and uncertainty** with statistical models: how precisely is a value known, and is an effect statistically established and practically relevant? (Part B)
+4. **Build and validate prediction and monitoring models:** does a model meet the requirements of a specific use on new data? (Part C)
+5. **Respect the order in time** of signals, time series and sensor sequences (Part D).
+6. **Justify a recommendation** – with its uncertainty, its assumptions and the limits of data and model. Every chapter practises this in the section *Back to the decision*.
+
+The first step runs through the whole course: choosing an approach requires the methods of Parts B to D, and Chapter 13 brings them together. The learning goals at the start of each chapter name the smaller steps.
 
 ## Prerequisites
 
@@ -37,6 +54,15 @@ You can work with any development environment you like (e.g. JupyterLab, VS Code
 - **Alternative – local installation:** The [Anaconda Distribution](https://www.anaconda.com/download) installs Python, Jupyter and the most important data science packages in one go – a good choice if you prefer to work offline and with files on your own computer.
 
 Packages that are missing can be installed directly from a notebook cell with `%pip install`, e.g. `%pip install ucimlrepo`.
+
+**Optional: keep the data in Colab.** The notebooks download each dataset once into a folder `data` in the current working directory. In Colab, this folder disappears with the session, so the data are downloaded again the next time. If you want to avoid this, run the following cell at the start of a notebook: the folder `data` is then created in your Google Drive and kept. The cell works only in Colab.
+
+```python
+from google.colab import drive
+drive.mount("/content/drive")                        # asks once for permission to access Drive
+%mkdir -p "/content/drive/MyDrive/Data Science"      # course folder in Drive (created if missing)
+%cd "/content/drive/MyDrive/Data Science"            # work there: ./data is now in Drive
+```
 
 ### Reading guide
 
@@ -90,6 +116,8 @@ The Greek alphabet is small, and the standard symbols of different fields overla
 ## Assessment
 
 - **Lab assignments** (coursework, pass/fail): four assignments during the semester.
-- **Written exam** (90 minutes, without computer): method choice, interpretation of results, short calculations and code reading.
+- **Written exam** (90 minutes, without computer): method choice, interpretation of results, justified decisions, short calculations and code reading.
 
-Both parts must be passed; they can be completed in different semesters.
+Passing the lab assignments is the prerequisite for admission to the written exam.
+
+In the exam, you may use the [Python Quick Reference](python-reference.qmd) and the [Formula Collection](formulas.qmd) from the appendix. Both are handed out with the exam; your own copies or notes are not allowed.

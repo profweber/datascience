@@ -214,6 +214,46 @@ Chains are compact; separate steps are easier to check. A good habit: build a ch
 | `rng.integers(a, b)`, `rng.choice(values, p=...)` | random integer, random choice with given probabilities | `rng.choice(["C45", "42CrMo4"], p=[0.7, 0.3])` | SQL app. |
 | `np.polyfit(x, y, deg=1)` | least-squares polynomial; with `deg=1` a straight line → slope and intercept | `slope, intercept = np.polyfit(x, y, deg=1)` | Ch. 1 |
 
+## Probability distributions
+
+SciPy offers every distribution as an object in `scipy.stats` – e.g. `stats.norm`, `stats.lognorm`, `stats.weibull_min`, `stats.t`, `stats.beta` – and all of them have the same methods. Parameters are passed as shape(s), `loc` and `scale` (Chapter 3).
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `dist.fit(x)` | estimates the parameters by maximum likelihood; `floc=0` fixes the location at 0 | `beta, loc, eta = stats.weibull_min.fit(x, floc=0)` | Ch. 3 |
+| `dist.pdf(x, ...)`, `dist.cdf(x, ...)` | density and distribution function at `x` | `stats.weibull_min.pdf(t, beta, scale=eta)` | Ch. 3 |
+| `dist.ppf(q, ...)` | quantile: the value below which a share `q` lies – the inverse of `cdf` | `stats.t.ppf(0.975, df=9)` | Ch. 3 |
+| `dist.logpdf(x, ...)` | logarithm of the density; summed over the data, the log-likelihood | `stats.norm.logpdf(x, mu, sigma).sum()` | Ch. 3 |
+| `dist.interval(0.95, ...)` | central interval that contains the given share | `stats.t.interval(0.95, df=n - 1, loc=x_bar, scale=se)` | Ch. 3 |
+
+## Confidence intervals and tests
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `stats.bootstrap((x,), statistic, ...)` | bootstrap confidence interval for any statistic; `rng=0` gives the same resamples in every run | `stats.bootstrap((x,), np.mean, method="percentile", rng=0).confidence_interval` | Ch. 3 |
+| `stats.ttest_ind(a, b, equal_var=False)` | Welch t-test for two independent samples; the result has `.statistic`, `.pvalue` and `.confidence_interval(0.95)` | `res = stats.ttest_ind(a, b, equal_var=False)` | Ch. 4 |
+| `stats.mannwhitneyu(a, b)` | rank-based test for two independent samples | `stats.mannwhitneyu(a, b).pvalue` | Ch. 4 |
+| `stats.ttest_rel(a, b)`, `stats.wilcoxon(a, b)` | paired t-test, Wilcoxon signed-rank test (paired measurements) | `stats.ttest_rel(before, after).pvalue` | Ch. 4 |
+| `stats.f_oneway(*samples)`, `stats.kruskal(*samples)` | one-way ANOVA, Kruskal–Wallis test for $k$ groups; `*` passes the samples of a list one by one | `stats.f_oneway(*nox_samples)` | Ch. 4 |
+| `pd.crosstab(a, b)` | contingency table: counts of all combinations of the values of two columns | `pd.crosstab(df["Type"], df["Machine failure"])` | Ch. 4 |
+| `stats.chi2_contingency(table)` | chi-squared test of independence; returns statistic, p-value, degrees of freedom and expected counts | `chi2, p, dof, expected = stats.chi2_contingency(table)` | Ch. 4 |
+| `multipletests(pvals, method="holm")` | corrected p-values for several tests, in `[1]`; also `method="bonferroni"` (module `statsmodels.stats.multitest`) | `multipletests(pvals, method="holm")[1]` | Ch. 4 |
+| `TTestIndPower().solve_power(...)` | sample size per group for the two-sample t-test (module `statsmodels.stats.power`) | `TTestIndPower().solve_power(effect_size=0.5, alpha=0.05, power=0.8)` | Ch. 4 |
+| `stats.probplot(x, dist="norm", plot=ax)`, `sm.qqplot(x, line="45", fit=True)` | normal Q–Q plot | `sm.qqplot(model.resid, line="45", fit=True)` | Ch. 4, 5 |
+| `itertools.combinations(values, 2)` | all pairs of values | `itertools.combinations(years, 2)` | Ch. 4 |
+| `s.autocorr()` | correlation of each value of a series with the next one | `nox.autocorr()` | Ch. 4 |
+
+## Regression and curve fitting
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `smf.ols("y ~ x1 + x2", data=df).fit()` | linear regression with a formula (module `statsmodels.formula.api`); functions such as `np.log(x2)` may appear in the formula | `smf.ols("strength ~ cement + np.log(age)", data=conc).fit()` | Ch. 5 |
+| `model.summary()` | the complete regression table | `print(model.summary())` | Ch. 5 |
+| `model.params`, `.pvalues`, `.rsquared`, `.resid`, `.fittedvalues` | coefficients, their p-values, $R^2$, residuals, fitted values | `model.params.round(3)` | Ch. 5 |
+| `model.get_prediction(new).summary_frame(alpha=0.05)` | prediction for new inputs with confidence interval (`mean_ci_...`) and prediction interval (`obs_ci_...`) | `model.get_prediction(new_mix).summary_frame(alpha=0.05)` | Ch. 5 |
+| `variance_inflation_factor(X.values, i)` | VIF of column `i` (module `statsmodels.stats.outliers_influence`); `X` needs a column of ones from `sm.add_constant` | `variance_inflation_factor(Xv.values, 1)` | Ch. 5 |
+| `curve_fit(f, x, y, p0=...)` | nonlinear least squares (module `scipy.optimize`); returns the parameters and their covariance matrix | `popt, pcov = curve_fit(strength_model, t, y, p0=[50, 7])` | Ch. 5 |
+
 ## Plots
 
 | Function | What it does | Used in |

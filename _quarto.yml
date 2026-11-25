@@ -21,25 +21,26 @@ book:
       chapters:
         - notebooks/01-workflow.ipynb
         - notebooks/02-eda.ipynb
-        - notebooks/03-uncertainty.ipynb
-    - part: "Part B – Statistics for Engineers"
+    - part: "Part B – Statistical Inference"
       chapters:
+        - notebooks/03-uncertainty.ipynb
         - notebooks/04-testing.ipynb
         - notebooks/05-regression-doe.ipynb
-        - notebooks/06-model-selection.ipynb
-    - part: "Part C – Machine Learning"
+    - part: "Part C – Prediction and Monitoring"
       chapters:
+        - notebooks/06-model-selection.ipynb
         - notebooks/07-classification.ipynb
         - notebooks/08-ensembles.ipynb
         - notebooks/09-unsupervised.ipynb
-        - notebooks/10-signals.ipynb
-    - part: "Part D – Time Series, Deep Learning and Review"
+    - part: "Part D – Signals, Time Series and Deep Learning"
       chapters:
+        - notebooks/10-signals.ipynb
         - notebooks/11-time-series.ipynb
         - notebooks/12-neural-networks.ipynb
         - notebooks/13-review.ipynb
   appendices:
     - python-reference.qmd
+    - formulas.qmd
     - notebooks/appendix-databases.ipynb
     - datasets.qmd
     - references.qmd

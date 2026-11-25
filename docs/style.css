@@ -78,3 +78,26 @@ body.quarto-dark .quarto-color-scheme-toggle::after { content: "Light mode"; }
 body.quarto-dark .scenario {
   background-color: rgba(123, 79, 184, 0.20);
 }
+
+/* Keep wide content inside its box on narrow screens */
+mjx-container[display="true"] {     /* display formulas: scroll sideways instead of sticking out */
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 0.1em 0;                 /* room for descenders, so no vertical scrollbar appears */
+}
+p code:not(.sourceCode),            /* long inline code wraps instead of running out of the box */
+li code:not(.sourceCode),
+td code:not(.sourceCode) {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.callout-body-container {           /* allow the box content to shrink to the box width */
+  min-width: 0;
+}
+@media (max-width: 1199.98px) {     /* smaller screens: wide tables scroll sideways */
+  main table {
+    display: block;
+    overflow-x: auto;
+  }
+}
