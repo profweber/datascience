@@ -338,9 +338,10 @@ window.Quarto = {
   <li><a href="#core-concepts-at-a-glance" id="toc-core-concepts-at-a-glance" class="nav-link" data-scroll-target="#core-concepts-at-a-glance"><span class="header-section-number">13.2</span> Core concepts at a glance</a></li>
   <li><a href="#checklist-typical-pitfalls" id="toc-checklist-typical-pitfalls" class="nav-link" data-scroll-target="#checklist-typical-pitfalls"><span class="header-section-number">13.3</span> Checklist: typical pitfalls</a></li>
   <li><a href="#typical-exam-question-types" id="toc-typical-exam-question-types" class="nav-link" data-scroll-target="#typical-exam-question-types"><span class="header-section-number">13.4</span> Typical exam question types</a></li>
-  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions"><span class="header-section-number">13.5</span> Practice questions</a>
+  <li><a href="#sec-lessons" id="toc-sec-lessons" class="nav-link" data-scroll-target="#sec-lessons"><span class="header-section-number">13.5</span> Seven lessons from this course</a></li>
+  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions"><span class="header-section-number">13.6</span> Practice questions</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">13.5.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">13.6.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -367,7 +368,7 @@ window.Quarto = {
 </header>
 
 
-<p>This chapter collects the methods of the course in one map, lists the most important pitfalls and offers practice questions in the style of the exam. The exam is written, without a computer: it tests understanding, interpretation, method choice, the design of an analysis and justified recommendations – not programming routine. Sections marked <em>Extension</em> in the chapters are not part of the exam; in the tables below they are marked (ext.).</p>
+<p>This chapter collects the methods of the course in one map, lists the most important pitfalls, names seven lessons that connect the chapters and offers practice questions in the style of the exam. The exam is written, without a computer: it tests understanding, interpretation, method choice, the design of an analysis and justified recommendations – not programming routine. Sections marked <em>Extension</em> in the chapters are not part of the exam; in the tables below they are marked (ext.).</p>
 <section id="which-method-when" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="which-method-when"><span class="header-section-number">13.1</span> Which method when?</h2>
 <p>Every analysis starts by translating the engineering question into a data science task (Chapter 1) and by checking and preparing the data (Chapter 2). The tables then group typical questions by what the analysis has to deliver.</p>
@@ -396,30 +397,24 @@ window.Quarto = {
 <td>3</td>
 </tr>
 <tr class="even">
-<td>Few tests, but prior knowledge</td>
-<td>counts, earlier products</td>
-<td>Bayesian updating (beta–binomial) (ext.)</td>
-<td>3</td>
-</tr>
-<tr class="odd">
 <td>Did a change improve the process?</td>
 <td>measurements of two or more groups</td>
 <td>t-test, ANOVA, effect size</td>
 <td>4</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>How many samples do I need?</td>
 <td>assumed effect and noise</td>
 <td>power analysis</td>
 <td>4</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>How does an output depend on inputs?</td>
 <td>continuous, few inputs</td>
-<td>linear regression, design of experiments (ext.)</td>
+<td>linear regression, designed experiments</td>
 <td>5</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Fit a physical or empirical law</td>
 <td>measured curve</td>
 <td>nonlinear least squares (<code>curve_fit</code>)</td>
@@ -680,8 +675,64 @@ Before you trust a result, check …
 <li><strong>Recommendation:</strong> judge or improve a recommendation – does it state the uncertainty, the assumptions and the limits of data and model?</li>
 </ol>
 </section>
-<section id="practice-questions" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="practice-questions"><span class="header-section-number">13.5</span> Practice questions</h2>
+<section id="sec-lessons" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="sec-lessons"><span class="header-section-number">13.5</span> Seven lessons from this course</h2>
+<p>The chapters of this course treat very different methods, but the same few ideas return in all of them. They do not replace the learning goals of the chapters – the exam covers those, with their methods and calculations. The lessons are what connects the chapters – and what remains useful long after the details have faded.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lesson</th>
+<th>What it means</th>
+<th>Chapters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Start from the decision.</strong></td>
+<td>Fix the question, the criterion and the cost of an error before looking at results. The data determine how a model is fitted; the costs determine how it is used – thresholds, safety margins, intervals.</td>
+<td>1, 7, 12 and every <em>Back to the decision</em></td>
+</tr>
+<tr class="even">
+<td><strong>2. Know your data before you model them.</strong></td>
+<td>Units, gaps, outliers and the way the data were produced decide what any model can learn.</td>
+<td>1, 2, 9</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Every estimate has an uncertainty.</strong></td>
+<td>A number without its uncertainty cannot support a decision. Quantify it – and say when it is too optimistic.</td>
+<td>3, 4, 5, 6, 12</td>
+</tr>
+<tr class="even">
+<td><strong>4. Significant is not the same as relevant.</strong></td>
+<td>With enough data, every difference becomes significant. What counts is its size compared with what matters in practice.</td>
+<td>2, 4, 5</td>
+</tr>
+<tr class="odd">
+<td><strong>5. Every model rests on assumptions.</strong></td>
+<td>A loss function is the negative log-likelihood of an assumed distribution of the data; residuals and plots check the assumptions.</td>
+<td>3, 4, 5, 6, 7, 8, 12</td>
+</tr>
+<tr class="even">
+<td><strong>6. Test honestly.</strong></td>
+<td>Judge a model on data it has not seen, using only the information available at decision time – for time series, only the past – and always against a simple baseline.</td>
+<td>1, 6, 7, 9, 10, 11, 12</td>
+</tr>
+<tr class="odd">
+<td><strong>7. Associations are not causes.</strong></td>
+<td>Observational data show which quantities move together, not why. Causes need designed experiments or physical understanding.</td>
+<td>1, 4, 5, 8</td>
+</tr>
+</tbody>
+</table>
+<p>In the key takeaways of the chapters, the lessons appear with exactly these words.</p>
+</section>
+<section id="practice-questions" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="practice-questions"><span class="header-section-number">13.6</span> Practice questions</h2>
 <div class="exercises">
 <ol type="1">
 <li>A confusion matrix shows TN = 950, FP = 30, FN = 5, TP = 15. Compute accuracy, precision and recall. Is the model useful for failure detection?</li>
@@ -698,8 +749,8 @@ Before you trust a result, check …
 <li><strong>Recommendation.</strong> A colleague summarises an analysis for the plant manager: “Our new alarm model detected 9 of the 10 failures in the test month, i.e.&nbsp;90 %. We recommend installing it.” What is missing for a well-founded recommendation? Rewrite it.</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="13.5.1">
-<h3 data-number="13.5.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">13.5.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="13.6.1">
+<h3 data-number="13.6.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">13.6.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">

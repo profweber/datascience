@@ -376,13 +376,12 @@ window.Quarto = {
   <li><a href="#which-distribution-a-model-decision" id="toc-which-distribution-a-model-decision" class="nav-link" data-scroll-target="#which-distribution-a-model-decision"><span class="header-section-number">3.3.1</span> Which distribution? A model decision</a></li>
   </ul></li>
   <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">3.4</span> Confidence intervals</a></li>
-  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">3.5</span> Back to the decision</a></li>
-  <li><a href="#bayes-theorem-how-much-should-we-trust-an-alarm" id="toc-bayes-theorem-how-much-should-we-trust-an-alarm" class="nav-link" data-scroll-target="#bayes-theorem-how-much-should-we-trust-an-alarm"><span class="header-section-number">3.6</span> Bayes’ theorem: how much should we trust an alarm?</a></li>
-  <li><a href="#extension-bayesian-estimation-with-prior-knowledge" id="toc-extension-bayesian-estimation-with-prior-knowledge" class="nav-link" data-scroll-target="#extension-bayesian-estimation-with-prior-knowledge"><span class="header-section-number">3.7</span> Extension: Bayesian estimation with prior knowledge</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.8</span> Summary</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.9</span> Exercises</a>
+  <li><a href="#sec-bayes" id="toc-sec-bayes" class="nav-link" data-scroll-target="#sec-bayes"><span class="header-section-number">3.5</span> Bayes’ theorem: updating a probability</a></li>
+  <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">3.6</span> Back to the decision</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.7</span> Summary</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.8</span> Exercises</a>
   <ul class="collapse">
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">3.9.1</span> Solutions</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">3.8.1</span> Solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -410,7 +409,7 @@ window.Quarto = {
 
 
 <p>No two measurements are identical, no two components have the same lifetime, and every estimate computed from a sample would come out slightly differently with another sample. Engineers deal with this variability every day – in tolerances, safety factors, reliability targets and maintenance plans. Probability theory provides the language to describe it, and statistics provides the tools to quantify how certain our estimates are.</p>
-<p>In this chapter we model the lifetimes of jet engines with a probability distribution, derive reliability figures such as the B10 life, and quantify the uncertainty of our estimates with confidence intervals – computed both with a classical formula and with the bootstrap. Finally we meet Bayes’ theorem, which tells us how to update probabilities when new information arrives.</p>
+<p>In this chapter we model the lifetimes of jet engines with a probability distribution, derive reliability figures such as the B10 life, and quantify the uncertainty of our estimates with confidence intervals – computed both with a classical formula and with the bootstrap. Finally, Bayes’ theorem shows how a probability changes when new information arrives.</p>
 <div class="scenario">
 <p><strong>Scenario: the replacement interval</strong></p>
 <p>You are the reliability engineer of an airline that operates a fleet of turbofan engines of one type. The airworthiness authority requires a maintenance programme in which, with 95 % confidence, at most 10 % of the engines reach a critical degradation state before they are taken off wing for overhaul. Your data: the complete run-to-failure histories of 100 engines of the same type. Their lifetimes range from 128 to 362 flight cycles, with a mean of 206. The fleet manager wants the interval as long as possible – every additional cycle on wing saves money.</p>
@@ -424,8 +423,7 @@ window.Quarto = {
 <li>fit a distribution to lifetime data by maximum likelihood, check the fit with a probability plot and choose between candidate models,</li>
 <li>interpret the Weibull shape parameter in terms of failure behaviour and derive the B10 life,</li>
 <li>compute and correctly interpret confidence intervals, analytically and with the bootstrap,</li>
-<li>apply Bayes’ theorem to diagnostic alarms and explain the base rate effect,</li>
-<li>(extension) update prior knowledge with test data (beta–binomial model) and interpret a credible interval.</li>
+<li>apply Bayes’ theorem to update a probability with new information.</li>
 </ul>
 <p><strong>Course goal.</strong> This chapter contributes to step 3 of the <a href="../index.html#what-you-will-be-able-to-do">course goals</a>: quantify effects and uncertainty.</p>
 <p><strong>Datasets in this chapter</strong></p>
@@ -458,7 +456,7 @@ Definition: Random variable, CDF, PDF and quantile function
 <ul>
 <li>the <strong>cumulative distribution function (CDF)</strong> <span class="math inline">\(F(x) = P(X \le x)\)</span> gives the probability of a value up to <span class="math inline">\(x\)</span>,</li>
 <li>the <strong>probability density function (PDF)</strong> <span class="math inline">\(f(x) = F'(x)\)</span> describes how probability is distributed,</li>
-<li>the probability of an interval follows from either of them: <span class="math inline">\(P(a &lt; X \le b) = F(b) - F(a) = \int_a^b f(x)\,dx\)</span>. For a continuous random variable, a single value has probability 0, so it does not matter whether the limits are included,</li>
+<li>the probability of an interval follows from either of them: <span class="math display">\[P(a &lt; X \le b) = F(b) - F(a) = \int_a^b f(x)\,dx.\]</span> For a continuous random variable, a single value has probability 0, so it does not matter whether the limits are included,</li>
 <li>the <strong>quantile function</strong> <span class="math inline">\(F^{-1}(p)\)</span> gives the value below which a share <span class="math inline">\(p\)</span> of the distribution lies – the counterpart of the sample quantiles in Chapter 2; <span class="math inline">\(F^{-1}(0.5)\)</span> is the median.</li>
 </ul>
 <p>The <strong>expected value</strong> <span class="math inline">\(E[X] = \int x\,f(x)\,dx\)</span> is the long-run average, the <strong>variance</strong> <span class="math inline">\(\text{Var}(X) = E[(X - E[X])^2]\)</span> measures the spread.</p>
@@ -579,7 +577,7 @@ Theorem: Central limit theorem
 </div>
 </div>
 <p>Two consequences matter for engineers. First, the uncertainty of a mean decreases with <span class="math inline">\(1/\sqrt{n}\)</span> – four times as many measurements halve the uncertainty.</p>
-<p>Second, the theorem explains why so many measured quantities are approximately normal – with one refinement. As stated, it requires identically distributed <span class="math inline">\(X_i\)</span>: exactly the situation of a sample mean, but not of a machined diameter, which results from many <em>different</em> effects such as tool wear, temperature, clamping and material. Generalisations of the theorem (by Lindeberg and Lyapunov) show that such a sum is still approximately normal if the effects are independent and <strong>none of them dominates</strong>. This condition also tells us when to expect deviations: if a single large effect dominates – a worn tool, two different machine settings – the distribution takes on its shape and can be skewed or have two peaks.</p>
+<p>Second, the theorem explains why so many measured quantities are approximately normal. A machined diameter results from many small, independent effects – tool wear, temperature, clamping, material. Their sum is approximately normal even if the effects are not identically distributed, as long as <strong>none of them dominates</strong>. If a single large effect dominates – a worn tool, two different machine settings – the distribution takes on its shape and can be skewed or have two peaks.</p>
 <section id="live-coding-sums-and-products-of-many-effects" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="live-coding-sums-and-products-of-many-effects"><span class="header-section-number">3.1.1</span> Live coding: sums and products of many effects</h3>
 <p>Two simulated quantities make the difference visible. Both result from the same ten small, independent effects, which are uniformly distributed – flat, not bell-shaped – and of different size, none of them dominating. For the <strong>diameter</strong> of a turned shaft, the effects are <em>added</em> to the nominal value of 25 mm as a few micrometres each. For the <strong>fatigue life</strong> of a component, the same effects act as <em>factors</em> between about 0.6 and 1.4 on a nominal life of 100,000 cycles.</p>
@@ -669,27 +667,34 @@ Definition: Maximum likelihood estimation (MLE)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Given independent observations <span class="math inline">\(x_1, \dots, x_n\)</span> and a model with density <span class="math inline">\(f(x;\theta)\)</span>, the <strong>likelihood</strong> <span class="math inline">\(L(\theta) = \prod_i f(x_i;\theta)\)</span> measures how plausible the data are for a parameter value <span class="math inline">\(\theta\)</span>. The maximum likelihood estimate <span class="math inline">\(\hat\theta\)</span> maximises <span class="math inline">\(L\)</span>, in practice its logarithm <span class="math inline">\(\ell(\theta) = \sum_i \ln f(x_i;\theta)\)</span>.</p>
+<p>Given independent observations <span class="math inline">\(x_1, \dots, x_n\)</span> and a model with density <span class="math inline">\(f(x;\theta)\)</span>, the <strong>likelihood</strong> <span class="math inline">\(L(\theta) = \prod_i f(x_i;\theta)\)</span> measures how plausible the observed data are for a parameter value <span class="math inline">\(\theta\)</span>. For discrete data, the probabilities <span class="math inline">\(P(X = x_i;\theta)\)</span> take the place of the density. The maximum likelihood estimate <span class="math inline">\(\hat\theta\)</span> maximises <span class="math inline">\(L\)</span>, in practice its logarithm <span class="math inline">\(\ell(\theta) = \sum_i \ln f(x_i;\theta)\)</span> – the logarithm turns the product into a sum and does not move the maximum.</p>
 </div>
 </div>
-<p>For the normal distribution, MLE gives the familiar mean, <span class="math inline">\(\hat\mu = \bar x\)</span>. Its estimate <span class="math inline">\(\hat\sigma\)</span> of the standard deviation differs slightly from the sample standard deviation <span class="math inline">\(s\)</span> of Chapter 2 – a statistical detail without practical consequences (see the box). For the Weibull distribution, there is no closed-form solution; <code>scipy.stats.weibull_min.fit</code> maximises the likelihood numerically.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Detail: why MLE does not give exactly <span class="math inline">\(s\)</span>
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><em>For the curious – nothing in this book depends on it.</em></p>
-<p>MLE determines both parameters <em>together</em>, so that the normal distribution describes these data as well as possible. It places <span class="math inline">\(\mu\)</span> at <span class="math inline">\(\bar x\)</span> and measures the spread around it: <span class="math display">\[\hat\sigma = \sqrt{\frac{1}{n}\sum_i (x_i - \bar x)^2}.\]</span> But <span class="math inline">\(\bar x\)</span> lies right in the middle of the data – no other value, not even the true mean <span class="math inline">\(\mu\)</span>, has a smaller sum of squared deviations. Around the true mean, the data would scatter a little more. The sample standard deviation <span class="math inline">\(s\)</span> takes into account that the mean was estimated from the same data and divides by <span class="math inline">\(n - 1\)</span> instead of <span class="math inline">\(n\)</span>: <span class="math display">\[s = \sqrt{\frac{1}{n-1}\sum_i (x_i - \bar x)^2}.\]</span> In practice, the difference does not matter: it is about 5 % for <span class="math inline">\(n = 10\)</span> and 0.5 % for <span class="math inline">\(n = 100\)</span> – much less than <span class="math inline">\(s\)</span> itself would change with another sample of the same size. Use <span class="math inline">\(s\)</span> – it is what pandas’ <code>std()</code> computes. <span class="math inline">\(\hat\sigma\)</span> only appears when a normal distribution is fitted as a model, as in the model decision below; <code>stats.norm.fit</code> returns it. The formula with <span class="math inline">\(1/n\)</span> applies to the normal distribution only; for other models, MLE estimates their own parameters, such as <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\eta\)</span> of the Weibull distribution.</p>
-</div>
-</div>
-</div>
+<p>The likelihood is a function of the parameter; the data are fixed. A small example: five parts of a batch are inspected, and the second and the fifth are defective. If <span class="math inline">\(p\)</span> is the unknown defect probability, a single part is defective with probability <span class="math inline">\(p\)</span> and OK with probability <span class="math inline">\(1 - p\)</span> – a <strong>Bernoulli distribution</strong>. Both cases fit into one formula, <span class="math inline">\(P(Y = y) = p^{\,y}(1-p)^{1-y}\)</span>, with <span class="math inline">\(y = 1\)</span> for defective and <span class="math inline">\(y = 0\)</span> for OK. The likelihood of the five results is <span class="math display">\[L(p) = (1-p) \cdot p \cdot (1-p) \cdot (1-p) \cdot p = p^2\,(1-p)^3.\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(p\)</span></th>
+<th>0.2</th>
+<th>0.3</th>
+<th>0.4</th>
+<th>0.5</th>
+<th>0.6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(L(p)\)</span></td>
+<td>0.020</td>
+<td>0.031</td>
+<td><strong>0.035</strong></td>
+<td>0.031</td>
+<td>0.023</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(L\)</span> is largest at <span class="math inline">\(p = 0.4\)</span>: the maximum likelihood estimate is the observed share of defective parts, 2 of 5. Chapter 7 fits a classifier with the same likelihood.</p>
+<p>For the normal distribution, MLE gives the familiar mean, <span class="math inline">\(\hat\mu = \bar x\)</span>. Its estimate of the standard deviation divides by <span class="math inline">\(n\)</span> instead of <span class="math inline">\(n - 1\)</span> and is therefore slightly smaller than the sample standard deviation <span class="math inline">\(s\)</span> of Chapter 2 – a difference without practical consequences. For the Weibull distribution, there is no closed-form solution; <code>scipy.stats.weibull_min.fit</code> maximises the likelihood numerically.</p>
 <p>To check whether the fitted distribution describes the data, we use a <strong>probability plot</strong>, also called a <strong>Q–Q plot</strong> (quantile–quantile plot). It compares the data with the model point by point, in three steps:</p>
 <ol type="1">
 <li>Sort the <span class="math inline">\(n\)</span> observations. The <span class="math inline">\(i\)</span>-th smallest value has a share of about <span class="math inline">\(p_i = (i - 0.5)/n\)</span> of the data below it – every observation is an empirical quantile. (The <span class="math inline">\(-0.5\)</span> places each value in the middle of its share <span class="math inline">\(1/n\)</span> and avoids <span class="math inline">\(p = 1\)</span>, whose model quantile would be infinite.)</li>
@@ -712,9 +717,9 @@ Figure&nbsp;3.3: Idealised Q–Q plots for typical deviations between data and a
 <section id="live-coding-lifetimes-of-turbofan-engines" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="live-coding-lifetimes-of-turbofan-engines"><span class="header-section-number">3.3</span> Live coding: lifetimes of turbofan engines</h2>
 <p>C-MAPSS (<em>Commercial Modular Aero-Propulsion System Simulation</em>) is a NASA simulation of a large turbofan engine. The dataset contains run-to-failure trajectories of a fleet of engines with different initial wear and manufacturing variation. In the training file <code>train_FD001.txt</code>, every one of the 100 engines runs until failure, so the last recorded cycle of each engine is its lifetime (in flight cycles). We will use the sensor data of the same file in Chapter 12.</p>
-<p><strong>Data access.</strong> The cell below downloads <code>CMAPSSData.zip</code> (about 12 MB) from the NASA Open Data Portal once and reads <code>train_FD001.txt</code> directly from the archive. The file has one row per engine and flight cycle, with the columns separated by blanks and no header line.</p>
+<p><strong>Data access.</strong> The cell below downloads <code>CMAPSSData.zip</code> (about 12 MB) from the NASA Open Data Portal once and reads <code>train_FD001.txt</code> directly from the archive. The file has one row per engine and flight cycle, with the columns separated by blanks and no header line. The helper function <code>download()</code> – the same as in the solution to Exercise 1 of Chapter 2 – fetches the file on the first run and keeps a copy in the folder <code>data</code>; every later run reads this copy, and the other chapters use the same helper.</p>
 <div id="d27f5eea" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download helper, as in Chapter 2</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download helper: fetch a file once and keep a copy in the folder ./data</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -818,7 +823,7 @@ Definition: Akaike information criterion (AIC)
 </div>
 <div class="callout-body-container callout-body">
 <p>A model with more parameters can adapt more closely to the data, so its maximised log-likelihood <span class="math inline">\(\ell(\hat\theta)\)</span> is almost always higher – even if the extra parameter only fits noise. The AIC therefore adds a penalty for each of the <span class="math inline">\(k\)</span> fitted parameters: <span class="math display">\[\mathrm{AIC} = 2k - 2\,\ell(\hat\theta).\]</span> Smaller is better, and only differences between models fitted to the same data are meaningful. Rule of thumb (Burnham and Anderson): models less than 2 above the best AIC are about equally well supported, models more than 10 above have essentially no support. The same idea – goodness of fit minus a penalty for complexity – returns as the adjusted <span class="math inline">\(R^2\)</span> in Chapter 5.</p>
-<p>AIC only ranks the candidates; it does not show that any of them fits. Always look at the Q–Q plot, too. (Distance measures such as the Kolmogorov–Smirnov statistic or the Anderson–Darling statistic, which emphasises the tails, compare the empirical and the fitted CDF directly.)</p>
+<p>AIC only ranks the candidates; it does not show that any of them fits. Always look at the Q–Q plot, too.</p>
 </div>
 </div>
 <div id="f5eb110f" class="cell" data-execution_count="7">
@@ -870,7 +875,7 @@ normal                  B10 = 147 cycles   AIC = 1054.0</code></pre>
 <li><strong>Physics.</strong> In C-MAPSS, the engines degrade gradually from a small initial wear; a failure needs time to develop. A failure-free time is therefore plausible: the three-parameter Weibull distribution estimates <span class="math inline">\(t_0 \approx 125\)</span> cycles, and indeed no engine failed before cycle 128. Its shape parameter, <span class="math inline">\(\beta \approx 1.8\)</span>, still indicates wear-out after <span class="math inline">\(t_0\)</span>.</li>
 <li><strong>Consequences.</strong> The choice is worth about 17 cycles of B10 – more than 10 % of the overhaul interval. That two well-fitting models agree gives confidence; the poorly fitting two-parameter model would be needlessly conservative.</li>
 </ul>
-<p>We therefore use the three-parameter Weibull distribution from now on. A model with one more parameter always fits at least as well. Here the extra parameter is justified: the gain in likelihood is far larger than the AIC penalty, the parameter has a physical meaning, and it changes the result substantially. (Strictly, the AIC assumes a “regular” model. A threshold parameter such as <span class="math inline">\(t_0\)</span>, below which the density is zero, violates this assumption, so for the three-parameter Weibull distribution the AIC is a guide rather than an exact criterion.)</p>
+<p>We therefore use the three-parameter Weibull distribution from now on. A model with one more parameter always fits at least as well. Here the extra parameter is justified: the gain in likelihood is far larger than the AIC penalty, the parameter has a physical meaning, and it changes the result substantially.</p>
 </section>
 </section>
 <section id="confidence-intervals" class="level2" data-number="3.4">
@@ -889,7 +894,7 @@ Definition: Confidence interval
 <p>A 95 % <strong>confidence interval</strong> is computed from the data by a procedure that, if the experiment were repeated many times, would contain the true parameter in 95 % of the repetitions.</p>
 </div>
 </div>
-<p>For the mean, the central limit theorem provides such a procedure. The sample mean <span class="math inline">\(\bar X\)</span> is approximately normal around the true mean <span class="math inline">\(\mu\)</span>, with standard deviation <span class="math inline">\(\sigma/\sqrt n\)</span> – the <strong>standard error</strong> of the mean. For a normal distribution, 95 % of the values lie within <span class="math inline">\(\pm 1.96\)</span> standard deviations of the mean (1.96 is the 97.5 % quantile computed above). So in 95 % of all samples, <span class="math inline">\(\bar x\)</span> lies within <span class="math inline">\(\pm 1.96\,\sigma/\sqrt n\)</span> of <span class="math inline">\(\mu\)</span>. Turned around: in 95 % of all samples, the interval <span class="math inline">\(\bar x \pm 1.96\,\sigma/\sqrt n\)</span> contains <span class="math inline">\(\mu\)</span>.</p>
+<p>For the mean, the central limit theorem provides such a procedure. The sample mean <span class="math inline">\(\bar X\)</span> is approximately normal around the true mean <span class="math inline">\(\mu\)</span>, with standard deviation <span class="math inline">\(\sigma/\sqrt n\)</span> – the <strong>standard error</strong> of the mean. In general, the standard error of an estimate is the standard deviation with which the estimate would vary from sample to sample if the experiment were repeated with new data. For a normal distribution, 95 % of the values lie within <span class="math inline">\(\pm 1.96\)</span> standard deviations of the mean (1.96 is the 97.5 % quantile computed above). So in 95 % of all samples, <span class="math inline">\(\bar x\)</span> lies within <span class="math inline">\(\pm 1.96\,\sigma/\sqrt n\)</span> of <span class="math inline">\(\mu\)</span>. Turned around: in 95 % of all samples, the interval <span class="math inline">\(\bar x \pm 1.96\,\sigma/\sqrt n\)</span> contains <span class="math inline">\(\mu\)</span>.</p>
 <p>In practice, <span class="math inline">\(\sigma\)</span> is unknown and replaced by the sample standard deviation <span class="math inline">\(s\)</span>. This adds uncertainty: in a small sample, <span class="math inline">\(s\)</span> may by chance come out too small, and the interval would be too narrow. The <strong>t-distribution</strong> accounts for this. It was published in 1908 by W. S. Gosset, a chemist at the Guinness brewery, under the pseudonym “Student”. For normal data, the standardised mean <span class="math inline">\((\bar X - \mu)/(s/\sqrt n)\)</span> follows a t-distribution: bell-shaped like the standard normal distribution, but with heavier tails. Its shape is controlled by the <strong>degrees of freedom</strong> <span class="math inline">\(n - 1\)</span> – one less than <span class="math inline">\(n\)</span>, because <span class="math inline">\(s\)</span> measures the spread around the mean estimated from the same data (the reason why pandas’ <code>std()</code> divides by <span class="math inline">\(n - 1\)</span>). With growing <span class="math inline">\(n\)</span>, the t-distribution approaches the standard normal distribution:</p>
 <table class="caption-top table">
 <thead>
@@ -946,7 +951,7 @@ Pitfall: what a confidence interval does <em>not</em> say
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A computed interval, say [197.1, 215.5] cycles, does <strong>not</strong> contain the true mean “with 95 % probability” – in the classical view, the true mean is fixed and either inside or not. The 95 % refers to the reliability of the method. A correct statement is: “The interval [197.1, 215.5] cycles was computed with a method that captures the true mean in 95 % of all samples.” A probability statement about the parameter itself requires the Bayesian approach – the credible interval in the extension at the end of this chapter. Also, a confidence interval for the <em>mean</em> says nothing about the spread of <em>individual</em> lifetimes: most single engines lie far outside it.</p>
+<p>A computed interval, say [197.1, 215.5] cycles, does <strong>not</strong> contain the true mean “with 95 % probability” – in the classical view, the true mean is fixed and either inside or not. The 95 % refers to the reliability of the method. A correct statement is: “The interval [197.1, 215.5] cycles was computed with a method that captures the true mean in 95 % of all samples.” A probability statement about the parameter itself requires a Bayesian analysis with a prior distribution for the parameter (Bayes’ theorem, end of this chapter); we do not use it for confidence intervals. Also, a confidence interval for the <em>mean</em> says nothing about the spread of <em>individual</em> lifetimes: most single engines lie far outside it.</p>
 </div>
 </div>
 <p>For many quantities – the B10 life, a median, a ratio – there is no simple formula for the interval. The bootstrap solves this by simulation:</p>
@@ -960,7 +965,7 @@ Definition: Bootstrap
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Draw <span class="math inline">\(B\)</span> (e.g.&nbsp;10,000) samples of size <span class="math inline">\(n\)</span> <strong>with replacement</strong> from the observed data and compute the statistic of interest for each. The distribution of these bootstrap replicates approximates the sampling distribution of the statistic; its 2.5 % and 97.5 % quantiles give an approximate 95 % confidence interval (percentile method; SciPy uses the refined BCa method by default).</p>
+<p>Draw <span class="math inline">\(B\)</span> (e.g.&nbsp;10,000) samples of size <span class="math inline">\(n\)</span> <strong>with replacement</strong> from the observed data and compute the statistic of interest for each. The distribution of these bootstrap replicates approximates the sampling distribution of the statistic – the bootstrap simulates the repetitions that define the standard error, and the standard deviation of the replicates estimates it; its 2.5 % and 97.5 % quantiles give an approximate 95 % confidence interval (percentile method; by default, SciPy uses a refined variant that corrects the limits slightly for skewness).</p>
 </div>
 </div>
 <div id="53d5eb38" class="cell" data-execution_count="8">
@@ -985,7 +990,7 @@ bootstrap interval: [198.  216.3]</code></pre>
 </div>
 <p><strong>Discussion.</strong> For the mean of 100 observations both methods give almost the same interval – the central limit theorem makes the t-interval reliable here. The bootstrap becomes valuable for statistics without a known formula (Exercise 2) and for small or strongly skewed samples.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -994,7 +999,7 @@ Extension: the bootstrap by hand
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>stats.bootstrap</code> hides a simple loop. Written by hand, with the percentile method from the definition above:</p>
 <div id="3ffabde9" class="cell" data-execution_count="9">
@@ -1023,13 +1028,33 @@ Spread of the 9999 means: 4.60 cycles, standard error s/sqrt(n): 4.63 cycles</co
 </div>
 </div>
 </div>
-<p>The histogram shows the bootstrap distribution of the mean. It is bell-shaped, as the central limit theorem predicts, and its standard deviation matches the standard error <span class="math inline">\(s/\sqrt n\)</span>. The interval practically agrees with the t-interval; <code>stats.bootstrap</code> with <code>method="percentile"</code> gives practically the same result, its default BCa method shifts the limits slightly.</p>
+<p>The histogram shows the bootstrap distribution of the mean. It is bell-shaped, as the central limit theorem predicts, and its standard deviation matches the standard error <span class="math inline">\(s/\sqrt n\)</span>. The interval practically agrees with the t-interval; <code>stats.bootstrap</code> with <code>method="percentile"</code> gives practically the same result, its default refined variant shifts the limits slightly.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="back-to-the-decision" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">3.5</span> Back to the decision</h2>
+<section id="sec-bayes" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="sec-bayes"><span class="header-section-number">3.5</span> Bayes’ theorem: updating a probability</h2>
+<p>New information changes probabilities. A <strong>conditional probability</strong> <span class="math inline">\(P(F \mid A)\)</span> is the probability of an event <span class="math inline">\(F\)</span> when we know that the event <span class="math inline">\(A\)</span> has occurred. Bayes’ theorem computes it from the reverse conditional probability <span class="math inline">\(P(A \mid F)\)</span>:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Theorem: Bayes’ theorem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For events <span class="math inline">\(F\)</span> and <span class="math inline">\(A\)</span> with <span class="math inline">\(P(A) &gt; 0\)</span>: <span class="math display">\[\begin{aligned} P(F \mid A) &amp;= \frac{P(A \mid F)\,P(F)}{P(A)} \\ &amp;= \frac{P(A \mid F)\,P(F)}{P(A \mid F)\,P(F) + P(A \mid \bar F)\,P(\bar F)}. \end{aligned}\]</span> <span class="math inline">\(\bar F\)</span> is the event “not <span class="math inline">\(F\)</span>”. <span class="math inline">\(P(F)\)</span> is the <strong>prior</strong> probability – before we know about <span class="math inline">\(A\)</span>. <span class="math inline">\(P(A \mid F)\)</span> is the <strong>likelihood</strong> of the observation <span class="math inline">\(A\)</span> if <span class="math inline">\(F\)</span> holds – the same idea as the likelihood in maximum likelihood estimation. <span class="math inline">\(P(F \mid A)\)</span> is the <strong>posterior</strong> probability after observing <span class="math inline">\(A\)</span>. The denominator <span class="math inline">\(P(A)\)</span> only makes the probabilities add up to 1; in short: posterior ∝ likelihood × prior.</p>
+</div>
+</div>
+<p>Example: besides the planned overhaul, the airline monitors its engines with a health monitoring system. It raises an alarm <span class="math inline">\(A\)</span> for a developing fault <span class="math inline">\(F\)</span> with probability <span class="math inline">\(P(A \mid F) = 0.95\)</span>, and a false alarm for a healthy engine with probability <span class="math inline">\(P(A \mid \bar F) = 0.05\)</span>. Only 1 % of the monitored engines actually have such a fault. If the system raises an alarm, how likely is a real fault?</p>
+<p><span class="math display">\[P(F \mid A) = \frac{0.95 \cdot 0.01}{0.95 \cdot 0.01 + 0.05 \cdot 0.99} \approx 0.16\]</span></p>
+<p>Five out of six alarms are false – not because the system is bad, but because faults are rare. Chapter 7 returns to this <em>base rate effect</em> for classifiers. The same rule holds for probability densities instead of events: the posterior density is proportional to likelihood × prior density. Chapter 6 uses it to predict with Gaussian processes.</p>
+</section>
+<section id="back-to-the-decision" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">3.6</span> Back to the decision</h2>
 <p>The requirement “at most 10 % failures with 95 % confidence” has two parts. The 10 % defines the B10 life. The 95 % confidence means that we must not use the point estimate of B10 but a value that is, with 95 % confidence, <em>below</em> the true B10 – the lower bound of a one-sided 95 % confidence interval, which we obtain with the bootstrap, using the three-parameter Weibull model chosen above. And preventive overhaul only makes sense if the failure rate increases with age, i.e.&nbsp;<span class="math inline">\(\beta &gt; 1\)</span>.</p>
 <div id="76374339" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> b10_of(x):</span>
@@ -1078,97 +1103,8 @@ Recommendation to the fleet manager
 </div>
 </div>
 </section>
-<section id="bayes-theorem-how-much-should-we-trust-an-alarm" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="bayes-theorem-how-much-should-we-trust-an-alarm"><span class="header-section-number">3.6</span> Bayes’ theorem: how much should we trust an alarm?</h2>
-<p>So far we have treated probabilities as long-run frequencies. <strong>Conditional probabilities</strong> describe how the probability of an event changes when we know that another event has occurred.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Theorem: Bayes’ theorem
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For events <span class="math inline">\(F\)</span> and <span class="math inline">\(A\)</span> with <span class="math inline">\(P(A) &gt; 0\)</span>: <span class="math display">\[\begin{aligned} P(F \mid A) &amp;= \frac{P(A \mid F)\,P(F)}{P(A)} \\ &amp;= \frac{P(A \mid F)\,P(F)}{P(A \mid F)\,P(F) + P(A \mid \bar F)\,P(\bar F)}. \end{aligned}\]</span> <span class="math inline">\(P(F)\)</span> is the <strong>prior</strong> probability, <span class="math inline">\(P(F \mid A)\)</span> the <strong>posterior</strong> probability after observing <span class="math inline">\(A\)</span>.</p>
-</div>
-</div>
-<p>Example: besides the planned overhaul, the airline monitors its engines continuously. A health monitoring system evaluates sensor data such as those in C-MAPSS (Chapter 12 builds such a model) and raises an alarm <span class="math inline">\(A\)</span> when a fault seems to develop. It detects a developing fault <span class="math inline">\(F\)</span> with probability <span class="math inline">\(P(A \mid F) = 0.95\)</span> (<em>sensitivity</em>) and raises a false alarm on a healthy engine with probability <span class="math inline">\(P(A \mid \bar F) = 0.05\)</span>. Only 1 % of the monitored engines actually have such a fault. If the system raises an alarm, how likely is a real fault?</p>
-<p><span class="math display">\[P(F \mid A) = \frac{0.95 \cdot 0.01}{0.95 \cdot 0.01 + 0.05 \cdot 0.99} \approx 0.16\]</span></p>
-<p>Five out of six alarms are false – not because the system is bad, but because faults are rare.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Pitfall: base rate neglect
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Intuition tends to confuse <span class="math inline">\(P(A \mid F)\)</span> (“the system detects 95 % of all faults”) with <span class="math inline">\(P(F \mid A)\)</span> (“95 % of all alarms are real”). When the base rate <span class="math inline">\(P(F)\)</span> is small, the two differ dramatically. This effect returns in Chapter 7 as the <em>precision</em> of a classifier.</p>
-</div>
-</div>
-<div id="c29d325f" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sens, false_alarm <span class="op">=</span> <span class="fl">0.95</span>, <span class="fl">0.05</span>                     <span class="co"># P(A | F) and P(A | no F) of the monitoring system</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>prevalence <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="dv">200</span>)            <span class="co"># share of faulty engines P(F), from 0.01 % to 50 %</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>posterior <span class="op">=</span> sens <span class="op">*</span> prevalence <span class="op">/</span> (sens <span class="op">*</span> prevalence <span class="op">+</span> false_alarm <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> prevalence))  <span class="co"># Bayes' theorem</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plt.semilogx(prevalence, posterior)                <span class="co"># logarithmic x-axis</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="fl">0.01</span>, ls<span class="op">=</span><span class="st">":"</span>, c<span class="op">=</span><span class="st">"k"</span>)                   <span class="co"># the example above: 1 % faulty engines</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Share of faulty engines P(F)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"P(fault | alarm)"</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Same sensor, very different meaning of an alarm"</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03-uncertainty_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="extension-bayesian-estimation-with-prior-knowledge" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="extension-bayesian-estimation-with-prior-knowledge"><span class="header-section-number">3.7</span> Extension: Bayesian estimation with prior knowledge</h2>
-<p><em>Extension – optional material, not required for the exam.</em></p>
-<p>Classical (frequentist) statistics uses only the current data. Bayesian statistics treats an unknown parameter <span class="math inline">\(\theta\)</span> itself as uncertain, describes the knowledge before the experiment by a <strong>prior distribution</strong> and updates it with the data to a <strong>posterior distribution</strong>:</p>
-<p><span class="math display">\[p(\theta \mid \text{data}) \propto p(\text{data} \mid \theta)\; p(\theta).\]</span></p>
-<p>This is attractive in engineering, where tests are expensive but experience from predecessor products exists. Example: a new product variant is tested, 3 of 50 parts are defective. From the predecessor product we know a defect rate of about 2 %.</p>
-<p>For a proportion, the <strong>beta distribution</strong> is a convenient prior: with prior <span class="math inline">\(\text{Beta}(a, b)\)</span> and <span class="math inline">\(k\)</span> defects in <span class="math inline">\(n\)</span> parts, the posterior is again a beta distribution, <span class="math inline">\(\text{Beta}(a + k,\; b + n - k)\)</span>. (We write <span class="math inline">\(a, b\)</span> for the beta parameters to avoid confusion with the Weibull shape <span class="math inline">\(\beta\)</span>.) The prior mean is <span class="math inline">\(a/(a+b)\)</span>, so <span class="math inline">\(\text{Beta}(2, 98)\)</span> has mean <span class="math inline">\(2/(2+98) = 2\,\%\)</span> and carries roughly the weight of 100 previously inspected parts.</p>
-<div id="ca496dba" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>defects, parts <span class="op">=</span> <span class="dv">3</span>, <span class="dv">50</span>                             <span class="co"># new tests: k = 3 defects in n = 50 parts</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>a0, b0 <span class="op">=</span> <span class="dv">2</span>, <span class="dv">98</span>                                     <span class="co"># prior from the predecessor product</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>a1, b1 <span class="op">=</span> a0 <span class="op">+</span> defects, b0 <span class="op">+</span> parts <span class="op">-</span> defects        <span class="co"># posterior Beta(a + k, b + n - k)</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>rate <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">0.20</span>, <span class="dv">500</span>)                   <span class="co"># possible defect rates (x-axis)</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.plot(rate, stats.beta.pdf(rate, a0, b0), label<span class="op">=</span><span class="st">"prior (predecessor)"</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>plt.plot(rate, stats.beta.pdf(rate, <span class="dv">1</span> <span class="op">+</span> defects, <span class="dv">1</span> <span class="op">+</span> parts <span class="op">-</span> defects),   <span class="co"># flat prior Beta(1, 1):</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">"data only (flat prior)"</span>)                                  <span class="co"># only the data count</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.plot(rate, stats.beta.pdf(rate, a1, b1), label<span class="op">=</span><span class="st">"posterior"</span>)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Defect rate"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Density"</span>)<span class="op">;</span> plt.legend()</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>ci_freq <span class="op">=</span> stats.binomtest(defects, parts).proportion_ci(<span class="fl">0.95</span>)    <span class="co"># classical (exact) confidence interval</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Frequentist: </span><span class="sc">{</span>defects <span class="op">/</span> parts<span class="sc">:.1%}</span><span class="ss">, 95 % CI [</span><span class="sc">{</span>ci_freq<span class="sc">.</span>low<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>ci_freq<span class="sc">.</span>high<span class="sc">:.1%}</span><span class="ss">]"</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>lo, hi <span class="op">=</span> stats.beta.interval(<span class="fl">0.95</span>, a1, b1)                       <span class="co"># central 95 % of the posterior</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Bayesian:    </span><span class="sc">{</span>a1 <span class="op">/</span> (a1 <span class="op">+</span> b1)<span class="sc">:.1%}</span><span class="ss">, 95 % credible interval [</span><span class="sc">{</span>lo<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>hi<span class="sc">:.1%}</span><span class="ss">]"</span>)  <span class="co"># posterior mean a/(a+b)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03-uncertainty_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Frequentist: 6.0%, 95 % CI [1.3%, 16.5%]
-Bayesian:    3.3%, 95 % credible interval [1.1%, 6.7%]</code></pre>
-</div>
-</div>
-<p><strong>Discussion.</strong> The posterior lies between prior and data: the new tests suggest a higher defect rate than the predecessor, but 50 parts are not enough to overrule the experience from 100 parts completely. The Bayesian <strong>credible interval</strong> has the intuitive interpretation that the classical confidence interval lacks: given prior and data, the defect rate lies in this interval with 95 % probability. The price is that the result depends on the prior – which must therefore be justified and documented. Whether the predecessor is really comparable is an engineering judgement, not a statistical one.</p>
-</section>
-<section id="summary" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.8</span> Summary</h2>
+<section id="summary" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.7</span> Summary</h2>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1180,30 +1116,29 @@ Key takeaways
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Distributions are modelling choices; physics (sum, product, weakest link) guides the choice, probability plots and the AIC check it – and the choice can change the decision.</li>
+<li>Every model rests on assumptions: a distribution is a modelling choice; physics (sum, product, weakest link) guides it, probability plots and the AIC check it – and the choice can change the decision.</li>
 <li>The Weibull shape parameter distinguishes early failures, random failures and wear-out – and decides whether preventive maintenance makes sense.</li>
-<li>Confidence intervals quantify the uncertainty of an estimate; the bootstrap provides them for almost any statistic.</li>
-<li>Bayes’ theorem: with rare events, even good detectors produce mostly false alarms.</li>
+<li>Every estimate has an uncertainty: confidence intervals quantify it, and the bootstrap provides them for almost any statistic.</li>
+<li>Bayes’ theorem updates a prior probability with new information: posterior ∝ likelihood × prior.</li>
 </ul>
 </div>
 </div>
 </section>
-<section id="exercises" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.9</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.8</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
-<li>Repeat the decision of <em>Back to the decision</em> with the lognormal model: compute its B10 life and the 95 % lower confidence bound. How much does the overhaul interval depend on the choice between the two well-fitting models?</li>
-<li>Use the bootstrap to compute a 95 % confidence interval for the B10 life. Why is it wider (relative to the estimate) than the interval for the mean?</li>
-<li>How does the width of the confidence interval of the mean change if only 20 engines are available? Simulate it by drawing many random subsamples of 20 engines.</li>
-<li>Interpret the shape parameter for the maintenance strategy: does preventive replacement make sense? At which age would you replace an engine if at most 5 % of the engines may fail before replacement?</li>
-<li>The fault share in a well-maintained fleet is only 0.1 %. How reliable is an alarm of the monitoring system above? Which false alarm rate would be needed to reach <span class="math inline">\(P(F \mid A) = 50\,\%\)</span>?</li>
-<li>(Extension) Repeat the defect-rate analysis with a weak prior Beta(0.2, 9.8) and a strong prior Beta(20, 980). When does the prior dominate, when the data?</li>
+<li>Repeat the decision of <em>Back to the decision</em> with the lognormal model: compute its B10 life and the 95 % lower confidence bound. How much does the overhaul interval depend on the choice between the two well-fitting models? <em>Useful:</em> <code>stats.lognorm.fit(x, floc=0)</code> returns shape, location and scale; <code>stats.lognorm.ppf(0.10, ...)</code> gives the 10 % quantile; bootstrap settings as in <em>Back to the decision</em>.</li>
+<li>Use the bootstrap to compute a 95 % confidence interval for the B10 life. Why is it wider (relative to the estimate) than the interval for the mean? <em>Useful:</em> <code>stats.bootstrap</code> with the function <code>b10_of</code> from <em>Back to the decision</em>.</li>
+<li>How does the width of the confidence interval of the mean change if only 20 engines are available? Simulate it by drawing many random subsamples of 20 engines. <em>Useful:</em> <code>rng.choice(x, size=20, replace=False)</code> draws 20 different engines; <code>stats.t.interval(0.95, df=19, loc=x_bar, scale=se)</code> returns the limits of the t-interval; <code>stats.sem(x)</code> computes the standard error <span class="math inline">\(s/\sqrt n\)</span>.</li>
+<li>Interpret the shape parameter for the maintenance strategy: does preventive replacement make sense? At which age would you replace an engine if at most 5 % of the engines may fail before replacement? <em>Useful:</em> <code>stats.weibull_min.ppf(0.05, beta3, loc=t0, scale=eta3)</code> with the parameters of the three-parameter model.</li>
+<li>An ultrasonic test detects 90 % of the cracked parts and flags 2 % of the intact parts by mistake; 5 % of the parts are cracked. What is the probability that a flagged part is cracked – and that a part that was <em>not</em> flagged is cracked? What do the two results mean for the handling of flagged and unflagged parts?</li>
 </ol>
 </div>
-<section id="solutions" class="level3" data-number="3.9.1">
-<h3 data-number="3.9.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">3.9.1</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">3.8.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1212,18 +1147,18 @@ Solution to Exercise 1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="1ba7d7a2" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> b10_lognormal(x):</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""B10 life of a lognormal distribution fitted to the lifetimes x."""</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    s, loc, scale <span class="op">=</span> stats.lognorm.fit(x, floc<span class="op">=</span><span class="dv">0</span>)                 <span class="co"># two-parameter lognormal (loc fixed at 0)</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> stats.lognorm.ppf(<span class="fl">0.10</span>, s, loc<span class="op">=</span>loc, scale<span class="op">=</span>scale)      <span class="co"># 10 % quantile of the fitted model</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>boot_ln <span class="op">=</span> stats.bootstrap((lifetimes.values,), b10_lognormal, n_resamples<span class="op">=</span><span class="dv">1000</span>, confidence_level<span class="op">=</span><span class="fl">0.90</span>,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                          method<span class="op">=</span><span class="st">"percentile"</span>, rng<span class="op">=</span><span class="dv">1</span>)            <span class="co"># same settings as for the Weibull model</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"lognormal:   B10 </span><span class="sc">{</span>b10_lognormal(lifetimes.values)<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % lower bound </span><span class="sc">{</span>boot_ln<span class="sc">.</span>confidence_interval<span class="sc">.</span>low<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"3-p Weibull: B10 </span><span class="sc">{</span>b10_3p<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % lower bound </span><span class="sc">{</span>b10_lower<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1ba7d7a2" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> b10_lognormal(x):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""B10 life of a lognormal distribution fitted to the lifetimes x."""</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    s, loc, scale <span class="op">=</span> stats.lognorm.fit(x, floc<span class="op">=</span><span class="dv">0</span>)                 <span class="co"># two-parameter lognormal (loc fixed at 0)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> stats.lognorm.ppf(<span class="fl">0.10</span>, s, loc<span class="op">=</span>loc, scale<span class="op">=</span>scale)      <span class="co"># 10 % quantile of the fitted model</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>boot_ln <span class="op">=</span> stats.bootstrap((lifetimes.values,), b10_lognormal, n_resamples<span class="op">=</span><span class="dv">1000</span>, confidence_level<span class="op">=</span><span class="fl">0.90</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                          method<span class="op">=</span><span class="st">"percentile"</span>, rng<span class="op">=</span><span class="dv">1</span>)            <span class="co"># same settings as for the Weibull model</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"lognormal:   B10 </span><span class="sc">{</span>b10_lognormal(lifetimes.values)<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % lower bound </span><span class="sc">{</span>boot_ln<span class="sc">.</span>confidence_interval<span class="sc">.</span>low<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"3-p Weibull: B10 </span><span class="sc">{</span>b10_3p<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % lower bound </span><span class="sc">{</span>b10_lower<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>lognormal:   B10 154 cycles, 95 % lower bound 148 cycles
 3-p Weibull: B10 152 cycles, 95 % lower bound 148 cycles</code></pre>
@@ -1234,7 +1169,7 @@ Solution to Exercise 1
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1243,15 +1178,15 @@ Solution to Exercise 2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="32d8491a" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b10_of (three-parameter Weibull) is defined in "Back to the decision"</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>boot_95 <span class="op">=</span> stats.bootstrap((lifetimes.values,), b10_of, n_resamples<span class="op">=</span><span class="dv">1000</span>,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                          method<span class="op">=</span><span class="st">"percentile"</span>, rng<span class="op">=</span><span class="dv">0</span>)            <span class="co"># two-sided 95 % interval (default level)</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>lo, hi <span class="op">=</span> boot_95.confidence_interval                             <span class="co"># its limits</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 = </span><span class="sc">{</span>b10_3p<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % CI [</span><span class="sc">{</span>lo<span class="sc">:.0f}</span><span class="ss">, </span><span class="sc">{</span>hi<span class="sc">:.0f}</span><span class="ss">]  (relative width </span><span class="sc">{</span>(hi <span class="op">-</span> lo) <span class="op">/</span> b10_3p<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean: relative width </span><span class="sc">{</span>(ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>]) <span class="op">/</span> lifetimes<span class="sc">.</span>mean()<span class="sc">:.0%}</span><span class="ss">"</span>)   <span class="co"># width / estimate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="32d8491a" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># b10_of (three-parameter Weibull) is defined in "Back to the decision"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>boot_95 <span class="op">=</span> stats.bootstrap((lifetimes.values,), b10_of, n_resamples<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                          method<span class="op">=</span><span class="st">"percentile"</span>, rng<span class="op">=</span><span class="dv">0</span>)            <span class="co"># two-sided 95 % interval (default level)</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>lo, hi <span class="op">=</span> boot_95.confidence_interval                             <span class="co"># its limits</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"B10 = </span><span class="sc">{</span>b10_3p<span class="sc">:.0f}</span><span class="ss"> cycles, 95 % CI [</span><span class="sc">{</span>lo<span class="sc">:.0f}</span><span class="ss">, </span><span class="sc">{</span>hi<span class="sc">:.0f}</span><span class="ss">]  (relative width </span><span class="sc">{</span>(hi <span class="op">-</span> lo) <span class="op">/</span> b10_3p<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean: relative width </span><span class="sc">{</span>(ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>]) <span class="op">/</span> lifetimes<span class="sc">.</span>mean()<span class="sc">:.0%}</span><span class="ss">"</span>)   <span class="co"># width / estimate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>B10 = 152 cycles, 95 % CI [147, 164]  (relative width 11%)
 Mean: relative width 9%</code></pre>
@@ -1262,7 +1197,7 @@ Mean: relative width 9%</code></pre>
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1271,17 +1206,17 @@ Solution to Exercise 3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="f6636af7" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)                      <span class="co"># random generator with fixed seed</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>widths <span class="op">=</span> []                                         <span class="co"># interval widths of all subsamples</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2000</span>):                               <span class="co"># 2000 random fleets of 20 engines</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> rng.choice(lifetimes.values, size<span class="op">=</span><span class="dv">20</span>, replace<span class="op">=</span><span class="va">False</span>)   <span class="co"># 20 different engines</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    lo_, hi_ <span class="op">=</span> stats.t.interval(<span class="fl">0.95</span>, df<span class="op">=</span><span class="dv">19</span>, loc<span class="op">=</span>sub.mean(), scale<span class="op">=</span>stats.sem(sub))  <span class="co"># sem = s / sqrt(n)</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    widths.append(hi_ <span class="op">-</span> lo_)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = 100: width </span><span class="sc">{</span>ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = 20:  mean width </span><span class="sc">{</span>np<span class="sc">.</span>mean(widths)<span class="sc">:.1f}</span><span class="ss"> cycles (ratio </span><span class="sc">{</span>np<span class="sc">.</span>mean(widths) <span class="op">/</span> (ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>])<span class="sc">:.2f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f6636af7" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)                      <span class="co"># random generator with fixed seed</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>widths <span class="op">=</span> []                                         <span class="co"># interval widths of all subsamples</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2000</span>):                               <span class="co"># 2000 random fleets of 20 engines</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> rng.choice(lifetimes.values, size<span class="op">=</span><span class="dv">20</span>, replace<span class="op">=</span><span class="va">False</span>)   <span class="co"># 20 different engines</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    lo_, hi_ <span class="op">=</span> stats.t.interval(<span class="fl">0.95</span>, df<span class="op">=</span><span class="dv">19</span>, loc<span class="op">=</span>sub.mean(), scale<span class="op">=</span>stats.sem(sub))  <span class="co"># sem = s / sqrt(n)</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    widths.append(hi_ <span class="op">-</span> lo_)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = 100: width </span><span class="sc">{</span>ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss"> cycles"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"n = 20:  mean width </span><span class="sc">{</span>np<span class="sc">.</span>mean(widths)<span class="sc">:.1f}</span><span class="ss"> cycles (ratio </span><span class="sc">{</span>np<span class="sc">.</span>mean(widths) <span class="op">/</span> (ci_t[<span class="dv">1</span>] <span class="op">-</span> ci_t[<span class="dv">0</span>])<span class="sc">:.2f}</span><span class="ss">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>n = 100: width 18.4 cycles
 n = 20:  mean width 42.6 cycles (ratio 2.32)</code></pre>
@@ -1292,7 +1227,7 @@ n = 20:  mean width 42.6 cycles (ratio 2.32)</code></pre>
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1301,11 +1236,11 @@ Solution to Exercise 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="5eb7fd5c" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>t05 <span class="op">=</span> stats.weibull_min.ppf(<span class="fl">0.05</span>, beta3, loc<span class="op">=</span>t0, scale<span class="op">=</span>eta3)   <span class="co"># 5 % quantile of the chosen model</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"beta = </span><span class="sc">{</span>beta3<span class="sc">:.2f}</span><span class="ss"> &gt; 1 -&gt; wear-out; replacement age for 5 % failures: </span><span class="sc">{</span>t05<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5eb7fd5c" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>t05 <span class="op">=</span> stats.weibull_min.ppf(<span class="fl">0.05</span>, beta3, loc<span class="op">=</span>t0, scale<span class="op">=</span>eta3)   <span class="co"># 5 % quantile of the chosen model</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"beta = </span><span class="sc">{</span>beta3<span class="sc">:.2f}</span><span class="ss"> &gt; 1 -&gt; wear-out; replacement age for 5 % failures: </span><span class="sc">{</span>t05<span class="sc">:.0f}</span><span class="ss"> cycles"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>beta = 1.83 &gt; 1 -&gt; wear-out; replacement age for 5 % failures: 143 cycles</code></pre>
 </div>
@@ -1315,7 +1250,7 @@ Solution to Exercise 4
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1324,36 +1259,9 @@ Solution to Exercise 5
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>With <span class="math inline">\(P(F) = 0.001\)</span>: <span class="math display">\[P(F \mid A) = \frac{0.95 \cdot 0.001}{0.95 \cdot 0.001 + 0.05 \cdot 0.999} \approx 0.019,\]</span> i.e.&nbsp;only about 2 % of the alarms are real. For <span class="math inline">\(P(F \mid A) = 0.5\)</span> we need <span class="math inline">\(0.95 \cdot 0.001 = q \cdot 0.999\)</span>, where <span class="math inline">\(q = P(A \mid \bar F)\)</span> is the false alarm rate, so <span class="math inline">\(q \approx 0.00095\)</span> – roughly one false alarm per thousand healthy engines. The better the fleet, the more specific the monitoring must be.</p>
-</div>
-</div>
-</div>
-<div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution to Exercise 6
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div id="b050c42b" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (a, b) <span class="kw">in</span> {<span class="st">"weak"</span>: (<span class="fl">0.2</span>, <span class="fl">9.8</span>), <span class="st">"medium"</span>: (<span class="dv">2</span>, <span class="dv">98</span>), <span class="st">"strong"</span>: (<span class="dv">20</span>, <span class="dv">980</span>)}.items():  <span class="co"># all with mean 2 %</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> stats.beta(a <span class="op">+</span> defects, b <span class="op">+</span> parts <span class="op">-</span> defects)   <span class="co"># posterior for this prior</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    lo_, hi_ <span class="op">=</span> post.interval(<span class="fl">0.95</span>)                        <span class="co"># central 95 % credible interval</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:6s}</span><span class="ss"> prior: posterior mean </span><span class="sc">{</span>post<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">, 95 % credible interval [</span><span class="sc">{</span>lo_<span class="sc">:.1%}</span><span class="ss">, </span><span class="sc">{</span>hi_<span class="sc">:.1%}</span><span class="ss">]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>weak   prior: posterior mean 5.3%, 95 % credible interval [1.2%, 12.2%]
-medium prior: posterior mean 3.3%, 95 % credible interval [1.1%, 6.7%]
-strong prior: posterior mean 2.2%, 95 % credible interval [1.4%, 3.2%]</code></pre>
-</div>
-</div>
-<p>All three priors have a mean of 2 % but different weights (<span class="math inline">\(a + b\)</span> = 10, 100, 1000 “virtual parts”). The weak prior is dominated by the 50 real parts: the posterior mean is close to the observed 6 %. The strong prior hardly moves – 50 parts are not enough to overrule 1,000 virtual ones. Rule of thumb: the data dominate once <span class="math inline">\(n\)</span> is large compared with <span class="math inline">\(a + b\)</span>.</p>
+<p>With <span class="math inline">\(F\)</span> = “cracked” and <span class="math inline">\(A\)</span> = “flagged”: <span class="math inline">\(P(F) = 0.05\)</span>, <span class="math inline">\(P(A \mid F) = 0.90\)</span>, <span class="math inline">\(P(A \mid \bar F) = 0.02\)</span>. <span class="math display">\[P(F \mid A) = \frac{0.90 \cdot 0.05}{0.90 \cdot 0.05 + 0.02 \cdot 0.95} = \frac{0.045}{0.064} \approx 0.70.\]</span> For a part that was not flagged, the probabilities of <em>no</em> alarm enter: <span class="math inline">\(P(\bar A \mid F) = 0.10\)</span> and <span class="math inline">\(P(\bar A \mid \bar F) = 0.98\)</span>: <span class="math display">\[P(F \mid \bar A) = \frac{0.10 \cdot 0.05}{0.10 \cdot 0.05 + 0.98 \cdot 0.95} = \frac{0.005}{0.936} \approx 0.005.\]</span> A flagged part is cracked with a probability of about 70 % – it should be inspected again rather than scrapped automatically, because 3 of 10 flagged parts are intact. An unflagged part is cracked with only 0.5 %, ten times less than before the test, but not zero: about 5 of 1,000 unflagged parts are still cracked. Whether that is acceptable depends on the consequences of a crack.</p>
 </div>
 </div>
 </div>

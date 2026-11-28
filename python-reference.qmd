@@ -4,6 +4,17 @@ This appendix collects the Python functions used in this script, ordered by **ta
 
 Notation: `df` is a DataFrame (a table), `s` a single column (a Series), `m` a mask of truth values. `np`, `pd`, `plt` and `sns` are the usual short names for NumPy, pandas, Matplotlib and seaborn (Chapter 1).
 
+## Plain Python used throughout
+
+| Construct | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `f"{x:.2f}"` | f-string: inserts values into a text. A format code after the colon controls the display: `.2f` two decimals, `+.1f` always with sign, `.1%` as a percentage, `,` thousands separator, `8.2f` or `8s` a width of 8 characters (aligned columns) | `print(f"RMSE = {rmse:.1f} MW")` | Ch. 0 and all chapters |
+| `[expr for x in values]` | list comprehension: builds a list in one line, short for a loop with `append` | `[f"T{i}" for i in range(1, 10)]` | Ch. 0, 3, 4 |
+| `rows.append({...})`, `pd.DataFrame(rows)` | collect results in a loop – one dictionary per row – and turn them into a table; the keys become the column names | see *Getting Started with pandas* | Ch. 0, 1, 2, 5 |
+| `for key, value in d.items():` | loop over the entries of a dictionary | `for name, m in missing.items():` | Ch. 2 |
+| `" + ".join(texts)` | joins texts with a separator | `" + ".join(["a", "b"])` gives `"a + b"` | Ch. 5 |
+| `{key: expr for x in values}` | dictionary comprehension: like a list comprehension, but builds a dictionary | `{s: read_sensor(z, f"{s}.txt") for s in ["TS1", "TS2"]}` | Ch. 9 |
+
 ## Getting an overview
 
 | Function | What it does | Example | Used in |
@@ -22,7 +33,7 @@ Notation: `df` is a DataFrame (a table), `s` a single column (a Series), `m` a m
 | Function | What it does | Example | Used in |
 | --- | --- | --- | --- |
 | `df.isna()` | `True` wherever a value is missing (`NaN`, `None`, `NaT`) | `df.isna().sum()` counts missing values per column | Ch. 2 |
-| `df.dropna()` | removes rows with missing values | `s.diff().dropna()` | Ch. 2 |
+| `df.dropna()` | removes rows with missing values | `df.dropna()` | Ch. 11 |
 | `df.fillna(value)` | replaces missing values | `X.fillna(X.median())` – median imputation | Ch. 2 |
 | `na_values=[...]` in `pd.read_csv` | treats codes such as `-999` as missing while reading | `pd.read_csv(f, na_values=[-999])` | Ch. 2 |
 
@@ -84,11 +95,12 @@ df[df["machine_id"] == "M4" & df["shift"] == "night"]       # error: & binds bef
 | Function | What it does | Example | Used in |
 | --- | --- | --- | --- |
 | `s.mask(m)` | sets the values where the mask `m` is `True` to `NaN` | `df["RH_1"].mask(bad)` – remove wrong values, keep the rows | Ch. 2 |
-| `s.clip(lower, upper)` | caps values at fixed limits | `s.clip(lower=-40, upper=60)` | Ch. 2 |
+| `s.clip(lower, upper)` | caps values at fixed limits | `rul.clip(upper=125)` | Ch. 12 |
 | `np.where(m, a, b)` | element-wise "if – then – else": `a` where `m` is `True`, otherwise `b` | `np.where(m, estimate, temp)` | Ch. 2 |
 | `s.astype(type)` | converts the data type | `s.astype(str)` | Ch. 2 |
 | `s.map({...})` | replaces values according to a dictionary, e.g. codes by names | `y.map({-1: "pass", 1: "fail"})` | Ch. 2 |
-| `pd.to_datetime(s, format=...)` | turns text into time stamps; always give the format explicitly | `pd.to_datetime(s, format="%Y%m%d%H")` | Ch. 2 |
+| `pd.to_datetime(s, format=...)` | turns text into time stamps; always give the format explicitly. If a column mixes several formats: `format="mixed", dayfirst=True`, and check the result | `pd.to_datetime(s, format="%Y%m%d%H")` | Ch. 2 |
+| `pd.date_range(start, end, freq=...)` | all time stamps of a regular grid | `pd.date_range(t0, t1, freq="10min")` | Ch. 0, 2 |
 | `df.set_index("a")`, `df.sort_index()` | uses a column as row index, e.g. the time; sorts by the index | `df.set_index("time").sort_index()` | Ch. 2 |
 | `df.rename(columns={...})` | gives columns new names | `df.rename(columns={"TT_TU": "temp_C"})` | Ch. 2 |
 | `s.str.strip()` | removes blanks at the beginning and end of text | `df.columns.str.strip()` | Ch. 2 |
@@ -152,7 +164,7 @@ Formats you will meet in practice:
 | `.agg([...])` | several summaries at once | `.agg(["min", "mean", "max"])` | Ch. 2 |
 | `s.resample("D")` | groups a time series into consecutive intervals (`"h"` hour, `"D"` day, …); needs time stamps as index | `s.resample("D").mean()` | Ch. 2 |
 | `s.rolling("1D")` | window that slides along the time axis (`"1D"` = one day; `rolling(144)` = 144 values), followed by a summary such as `.mean()` | `s.rolling("1D").mean()` – 24 h rolling mean | Ch. 2 |
-| `s.diff()`, `s.shift()`, `s.cumsum()` | difference to the previous value, shifted series, running sum | `s.index.to_series().diff()` – time steps | Ch. 2 |
+| `s.shift(k)` | the series shifted by `k` steps, e.g. the value of the day before | `daily.shift(7)` – the same weekday one week earlier | Ch. 11 |
 
 ::: {.callout-tip}
 ## Method chaining – and why pandas makes it possible
@@ -193,7 +205,7 @@ Chains are compact; separate steps are easier to check. A good habit: build a ch
 | `pd.concat([a, b], axis=1)` | puts tables side by side (`axis=0`: one below the other) | `pd.concat([features, targets], axis=1)` | Ch. 1 |
 | `df.merge(other, on="key")` | combines two tables via a key column – like SQL `JOIN` | `parts.merge(orders, on="order_id")` | SQL app. |
 | `df.pivot(index=..., columns=..., values=...)` | long table → wide table | `rates.pivot(index="machine_id", columns="shift", values="scrap_rate")` | Ch. 2 |
-| `.unstack()` | moves an index level into the columns, e.g. after a `groupby` with two keys | `df.groupby([a, b])["x"].mean().unstack()` | Ch. 2 |
+| `df.pivot_table(values=..., index=..., columns=..., aggfunc="mean")` | groups by two keys and arranges one summary per combination as a table (rows × columns) | `energy.pivot_table(values="Appliances", index=hour, columns=weekday, aggfunc="mean")` | Ch. 2 |
 | `df.melt(...)` | wide table → long (tidy) table | `df.melt(id_vars="time")` | Ch. 1 (text) |
 
 ## Reading data
@@ -211,12 +223,12 @@ Chains are compact; separate steps are easier to check. A good habit: build a ch
 | --- | --- | --- | --- |
 | `rng = np.random.default_rng(0)` | random number generator with a fixed start value: the same "random" numbers in every run | `rng = np.random.default_rng(0)` | Ch. 2 |
 | `rng.random(n)`, `rng.uniform(a, b, n)`, `rng.normal(mu, sigma, n)` | `n` random numbers: uniform in [0, 1), uniform in [a, b), normally distributed | `rng.normal(0, 15, 10_000)` | Ch. 2 |
-| `rng.integers(a, b)`, `rng.choice(values, p=...)` | random integer, random choice with given probabilities | `rng.choice(["C45", "42CrMo4"], p=[0.7, 0.3])` | SQL app. |
+| `rng.integers(a, b)`, `rng.choice(values, ...)` | random integer; random choice from `values` – `size=n` draws `n` values, `replace=False` each at most once, `p=...` with given probabilities | `rng.choice(x, size=20, replace=False)` | Ch. 3, SQL app. |
 | `np.polyfit(x, y, deg=1)` | least-squares polynomial; with `deg=1` a straight line → slope and intercept | `slope, intercept = np.polyfit(x, y, deg=1)` | Ch. 1 |
 
 ## Probability distributions
 
-SciPy offers every distribution as an object in `scipy.stats` – e.g. `stats.norm`, `stats.lognorm`, `stats.weibull_min`, `stats.t`, `stats.beta` – and all of them have the same methods. Parameters are passed as shape(s), `loc` and `scale` (Chapter 3).
+SciPy offers every distribution as an object in `scipy.stats` – e.g. `stats.norm`, `stats.lognorm`, `stats.weibull_min`, `stats.t` – and all of them have the same methods. Parameters are passed as shape(s), `loc` and `scale` (Chapter 3).
 
 | Function | What it does | Example | Used in |
 | --- | --- | --- | --- |
@@ -250,9 +262,88 @@ SciPy offers every distribution as an object in `scipy.stats` – e.g. `stats.no
 | `smf.ols("y ~ x1 + x2", data=df).fit()` | linear regression with a formula (module `statsmodels.formula.api`); functions such as `np.log(x2)` may appear in the formula | `smf.ols("strength ~ cement + np.log(age)", data=conc).fit()` | Ch. 5 |
 | `model.summary()` | the complete regression table | `print(model.summary())` | Ch. 5 |
 | `model.params`, `.pvalues`, `.rsquared`, `.resid`, `.fittedvalues` | coefficients, their p-values, $R^2$, residuals, fitted values | `model.params.round(3)` | Ch. 5 |
-| `model.get_prediction(new).summary_frame(alpha=0.05)` | prediction for new inputs with confidence interval (`mean_ci_...`) and prediction interval (`obs_ci_...`) | `model.get_prediction(new_mix).summary_frame(alpha=0.05)` | Ch. 5 |
-| `variance_inflation_factor(X.values, i)` | VIF of column `i` (module `statsmodels.stats.outliers_influence`); `X` needs a column of ones from `sm.add_constant` | `variance_inflation_factor(Xv.values, 1)` | Ch. 5 |
+| `model.get_prediction(new).summary_frame(alpha=0.05)` | prediction for new inputs (`mean`) with standard error (`mean_se`), confidence interval (`mean_ci_...`) and prediction interval (`obs_ci_...`) | `model.get_prediction(new_mix).summary_frame(alpha=0.05)` | Ch. 5 |
 | `curve_fit(f, x, y, p0=...)` | nonlinear least squares (module `scipy.optimize`); returns the parameters and their covariance matrix | `popt, pcov = curve_fit(strength_model, t, y, p0=[50, 7])` | Ch. 5 |
+| `LinearRegression().fit(X, y)` | linear regression for prediction (module `sklearn.linear_model`); `.predict(X_new)`, coefficients in `.coef_` and `.intercept_` | `LinearRegression().fit(X_train, y_train).predict(X_test)` | Ch. 6 |
+
+::: {.callout-tip}
+## Three ways to fit a straight line
+The script fits the same linear model with three tools – the purpose decides which one fits (see @sec-inference-prediction):
+
+| Tool | Returns | Use it when … | Used in |
+| --- | --- | --- | --- |
+| `np.polyfit(x, y, deg=1)` | slope and intercept only | you need a quick line with *one* input | Ch. 1, 2 |
+| `smf.ols("y ~ x1 + x2", data=df).fit()` | regression table with standard errors, confidence intervals, p-values | you want to *interpret* the model (inference) | Ch. 5 |
+| `LinearRegression()` (scikit-learn) | predictions; fits into pipelines and cross-validation | you want to *predict* and check the result on new data | Ch. 6 |
+
+scikit-learn computes the same coefficients as statsmodels, but no standard errors, confidence intervals or p-values – for inference, use statsmodels.
+:::
+
+## Machine learning with scikit-learn
+
+All models and preprocessing steps in scikit-learn share one interface: `fit(X, y)` learns from the training data, `predict(X_new)` predicts; classifiers also offer `predict_proba(X_new)`. Preprocessing steps have `fit` and `transform`, or `fit_transform` for both at once. Imports: the module is named in the first column, e.g. `from sklearn.pipeline import make_pipeline`.
+
+### Validation and model selection
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `make_pipeline(step1, ..., model)` (`sklearn.pipeline`) | chains preprocessing and model into one object; `fit` fits all steps on the training data only, so nothing leaks from the test data. `pipe[0]` is the first step, `pipe[-1]` the model | `make_pipeline(StandardScaler(), LogisticRegression(max_iter=1000))` | Ch. 6 |
+| `train_test_split(X, y, test_size=..., stratify=y, random_state=0)` (`sklearn.model_selection`) | random split into training and test data; `stratify=y` keeps the class shares equal in both parts | `X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=0)` | Ch. 7 |
+| `KFold(5, shuffle=True, random_state=0)`, `StratifiedKFold(...)` (`sklearn.model_selection`) | the folds for cross-validation; stratified: the same class shares in every fold | `cv = KFold(n_splits=5, shuffle=True, random_state=0)` | Ch. 6, 7 |
+| `cross_validate(model, X, y, cv=cv, scoring=...)`, `cross_val_score(...)` (`sklearn.model_selection`) | score of the model on each held-out fold; `cross_validate` also returns training scores with `return_train_score=True`. Errors appear as negative scores (`"neg_root_mean_squared_error"`), because scikit-learn always maximises a score | `-cross_val_score(pipe, X, y, cv=cv, scoring="neg_root_mean_squared_error").mean()` | Ch. 6, 7 |
+| `cross_val_predict(model, X, y, cv=cv)` (`sklearn.model_selection`) | for every observation, the prediction of the fold model that did not see it | `y_hat = cross_val_predict(ridge, X, y, cv=cv)` | Ch. 6 |
+| `RandomizedSearchCV(model, params, n_iter=25, cv=cv, scoring=...)` (`sklearn.model_selection`) | tunes hyperparameters: tries random combinations and evaluates each with cross-validation; results in `.best_params_`, `.best_score_`, `.best_estimator_` | see Chapter 8, Exercise 1 | Ch. 8 |
+| `np.logspace(a, b, n)` | `n` values from $10^a$ to $10^b$, evenly spaced on a logarithmic scale – candidate values for a hyperparameter | `np.logspace(-4, 3, 30)` | Ch. 6 |
+
+### Preparing the inputs
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `StandardScaler()` (`sklearn.preprocessing`) | standardises every column to mean 0 and standard deviation 1 (with the values of the training data) | `make_pipeline(StandardScaler(), RidgeCV())` | Ch. 6 |
+| `PolynomialFeatures(degree)` (`sklearn.preprocessing`) | adds all powers and products of the inputs up to the given degree | `PolynomialFeatures(3)` | Ch. 6 |
+| `SimpleImputer(strategy="median")` (`sklearn.impute`) | fills gaps with the median of the training data | `make_pipeline(SimpleImputer(strategy="median"), StandardScaler())` | Ch. 9 |
+| `VarianceThreshold(1e-8)` (`sklearn.feature_selection`) | removes (practically) constant columns | see Chapter 9 | Ch. 9 |
+| `pd.get_dummies(df, columns=[...], drop_first=True)` | turns a categorical column into 0/1 columns, one per category (without the first) | `pd.get_dummies(df, columns=["Type"], drop_first=True)` | Ch. 7 |
+
+### Models
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `RidgeCV(alphas=...)`, `LassoCV(cv=5)` (`sklearn.linear_model`) | regularised linear regression; the penalty $\lambda$ (`alpha`) is chosen by internal cross-validation; coefficients in `.coef_` | `RidgeCV(alphas=np.logspace(-4, 3, 30))` | Ch. 6 |
+| `GaussianProcessRegressor(kernel=..., normalize_y=True)` (`sklearn.gaussian_process`) | Gaussian process regression; `predict(X, return_std=True)` returns mean and standard deviation, the fitted hyperparameters are in `.kernel_`. Kernels from `sklearn.gaussian_process.kernels`: `ConstantKernel` ($\sigma_f^2$), `RBF` (length scale), `WhiteKernel` (noise) | `C(1.0) * RBF(10.0) + WhiteKernel(0.1)` | Ch. 6 |
+| `LogisticRegression(max_iter=1000)` (`sklearn.linear_model`) | logistic regression; `class_weight="balanced"` weights rare classes more | see Chapter 7 | Ch. 7 |
+| `KNeighborsClassifier(k)` (`sklearn.neighbors`) | k-nearest neighbours (standardise the inputs first) | `make_pipeline(StandardScaler(), KNeighborsClassifier(5))` | Ch. 7 |
+| `DecisionTreeClassifier(max_depth=...)`, `plot_tree(tree)` (`sklearn.tree`) | decision tree and a drawing of its splits | `DecisionTreeClassifier(max_depth=3, random_state=0)` | Ch. 7 |
+| `RandomForestClassifier(n_estimators=300)`, `HistGradientBoostingClassifier()` (`sklearn.ensemble`) | random forest and gradient boosting; `random_state=0` makes the result reproducible | `RandomForestClassifier(n_estimators=300, random_state=0)` | Ch. 8 |
+| `model.predict_proba(X)[:, 1]` | predicted probability of the second class – with classes 0/1, of class 1 | `p = logreg.predict_proba(X_test)[:, 1]` | Ch. 7 |
+
+### Evaluating classifiers
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `confusion_matrix(y_true, y_pred)` (`sklearn.metrics`) | counts of all combinations of true and predicted class; for two classes, `.ravel()` gives tn, fp, fn, tp | `tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()` | Ch. 7 |
+| `ConfusionMatrixDisplay.from_estimator(model, X, y)` (`sklearn.metrics`) | draws the confusion matrix; `normalize="true"` shows shares per true class | see Chapter 8 | Ch. 7, 8 |
+| `classification_report(y_true, y_pred)` (`sklearn.metrics`) | precision, recall and F1 per class, with averages | `print(classification_report(y_test, model.predict(X_test)))` | Ch. 7 |
+| `precision_recall_fscore_support(...)`, `recall_score(..., average=None)` (`sklearn.metrics`) | the same metrics as arrays, one value per class, for further calculations | see Chapter 8 | Ch. 8 |
+| `RocCurveDisplay.from_estimator(...)`, `PrecisionRecallDisplay.from_estimator(...)` (`sklearn.metrics`) | ROC curve and precision–recall curve | `RocCurveDisplay.from_estimator(model, X_test, y_test)` | Ch. 7 |
+| `roc_auc_score(y_true, score)` (`sklearn.metrics`) | area under the ROC curve for any score that is larger for the positive class | `roc_auc_score(y == 1, spe)` | Ch. 9 |
+
+### Interpreting models
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `permutation_importance(model, X_test, y_test, n_repeats=10)` (`sklearn.inspection`) | drop of the score when one feature is shuffled; mean in `.importances_mean` | see Chapter 8 | Ch. 8 |
+| `PartialDependenceDisplay.from_estimator(model, X, [feature])` (`sklearn.inspection`) | partial dependence plot: average prediction along one feature | see Chapter 8 | Ch. 8 |
+| `model.feature_importances_` | impurity-based importance of tree models (computed on the training data) | `pd.Series(rf.feature_importances_, index=X.columns)` | Ch. 8 |
+
+### Unsupervised learning
+
+| Function | What it does | Example | Used in |
+| --- | --- | --- | --- |
+| `PCA(k)` (`sklearn.decomposition`) | principal component analysis with `k` components; `.transform` gives the scores, `.inverse_transform` maps them back, `.explained_variance_` and `.explained_variance_ratio_` the variance per component | `pca = PCA(5).fit(Z)` | Ch. 9 |
+| `KMeans(k, n_init=10, random_state=0)` (`sklearn.cluster`) | k-means clustering; `.fit_predict(Z)` returns the cluster of every row | `labels = KMeans(3, n_init=10, random_state=0).fit_predict(Z)` | Ch. 9 |
+| `silhouette_score(Z, labels)`, `adjusted_rand_score(a, b)` (`sklearn.metrics`) | quality of a clustering; agreement of two groupings (1 = identical, 0 = random) | `silhouette_score(Z, labels)` | Ch. 9 |
+| `IsolationForest(n_estimators=300, random_state=0)` (`sklearn.ensemble`) | anomaly detection; `-model.score_samples(Z)` is an anomaly score (larger = more unusual) | `score = -iso.score_samples(Z)` | Ch. 9 |
 
 ## Plots
 

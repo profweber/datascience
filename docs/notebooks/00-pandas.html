@@ -345,6 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#summaries-per-group" id="toc-summaries-per-group" class="nav-link" data-scroll-target="#summaries-per-group">Summaries per group</a></li>
   <li><a href="#time-stamps" id="toc-time-stamps" class="nav-link" data-scroll-target="#time-stamps">Time stamps</a></li>
   <li><a href="#plotting-from-pandas" id="toc-plotting-from-pandas" class="nav-link" data-scroll-target="#plotting-from-pandas">Plotting from pandas</a></li>
+  <li><a href="#three-python-patterns-you-will-meet-everywhere" id="toc-three-python-patterns-you-will-meet-everywhere" class="nav-link" data-scroll-target="#three-python-patterns-you-will-meet-everywhere">Three Python patterns you will meet everywhere</a></li>
   <li><a href="#the-pandas-style-in-a-nutshell" id="toc-the-pandas-style-in-a-nutshell" class="nav-link" data-scroll-target="#the-pandas-style-in-a-nutshell">The pandas style in a nutshell</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
@@ -377,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- This cell must stay first: it makes Quarto respect {.unnumbered} in the title below. -->
-<p>Almost every chapter of this script works with tables: measurements with time stamps, test results per part, sensor values per run. In Python, such tables are handled with <strong>pandas</strong>. This lesson introduces pandas for everyone who has not used it before – and shows the typical <em>style</em> of pandas code, which differs from the NumPy and Matplotlib code you may know. It takes about 90 minutes; work through it before Chapter 1, run every cell yourself and change things to see what happens.</p>
+<p>Almost every chapter of this script works with tables: measurements with time stamps, test results per part, sensor values per run. In Python, such tables are handled with <strong>pandas</strong>. This lesson introduces pandas for everyone who has not used it before – and shows the typical <em>style</em> of pandas code, which differs from the NumPy and Matplotlib code you may know. It takes about 100 minutes; work through it before Chapter 1, run every cell yourself and change things to see what happens.</p>
 <p><strong>Prerequisites.</strong> Basic Python (variables, lists, dictionaries, functions, loops) and a first contact with NumPy and Matplotlib.</p>
 <p><strong>Learning goals.</strong> After this lesson you can</p>
 <ul>
@@ -386,7 +387,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>select rows and columns by name, by condition and by position,</li>
 <li>compute new columns without loops and summarise columns, also per group,</li>
 <li>work with time stamps and plot directly from pandas,</li>
-<li>read and write code in the typical pandas style.</li>
+<li>read and write code in the typical pandas style,</li>
+<li>read the three pieces of plain Python that recur in every chapter: formatted output, list comprehensions and tables of results.</li>
 </ul>
 <p><strong>Dataset.</strong> A small, invented production log: shafts with a nominal diameter of 25 mm are turned on three machines, and one part per hour is measured; parts that deviate by more than 12 µm are scrapped. The data are created in the lesson itself, so no download is needed.</p>
 <section id="why-pandas" class="level2 unnumbered">
@@ -1079,6 +1081,7 @@ Name: scrap, dtype: float64</code></pre>
 Freq: D, Name: spindle_temp_C, dtype: float64</code></pre>
 </div>
 </div>
+<p>The hour of each row can also serve as a <code>groupby</code> key: instead of a column name, <code>groupby</code> accepts any series with one value per row. <code>shafts.groupby(shafts.index.hour)</code> therefore pools the same hour across all days – a typical daily profile (Exercise 4). <code>resample</code>, in contrast, summarises consecutive intervals, like the four daily means above.</p>
 </section>
 <section id="plotting-from-pandas" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="plotting-from-pandas">Plotting from pandas</h2>
@@ -1099,6 +1102,79 @@ Freq: D, Name: spindle_temp_C, dtype: float64</code></pre>
 </div>
 </div>
 <p>Every morning the spindle starts cold and warms up to about 28 °C (there is no production at night); machine M3 stands out in the bar chart. Two lines of pandas replaced the data handling that Matplotlib alone would need.</p>
+</section>
+<section id="three-python-patterns-you-will-meet-everywhere" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="three-python-patterns-you-will-meet-everywhere">Three Python patterns you will meet everywhere</h2>
+<p>The chapters use three pieces of plain Python again and again. They are not pandas, but you need them to read the code.</p>
+<p><strong>Formatted output.</strong> An <em>f-string</em> – a text with an <code>f</code> in front – inserts values in curly brackets. A format code after a colon controls how a number is shown:</p>
+<div id="0cc7e4c5" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> shafts[<span class="st">"diameter_mm"</span>].mean()             <span class="co"># mean diameter in mm</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> shafts[<span class="st">"dev_um"</span>].mean()                  <span class="co"># mean deviation from nominal in µm</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>share <span class="op">=</span> shafts[<span class="st">"scrap"</span>].mean()               <span class="co"># share of scrap parts</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean diameter: </span><span class="sc">{</span>d<span class="sc">:.3f}</span><span class="ss"> mm"</span>)          <span class="co"># .3f: three decimals</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mean deviation: </span><span class="sc">{</span>m<span class="sc">:+.1f}</span><span class="ss"> µm"</span>)        <span class="co"># +: always show the sign</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"scrap: </span><span class="sc">{</span>share<span class="sc">:.1%}</span><span class="ss">"</span>)                 <span class="co"># .1%: as a percentage, one decimal</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="fl">12345.678</span><span class="sc">:,.1f}</span><span class="ss">"</span>)                   <span class="co"># ,: thousands separator</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'mean'</span><span class="sc">:8s}{</span>m<span class="sc">:7.2f}</span><span class="ss"> µm"</span>)             <span class="co"># 8s, 7.2f: a width of 8 or 7 characters ...</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'maximum'</span><span class="sc">:8s}{</span>shafts[<span class="st">'dev_um'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:7.2f}</span><span class="ss"> µm"</span>)   <span class="co"># ... gives aligned columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>mean diameter: 25.002 mm
+mean deviation: +2.3 µm
+scrap: 8.3%
+12,345.7
+mean       2.30 µm
+maximum   17.40 µm</code></pre>
+</div>
+</div>
+<p><strong>List comprehensions.</strong> <code>[expression for item in values]</code> builds a list in one line. It is short for a loop that appends the expression for every item:</p>
+<div id="b27fd539" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="ss">f"T</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">4</span>)]     <span class="co"># the same as: names = []; for i in range(1, 4): names.append(f"T{i}")</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>['T1', 'T2', 'T3']</code></pre>
+</div>
+</div>
+<p><strong>Tables of results.</strong> When a loop computes several numbers per case, collect each case as a dictionary in a list – one dictionary per row – and turn the list into a DataFrame at the end. The keys become the column names:</p>
+<div id="efd6d86b" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []                                                  <span class="co"># one entry per row of the result table</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> limit <span class="kw">in</span> [<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>]:                                  <span class="co"># three possible tolerance limits in µm</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    within <span class="op">=</span> shafts[<span class="st">"dev_um"</span>].<span class="bu">abs</span>() <span class="op">&lt;=</span> limit               <span class="co"># True if the part lies within ±limit</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"limit_um"</span>: limit, <span class="st">"share_within"</span>: within.mean()})   <span class="co"># one row as a dictionary</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)                                         <span class="co"># list of rows -&gt; table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">limit_um</th>
+<th data-quarto-table-cell-role="th">share_within</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>8</td>
+<td>0.800</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>10</td>
+<td>0.833</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>12</td>
+<td>0.917</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
 <section id="the-pandas-style-in-a-nutshell" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="the-pandas-style-in-a-nutshell">The pandas style in a nutshell</h2>
@@ -1160,10 +1236,11 @@ Key takeaways
 <div class="callout-body-container callout-body">
 <ul>
 <li>A <strong>Series</strong> is a column with labels (index); a <strong>DataFrame</strong> is a table of Series that share one index.</li>
-<li>Read files with <code>pd.read_csv</code>, stating separator, decimal mark and missing value codes explicitly; get an overview with <code>shape</code>, <code>info()</code>, <code>describe()</code>, <code>value_counts()</code>.</li>
+<li>Read files with <code>pd.read_csv</code>, stating separator and decimal mark explicitly; get an overview with <code>shape</code>, <code>info()</code>, <code>describe()</code>, <code>value_counts()</code>.</li>
 <li>Select columns by name, rows by masks (<code>&amp;</code>, <code>|</code>, <code>~</code>), both together with <code>loc</code> (labels) or <code>iloc</code> (positions).</li>
 <li>Compute with whole columns instead of loops; summarise with methods, which skip missing values; use <code>groupby</code> for summaries per group.</li>
 <li>With time stamps as index, <code>resample</code> and <code>index.hour</code> work on the time axis; <code>.plot()</code> draws directly from a table.</li>
+<li>f-strings with format codes (<code>:.1f</code>, <code>:.1%</code>) print numbers readably; list comprehensions and lists of rows build lists and tables in a loop.</li>
 </ul>
 </div>
 </div>
@@ -1177,11 +1254,12 @@ Key takeaways
 <li><p>Compute the share of parts per machine whose deviation is within ±10 µm.</p></li>
 <li><p>Compute the mean spindle temperature for each hour of the day and plot it as a line. When is the spindle warm?</p></li>
 <li><p>Rewrite the following loop in pandas style with one line:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> value <span class="kw">in</span> shafts[<span class="st">"spindle_temp_C"</span>]:</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">&gt;</span> <span class="dv">27</span>:</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> value <span class="kw">in</span> shafts[<span class="st">"spindle_temp_C"</span>]:</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">&gt;</span> <span class="dv">27</span>:</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Does your line give the same result? (Hint: what happens to the two missing values?)</p></li>
+<li><p>For the tolerance limits 5, 10, 15 and 20 µm, build a table with the share of parts whose deviation lies within ±limit, as in the last section. In the same loop, print one line per limit with an f-string, in the form <code>±10 µm: xx.x% within</code>.</p></li>
 </ol>
 </div>
 <section id="solutions" class="level3 unnumbered">
@@ -1198,9 +1276,9 @@ Solution to Exercise 1
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="402fe6a7" class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shafts[<span class="st">"machine"</span>].value_counts())               <span class="co"># parts per machine</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>shafts.groupby(<span class="st">"machine"</span>)[<span class="st">"scrap"</span>].<span class="bu">sum</span>()              <span class="co"># scrap per machine: True counts as 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="402fe6a7" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(shafts[<span class="st">"machine"</span>].value_counts())               <span class="co"># parts per machine</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>shafts.groupby(<span class="st">"machine"</span>)[<span class="st">"scrap"</span>].<span class="bu">sum</span>()              <span class="co"># scrap per machine: True counts as 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>machine
 M1    20
@@ -1208,7 +1286,7 @@ M2    20
 M3    20
 Name: count, dtype: int64</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>machine
 M1    0
 M2    0
@@ -1232,10 +1310,10 @@ Solution to Exercise 2
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="d962886f" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> shafts[shafts[<span class="st">"diameter_mm"</span>] <span class="op">&gt;</span> <span class="fl">25.010</span>]        <span class="co"># mask: True for large diameters</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>large[<span class="st">"machine"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div id="d962886f" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> shafts[shafts[<span class="st">"diameter_mm"</span>] <span class="op">&gt;</span> <span class="fl">25.010</span>]        <span class="co"># mask: True for large diameters</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>large[<span class="st">"machine"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>machine
 M3    9
 M2    1
@@ -1258,18 +1336,18 @@ Solution to Exercise 3
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="ad4f248c" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>within <span class="op">=</span> shafts[<span class="st">"dev_um"</span>].<span class="bu">abs</span>() <span class="op">&lt;=</span> <span class="dv">10</span>                 <span class="co"># True if |deviation| &lt;= 10 µm</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>within.groupby(shafts[<span class="st">"machine"</span>]).mean()              <span class="co"># share per machine</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div id="ad4f248c" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>shafts[<span class="st">"within"</span>] <span class="op">=</span> shafts[<span class="st">"dev_um"</span>].<span class="bu">abs</span>() <span class="op">&lt;=</span> <span class="dv">10</span>       <span class="co"># True if |deviation| &lt;= 10 µm</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>shafts.groupby(<span class="st">"machine"</span>)[<span class="st">"within"</span>].mean()            <span class="co"># share per machine: the mean of True/False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>machine
 M1    1.00
 M2    0.95
 M3    0.55
-Name: dev_um, dtype: float64</code></pre>
+Name: within, dtype: float64</code></pre>
 </div>
 </div>
-<p>The mean of a truth value is a share. <code>groupby</code> also accepts a separate column as key, here the machine of each row.</p>
+<p>As in the scrap example, a new True/False column is summarised per machine; the mean of a truth value is a share. On M3, only 55 % of the parts lie within ±10 µm – its offset of about 8 µm leaves little room.</p>
 </div>
 </div>
 </div>
@@ -1285,15 +1363,15 @@ Solution to Exercise 4
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="68dba132" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>by_hour <span class="op">=</span> shafts.groupby(shafts.index.hour)[<span class="st">"spindle_temp_C"</span>].mean()</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> by_hour.plot(marker<span class="op">=</span><span class="st">"o"</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Hour of day"</span>, ylabel<span class="op">=</span><span class="st">"Mean spindle temperature (°C)"</span>)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="68dba132" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>by_hour <span class="op">=</span> shafts.groupby(shafts.index.hour)[<span class="st">"spindle_temp_C"</span>].mean()   <span class="co"># key: the hour of each row</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> by_hour.plot(marker<span class="op">=</span><span class="st">"o"</span>)                                            <span class="co"># x-axis: the index, i.e. the hour</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"Hour of day"</span>, ylabel<span class="op">=</span><span class="st">"Mean spindle temperature (°C)"</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="00-pandas_files/figure-html/cell-26-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="00-pandas_files/figure-html/cell-29-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1314,13 +1392,81 @@ Solution to Exercise 5
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="fba5369d" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((shafts[<span class="st">"spindle_temp_C"</span>] <span class="op">&gt;</span> <span class="dv">27</span>).<span class="bu">sum</span>())          <span class="co"># comparison gives True/False; sum counts True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fba5369d" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((shafts[<span class="st">"spindle_temp_C"</span>] <span class="op">&gt;</span> <span class="dv">27</span>).<span class="bu">sum</span>())          <span class="co"># comparison gives True/False; sum counts True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>30</code></pre>
 </div>
 </div>
 <p>Both versions give the same count: a missing value (<code>NaN</code>) compared with 27 gives <code>False</code> – in the loop as well as in pandas – so the two missing readings are not counted. The pandas line is shorter, faster and reads like the question: “How many temperatures are above 27 °C?”</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="49951f0a" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> limit <span class="kw">in</span> [<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>]:                                 <span class="co"># tolerance limits in µm</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    share <span class="op">=</span> (shafts[<span class="st">"dev_um"</span>].<span class="bu">abs</span>() <span class="op">&lt;=</span> limit).mean()          <span class="co"># share of parts within ±limit</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"limit_um"</span>: limit, <span class="st">"share_within"</span>: share})   <span class="co"># one row of the table</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"±</span><span class="sc">{</span>limit<span class="sc">}</span><span class="ss"> µm: </span><span class="sc">{</span>share<span class="sc">:.1%}</span><span class="ss"> within"</span>)                 <span class="co"># one line of text per limit</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>±5 µm: 66.7% within
+±10 µm: 83.3% within
+±15 µm: 96.7% within
+±20 µm: 100.0% within</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">limit_um</th>
+<th data-quarto-table-cell-role="th">share_within</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>5</td>
+<td>0.667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>10</td>
+<td>0.833</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>15</td>
+<td>0.967</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>20</td>
+<td>1.000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The loop does two things at once: it prints a readable line for each limit and collects the same numbers as rows of a table, which can be processed further – sorted, plotted or saved.</p>
 </div>
 </div>
 </div>

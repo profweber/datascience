@@ -407,7 +407,7 @@ window.Quarto = {
 <p>Time series differ from the tabular data of the previous chapters in one fundamental way: the observations are not independent. Today’s load is strongly related to yesterday’s and to the load one week ago. This dependence is what makes forecasting possible – and it changes the rules for model validation. The single most common mistake in practical forecasting is to evaluate a model with information it would not have had at forecast time.</p>
 <div class="scenario">
 <p><strong>Scenario: a better day-ahead forecast?</strong></p>
-<p>The planning department of a transmission system operator currently forecasts tomorrow’s daily load with the seasonal naive method: “same as the same weekday last week”. Forecast errors must be balanced with expensive reserve power. A data scientist proposes a gradient boosting model with lags and calendar features. Changing the operational forecasting process costs effort, so the head of planning sets a condition: the new model must reduce the mean absolute error by at least 10 % over a full year.</p>
+<p>Every day at noon, the planning department of a transmission system operator forecasts the daily load of the next day – currently with the seasonal naive method: “same as the same weekday last week”. Forecast errors must be balanced with expensive reserve power. A data scientist proposes a gradient boosting model with lags and calendar features. Changing the operational forecasting process costs effort, so the head of planning sets a condition: the new model must reduce the mean absolute error by at least 10 % over a full year.</p>
 <p><strong>Your decision:</strong> Replace the seasonal naive forecast with the model?</p>
 <p><em>Before reading on: write down your own decision and how confident you are. You will compare it with the result at the end of the chapter.</em></p>
 </div>
@@ -528,7 +528,7 @@ Figure&nbsp;11.1: Time series cross-validation with an expanding window. The mod
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="0d8524be" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download helper, as in Chapter 2</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download helper, as in Chapter 3</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -585,21 +585,21 @@ Figure&nbsp;11.1: Time series cross-validation with an expanding window. The mod
 <p>The ACF has pronounced peaks at lags 7, 14, 21, … – the weekly cycle – and decays slowly overall, reflecting the yearly cycle and persistence.</p>
 <section id="baselines" class="level3" data-number="11.4.1">
 <h3 data-number="11.4.1" class="anchored" data-anchor-id="baselines"><span class="header-section-number">11.4.1</span> Baselines</h3>
-<p>We forecast each day of the test period one day ahead (horizon 1 day) and use the last year as test period.</p>
+<p>The forecast for a day <span class="math inline">\(D\)</span> is made at noon of the day before. At that time, the load of that day is only half known, so the most recent complete day is <span class="math inline">\(D - 2\)</span>. The last year serves as test period.</p>
 <div id="6c84f3d1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>test_start <span class="op">=</span> <span class="st">"2019-01-01"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> daily[test_start:]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>naive <span class="op">=</span> daily.shift(<span class="dv">1</span>)[test_start:]                 <span class="co"># yesterday</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>naive <span class="op">=</span> daily.shift(<span class="dv">2</span>)[test_start:]                 <span class="co"># last complete day: two days before</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>seasonal_naive <span class="op">=</span> daily.shift(<span class="dv">7</span>)[test_start:]        <span class="co"># same weekday last week</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> report(name, pred):</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    err <span class="op">=</span> y_test <span class="op">-</span> pred</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:22s}</span><span class="ss"> MAE = </span><span class="sc">{</span>err<span class="sc">.</span><span class="bu">abs</span>()<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss"> GW,  MAPE = </span><span class="sc">{</span>(err.<span class="bu">abs</span>() <span class="op">/</span> y_test)<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>report(<span class="st">"naive (yesterday)"</span>, naive)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>report(<span class="st">"naive (day D-2)"</span>, naive)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>report(<span class="st">"seasonal naive (t-7)"</span>, seasonal_naive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>naive (yesterday)      MAE = 4.31 GW,  MAPE = 8.0%
+<pre><code>naive (day D-2)        MAE = 7.15 GW,  MAPE = 13.4%
 seasonal naive (t-7)   MAE = 2.30 GW,  MAPE = 4.3%</code></pre>
 </div>
 </div>
@@ -613,7 +613,7 @@ seasonal naive (t-7)   MAE = 2.30 GW,  MAPE = 4.3%</code></pre>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> TimeSeriesSplit, cross_val_score</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> daily.to_frame(<span class="st">"load"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lag <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">14</span>):</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lag <span class="kw">in</span> (<span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">14</span>):                             <span class="co"># lag 1 is not complete at noon of the day before</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    df[<span class="ss">f"lag_</span><span class="sc">{</span>lag<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> df[<span class="st">"load"</span>].shift(lag)</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"dow"</span>] <span class="op">=</span> df.index.dayofweek</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"doy"</span>] <span class="op">=</span> df.index.dayofyear</span>
@@ -626,15 +626,15 @@ seasonal naive (t-7)   MAE = 2.30 GW,  MAPE = 4.3%</code></pre>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(gbr, X, y, cv<span class="op">=</span>TimeSeriesSplit(<span class="dv">5</span>), scoring<span class="op">=</span><span class="st">"neg_mean_absolute_percentage_error"</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MAPE per fold (time series CV):"</span>, np.<span class="bu">round</span>(<span class="op">-</span>scores, <span class="dv">3</span>))</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>gbr.fit(X[:test_start].iloc[:<span class="op">-</span><span class="dv">1</span>], y[:test_start].iloc[:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>gbr.fit(X[:<span class="st">"2018-12-31"</span>], y[:<span class="st">"2018-12-31"</span>])         <span class="co"># train on 2015-2018, test on 2019</span></span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>report(<span class="st">"gradient boosting"</span>, pd.Series(gbr.predict(X[test_start:]), index<span class="op">=</span>X[test_start:].index))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MAPE per fold (time series CV): [0.032 0.029 0.018 0.016 0.016]
-gradient boosting      MAE = 0.88 GW,  MAPE = 1.6%</code></pre>
+<pre><code>MAPE per fold (time series CV): [0.035 0.035 0.022 0.023 0.021]
+gradient boosting      MAE = 1.09 GW,  MAPE = 2.0%</code></pre>
 </div>
 </div>
-<p><strong>Discussion.</strong> All features are available at forecast time: lags 1, 7 and 14 days, the calendar and the holiday calendar, which is known in advance. <code>TimeSeriesSplit</code> trains on an expanding window and always tests on the following block; the error per fold shows how stable the model is over time. The comparison with the baselines on the same test year shows how much the model really adds.</p>
-<p><strong>Weather as an input.</strong> Temperature drives heating and cooling demand. Historical hourly temperatures are available from the DWD (see Chapter 2 and Exercise 2). For a real day-ahead forecast, the model must be trained and operated with temperature <em>forecasts</em> – using measured temperatures overstates the accuracy.</p>
+<p><strong>Discussion.</strong> All features are available at forecast time: lags of 2, 7 and 14 days – at noon, the load of the day before the target day is not yet complete –, the calendar and the holiday calendar, which is known in advance. <code>TimeSeriesSplit</code> trains on an expanding window and always tests on the following block; the error per fold shows how stable the model is over time. The comparison with the baselines on the same test year shows how much the model really adds.</p>
+<p><strong>Weather as an input.</strong> Temperature drives heating and cooling demand. Historical hourly temperatures are available from the DWD (reading the raw files: Chapter 2, Exercise 1; temperature as a feature: Exercise 2 below). For a real day-ahead forecast, the model must be trained and operated with temperature <em>forecasts</em> – using measured temperatures overstates the accuracy.</p>
 </section>
 </section>
 <section id="back-to-the-decision" class="level2" data-number="11.5">
@@ -642,18 +642,17 @@ gradient boosting      MAE = 0.88 GW,  MAPE = 1.6%</code></pre>
 <p>We compare both methods on the test year 2019, which was not used for training. The model must reduce the MAE by at least 10 %.</p>
 <div id="3d997eb9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pred_gb <span class="op">=</span> pd.Series(gbr.predict(X[test_start:]), index<span class="op">=</span>X[test_start:].index)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>common <span class="op">=</span> pred_gb.index.intersection(seasonal_naive.dropna().index)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mae_naive <span class="op">=</span> (y_test[common] <span class="op">-</span> seasonal_naive[common]).<span class="bu">abs</span>().mean()</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>mae_model <span class="op">=</span> (y_test[common] <span class="op">-</span> pred_gb[common]).<span class="bu">abs</span>().mean()</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>gain <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> mae_model <span class="op">/</span> mae_naive</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAE seasonal naive: </span><span class="sc">{</span>mae_naive<span class="sc">:.2f}</span><span class="ss"> GW,  MAE gradient boosting: </span><span class="sc">{</span>mae_model<span class="sc">:.2f}</span><span class="ss"> GW,  improvement: </span><span class="sc">{</span>gain<span class="sc">:.0%}</span><span class="ss">"</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Decision:"</span>, <span class="st">"replace the seasonal naive forecast."</span> <span class="cf">if</span> gain <span class="op">&gt;=</span> <span class="fl">0.10</span> <span class="cf">else</span> <span class="st">"keep the seasonal naive forecast."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mae_naive <span class="op">=</span> (y_test <span class="op">-</span> seasonal_naive).<span class="bu">abs</span>().mean()         <span class="co"># both methods on all days of 2019</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mae_model <span class="op">=</span> (y_test <span class="op">-</span> pred_gb).<span class="bu">abs</span>().mean()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>gain <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> mae_model <span class="op">/</span> mae_naive</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAE seasonal naive: </span><span class="sc">{</span>mae_naive<span class="sc">:.2f}</span><span class="ss"> GW,  MAE gradient boosting: </span><span class="sc">{</span>mae_model<span class="sc">:.2f}</span><span class="ss"> GW,  improvement: </span><span class="sc">{</span>gain<span class="sc">:.0%}</span><span class="ss">"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Decision:"</span>, <span class="st">"replace the seasonal naive forecast."</span> <span class="cf">if</span> gain <span class="op">&gt;=</span> <span class="fl">0.10</span> <span class="cf">else</span> <span class="st">"keep the seasonal naive forecast."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MAE seasonal naive: 2.30 GW,  MAE gradient boosting: 0.88 GW,  improvement: 62%
+<pre><code>MAE seasonal naive: 2.30 GW,  MAE gradient boosting: 1.09 GW,  improvement: 52%
 Decision: replace the seasonal naive forecast.</code></pre>
 </div>
 </div>
-<p>A one-year test is a good basis, but the recommendation should add: the improvement comes mainly from holidays and transitions – check the error on those days separately; the model should be monitored after go-live, because structural changes (such as the drop in demand in 2020) can make it worse than the simple method; and adding temperature forecasts (Exercise 2) is the obvious next step.</p>
+<p>A one-year test is a good basis, but the recommendation should add: about half of the improvement comes from the nine public holidays of the test year and the days one week after them (16 days in total), where the seasonal naive forecast misses or copies the holiday dip, and half from ordinary days – check the error on such special days separately; the model should be monitored after go-live, because structural changes (such as the drop in demand in 2020) can make it worse than the simple method; and the temperature of a single station did not help (Exercise 2) – better weather data, such as a weighted average of many stations, could be tested next.</p>
 </section>
 <section id="extension-seasonal-arima" class="level2" data-number="11.6">
 <h2 data-number="11.6" class="anchored" data-anchor-id="extension-seasonal-arima"><span class="header-section-number">11.6</span> Extension: seasonal ARIMA</h2>
@@ -700,9 +699,8 @@ Key takeaways
 <div class="callout-body-container callout-body">
 <ul>
 <li>Define horizon and information set first; they determine which features are legal.</li>
-<li>Always compare with naive and seasonal naive baselines.</li>
 <li>Lag, calendar and exogenous features turn forecasting into regression; gradient boosting is a strong default.</li>
-<li>Validate in time order (<code>TimeSeriesSplit</code>); random splits and future information produce misleadingly small errors.</li>
+<li>Test honestly: validate in time order (<code>TimeSeriesSplit</code>) and compare with naive and seasonal naive baselines; random splits and future information produce misleadingly small errors.</li>
 </ul>
 </div>
 </div>
@@ -740,8 +738,8 @@ Solution to Exercise 1
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MAPE random KFold:      "</span>, np.<span class="bu">round</span>(<span class="op">-</span>random_scores, <span class="dv">3</span>))</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MAPE TimeSeriesSplit:   "</span>, np.<span class="bu">round</span>(<span class="op">-</span>scores, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MAPE random KFold:       [0.016 0.016 0.015 0.014 0.016]
-MAPE TimeSeriesSplit:    [0.032 0.029 0.018 0.016 0.016]</code></pre>
+<pre><code>MAPE random KFold:       [0.02  0.02  0.019 0.02  0.018]
+MAPE TimeSeriesSplit:    [0.035 0.035 0.022 0.023 0.021]</code></pre>
 </div>
 </div>
 <p>With random folds, every test day is surrounded by training days from just before and just after. The model effectively interpolates within known periods – it has, for instance, seen the Christmas holidays of the same year. In operation, the future is never available for training. The time-ordered split measures what we need: the error on a period that lies entirely after the training data.</p>
@@ -766,24 +764,25 @@ Solution to Exercise 2
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>hist_dir <span class="op">=</span> (<span class="st">"https://opendata.dwd.de/climate_environment/CDC/observations_germany/"</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"climate/hourly/air_temperature/historical/"</span>)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>listing <span class="op">=</span> download(hist_dir, <span class="st">"dwd_hist_index.html"</span>).read_text()</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>fname <span class="op">=</span> re.search(<span class="vs">r"stundenwerte_TU_05100_\d+_\d+_hist\.zip"</span>, listing).group(<span class="dv">0</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(download(hist_dir <span class="op">+</span> fname)) <span class="im">as</span> z:</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="bu">next</span>(n <span class="cf">for</span> n <span class="kw">in</span> z.namelist() <span class="cf">if</span> n.startswith(<span class="st">"produkt"</span>))</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    dwd <span class="op">=</span> pd.read_csv(z.<span class="bu">open</span>(name), sep<span class="op">=</span><span class="st">";"</span>, na_values<span class="op">=</span>[<span class="op">-</span><span class="dv">999</span>], skipinitialspace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>dwd.columns <span class="op">=</span> dwd.columns.<span class="bu">str</span>.strip()</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>dwd[<span class="st">"time"</span>] <span class="op">=</span> pd.to_datetime(dwd[<span class="st">"MESS_DATUM"</span>].astype(<span class="bu">str</span>), <span class="bu">format</span><span class="op">=</span><span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">%H"</span>)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> dwd.set_index(<span class="st">"time"</span>)[<span class="st">"TT_TU"</span>].resample(<span class="st">"D"</span>).mean().rename(<span class="st">"temp"</span>)</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>temp.index <span class="op">=</span> temp.index.tz_localize(<span class="st">"UTC"</span>)          <span class="co"># DWD time stamps are UTC, like the OPSD index</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>df_t <span class="op">=</span> df.join(temp, how<span class="op">=</span><span class="st">"inner"</span>).dropna()</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>X_t, y_t <span class="op">=</span> df_t.drop(columns<span class="op">=</span><span class="st">"load"</span>), df_t[<span class="st">"load"</span>]</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>s_t <span class="op">=</span> cross_val_score(gbr, X_t, y_t, cv<span class="op">=</span>TimeSeriesSplit(<span class="dv">5</span>), scoring<span class="op">=</span><span class="st">"neg_mean_absolute_percentage_error"</span>)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAPE without temperature: </span><span class="sc">{</span><span class="op">-</span>scores<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">,  with temperature: </span><span class="sc">{</span><span class="op">-</span>s_t<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the file name contains the period covered, so we look it up in the directory listing</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>fname <span class="op">=</span> re.search(<span class="vs">r"stundenwerte_TU_05100_\d+_\d+_hist\.zip"</span>, listing).group(<span class="dv">0</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(download(hist_dir <span class="op">+</span> fname)) <span class="im">as</span> z:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> [n <span class="cf">for</span> n <span class="kw">in</span> z.namelist() <span class="cf">if</span> n.startswith(<span class="st">"produkt"</span>)][<span class="dv">0</span>]   <span class="co"># the data file, as in Chapter 2</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    dwd <span class="op">=</span> pd.read_csv(z.<span class="bu">open</span>(name), sep<span class="op">=</span><span class="st">";"</span>, na_values<span class="op">=</span>[<span class="op">-</span><span class="dv">999</span>], skipinitialspace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>dwd.columns <span class="op">=</span> dwd.columns.<span class="bu">str</span>.strip()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>dwd[<span class="st">"time"</span>] <span class="op">=</span> pd.to_datetime(dwd[<span class="st">"MESS_DATUM"</span>].astype(<span class="bu">str</span>), <span class="bu">format</span><span class="op">=</span><span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">%H"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> dwd.set_index(<span class="st">"time"</span>)[<span class="st">"TT_TU"</span>].resample(<span class="st">"D"</span>).mean().rename(<span class="st">"temp"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>temp.index <span class="op">=</span> temp.index.tz_localize(<span class="st">"UTC"</span>)          <span class="co"># DWD time stamps are UTC, like the OPSD index</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>df_t <span class="op">=</span> df.join(temp, how<span class="op">=</span><span class="st">"inner"</span>).dropna()</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>X_t, y_t <span class="op">=</span> df_t.drop(columns<span class="op">=</span><span class="st">"load"</span>), df_t[<span class="st">"load"</span>]</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>s_t <span class="op">=</span> cross_val_score(gbr, X_t, y_t, cv<span class="op">=</span>TimeSeriesSplit(<span class="dv">5</span>), scoring<span class="op">=</span><span class="st">"neg_mean_absolute_percentage_error"</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAPE without temperature: </span><span class="sc">{</span><span class="op">-</span>scores<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">,  with temperature: </span><span class="sc">{</span><span class="op">-</span>s_t<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MAPE without temperature: 0.022,  with temperature: 0.022</code></pre>
+<pre><code>MAPE without temperature: 0.027,  with temperature: 0.027</code></pre>
 </div>
 </div>
-<p>The temperature helps mostly in the heating season. The improvement is optimistic for two reasons: we use the <em>measured</em> temperature of the forecast day, which is not known one day in advance (in operation one would use a weather forecast with its own error), and one station is only a rough proxy for the temperature relevant to German demand – a population-weighted average of many stations would be better.</p>
+<p>Here, the temperature hardly changes the error: the lags and the calendar already contain the seasonal pattern that the temperature would explain, and one station is a rough proxy. Any improvement would also be optimistic, for two reasons: we use the <em>measured</em> temperature of the forecast day, which is not known one day in advance (in operation one would use a weather forecast with its own error), and one station represents the temperature relevant to German demand only roughly – a population-weighted average of many stations would be better.</p>
 </div>
 </div>
 </div>
@@ -801,27 +800,27 @@ Solution to Exercise 3
 <div class="callout-body-container callout-body">
 <div id="c3135057" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>X_nh <span class="op">=</span> X.drop(columns<span class="op">=</span><span class="st">"holiday"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>m_h <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(X[:test_start].iloc[:<span class="op">-</span><span class="dv">1</span>], y[:test_start].iloc[:<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>m_nh <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(X_nh[:test_start].iloc[:<span class="op">-</span><span class="dv">1</span>], y[:test_start].iloc[:<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>m_h <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(X[:<span class="st">"2018-12-31"</span>], y[:<span class="st">"2018-12-31"</span>])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>m_nh <span class="op">=</span> HistGradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">0</span>).fit(X_nh[:<span class="st">"2018-12-31"</span>], y[:<span class="st">"2018-12-31"</span>])</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>err_h <span class="op">=</span> (y[test_start:] <span class="op">-</span> m_h.predict(X[test_start:])).<span class="bu">abs</span>()</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>err_nh <span class="op">=</span> (y[test_start:] <span class="op">-</span> m_nh.predict(X_nh[test_start:])).<span class="bu">abs</span>()</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>(err_nh <span class="op">-</span> err_h).sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>).<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>utc_timestamp
-2019-05-01 00:00:00+00:00    12.21
-2019-01-01 00:00:00+00:00    11.70
-2019-10-03 00:00:00+00:00    10.18
-2019-04-19 00:00:00+00:00     9.58
-2019-06-10 00:00:00+00:00     9.51
-2019-04-23 00:00:00+00:00     5.61
-2019-04-22 00:00:00+00:00     4.81
-2019-12-25 00:00:00+00:00     4.00
-2019-05-02 00:00:00+00:00     3.24
-2019-05-27 00:00:00+00:00     2.95
+2019-05-01 00:00:00+00:00    13.85
+2019-04-19 00:00:00+00:00    13.08
+2019-06-10 00:00:00+00:00    10.43
+2019-10-03 00:00:00+00:00    10.25
+2019-01-01 00:00:00+00:00     9.60
+2019-04-22 00:00:00+00:00     7.60
+2019-05-30 00:00:00+00:00     7.23
+2019-05-02 00:00:00+00:00     6.90
+2019-12-25 00:00:00+00:00     5.95
+2019-05-27 00:00:00+00:00     5.69
 Name: load, dtype: float64</code></pre>
 </div>
 </div>
-<p>The largest increases occur on public holidays (Easter, Whit Monday, Christmas, New Year) and often on the following days, because the lag-1 and lag-7 features then contain the unusual holiday load. A “bridge day” feature or a feature “holiday 7 days ago” can reduce these after-effects.</p>
+<p>The largest increases occur on public holidays (Labour Day, Good Friday, Whit Monday, German Unity Day, New Year, Easter Monday, Ascension Day, Christmas) and on some days after them, because the lag features of 2 and 7 days then contain the unusual holiday load. A “bridge day” feature or a feature “holiday 7 days ago” can reduce these after-effects.</p>
 </div>
 </div>
 </div>
@@ -840,7 +839,7 @@ Solution to Exercise 4
 <div id="489040e1" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df7 <span class="op">=</span> daily.to_frame(<span class="st">"load"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lag <span class="kw">in</span> (h, h <span class="op">+</span> <span class="dv">7</span>, <span class="dv">364</span>):</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lag <span class="kw">in</span> (h <span class="op">+</span> <span class="dv">1</span>, <span class="dv">14</span>, <span class="dv">364</span>):                       <span class="co"># most recent complete day: h + 1 days before</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    df7[<span class="ss">f"lag_</span><span class="sc">{</span>lag<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> df7[<span class="st">"load"</span>].shift(lag)</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>df7[<span class="st">"dow"</span>], df7[<span class="st">"doy"</span>] <span class="op">=</span> df7.index.dayofweek, df7.index.dayofyear</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>df7[<span class="st">"holiday"</span>] <span class="op">=</span> [d.date() <span class="kw">in</span> de_holidays <span class="cf">for</span> d <span class="kw">in</span> df7.index]</span>
@@ -849,10 +848,10 @@ Solution to Exercise 4
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                     cv<span class="op">=</span>TimeSeriesSplit(<span class="dv">5</span>), scoring<span class="op">=</span><span class="st">"neg_mean_absolute_percentage_error"</span>)</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"MAPE 1 day ahead: </span><span class="sc">{</span><span class="op">-</span>scores<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">,  7 days ahead: </span><span class="sc">{</span><span class="op">-</span>s7<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>MAPE 1 day ahead: 0.022,  7 days ahead: 0.033</code></pre>
+<pre><code>MAPE 1 day ahead: 0.027,  7 days ahead: 0.034</code></pre>
 </div>
 </div>
-<p>For a 7-day horizon, the most recent load we can use is from 7 days before the target day, so lags 1 to 6 are forbidden. Lags 7, 14 and the same day one year ago (lag 364, which keeps the weekday) remain. The error typically increases because recent changes – a cold spell, a holiday period – are not yet visible in the data.</p>
+<p>For a forecast made at noon seven days ahead, the most recent complete day lies 8 days before the target day, so lags 1 to 7 are forbidden. Lags 8, 14 and the same day one year ago (lag 364, which keeps the weekday) remain. The error typically increases because recent changes – a cold spell, a holiday period – are not yet visible in the data.</p>
 </div>
 </div>
 </div>
@@ -868,7 +867,7 @@ Solution to Exercise 5
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Hourly load has a <strong>daily</strong> cycle (period 24 h), a <strong>weekly</strong> cycle (168 h) and a yearly cycle (8760 h), and the daily profile itself differs between weekdays and weekends and between summer and winter (interaction of calendar features). For a day-ahead forecast made, say, at noon for all 24 hours of the next day, the most recent usable lags are around 24–36 hours, plus 168 hours (same hour last week). Useful features: hour of day, weekday, holiday, lags of 24, 48 and 168 hours, and temperature forecasts. Also note daylight saving time: in local time, one day per year has 23 and one 25 hours – working in UTC and adding local-time calendar features avoids errors.</p>
+<p>Hourly load has a <strong>daily</strong> cycle (period 24 h), a <strong>weekly</strong> cycle (168 h) and a yearly cycle (8760 h), and the daily profile itself differs between weekdays and weekends and between summer and winter (interaction of calendar features). For a day-ahead forecast made at noon for all 24 hours of the next day, the most recent known hour is noon of the day before: hour <span class="math inline">\(h\)</span> of the next day lies <span class="math inline">\(12 + h\)</span> hours ahead. Even the lag of 24 hours is therefore unknown for the afternoon hours; safe lags are 36 hours and more – e.g.&nbsp;48 hours and 168 hours (same hour last week). Useful features: hour of day, weekday, holiday, these lags and temperature forecasts. Also note daylight saving time: in local time, one day per year has 23 and one 25 hours – working in UTC and adding local-time calendar features avoids errors.</p>
 </div>
 </div>
 </div>

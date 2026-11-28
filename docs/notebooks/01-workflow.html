@@ -377,7 +377,6 @@ window.Quarto = {
   <li><a href="#statistics-machine-learning-deep-learning-ai-sorting-the-terms" id="toc-statistics-machine-learning-deep-learning-ai-sorting-the-terms" class="nav-link" data-scroll-target="#statistics-machine-learning-deep-learning-ai-sorting-the-terms"><span class="header-section-number">1.3</span> Statistics, machine learning, deep learning, AI: sorting the terms</a>
   <ul class="collapse">
   <li><a href="#where-statistics-and-machine-learning-differ-and-where-they-overlap" id="toc-where-statistics-and-machine-learning-differ-and-where-they-overlap" class="nav-link" data-scroll-target="#where-statistics-and-machine-learning-differ-and-where-they-overlap"><span class="header-section-number">1.3.1</span> Where statistics and machine learning differ – and where they overlap</a></li>
-  <li><a href="#extension-and-what-about-ai" id="toc-extension-and-what-about-ai" class="nav-link" data-scroll-target="#extension-and-what-about-ai"><span class="header-section-number">1.3.2</span> Extension: And what about AI?</a></li>
   </ul></li>
   <li><a href="#the-crisp-dm-process-model" id="toc-the-crisp-dm-process-model" class="nav-link" data-scroll-target="#the-crisp-dm-process-model"><span class="header-section-number">1.4</span> The CRISP-DM process model</a></li>
   <li><a href="#tools-the-python-data-stack" id="toc-tools-the-python-data-stack" class="nav-link" data-scroll-target="#tools-the-python-data-stack"><span class="header-section-number">1.5</span> Tools: the Python data stack</a></li>
@@ -430,11 +429,11 @@ window.Quarto = {
 <li>explain how we use the terms statistics, machine learning, deep learning, artificial intelligence and data science, and where they overlap,</li>
 <li>describe the phases of a data science project (CRISP-DM) and apply them to an engineering problem,</li>
 <li>distinguish the main data science tasks: description, inference, prediction and diagnosis,</li>
-<li>use the Python data stack (NumPy, pandas, Matplotlib, seaborn) in Jupyter or Google Colab,</li>
-<li>load a dataset from a public repository,</li>
+<li>use the Python data stack (NumPy, pandas, Matplotlib, seaborn) to load a dataset from a public repository,</li>
 <li>produce a first overview of a dataset (size, types, summary statistics, pair plots) and interpret it,</li>
 <li>turn a model result into a business decision with a simple cost model.</li>
 </ul>
+<p><strong>Course goal.</strong> This chapter contributes to step 1 of the <a href="../index.html#what-you-will-be-able-to-do">course goals</a>: translate the question into a data science task.</p>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant">Combined Cycle Power Plant (UCI)</a> – original publication: P. Tüfekci, <em>Prediction of full load electrical power output of a base load operated combined cycle power plant using machine learning methods</em>, International Journal of Electrical Power &amp; Energy Systems 60 (2014), 126–140, <a href="https://doi.org/10.1016/j.ijepes.2014.02.027">doi:10.1016/j.ijepes.2014.02.027</a></li>
@@ -621,8 +620,7 @@ Figure&nbsp;1.2: Working definitions used in this course. (a) Competences: data 
 </figcaption>
 </figure>
 </div>
-<p>The two panels answer different questions. Panel (a) asks what you need to <em>know</em>: data science combines three <strong>competences</strong>, and leaving out any one of them leads to typical problems – models that answer the wrong engineering question, analyses that do not scale to large data, or powerful tools used without an understanding of uncertainty. Panel (b) asks what kind of <em>method</em> you use and arranges the <strong>method families</strong>.</p>
-<p>This is why statistics appears in both panels, with different meanings. In (a), it is a competence that every data analysis needs – machine learning included. In (b), it is a family of methods, of which only one part, statistical learning, also belongs to machine learning and thus to AI; a hypothesis test or a confidence interval is statistics, but not AI. Data science itself does not appear in (b) as a separate region, because it is defined by its process and purpose, not by a particular class of methods.</p>
+<p>Panel (a) shows the three <strong>competences</strong> that data science combines; leaving out one of them leads to typical problems – models that answer the wrong engineering question, analyses that do not scale to large data, or powerful tools used without an understanding of uncertainty. Panel (b) arranges the <strong>method families</strong>. Statistics therefore appears twice: as a competence that every analysis needs, and as a family of methods of which only one part, statistical learning, belongs to machine learning – a hypothesis test is statistics, but not AI.</p>
 <section id="where-statistics-and-machine-learning-differ-and-where-they-overlap" class="level3" data-number="1.3.1">
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="where-statistics-and-machine-learning-differ-and-where-they-overlap"><span class="header-section-number">1.3.1</span> Where statistics and machine learning differ – and where they overlap</h3>
 <p>The boundary between statistics and machine learning is the most blurred one, because both fit models to data and many methods belong to both. The difference lies mainly in the <strong>goal</strong> and the <strong>culture</strong> – the statistician Leo Breiman famously spoke of “two cultures”:</p>
@@ -656,23 +654,13 @@ Figure&nbsp;1.2: Working definitions used in this course. (a) Competences: data 
 <td>flexible, often many parameters, “black box” accepted</td>
 </tr>
 <tr class="even">
-<td>Data</td>
-<td>often small, carefully designed experiments</td>
-<td>often large, observational (“whatever was logged”)</td>
-</tr>
-<tr class="odd">
 <td>Validation</td>
 <td>model assumptions, standard errors, tests</td>
 <td>performance on held-out test data, cross-validation</td>
 </tr>
-<tr class="even">
-<td>Typical output</td>
-<td>estimate ± uncertainty, p-value</td>
-<td>prediction, score, class</td>
-</tr>
 </tbody>
 </table>
-<p>The overlap is large: linear and logistic regression, principal component analysis and Gaussian processes are standard tools in both communities – this common ground is often called <strong>statistical learning</strong>. In this course we use both perspectives: when we fit a regression model in Chapter 5, we look at coefficients and confidence intervals (statistics) <em>and</em> at the prediction error on test data (machine learning).</p>
+<p>The overlap is large: linear and logistic regression are standard tools in both communities – this common ground is often called <strong>statistical learning</strong>. In this course we use both perspectives: in Chapter 5, we interpret a regression model through its coefficients and confidence intervals (statistics); in Chapter 6, the same kind of model is judged by its prediction error on new data (machine learning). <a href="05-regression-doe.html#sec-inference-prediction" class="quarto-xref"><span>Section 5.1.5</span></a> compares the two uses of one model in detail.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -701,20 +689,9 @@ Pitfall: buzzwords instead of methods
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>When a supplier advertises an “AI-based” monitoring system, ask what is behind it: a threshold rule, a regression model, a random forest or a neural network? How was it validated, on which data, with which error rates? The label says nothing about the quality – the validation does.</p>
+<p>When a supplier advertises an “AI-based” monitoring system, ask what is behind it: a threshold rule, a regression model, a random forest or a neural network? How was it validated, on which data, with which error rates? The label says nothing about the quality – the validation does. Note also that the EU AI Act defines “AI system” broadly: even a fairly simple machine learning model in a safety-relevant product can fall under regulation.</p>
 </div>
 </div>
-</section>
-<section id="extension-and-what-about-ai" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="extension-and-what-about-ai"><span class="header-section-number">1.3.2</span> Extension: And what about AI?</h3>
-<p>“Artificial intelligence” is the oldest and the broadest of the terms – and today the most overloaded one. The field was founded in the 1950s with the goal of making machines perform tasks that require intelligence. For decades, the dominant approach was <strong>symbolic AI</strong>: knowledge was written down by experts as rules (“if bearing temperature &gt; 90 °C and vibration rising, then …”) and combined by logical inference. Such <em>expert systems</em> worked in narrow domains but were laborious to build and brittle when reality deviated from the rules.</p>
-<p>The alternative is to <strong>learn</strong> the behaviour from data – machine learning. Since around 2012, deep neural networks have achieved breakthroughs in image recognition, speech and text, and today’s <em>generative AI</em> (large language models such as the chatbots you know, image generators) is deep learning trained on enormous amounts of data. This is why “AI” in everyday language now usually means deep learning – but the term formally covers much more.</p>
-<p>Two distinctions help to keep a clear head:</p>
-<ul>
-<li><strong>Narrow vs.&nbsp;general AI.</strong> All AI systems in practical use, including large language models, are built for specific kinds of tasks. A system that matches humans across all intellectual tasks (<em>artificial general intelligence</em>) does not exist and remains a matter of research and debate.</li>
-<li><strong>Legal vs.&nbsp;technical meaning.</strong> The EU AI Act defines “AI system” broadly – roughly, a machine-based system that infers from its input how to produce outputs such as predictions, recommendations or decisions – and attaches obligations depending on the risk of the application. For engineers this means that even a fairly simple machine learning model in a safety-relevant product can fall under regulation.</li>
-</ul>
-<p>In this course we rarely use the word AI. We say precisely which method we use – a test, a regression, a random forest, a neural network – because that determines its assumptions, its limits and how it must be validated.</p>
 </section>
 </section>
 <section id="the-crisp-dm-process-model" class="level2" data-number="1.4">
@@ -958,7 +935,7 @@ dtypes: float64(5)
 memory usage: 373.9 KB</code></pre>
 </div>
 </div>
-<p><code>df.info()</code> tells us the number of rows, the column names, the data types and the number of non-missing values per column. Check the data types first: pandas stores a column as numbers (<code>float64</code>, <code>int64</code>) only if <em>every</em> entry can be read as a number. A single entry such as <code>12,5</code> (decimal comma) or <code>n/a</code> (a text marker for a missing value) turns the whole column into text, shown as <code>str</code> (in pandas versions before 3.0: <code>object</code>). Calculations then fail or give nonsense – sorted as text, <code>"10"</code> comes before <code>"9"</code>. The fix is usually an argument of <code>read_csv</code>, e.g.&nbsp;<code>decimal=","</code> or <code>na_values=["n/a"]</code>. A numeric missing value code such as <code>-999</code> does not change the type; it shows up only in the summary statistics (see the weather data in Chapter 2).</p>
+<p><code>df.info()</code> shows the number of rows, the column names, the data types and the number of non-missing values per column. Check the data types first: pandas stores a column as numbers (<code>float64</code>, <code>int64</code>) only if <em>every</em> entry can be read as a number. A single entry such as <code>12,5</code> (decimal comma) or <code>n/a</code> (a text marker for a missing value) turns the whole column into text, shown as <code>str</code> (in pandas versions before 3.0: <code>object</code>), and calculations fail or give nonsense. The fix is usually an argument of <code>read_csv</code>, e.g.&nbsp;<code>decimal=","</code> or <code>na_values=["n/a"]</code> (Chapter 2).</p>
 <p>Here, all five columns are numeric and complete. The repository also supplies metadata – part of the <em>context</em> in the sense of our definition:</p>
 <div id="cc63b18c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ccpp.variables   <span class="co"># metadata supplied by the repository: name, role, type, description, unit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1238,14 +1215,14 @@ Pitfall: correlation is not causation – and not every relationship is linear
 Baseline 'always predict the mean': RMSE = 17.1 MW</code></pre>
 </div>
 </div>
-<p>The line explains most of the variation: its error (root mean squared error, RMSE) is a fraction of the error of the trivial mean-value baseline. Each additional degree Celsius costs about two megawatts of output. Whether an error of a few MW is “good enough” is not a statistical question – it depends on the use case defined in CRISP-DM phase 1.</p>
+<p>The line explains most of the variation. Its typical error is measured by the <strong>root mean squared error</strong> (RMSE): the square root of the mean squared difference between measured and predicted output, in MW. Squaring makes large deviations count more than small ones. The RMSE of the line is a fraction of that of the trivial mean-value baseline. Each additional degree Celsius costs about two megawatts of output. Whether an error of a few MW is “good enough” is not a statistical question – it depends on the use case defined in CRISP-DM phase 1.</p>
 </section>
 </section>
 <section id="back-to-the-decision" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">1.7</span> Back to the decision</h2>
 <p>In terms of CRISP-DM, this is phase 5, evaluation: we check the result against the criterion fixed in phase 1. The trading desk compares two rules for the committed output: the flat long-term average and the straight-line estimate from the ambient temperature. To turn the comparison into an economic decision, we use a deliberately simple cost model. All figures are assumptions for illustration:</p>
 <ul>
-<li><strong>Deviation cost:</strong> every MWh delivered more or less than committed costs 30 € extra. (Real imbalance prices vary strongly from hour to hour and can be much higher.)</li>
+<li><strong>Deviation cost:</strong> every MWh delivered more or less than committed costs 30 € extra. Generation and consumption in the grid must match at every moment, so the grid operator balances every deviation with short-term reserve power and settles it with the plant at the imbalance price: a shortfall has to be bought expensively, a surplus is paid poorly. (Real imbalance prices vary strongly from hour to hour and can be much higher.)</li>
 <li><strong>Operating hours:</strong> the plant runs at full load all 8,760 hours of a year – the data contain full-load hours only.</li>
 <li><strong>Cost of the new rule:</strong> a weather forecast service, implementation and maintenance cost 25,000 € per year.</li>
 </ul>
@@ -1304,8 +1281,8 @@ Key takeaways
 <ul>
 <li>Data are recorded values of variables, observed on observational units, together with their context. Without unit and meaning, numbers cannot be interpreted – as the condenser pressure <code>V</code> shows.</li>
 <li>Type and role of a variable determine which summaries and models make sense.</li>
-<li>Every data science project starts with a precise engineering question and a clear criterion for success (CRISP-DM phase 1) – ideally expressed in money, as in the cost model of the power plant.</li>
-<li>Look at the data before modelling: <code>info()</code>, <code>describe()</code>, pair plots and correlations reveal structure and problems quickly.</li>
+<li>Start from the decision: every data science project starts with a precise engineering question and a clear criterion for success (CRISP-DM phase 1) – ideally expressed in money, as in the cost model of the power plant.</li>
+<li>Know your data before you model them: <code>info()</code>, <code>describe()</code>, pair plots and correlations reveal structure and problems quickly.</li>
 <li>Always compare a model with a simple baseline.</li>
 </ul>
 </div>
@@ -1316,7 +1293,7 @@ Key takeaways
 <div class="exercises">
 <ol type="1">
 <li>Which columns of the power plant data are features, which is the target? Which physical relationships between them do you expect, and which signs of the correlations follow from them?</li>
-<li>Fit straight lines for <code>PE</code> against each of the four features separately and compare their RMSE. Which single feature is the best predictor? Does the ranking agree with the correlation matrix?</li>
+<li>Fit straight lines for <code>PE</code> against each of the four features separately and compare their RMSE. Which single feature is the best predictor? Does the ranking agree with the correlation matrix? <em>Useful:</em> <code>np.polyfit(df[col], df["PE"], deg=1)</code> in a loop over the four columns; collect the results as rows of a table (<a href="../notebooks/00-pandas.html">Getting Started with pandas</a>).</li>
 <li>Sketch the six CRISP-DM phases for a project from your own engineering background. Which phase do you expect to be the most difficult?</li>
 <li>Place the following in <a href="#fig-terms" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> (b) and justify: (a) a t-test whether a new supplier changes the scrap rate; (b) a convolutional neural network that detects cracks in X-ray images; (c) route planning for automated guided vehicles with the A* search algorithm; (d) a random forest that predicts tool breakage; (e) a straight line for power output vs.&nbsp;temperature with a confidence interval for the slope.</li>
 <li>Which of the following are data in the sense of our definition? (a) The torque values logged by a screwdriving station for every screw joint; (b) the maximum torque in the screwdriver’s datasheet; (c) a table of thread friction coefficients computed with a formula from a handbook; (d) 10,000 lifetimes generated by a reliability simulation; (e) a column <code>T</code> with values between 280 and 320, without any further information.</li>
@@ -1410,7 +1387,7 @@ Solution to Exercise 2
 </div>
 </div>
 </div>
-<p><code>AT</code> gives by far the smallest RMSE, followed by <code>V</code>. For a straight-line fit, the ranking by RMSE is exactly the ranking by <span class="math inline">\(|r|\)</span>, because the fraction of explained variance of a simple linear regression is <span class="math inline">\(r^2\)</span>. The original publication reports practically the same values (<a href="https://doi.org/10.1016/j.ijepes.2014.02.027">Tüfekci 2014</a>).</p>
+<p><code>AT</code> gives by far the smallest RMSE, followed by <code>V</code>. The ranking by RMSE is exactly the ranking by <span class="math inline">\(|r|\)</span> – no coincidence: <span class="math inline">\(|r|\)</span> measures how well a straight line describes the relationship. The closer the points lie to a line, the larger <span class="math inline">\(|r|\)</span> and the smaller the error of the line; the sign of <span class="math inline">\(r\)</span> only gives its direction. The original publication reports practically the same values (<a href="https://doi.org/10.1016/j.ijepes.2014.02.027">Tüfekci 2014</a>).</p>
 </div>
 </div>
 </div>
@@ -1497,7 +1474,15 @@ Solution to Exercise 6
 </div>
 <p>(a) Even a deviation price far below 1 € per MWh would cover the cost of the rule – real prices are much higher.</p>
 <p>(b) The rule pays off as long as it is even slightly better than the flat commitment: the break-even deviation lies only about 0.1 MW below that of the flat rule. With well over 100,000 MWh of deviation per year, even small improvements are worth a lot of money.</p>
-<p>(c) For example: deviations in the two directions are usually priced differently, and the price depends on the state of the grid; the plant does not run at full load in every hour (maintenance, partial load), so fewer hours mean smaller savings; the forecast error of the temperature increases the deviation of the new rule; and the cost of the new rule may be underestimated (staff time, IT). None of these is likely to reverse the decision here – but in a project with a smaller margin, each of them could.</p>
+<p>(c) For example:</p>
+<ul>
+<li><strong>The two directions are not equally expensive.</strong> The plant runs at full load, and its output depends on the weather. If it is cooler than expected and the plant could deliver more than committed, it simply throttles its output or sells the surplus in short-term trading – it loses revenue but pays no penalty. If it is warmer than expected and the plant delivers less, it cannot ramp up: the missing energy has to be bought at the imbalance price. A shortfall therefore usually costs more than a surplus, and the best commitment lies deliberately somewhat <em>below</em> the forecast – a safety margin. Chapter 12 meets the same idea when predicting the remaining useful life of engines.</li>
+<li>The imbalance price depends on the state of the grid and varies from hour to hour.</li>
+<li>The plant does not run at full load in every hour (maintenance, partial load), so fewer hours mean smaller savings.</li>
+<li>The forecast error of the temperature increases the deviation of the new rule.</li>
+<li>The cost of the new rule may be underestimated (staff time, IT).</li>
+</ul>
+<p>None of these is likely to reverse the decision here – but in a project with a smaller margin, each of them could.</p>
 </div>
 </div>
 </div>

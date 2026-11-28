@@ -16,6 +16,13 @@ Notation: $x_1, \dots, x_n$ are observations, $n$ is the sample size, $\bar x$ t
 | Robust z-score | $z_i = \dfrac{x_i - \tilde x}{1.4826 \cdot \text{MAD}}$, flag $x_i$ if $\lvert z_i \rvert > 3.5$ | Ch. 2 |
 | Pearson correlation | $r_{xy} = \dfrac{\sum_i (x_i - \bar x)(y_i - \bar y)}{\sqrt{\sum_i (x_i - \bar x)^2}\,\sqrt{\sum_i (y_i - \bar y)^2}}$ | Ch. 1 |
 
+## Prediction errors
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Mean absolute error | $\text{MAE} = \dfrac{1}{n}\sum_i \lvert y_i - \hat y_i \rvert$ | Ch. 1 |
+| Root mean squared error | $\text{RMSE} = \sqrt{\dfrac{1}{n}\sum_i (y_i - \hat y_i)^2}$ | Ch. 1 |
+
 ## Probability and lifetimes
 
 | Quantity | Formula | Used in |
@@ -32,7 +39,8 @@ Notation: $x_1, \dots, x_n$ are observations, $n$ is the sample size, $\bar x$ t
 | B10 life (Weibull) | $B_{10} = \eta\,(-\ln 0.9)^{1/\beta}$ | Ch. 3 |
 | Log-likelihood | $\ell(\theta) = \sum_i \ln f(x_i; \theta)$, maximised by the estimate $\hat\theta$ | Ch. 3 |
 | Akaike information criterion | $\mathrm{AIC} = 2k - 2\,\ell(\hat\theta)$, $\quad k$ = number of fitted parameters | Ch. 3 |
-| Bayes' theorem | $P(F \mid A) = \dfrac{P(A \mid F)\,P(F)}{P(A)}$, $\quad P(A) = P(A \mid F)\,P(F) + P(A \mid \bar F)\,P(\bar F)$ | Ch. 3 |
+| Bayes' theorem | $P(F \mid A) = \dfrac{P(A \mid F)\,P(F)}{P(A)}$, $\quad P(A) = P(A \mid F)\,P(F) + P(A \mid \bar F)\,P(\bar F)$ | Ch. 3, 7 |
+| Bayes' theorem for densities | $p(\theta \mid y) \propto p(y \mid \theta)\,p(\theta)$: posterior ∝ likelihood × prior | Ch. 3, 6 |
 
 ## Confidence intervals
 
@@ -42,6 +50,9 @@ Notation: $x_1, \dots, x_n$ are observations, $n$ is the sample size, $\bar x$ t
 | 95 % confidence interval for the mean | $\bar x \pm t_{n-1,\,0.975}\,\dfrac{s}{\sqrt n}$ | Ch. 3 |
 | Bootstrap (percentile method) | 95 % interval: 2.5 % and 97.5 % quantiles of the bootstrap replicates | Ch. 3 |
 | 95 % confidence interval for a regression coefficient | $\hat\beta_j \pm t_{n-p-1,\,0.975}\,\text{SE}(\hat\beta_j)$ | Ch. 5 |
+| Standard error of a regression prediction | $\text{SE}(\hat y_0) = \hat\sigma\,\sqrt{x_0^\top (X^\top X)^{-1} x_0}$, $\quad \hat y_0 = x_0^\top \hat\beta$, $\quad x_0 = (1, x_{01}, \dots, x_{0p})^\top$ | Ch. 5 |
+| 95 % confidence interval for the mean response | $\hat y_0 \pm t_{n-p-1,\,0.975}\,\text{SE}(\hat y_0)$ | Ch. 5 |
+| 95 % prediction interval for a single new observation | $\hat y_0 \pm t_{n-p-1,\,0.975}\,\sqrt{\hat\sigma^2 + \text{SE}(\hat y_0)^2}$ | Ch. 5 |
 
 ## Hypothesis tests
 
@@ -56,6 +67,7 @@ Notation: $x_1, \dots, x_n$ are observations, $n$ is the sample size, $\bar x$ t
 | False alarms in $m$ independent tests | $P(\text{at least one}) = 1 - (1 - \alpha)^m$ | Ch. 4 |
 | Bonferroni correction | significance level $\alpha/m$ for each of $m$ tests | Ch. 4 |
 | Sample size per group (two-sample t-test) | $n \approx \dfrac{2\,(z_{1-\alpha/2} + z_{1-\beta})^2}{d^2}$, $\quad d = \delta/\sigma$; $\quad n \approx 16/d^2$ for $\alpha = 0.05$ and power 0.8 | Ch. 4 |
+| t-value of a regression coefficient | $t_j = \dfrac{\hat\beta_j}{\text{SE}(\hat\beta_j)}$, t-distribution with $n - p - 1$ degrees of freedom under $H_0: \beta_j = 0$ | Ch. 5 |
 
 ## Regression
 
@@ -65,8 +77,53 @@ Notation: $x_1, \dots, x_n$ are observations, $n$ is the sample size, $\bar x$ t
 | Least squares estimate | $\hat\beta = (X^\top X)^{-1} X^\top y$, $\quad \widehat{\text{Cov}}(\hat\beta) = \hat\sigma^2 (X^\top X)^{-1}$ | Ch. 5 |
 | Residual variance | $\hat\sigma^2 = \dfrac{1}{n - p - 1}\sum_i (y_i - \hat y_i)^2$ | Ch. 5 |
 | Coefficient of determination | $R^2 = 1 - \dfrac{\sum_i (y_i - \hat y_i)^2}{\sum_i (y_i - \bar y)^2}$ | Ch. 5 |
-| Variance inflation factor | $\text{VIF}_j = \dfrac{1}{1 - R_j^2}$, $\quad R_j^2$: $R^2$ of $x_j$ regressed on all other inputs | Ch. 5 |
+| Adjusted coefficient of determination | $R^2_{\text{adj}} = 1 - (1 - R^2)\,\dfrac{n - 1}{n - p - 1}$ | Ch. 5 |
+| Variance inflation factor | $\text{VIF}_j = \dfrac{1}{1 - R_j^2}$, $\quad R_j^2$: $R^2$ of a regression that predicts $x_j$ from all other inputs | Ch. 5 |
 | Nonlinear least squares | $\hat\theta = \arg\min_{\theta} \sum_i \big(y_i - f(x_i; \theta)\big)^2$ | Ch. 5 |
+
+## Model selection and regularisation
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Bias–variance decomposition | $E\big[(y - \hat f(x))^2\big] = \big(E[\hat f(x)] - f(x)\big)^2 + \text{Var}\big(\hat f(x)\big) + \sigma^2$: bias² + variance + irreducible noise | Ch. 6 |
+| k-fold cross-validation error | mean of the errors on the $k$ held-out folds, each computed with the model trained on the other $k - 1$ folds | Ch. 6 |
+| Ridge regression | $\min_\beta \sum_i (y_i - x_i^\top\beta)^2 + \lambda \sum_j \beta_j^2$ | Ch. 6 |
+| Lasso regression | $\min_\beta \sum_i (y_i - x_i^\top\beta)^2 + \lambda \sum_j \lvert\beta_j\rvert$ | Ch. 6 |
+| Kernel (correlation of two inputs) | $\rho(x, x') = \exp\left(-\dfrac{(x - x')^2}{2\ell^2}\right)$, $\quad \ell$: length scale | Ch. 6 |
+| Gaussian process, step 1: one measurement $y_1$ at $x_1$ | $\mu_1 = m + w\,(y_1 - m)$, $\quad \sigma_1 = \sigma_f\sqrt{1 - w}$, $\quad w = \dfrac{\sigma_f^2}{\sigma_f^2 + \sigma_n^2}$ | Ch. 6 |
+| Gaussian process, step 2: other inputs $x$ | $\mu(x) = m + \rho\,w\,(y_1 - m)$, $\quad \sigma(x) = \sigma_f\sqrt{1 - \rho^2 w}$, $\quad \rho = \rho(x, x_1)$ | Ch. 6 |
+
+## Classification
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Logistic regression | $P(y = 1 \mid x) = \dfrac{1}{1 + e^{-(\beta_0 + \beta^\top x)}}$ | Ch. 7 |
+| Bernoulli likelihood | $L = \prod_i p_i^{\,y_i}(1 - p_i)^{1 - y_i}$ | Ch. 3, 7 |
+| Log-loss (cross-entropy, two classes) | $-\ln L = -\sum_i \big[y_i \ln p_i + (1 - y_i)\ln(1 - p_i)\big]$ | Ch. 7 |
+| Softmax and cross-entropy ($K$ classes) | $p_k = \dfrac{e^{z_k}}{\sum_{j} e^{z_j}}$, $\quad -\sum_i \ln p_{i,\,\text{true class}}$ | Ch. 8 |
+| Gini impurity | $G = 1 - \sum_k p_k^2$, $\quad p_k$: share of class $k$ in a node | Ch. 7 |
+| Accuracy, precision, recall | $\dfrac{TP + TN}{\text{all}}$, $\quad \dfrac{TP}{TP + FP}$, $\quad \dfrac{TP}{TP + FN}$ | Ch. 7 |
+| F1 score | $F_1 = \dfrac{2 \cdot \text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}$ | Ch. 7 |
+| Cost-optimal threshold (calibrated probabilities) | $\dfrac{c_{FP}}{c_{FP} + c_{FN}}$ | Ch. 7 |
+| Balanced accuracy | mean of the recalls of all classes | Ch. 7, 8 |
+
+## Ensembles and interpretation
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| Average of $B$ predictions (variance $\sigma^2$, pairwise correlation $\rho$) | $\text{Var} = \rho\,\sigma^2 + \dfrac{1 - \rho}{B}\,\sigma^2$ | Ch. 8 |
+| Gradient boosting | $F_m(x) = F_{m-1}(x) + \nu\,h_m(x)$, $\quad h_m$ fitted to the negative gradient of the loss; squared error: to the residuals $y_i - F_{m-1}(x_i)$ | Ch. 8 |
+| Permutation importance of feature $j$ | score on test data minus score after randomly shuffling feature $j$ | Ch. 8 |
+
+## Unsupervised learning
+
+| Quantity | Formula | Used in |
+| --- | --- | --- |
+| PCA scores of a standardised observation $z$ | $t = V_k^\top z$, $\quad V_k = [v_1, \dots, v_k]$: the first $k$ loadings | Ch. 9 |
+| Share of variance explained by component $j$ | $\lambda_j / p$, $\quad \lambda_j$: variance of the scores of component $j$, $p$: number of standardised variables | Ch. 9 |
+| Hotelling's T² | $T^2 = \sum_{j=1}^k \dfrac{t_j^2}{\lambda_j}$ | Ch. 9 |
+| Squared prediction error | $\text{SPE} = \lVert z - V_k t \rVert^2$ | Ch. 9 |
+| k-means | minimise $\sum_{c=1}^{k} \sum_{i \in c} \lVert x_i - \mu_c \rVert^2$, $\quad \mu_c$: centre (mean) of cluster $c$ | Ch. 9 |
 
 ## Quantile tables
 

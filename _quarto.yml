@@ -47,7 +47,7 @@ book:
 
 # Dokument-Metadaten (auf oberster Ebene, damit {{< meta ... >}} sie findet)
 lang: en
-version: "0.1"
+version: "0.2"
 # license: "CC BY-SA 4.0"
 number-sections: true
 toc: true

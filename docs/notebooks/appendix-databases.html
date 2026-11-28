@@ -1221,7 +1221,7 @@ Key takeaways
 <ol type="1">
 <li>Write a query that returns, for each material, the number of inspected parts and the scrap rate. Is one material more difficult to machine?</li>
 <li>The production manager suspects that scrap increases towards the end of the week. Compute the scrap rate per weekday. (Hint: load the joined table with <code>start_time</code>, convert it as shown above and use the pandas attribute <code>.dt.day_name()</code>.)</li>
-<li>Determine the mean diameter and its standard deviation for OK parts and for scrap parts. What does the result tell you about the cause of the scrap?</li>
+<li>Determine the mean diameter and its standard deviation for OK parts and for scrap parts. What does the result tell you about the cause of the scrap? <em>Useful:</em> SQLite has no standard deviation – compute the variance as <code>AVG(x * x) - AVG(x) * AVG(x)</code> and take the square root in pandas.</li>
 <li>Compute the scrap rate of M4 in the two weeks before and the two weeks after the repair on 2025-02-10. Can you see an effect of the repair? (Use <code>WHERE</code> with a condition on <code>start_time</code>; text in the format <code>YYYY-MM-DD</code> can be compared like dates.)</li>
 </ol>
 </div>
@@ -1340,9 +1340,9 @@ Solution to Exercise 3
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">FROM inspections</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY result</span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> pd.read_sql(query, con)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>stats[<span class="st">"std_mm"</span>] <span class="op">=</span> stats[<span class="st">"var_mm2"</span>] <span class="op">**</span> <span class="fl">0.5</span>      <span class="co"># SQLite has no built-in standard deviation</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>stats.drop(columns<span class="op">=</span><span class="st">"var_mm2"</span>).<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>diam <span class="op">=</span> pd.read_sql(query, con)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>diam[<span class="st">"std_mm"</span>] <span class="op">=</span> diam[<span class="st">"var_mm2"</span>] <span class="op">**</span> <span class="fl">0.5</span>        <span class="co"># SQLite has no built-in standard deviation</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>diam.drop(columns<span class="op">=</span><span class="st">"var_mm2"</span>).<span class="bu">round</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 

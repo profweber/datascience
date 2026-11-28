@@ -416,9 +416,10 @@ window.Quarto = {
 <li>distinguish supervised and unsupervised learning and name engineering uses of the latter,</li>
 <li>reduce high-dimensional process data with principal component analysis (PCA) and interpret scores, loadings and explained variance,</li>
 <li>monitor a process with PCA-based statistics (Hotelling’s T², SPE) and control limits,</li>
-<li>group data with k-means and DBSCAN and choose the number of clusters,</li>
+<li>group data with k-means and choose the number of clusters,</li>
 <li>detect anomalies with Isolation Forest and evaluate detectors when a few labels are available.</li>
 </ul>
+<p><strong>Course goal.</strong> This chapter contributes to step 4 of the <a href="../index.html#what-you-will-be-able-to-do">course goals</a>: build and validate prediction and monitoring models.</p>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://archive.ics.uci.edu/dataset/179/secom">SECOM (UCI)</a></li>
@@ -437,7 +438,7 @@ Definition: Principal component analysis (PCA)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Given standardised data <span class="math inline">\(Z \in \mathbb{R}^{n \times p}\)</span> (each column with mean 0 and standard deviation 1), PCA finds orthogonal directions <span class="math inline">\(v_1, v_2, \dots\)</span> (the <strong>loadings</strong>) such that the projection of the data onto <span class="math inline">\(v_1\)</span> has maximal variance, the projection onto <span class="math inline">\(v_2\)</span> has maximal variance among all directions orthogonal to <span class="math inline">\(v_1\)</span>, and so on. The projections <span class="math inline">\(Z v_j\)</span> of the data onto the loadings are the <strong>scores</strong> of component <span class="math inline">\(j\)</span>. Computationally, PCA is the singular value decomposition <span class="math display">\[Z = U \Sigma V^\top,\]</span> where the columns of <span class="math inline">\(V\)</span> are the loadings and the variance explained by component <span class="math inline">\(j\)</span> is proportional to the squared singular value <span class="math inline">\(\sigma_j^2\)</span>.</p>
+<p>Given standardised data <span class="math inline">\(Z \in \mathbb{R}^{n \times p}\)</span> (each column with mean 0 and standard deviation 1), PCA finds orthogonal directions <span class="math inline">\(v_1, v_2, \dots\)</span> (the <strong>loadings</strong>) such that the projection of the data onto <span class="math inline">\(v_1\)</span> has maximal variance, the projection onto <span class="math inline">\(v_2\)</span> has maximal variance among all directions orthogonal to <span class="math inline">\(v_1\)</span>, and so on. The projections <span class="math inline">\(Z v_j\)</span> of the data onto the loadings are the <strong>scores</strong> of component <span class="math inline">\(j\)</span>. The variance <span class="math inline">\(\lambda_j\)</span> of the scores is the variance <strong>explained</strong> by component <span class="math inline">\(j\)</span>. The <span class="math inline">\(\lambda_j\)</span> of all components add up to the total variance of the standardised data, <span class="math inline">\(p\)</span>, so <span class="math inline">\(\lambda_j / p\)</span> is the share of the variance explained by component <span class="math inline">\(j\)</span>.</p>
 </div>
 </div>
 <p>Keeping the first <span class="math inline">\(k\)</span> components gives the best possible approximation of the data by a <span class="math inline">\(k\)</span>-dimensional plane (in the least-squares sense). The <strong>scree plot</strong> (explained variance per component) and the cumulative explained variance help to choose <span class="math inline">\(k\)</span>.</p>
@@ -478,7 +479,7 @@ Definition: Hotelling’s T² and SPE
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Let <span class="math inline">\(V_k = [v_1, \dots, v_k]\)</span> contain the first <span class="math inline">\(k\)</span> loadings and <span class="math inline">\(\lambda_j\)</span> be the variance of the scores of component <span class="math inline">\(j\)</span> in the normal-operation data. For a new standardised observation <span class="math inline">\(z\)</span> with scores <span class="math inline">\(t = V_k^\top z = (t_1, \dots, t_k)^\top\)</span>: <span class="math display">\[T^2 = \sum_{j=1}^k \frac{t_j^2}{\lambda_j}, \qquad \text{SPE} = \|z - V_k t\|^2 .\]</span> Control limits are derived from the normal-operation data, e.g.&nbsp;as the 99 % quantile of each statistic.</p>
+<p>Let <span class="math inline">\(V_k = [v_1, \dots, v_k]\)</span> contain the first <span class="math inline">\(k\)</span> loadings and <span class="math inline">\(\lambda_j\)</span> be the explained variance of component <span class="math inline">\(j\)</span> in the normal-operation data. For a new standardised observation <span class="math inline">\(z\)</span> with scores <span class="math inline">\(t = V_k^\top z = (t_1, \dots, t_k)^\top\)</span>: <span class="math display">\[T^2 = \sum_{j=1}^k \frac{t_j^2}{\lambda_j}, \qquad \text{SPE} = \|z - V_k t\|^2 .\]</span> Control limits are derived from the normal-operation data, e.g.&nbsp;as the 99 % quantile of each statistic.</p>
 </div>
 </div>
 <p>When an alarm occurs, <strong>contribution plots</strong> show which original variables contribute most to the large T² or SPE value – a first hint for the operator where to look.</p>
@@ -536,17 +537,20 @@ Engineering practice: evaluating unsupervised detectors
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> importlib.util.find_spec(pkg) <span class="kw">is</span> <span class="va">None</span>:</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        subprocess.run([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, <span class="st">"-q"</span>, pkg], check<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>, message<span class="op">=</span><span class="st">"KMeans is known to have a memory leak"</span>)   <span class="co"># harmless notice on Windows</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="live-coding-pca-monitoring-of-semiconductor-production" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="live-coding-pca-monitoring-of-semiconductor-production"><span class="header-section-number">9.5</span> Live coding: PCA monitoring of semiconductor production</h2>
-<p>We use the SECOM data introduced in Chapter 2: 1,567 production runs, 590 process measurements, and a pass/fail label. Following the preparation from Chapter 2, we remove sparse and constant features, impute the remaining gaps with the median and standardise. All preprocessing steps and the PCA model are fitted on <strong>passed runs only</strong> – this is our model of normal operation.</p>
+<p>We use the SECOM data introduced in Chapter 2: 1,567 production runs, 590 process measurements, and a pass/fail label. Following the findings of Chapter 2, we remove sparse and constant features, impute the remaining gaps with the median and standardise. All preprocessing steps and the PCA model are fitted on <strong>passed runs only</strong> – this is our model of normal operation.</p>
 <div id="79d9bfb7" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ucimlrepo <span class="im">import</span> fetch_ucirepo</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
@@ -555,43 +559,24 @@ Engineering practice: evaluating unsupervised detectors
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_secom():</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""SECOM: return the process measurements X and the label y (-1 = pass, 1 = fail).</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    In the UCI repository the label is not marked as target variable, so we find it</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    ourselves: the only numeric column whose values are exactly -1 and 1.</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">179</span>).data.original</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> df.select_dtypes(<span class="st">"number"</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> num.columns <span class="cf">if</span> <span class="bu">set</span>(num[c].dropna().unique()) <span class="op">==</span> {<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>}]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(labels) <span class="op">!=</span> <span class="dv">1</span>:</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        labels <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df.columns <span class="cf">if</span> <span class="bu">any</span>(k <span class="kw">in</span> <span class="bu">str</span>(c).lower() <span class="cf">for</span> k <span class="kw">in</span> (<span class="st">"pass"</span>, <span class="st">"fail"</span>, <span class="st">"label"</span>))]</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(labels) <span class="op">==</span> <span class="dv">1</span>, <span class="ss">f"Label column not found unambiguously: </span><span class="sc">{</span>labels<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> df[labels[<span class="dv">0</span>]].astype(<span class="bu">int</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> num.drop(columns<span class="op">=</span>labels, errors<span class="op">=</span><span class="st">"ignore"</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Label column: </span><span class="sc">{</span>labels[<span class="dv">0</span>]<span class="sc">!r}</span><span class="ss">, measurement columns: </span><span class="sc">{</span>X<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">, "</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"ignored non-numeric columns: </span><span class="sc">{</span>[c <span class="cf">for</span> c <span class="kw">in</span> df.columns <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> num.columns]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X, y</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> load_secom()                          <span class="co"># helper from Chapter 2</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.loc[:, X.isna().mean() <span class="op">&lt;</span> <span class="fl">0.5</span>]          <span class="co"># drop features with &gt; 50 % missing</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>prep <span class="op">=</span> make_pipeline(SimpleImputer(strategy<span class="op">=</span><span class="st">"median"</span>), VarianceThreshold(<span class="fl">1e-8</span>), StandardScaler())</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> prep.fit_transform(X[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>])           <span class="co"># model of normal operation</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA().fit(Z)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>cum <span class="op">=</span> np.cumsum(pca.explained_variance_ratio_)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">int</span>(np.searchsorted(cum, <span class="fl">0.80</span>) <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="dv">101</span>), cum[:<span class="dv">100</span>])<span class="op">;</span> plt.axhline(<span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of components"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Cumulative explained variance"</span>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Components for 80 % variance:"</span>, k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Label column: 'class', measurement columns: 590, ignored non-numeric columns: ['timestamp']</code></pre>
-</div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>secom <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">179</span>).data.original    <span class="co"># as in Chapter 2</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> secom[<span class="st">"class"</span>].astype(<span class="bu">int</span>)                  <span class="co"># the label: -1 = pass, 1 = fail</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> secom.drop(columns<span class="op">=</span>[<span class="st">"timestamp"</span>, <span class="st">"class"</span>])  <span class="co"># the 590 measurements</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.loc[:, X.isna().mean() <span class="op">&lt;</span> <span class="fl">0.5</span>]             <span class="co"># drop features with &gt; 50 % missing</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>prep <span class="op">=</span> make_pipeline(SimpleImputer(strategy<span class="op">=</span><span class="st">"median"</span>), VarianceThreshold(<span class="fl">1e-8</span>), StandardScaler())</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> prep.fit_transform(X[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>])           <span class="co"># model of normal operation</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA().fit(Z)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>cum <span class="op">=</span> np.cumsum(pca.explained_variance_ratio_)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="bu">int</span>((cum <span class="op">&lt;</span> <span class="fl">0.80</span>).<span class="bu">sum</span>()) <span class="op">+</span> <span class="dv">1</span>                <span class="co"># components needed for 80 %</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="dv">101</span>), cum[:<span class="dv">100</span>])<span class="op">;</span> plt.axhline(<span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"k"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of components"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Cumulative explained variance"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Components for 80 % variance:"</span>, k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="09-unsupervised_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="09-unsupervised_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -601,22 +586,22 @@ Engineering practice: evaluating unsupervised detectors
 </div>
 <p><strong>Discussion.</strong> The cumulative explained variance rises steeply for the first components and then slowly. For SECOM, many components are needed to reach 80 % – the process has many partly independent sources of variation, and much of the variance is noise. The choice of 80 % is a convention; in monitoring, the number of components is often chosen by cross-validation of the reconstruction error or by the scree plot’s elbow.</p>
 <div id="9c4e4fd9" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pca_k <span class="op">=</span> PCA(k).fit(Z)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> t2_spe(Zx):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> pca_k.transform(Zx)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    t2 <span class="op">=</span> np.<span class="bu">sum</span>(scores<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> pca_k.explained_variance_, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    spe <span class="op">=</span> np.<span class="bu">sum</span>((Zx <span class="op">-</span> pca_k.inverse_transform(scores))<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> t2, spe</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>t2, spe <span class="op">=</span> t2_spe(prep.transform(X))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>t2_lim, spe_lim <span class="op">=</span> np.percentile(t2[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], <span class="dv">99</span>), np.percentile(spe[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], <span class="dv">99</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.scatter(t2, spe, c<span class="op">=</span>(y <span class="op">==</span> <span class="dv">1</span>), cmap<span class="op">=</span><span class="st">"coolwarm"</span>, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.axvline(t2_lim, c<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">"--"</span>)<span class="op">;</span> plt.axhline(spe_lim, c<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">"--"</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">"log"</span>)<span class="op">;</span> plt.yscale(<span class="st">"log"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Hotelling T²"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"SPE"</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Red: failed runs, dashed: 99 </span><span class="sc">% li</span><span class="st">mits of normal runs"</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pca_k <span class="op">=</span> PCA(k).fit(Z)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> t2_spe(Zx):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> pca_k.transform(Zx)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    t2 <span class="op">=</span> np.<span class="bu">sum</span>(scores<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> pca_k.explained_variance_, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    spe <span class="op">=</span> np.<span class="bu">sum</span>((Zx <span class="op">-</span> pca_k.inverse_transform(scores))<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> t2, spe</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>t2, spe <span class="op">=</span> t2_spe(prep.transform(X))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>t2_lim, spe_lim <span class="op">=</span> np.percentile(t2[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], <span class="dv">99</span>), np.percentile(spe[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], <span class="dv">99</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.scatter(t2, spe, c<span class="op">=</span>(y <span class="op">==</span> <span class="dv">1</span>), cmap<span class="op">=</span><span class="st">"coolwarm"</span>, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.axvline(t2_lim, c<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">"--"</span>)<span class="op">;</span> plt.axhline(spe_lim, c<span class="op">=</span><span class="st">"k"</span>, ls<span class="op">=</span><span class="st">"--"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">"log"</span>)<span class="op">;</span> plt.yscale(<span class="st">"log"</span>)<span class="op">;</span> plt.xlabel(<span class="st">"Hotelling T²"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"SPE"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Red: failed runs, dashed: 99 </span><span class="sc">% li</span><span class="st">mits of normal runs"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -627,18 +612,18 @@ Engineering practice: evaluating unsupervised detectors
 </div>
 <p><strong>Discussion.</strong> The dashed lines are the 99 % limits of the normal runs, so about 1 % of normal runs exceed each limit by construction (false alarms). Failed runs that exceed a limit are detected; those inside the limits look normal to the model. If most failures lie inside the limits, the measured variables may not contain the cause of the failure, or the failure manifests itself in variables that were removed, or in a way that PCA does not capture.</p>
 <div id="ea5d0743" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(Z)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="op">-</span>iso.score_samples(prep.transform(X))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  Isolation Forest: </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, score)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  T²:               </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, t2)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  SPE:              </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, spe)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> IsolationForest</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>iso <span class="op">=</span> IsolationForest(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(Z)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="op">-</span>iso.score_samples(prep.transform(X))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  Isolation Forest: </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, score)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  T²:               </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, t2)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC  SPE:              </span><span class="sc">{</span>roc_auc_score(y <span class="op">==</span> <span class="dv">1</span>, spe)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ROC AUC  Isolation Forest: 0.571
-ROC AUC  T²:               0.533
-ROC AUC  SPE:              0.731</code></pre>
+ROC AUC  T²:               0.541
+ROC AUC  SPE:              0.726</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -660,20 +645,20 @@ Pitfall: evaluating on the training data
 <h2 data-number="9.6" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">9.6</span> Back to the decision</h2>
 <p>The requirement fixes the false alarm rate at 5 %, so we set the alarm limit at the 95 % quantile of the statistic on <em>good</em> runs and then measure which share of the failed runs exceeds it. To avoid the optimism discussed above, we fit preprocessing and PCA on 70 % of the good runs and evaluate on the remaining good runs plus all failed runs.</p>
 <div id="f5f2aa89" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X_good_fit, X_good_eval <span class="op">=</span> train_test_split(X[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>prep_d <span class="op">=</span> make_pipeline(SimpleImputer(strategy<span class="op">=</span><span class="st">"median"</span>), VarianceThreshold(<span class="fl">1e-8</span>), StandardScaler())</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Z_fit <span class="op">=</span> prep_d.fit_transform(X_good_fit)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>pca_d <span class="op">=</span> PCA(k).fit(Z_fit)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spe_of(Zx):</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>((Zx <span class="op">-</span> pca_d.inverse_transform(pca_d.transform(Zx)))<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>limit <span class="op">=</span> np.percentile(spe_of(prep_d.transform(X_good_eval)), <span class="dv">95</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>detection <span class="op">=</span> (spe_of(prep_d.transform(X[y <span class="op">==</span> <span class="dv">1</span>])) <span class="op">&gt;</span> limit).mean()</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"False alarm rate on good runs: 5 % (by construction), detection rate of failed runs: </span><span class="sc">{</span>detection<span class="sc">:.0%}</span><span class="ss">"</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Decision:"</span>, <span class="st">"install the alarm."</span> <span class="cf">if</span> detection <span class="op">&gt;=</span> <span class="fl">0.5</span> <span class="cf">else</span> <span class="st">"do not install – the alarm would miss too many failures."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X_good_fit, X_good_eval <span class="op">=</span> train_test_split(X[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>prep_d <span class="op">=</span> make_pipeline(SimpleImputer(strategy<span class="op">=</span><span class="st">"median"</span>), VarianceThreshold(<span class="fl">1e-8</span>), StandardScaler())</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Z_fit <span class="op">=</span> prep_d.fit_transform(X_good_fit)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pca_d <span class="op">=</span> PCA(k).fit(Z_fit)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spe_of(Zx):</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>((Zx <span class="op">-</span> pca_d.inverse_transform(pca_d.transform(Zx)))<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>limit <span class="op">=</span> np.percentile(spe_of(prep_d.transform(X_good_eval)), <span class="dv">95</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>detection <span class="op">=</span> (spe_of(prep_d.transform(X[y <span class="op">==</span> <span class="dv">1</span>])) <span class="op">&gt;</span> limit).mean()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"False alarm rate on good runs: 5 % (by construction), detection rate of failed runs: </span><span class="sc">{</span>detection<span class="sc">:.0%}</span><span class="ss">"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Decision:"</span>, <span class="st">"install the alarm."</span> <span class="cf">if</span> detection <span class="op">&gt;=</span> <span class="fl">0.5</span> <span class="cf">else</span> <span class="st">"do not install – the alarm would miss too many failures."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>False alarm rate on good runs: 5 % (by construction), detection rate of failed runs: 11%
 Decision: do not install – the alarm would miss too many failures.</code></pre>
@@ -683,53 +668,73 @@ Decision: do not install – the alarm would miss too many failures.</code></pre
 </section>
 <section id="live-coding-operating-states-of-a-hydraulic-test-rig" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="live-coding-operating-states-of-a-hydraulic-test-rig"><span class="header-section-number">9.7</span> Live coding: operating states of a hydraulic test rig</h2>
-<p>The hydraulic dataset was recorded on a test rig in which the condition of four components – cooler, valve, pump and accumulator – was varied deliberately. Each of the 2,205 load cycles lasts 60 seconds; 17 sensors were recorded at up to 100 Hz. The file <code>profile.txt</code> contains the component conditions, e.g.&nbsp;the cooler efficiency (3 %, 20 % or 100 %). We compute simple features per cycle from the temperature sensors and the cooling efficiency and see whether PCA and k-means recover the cooler condition <strong>without</strong> using the labels.</p>
+<p>The hydraulic dataset was recorded on a test rig in which the condition of four components – cooler, valve, pump and accumulator – was varied deliberately. Each of the 2,205 load cycles lasts 60 seconds; 17 sensors were recorded at up to 100 Hz. The file <code>profile.txt</code> contains the component conditions, e.g.&nbsp;the cooler efficiency (3 %, 20 % or 100 %). The archive contains one text file per sensor, with one row per load cycle and the values of the cycle separated by tabs. We compute simple features per cycle from the temperature sensors and the cooling efficiency and see whether PCA and k-means recover the cooler condition <strong>without</strong> using the labels.</p>
 <div id="cbef0fba" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile, io, requests</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>)<span class="op">;</span> DATA.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>hz <span class="op">=</span> DATA <span class="op">/</span> <span class="st">"hydraulic.zip"</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> hz.exists():</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    hz.write_bytes(requests.get(<span class="st">"https://archive.ics.uci.edu/static/public/447/"</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"condition+monitoring+of+hydraulic+systems.zip"</span>, timeout<span class="op">=</span><span class="dv">300</span>).content)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_sensor(z, name):</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    member <span class="op">=</span> <span class="bu">next</span>(n <span class="cf">for</span> n <span class="kw">in</span> z.namelist() <span class="cf">if</span> n.endswith(name))</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.read_csv(z.<span class="bu">open</span>(member), sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="va">None</span>).values</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    sensors <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"TS1"</span>, <span class="st">"TS2"</span>, <span class="st">"TS3"</span>, <span class="st">"TS4"</span>, <span class="st">"CE"</span>, <span class="st">"CP"</span>]}</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> pd.DataFrame(read_sensor(z, <span class="st">"profile.txt"</span>),</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                           columns<span class="op">=</span>[<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>, <span class="st">"stable"</span>])</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>feat <span class="op">=</span> pd.DataFrame({<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">"</span>: <span class="bu">getattr</span>(np, stat)(v, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                     <span class="cf">for</span> s, v <span class="kw">in</span> sensors.items() <span class="cf">for</span> stat <span class="kw">in</span> [<span class="st">"mean"</span>, <span class="st">"std"</span>]})</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>feat.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download helper, as in Chapter 3</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> Path(<span class="st">"data"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>DATA.mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)                         <span class="co"># create the folder ./data if it does not exist</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> download(url, fname<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Download a file once and cache it in ./data."""</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> fname <span class="kw">is</span> <span class="va">None</span>:                             <span class="co"># no file name given:</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        fname <span class="op">=</span> url.split(<span class="st">"/"</span>)[<span class="op">-</span><span class="dv">1</span>]                <span class="co"># use the last part of the URL</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> DATA <span class="op">/</span> fname                           <span class="co"># "/" joins folder and file name</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> path.exists():                         <span class="co"># download only if not cached yet</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> requests.get(url, timeout<span class="op">=</span><span class="dv">300</span>)        <span class="co"># give up after 300 s without response</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        r.raise_for_status()                      <span class="co"># stop with an error if the download failed</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        path.write_bytes(r.content)               <span class="co"># open, write and close the file in one step</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>hz <span class="op">=</span> download(<span class="st">"https://archive.ics.uci.edu/static/public/447/condition+monitoring+of+hydraulic+systems.zip"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">"hydraulic.zip"</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_sensor(z, name):</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Read one file of the archive: one row per load cycle."""</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.read_csv(z.<span class="bu">open</span>(name), sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, header<span class="op">=</span><span class="va">None</span>).values</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    sensors <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"TS1"</span>, <span class="st">"TS2"</span>, <span class="st">"TS3"</span>, <span class="st">"TS4"</span>, <span class="st">"CE"</span>, <span class="st">"CP"</span>]}</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> pd.DataFrame(read_sensor(z, <span class="st">"profile.txt"</span>),</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                           columns<span class="op">=</span>[<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>, <span class="st">"stable"</span>])</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>feat <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s, v <span class="kw">in</span> sensors.items():                     <span class="co"># v: one row per cycle, one column per time step</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    feat[<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_mean"</span>] <span class="op">=</span> v.mean(axis<span class="op">=</span><span class="dv">1</span>)           <span class="co"># mean of each cycle</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    feat[<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_std"</span>] <span class="op">=</span> v.std(axis<span class="op">=</span><span class="dv">1</span>)             <span class="co"># standard deviation of each cycle</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>feat.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(2205, 12)</code></pre>
 </div>
 </div>
 <div id="67341fba" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Zh <span class="op">=</span> StandardScaler().fit_transform(feat)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>scores_h <span class="op">=</span> PCA(<span class="dv">2</span>).fit_transform(Zh)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>sil <span class="op">=</span> {k_: silhouette_score(Zh, KMeans(k_, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zh)) <span class="cf">for</span> k_ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">7</span>)}</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Silhouette scores:"</span>, {k_: <span class="bu">round</span>(v, <span class="dv">3</span>) <span class="cf">for</span> k_, v <span class="kw">in</span> sil.items()})</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>clusters <span class="op">=</span> KMeans(<span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zh)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">4.5</span>))</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>scores_h[:, <span class="dv">0</span>], y<span class="op">=</span>scores_h[:, <span class="dv">1</span>], hue<span class="op">=</span>profile[<span class="st">"cooler"</span>].astype(<span class="bu">int</span>).astype(<span class="bu">str</span>),</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                ax<span class="op">=</span>axes[<span class="dv">0</span>], s<span class="op">=</span><span class="dv">12</span>).<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Coloured by true cooler condition (%)"</span>, xlabel<span class="op">=</span><span class="st">"PC 1"</span>, ylabel<span class="op">=</span><span class="st">"PC 2"</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>scores_h[:, <span class="dv">0</span>], y<span class="op">=</span>scores_h[:, <span class="dv">1</span>], hue<span class="op">=</span>clusters.astype(<span class="bu">str</span>), ax<span class="op">=</span>axes[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">"Set2"</span>).<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Coloured by k-means cluster"</span>, xlabel<span class="op">=</span><span class="st">"PC 1"</span>, ylabel<span class="op">=</span><span class="st">"PC 2"</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>pd.crosstab(profile[<span class="st">"cooler"</span>], clusters, rownames<span class="op">=</span>[<span class="st">"cooler %"</span>], colnames<span class="op">=</span>[<span class="st">"cluster"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Zh <span class="op">=</span> StandardScaler().fit_transform(feat)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>scores_h <span class="op">=</span> PCA(<span class="dv">2</span>).fit_transform(Zh)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k_ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">7</span>):                           <span class="co"># silhouette score for 2 to 6 clusters</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    labels_k <span class="op">=</span> KMeans(k_, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zh)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"k = </span><span class="sc">{</span>k_<span class="sc">}</span><span class="ss">: silhouette score </span><span class="sc">{</span>silhouette_score(Zh, labels_k)<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>clusters <span class="op">=</span> KMeans(<span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zh)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">4.5</span>))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>scores_h[:, <span class="dv">0</span>], y<span class="op">=</span>scores_h[:, <span class="dv">1</span>], hue<span class="op">=</span>profile[<span class="st">"cooler"</span>].astype(<span class="bu">int</span>).astype(<span class="bu">str</span>),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                ax<span class="op">=</span>axes[<span class="dv">0</span>], s<span class="op">=</span><span class="dv">12</span>).<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Coloured by true cooler condition (%)"</span>, xlabel<span class="op">=</span><span class="st">"PC 1"</span>, ylabel<span class="op">=</span><span class="st">"PC 2"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>scores_h[:, <span class="dv">0</span>], y<span class="op">=</span>scores_h[:, <span class="dv">1</span>], hue<span class="op">=</span>clusters.astype(<span class="bu">str</span>), ax<span class="op">=</span>axes[<span class="dv">1</span>], s<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">"Set2"</span>).<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Coloured by k-means cluster"</span>, xlabel<span class="op">=</span><span class="st">"PC 1"</span>, ylabel<span class="op">=</span><span class="st">"PC 2"</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>pd.crosstab(profile[<span class="st">"cooler"</span>], clusters, rownames<span class="op">=</span>[<span class="st">"cooler %"</span>], colnames<span class="op">=</span>[<span class="st">"cluster"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Silhouette scores: {2: 0.543, 3: 0.551, 4: 0.542, 5: 0.558, 6: 0.563}</code></pre>
+<pre><code>k = 2: silhouette score 0.543
+k = 3: silhouette score 0.551
+k = 4: silhouette score 0.542
+k = 5: silhouette score 0.558
+k = 6: silhouette score 0.563</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -783,6 +788,7 @@ Decision: do not install – the alarm would miss too many failures.</code></pre
 </div>
 </div>
 <p><strong>Discussion.</strong> Temperatures and cooling efficiency depend directly on the cooler condition, so the operating states form well-separated groups in the score plot, and k-means finds them without ever seeing the labels. The cross-table compares clusters and true conditions. This is the ideal case for unsupervised learning: the dominant source of variation in the chosen features <em>is</em> the condition of interest. With features dominated by other influences, clusters would reflect those instead – feature choice is decisive.</p>
+<p>The silhouette scores, however, hardly differ between 2 and 6 clusters (0.54 to 0.56): here they give no clear answer to the question of how many clusters there are. We used <span class="math inline">\(k = 3\)</span> because the test rig was run with three cooler conditions. Without such knowledge, a flat silhouette curve is a warning that the data do not determine the number of clusters – the choice then has to be justified by the purpose of the analysis.</p>
 </section>
 <section id="summary" class="level2" data-number="9.8">
 <h2 data-number="9.8" class="anchored" data-anchor-id="summary"><span class="header-section-number">9.8</span> Summary</h2>
@@ -799,8 +805,8 @@ Key takeaways
 <ul>
 <li>Unsupervised learning finds structure without labels: compression (PCA), grouping (clustering), deviations (anomaly detection).</li>
 <li>PCA on standardised data summarises correlated sensors; T² and SPE monitor a process against its normal behaviour.</li>
-<li>k-means needs a chosen <span class="math inline">\(k\)</span> and spherical clusters; DBSCAN finds arbitrary shapes and noise.</li>
-<li>Fit detectors on normal data, evaluate them with held-out normal data and a few labelled faults.</li>
+<li>k-means needs a chosen <span class="math inline">\(k\)</span> and assumes roughly spherical clusters; the silhouette score can help to choose <span class="math inline">\(k\)</span>, but often the purpose of the analysis decides.</li>
+<li>Test honestly: fit detectors on normal data, evaluate them with held-out normal data and a few labelled faults.</li>
 </ul>
 </div>
 </div>
@@ -809,9 +815,9 @@ Key takeaways
 <h2 data-number="9.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">9.9</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
-<li>Split the passed SECOM runs into a training part (70 %) and a test part (30 %). Fit preprocessing, PCA and Isolation Forest on the training part only and evaluate on the test part plus all failed runs. How much does the AUC change compared with the optimistic evaluation?</li>
-<li>Plot the first two principal component scores of SECOM coloured by pass/fail. Then run k-means with 2–6 clusters. Do clusters correspond to failures?</li>
-<li>Hydraulic system: repeat the analysis with the pressure sensors <code>PS1</code>–<code>PS6</code> instead of the temperatures. Which component condition (cooler, valve, pump, accumulator) do the clusters now reflect best?</li>
+<li>Split the passed SECOM runs into a training part (70 %) and a test part (30 %). Fit preprocessing, PCA and Isolation Forest on the training part only and evaluate on the test part plus all failed runs. How much does the AUC change compared with the optimistic evaluation? <em>Useful:</em> <code>train_test_split(X[y == -1], test_size=0.3, random_state=0)</code> splits the passed runs; <code>pd.concat([a, b])</code> stacks two tables; <code>roc_auc_score</code> as in the live coding.</li>
+<li>Plot the first two principal component scores of SECOM coloured by pass/fail. Then run k-means with 2–6 clusters. Do clusters correspond to failures? <em>Useful:</em> <code>pca_k.transform(prep.transform(X))[:, :2]</code> gives the first two scores; <code>KMeans(k, n_init=10, random_state=0).fit_predict(Z)</code> the cluster of every run.</li>
+<li>Hydraulic system: repeat the analysis with the pressure sensors <code>PS1</code>–<code>PS6</code> instead of the temperatures. Which component condition (cooler, valve, pump, accumulator) do the clusters now reflect best? <em>Useful:</em> <code>read_sensor</code> and the feature loop of the live coding; <code>adjusted_rand_score(a, b)</code> (<code>sklearn.metrics</code>) measures the agreement of two groupings – 1 for identical groupings, about 0 for random agreement.</li>
 <li>Discuss: why is failure detection in SECOM so hard, even though there are almost 600 sensors?</li>
 </ol>
 </div>
@@ -830,25 +836,25 @@ Solution to Exercise 1
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="87245c3c" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>X_pass, X_fail <span class="op">=</span> X[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], X[y <span class="op">==</span> <span class="dv">1</span>]</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>X_pass_tr, X_pass_te <span class="op">=</span> train_test_split(X_pass, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>prep2 <span class="op">=</span> make_pipeline(SimpleImputer(strategy<span class="op">=</span><span class="st">"median"</span>), VarianceThreshold(<span class="fl">1e-8</span>), StandardScaler())</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>Z_tr <span class="op">=</span> prep2.fit_transform(X_pass_tr)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>X_eval <span class="op">=</span> pd.concat([X_pass_te, X_fail])</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>y_eval <span class="op">=</span> np.r_[np.zeros(<span class="bu">len</span>(X_pass_te)), np.ones(<span class="bu">len</span>(X_fail))]</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>Z_eval <span class="op">=</span> prep2.transform(X_eval)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>iso2 <span class="op">=</span> IsolationForest(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(Z_tr)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>pca2 <span class="op">=</span> PCA(k).fit(Z_tr)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>spe2 <span class="op">=</span> np.<span class="bu">sum</span>((Z_eval <span class="op">-</span> pca2.inverse_transform(pca2.transform(Z_eval)))<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC Isolation Forest (proper): </span><span class="sc">{</span>roc_auc_score(y_eval, <span class="op">-</span>iso2.score_samples(Z_eval))<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC SPE (proper):              </span><span class="sc">{</span>roc_auc_score(y_eval, spe2)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>X_pass, X_fail <span class="op">=</span> X[y <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>], X[y <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>X_pass_tr, X_pass_te <span class="op">=</span> train_test_split(X_pass, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>prep2 <span class="op">=</span> make_pipeline(SimpleImputer(strategy<span class="op">=</span><span class="st">"median"</span>), VarianceThreshold(<span class="fl">1e-8</span>), StandardScaler())</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>Z_tr <span class="op">=</span> prep2.fit_transform(X_pass_tr)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>X_eval <span class="op">=</span> pd.concat([X_pass_te, X_fail])</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>y_eval <span class="op">=</span> np.r_[np.zeros(<span class="bu">len</span>(X_pass_te)), np.ones(<span class="bu">len</span>(X_fail))]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>Z_eval <span class="op">=</span> prep2.transform(X_eval)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>iso2 <span class="op">=</span> IsolationForest(n_estimators<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(Z_tr)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>pca2 <span class="op">=</span> PCA(k).fit(Z_tr)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>spe2 <span class="op">=</span> np.<span class="bu">sum</span>((Z_eval <span class="op">-</span> pca2.inverse_transform(pca2.transform(Z_eval)))<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC Isolation Forest (proper): </span><span class="sc">{</span>roc_auc_score(y_eval, <span class="op">-</span>iso2.score_samples(Z_eval))<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ROC AUC SPE (proper):              </span><span class="sc">{</span>roc_auc_score(y_eval, spe2)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ROC AUC Isolation Forest (proper): 0.577
-ROC AUC SPE (proper):              0.596</code></pre>
+ROC AUC SPE (proper):              0.594</code></pre>
 </div>
 </div>
 <p>The SPE in particular drops when evaluated properly: the PCA model reconstructs its own training runs better than new runs, so in the optimistic evaluation the normal runs looked “too normal” compared with the failed ones. Proper separation of training and evaluation data is just as important in unsupervised as in supervised learning.</p>
@@ -868,16 +874,18 @@ Solution to Exercise 2
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="10eeb31d" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>scores_s <span class="op">=</span> pca_k.transform(prep.transform(X))[:, :<span class="dv">2</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(scores_s[:, <span class="dv">0</span>], scores_s[:, <span class="dv">1</span>], c<span class="op">=</span>(y <span class="op">==</span> <span class="dv">1</span>), cmap<span class="op">=</span><span class="st">"coolwarm"</span>, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"PC 1"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"PC 2"</span>)<span class="op">;</span> plt.title(<span class="st">"SECOM scores, red = fail"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>Zall <span class="op">=</span> prep.transform(X)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k_ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">7</span>):</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    lab <span class="op">=</span> KMeans(k_, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zall)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    rates <span class="op">=</span> pd.Series(y.values <span class="op">==</span> <span class="dv">1</span>).groupby(lab).mean()</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"k = </span><span class="sc">{</span>k_<span class="sc">}</span><span class="ss">: failure rate per cluster"</span>, rates.<span class="bu">round</span>(<span class="dv">3</span>).tolist())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>scores_s <span class="op">=</span> pca_k.transform(prep.transform(X))[:, :<span class="dv">2</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(scores_s[:, <span class="dv">0</span>], scores_s[:, <span class="dv">1</span>], c<span class="op">=</span>(y <span class="op">==</span> <span class="dv">1</span>), cmap<span class="op">=</span><span class="st">"coolwarm"</span>, s<span class="op">=</span><span class="dv">8</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"PC 1"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"PC 2"</span>)<span class="op">;</span> plt.title(<span class="st">"SECOM scores, red = fail"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>Zall <span class="op">=</span> prep.transform(X)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k_ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">7</span>):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    lab <span class="op">=</span> KMeans(k_, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zall)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    runs <span class="op">=</span> pd.DataFrame({<span class="st">"cluster"</span>: lab, <span class="st">"fail"</span>: (y <span class="op">==</span> <span class="dv">1</span>).values})</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    per_cluster <span class="op">=</span> runs.groupby(<span class="st">"cluster"</span>)[<span class="st">"fail"</span>].agg([<span class="st">"size"</span>, <span class="st">"mean"</span>])   <span class="co"># runs and failure rate</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"k = </span><span class="sc">{</span>k_<span class="sc">}</span><span class="ss">: runs per cluster </span><span class="sc">{</span>per_cluster[<span class="st">'size'</span>]<span class="sc">.</span>tolist()<span class="sc">}</span><span class="ss">, "</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"failure rate </span><span class="sc">{</span>per_cluster[<span class="st">'mean'</span>]<span class="sc">.</span><span class="bu">round</span>(<span class="dv">3</span>)<span class="sc">.</span>tolist()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -886,16 +894,14 @@ Solution to Exercise 2
 </div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>k = 2: failure rate per cluster [0.2, 0.066]
-k = 3: failure rate per cluster [0.049, 0.084, 0.25]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>k = 4: failure rate per cluster [0.08, 0.25, 0.047, 0.212]
-k = 5: failure rate per cluster [0.06, 0.072, 0.05, 0.25, 0.219]
-k = 6: failure rate per cluster [0.137, 0.041, 0.055, 0.219, 0.051, 0.25]</code></pre>
+<pre><code>k = 2: runs per cluster [5, 1562], failure rate [0.2, 0.066]
+k = 3: runs per cluster [813, 750, 4], failure rate [0.049, 0.084, 0.25]
+k = 4: runs per cluster [725, 4, 805, 33], failure rate [0.08, 0.25, 0.047, 0.212]
+k = 5: runs per cluster [467, 664, 400, 4, 32], failure rate [0.06, 0.072, 0.05, 0.25, 0.219]
+k = 6: runs per cluster [241, 459, 439, 32, 392, 4], failure rate [0.137, 0.041, 0.055, 0.219, 0.051, 0.25]</code></pre>
 </div>
 </div>
-<p>The failed runs are scattered among the passed ones in the first two components, and the failure rate per cluster stays close to the overall rate of about 6–7 %. The dominant sources of variation in SECOM (e.g.&nbsp;tool or recipe changes) are not related to the pass/fail outcome. Clustering finds the largest structure in the data – which need not be the structure we are interested in.</p>
+<p>The failed runs are scattered among the passed ones in the first two components. Most clusters have failure rates close to the overall rate of about 7 %. Always check the number of runs before interpreting a higher rate: the clusters of four or five unusual runs reach 20–25 % with a single failure. More interesting is a group of about 32 runs that appears from <span class="math inline">\(k = 4\)</span> on, with 7 failures (22 %), and for <span class="math inline">\(k = 6\)</span> a cluster of 241 runs with 14 %. Such groups are worth a closer look with the process engineers – for example, whether they belong to one period of production (Chapter 2: the failure rate fell from September on). Still, most failed runs lie in clusters with ordinary failure rates: the clustering does not separate failed from passed runs. The dominant sources of variation in SECOM (e.g.&nbsp;tool or recipe changes) are largely unrelated to the pass/fail outcome. Clustering finds the largest structure in the data – which need not be the structure we are interested in.</p>
 </div>
 </div>
 </div>
@@ -912,20 +918,27 @@ Solution to Exercise 3
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="8847b8bf" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    ps <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"PS1"</span>, <span class="st">"PS2"</span>, <span class="st">"PS3"</span>, <span class="st">"PS4"</span>, <span class="st">"PS5"</span>, <span class="st">"PS6"</span>]}</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>feat_ps <span class="op">=</span> pd.DataFrame({<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>stat<span class="sc">}</span><span class="ss">"</span>: <span class="bu">getattr</span>(np, stat)(v, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">for</span> s, v <span class="kw">in</span> ps.items() <span class="cf">for</span> stat <span class="kw">in</span> [<span class="st">"mean"</span>, <span class="st">"std"</span>, <span class="st">"max"</span>]})</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>Zp <span class="op">=</span> StandardScaler().fit_transform(feat_ps)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>lab_ps <span class="op">=</span> KMeans(<span class="dv">4</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zp)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> adjusted_rand_score</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>{c: <span class="bu">round</span>(adjusted_rand_score(profile[c], lab_ps), <span class="dv">3</span>) <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>]}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>{'cooler': 0.585, 'valve': 0.034, 'pump_leak': 0.094, 'accumulator': 0.04}</code></pre>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> zipfile.ZipFile(hz) <span class="im">as</span> z:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    ps <span class="op">=</span> {s: read_sensor(z, <span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">.txt"</span>) <span class="cf">for</span> s <span class="kw">in</span> [<span class="st">"PS1"</span>, <span class="st">"PS2"</span>, <span class="st">"PS3"</span>, <span class="st">"PS4"</span>, <span class="st">"PS5"</span>, <span class="st">"PS6"</span>]}</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>feat_ps <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s, v <span class="kw">in</span> ps.items():</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    feat_ps[<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_mean"</span>] <span class="op">=</span> v.mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    feat_ps[<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_std"</span>] <span class="op">=</span> v.std(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    feat_ps[<span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">_max"</span>] <span class="op">=</span> v.<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>Zp <span class="op">=</span> StandardScaler().fit_transform(feat_ps)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>lab_ps <span class="op">=</span> KMeans(<span class="dv">4</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit_predict(Zp)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> adjusted_rand_score</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"cooler"</span>, <span class="st">"valve"</span>, <span class="st">"pump_leak"</span>, <span class="st">"accumulator"</span>]:</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>c<span class="sc">:12s}</span><span class="ss">: adjusted Rand index </span><span class="sc">{</span>adjusted_rand_score(profile[c], lab_ps)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>cooler      : adjusted Rand index 0.584
+valve       : adjusted Rand index 0.033
+pump_leak   : adjusted Rand index 0.094
+accumulator : adjusted Rand index 0.039</code></pre>
 </div>
 </div>
-<p>The adjusted Rand index (0 = random agreement, 1 = identical grouping) shows which component condition the clusters reflect. Pressure features respond strongly to the valve condition (switching behaviour) and the accumulator pre-charge pressure, while the temperatures reflected the cooler. Different sensors “see” different faults – a central insight for designing condition monitoring systems.</p>
+<p>The adjusted Rand index (0 = random agreement, 1 = identical grouping) shows which component condition the clusters reflect. Perhaps surprisingly, the clusters of the pressure features again reflect mainly the cooler and hardly the valve, pump or accumulator. The cooler condition changes the oil temperature and thus, probably through the viscosity of the oil, the pressures in the whole system – it is the dominant source of variation in these features. The valve condition is nevertheless contained in the pressure features: a supervised model predicts it with about 99 % accuracy (Chapter 10, Exercise 4). Clustering, however, finds only the largest structure in the data – as in Exercise 2. For a weaker effect, labels and a supervised model are needed.</p>
 </div>
 </div>
 </div>

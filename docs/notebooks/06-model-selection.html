@@ -407,7 +407,7 @@ window.Quarto = {
 </header>
 
 
-<p>A model that reproduces its training data perfectly is usually useless. Given enough parameters, any model can pass through every data point – including the noise. What we really want is a model that <strong>generalises</strong>: that predicts well for new operating points, new parts, next week’s data. This chapter introduces the central idea of machine learning: models must be judged on data they have not seen during fitting.</p>
+<p>In Chapter 5, we used regression to <em>understand</em> a process: which inputs matter, how strongly, and how certain are we? From this chapter on, the main goal is to <em>predict</em> – and that changes how a model is judged (<a href="05-regression-doe.html#sec-inference-prediction" class="quarto-xref"><span>Section 5.1.5</span></a>). A model that reproduces its training data perfectly is usually useless. Given enough parameters, any model can pass through every data point – including the noise. What we really want is a model that <strong>generalises</strong>: that predicts well for new operating points, new parts, next week’s data. This chapter introduces the central idea of machine learning: models must be judged on data they have not seen during fitting.</p>
 <p>We study how model complexity affects the prediction error, learn to estimate this error honestly with cross-validation, and meet two ways to control complexity: regularisation, which penalises large coefficients, and Gaussian processes, a Bayesian approach that also tells us how uncertain each prediction is.</p>
 <div class="scenario">
 <p><strong>Scenario: a surrogate model instead of wind tunnel time</strong></p>
@@ -418,12 +418,13 @@ window.Quarto = {
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>explain overfitting and the bias–variance trade-off,</li>
-<li>evaluate models with train/test splits and k-fold cross-validation,</li>
+<li>explain why models must be judged on data they have not seen, and evaluate them with k-fold cross-validation,</li>
 <li>build preprocessing and model as a scikit-learn pipeline and avoid data leakage,</li>
 <li>use Ridge and Lasso regression to control model complexity,</li>
-<li>fit Gaussian process regression models and interpret their prediction uncertainty,</li>
+<li>explain how a Gaussian process combines prior assumptions with measurements, fit it with scikit-learn and interpret its prediction uncertainty near the data, between data points and outside the data range,</li>
 <li>(extension) explain the idea of Bayesian optimisation for expensive experiments.</li>
 </ul>
+<p><strong>Course goal.</strong> This chapter contributes to step 4 of the <a href="../index.html#what-you-will-be-able-to-do">course goals</a>: build and validate prediction and monitoring models.</p>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://archive.ics.uci.edu/dataset/291/airfoil+self+noise">Airfoil Self-Noise (UCI)</a></li>
@@ -777,8 +778,8 @@ Definition: Ridge and Lasso regression
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="regularisation-in-action"><span class="header-section-number">6.4.2</span> Regularisation in action</h3>
 <p>Instead of picking the degree exactly, we can use a rich model and let Ridge regression control its complexity. <code>RidgeCV</code> selects <span class="math inline">\(\lambda\)</span> by internal cross-validation; the outer cross-validation evaluates the whole procedure.</p>
 <div id="e1a9b9e0" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> make_pipeline(PolynomialFeatures(<span class="dv">5</span>), StandardScaler(),</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                      RidgeCV(alphas<span class="op">=</span>np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">30</span>)))</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>alphas <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">30</span>)        <span class="co"># 30 candidate values from 10^-4 to 10^3, evenly spaced on a log scale</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> make_pipeline(PolynomialFeatures(<span class="dv">5</span>), StandardScaler(), RidgeCV(alphas<span class="op">=</span>alphas))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>res_ridge <span class="op">=</span> cross_validate(ridge, X, y, cv<span class="op">=</span>cv, scoring<span class="op">=</span><span class="st">"neg_root_mean_squared_error"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Ridge, degree 5: CV RMSE = </span><span class="sc">{</span><span class="op">-</span>res_ridge[<span class="st">'test_score'</span>]<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss"> dB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -802,32 +803,83 @@ Engineering practice: nested model selection
 </section>
 <section id="gaussian-process-regression-predictions-with-uncertainty" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="gaussian-process-regression-predictions-with-uncertainty"><span class="header-section-number">6.5</span> Gaussian process regression: predictions with uncertainty</h2>
-<p>Polynomial and linear models assume a fixed functional form. A <strong>Gaussian process (GP)</strong> places a probability distribution directly over functions – it is the Bayesian approach to regression.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Polynomial and linear models assume a fixed functional form. A <strong>Gaussian process (GP)</strong> assumes much less: only that the response changes smoothly with the inputs. It combines this assumption with the measurements by Bayes’ theorem (<a href="03-uncertainty.html#sec-bayes" class="quarto-xref"><span>Section 3.5</span></a>) and therefore delivers, for every input, a prediction <em>and</em> its uncertainty. We explain the idea first with a single measurement, using numbers of the power plant from Chapter 1; <a href="#fig-gp-one" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> shows the two steps.</p>
+<p><strong>Prior: what we assume before measuring.</strong> The unknown quantity is the value <span class="math inline">\(f(x)\)</span> of the response at every input <span class="math inline">\(x\)</span> – here the output of the plant at the ambient temperature <span class="math inline">\(x\)</span>. Before any measurement, a GP assumes two things:</p>
+<ol type="1">
+<li>At every input, <span class="math inline">\(f(x)\)</span> is normally distributed with the same mean <span class="math inline">\(m\)</span> and standard deviation <span class="math inline">\(\sigma_f\)</span>. Here: the output lies around <span class="math inline">\(m = 455\)</span> MW, give or take <span class="math inline">\(\sigma_f = 17\)</span> MW.</li>
+<li>The values at two inputs <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span> are correlated – the more strongly, the closer the inputs are. The <strong>kernel</strong> specifies this correlation; the most common choice is <span class="math display">\[\rho(x, x') = \exp\left(-\frac{(x - x')^2}{2\ell^2}\right).\]</span> The <strong>length scale</strong> <span class="math inline">\(\ell\)</span> states how far the similarity reaches: at a distance of <span class="math inline">\(\ell\)</span>, the correlation is 0.61, at <span class="math inline">\(2\ell\)</span> 0.14, at <span class="math inline">\(3\ell\)</span> practically 0. Here we use <span class="math inline">\(\ell = 5\)</span> °C.</li>
+</ol>
+<p><strong>Step 1 – Bayes at the measured input.</strong> At <span class="math inline">\(x_1 = 20\)</span> °C we measure <span class="math inline">\(y_1 = 440\)</span> MW; the measurement scatters with a standard deviation <span class="math inline">\(\sigma_n = 10\)</span> MW around the true value. Prior and measurement are two pieces of information about the same value <span class="math inline">\(f(x_1)\)</span>. Bayes’ theorem for densities – posterior ∝ likelihood × prior – combines them. For two normal distributions, the posterior is again normal, with mean and standard deviation</p>
+<p><span class="math display">\[\mu_1 = m + w\,(y_1 - m), \qquad \sigma_1 = \sigma_f\sqrt{1 - w}, \qquad w = \frac{\sigma_f^2}{\sigma_f^2 + \sigma_n^2}.\]</span></p>
+<p>The weight <span class="math inline">\(w\)</span> between 0 and 1 states how much the measurement counts compared with the prior. Here <span class="math inline">\(w = 17^2/(17^2 + 10^2) = 0.74\)</span>, so <span class="math inline">\(\mu_1 = 455 + 0.74 \cdot (440 - 455) = 443.9\)</span> MW and <span class="math inline">\(\sigma_1 = 8.6\)</span> MW – more precise than prior and measurement alone. A precise measurement (<span class="math inline">\(\sigma_n \ll \sigma_f\)</span>) gives <span class="math inline">\(w \approx 1\)</span>: the GP follows the measurement. A noisy one pulls the result towards the prior mean.</p>
+<p><strong>Step 2 – transfer to other inputs.</strong> Nothing was measured at 22 °C, but the value there is correlated with the one at 20 °C, with <span class="math inline">\(\rho = 0.92\)</span>. Therefore the fraction <span class="math inline">\(\rho\)</span> of the correction found at 20 °C carries over:</p>
+<p><span class="math display">\[\mu(x) = m + \rho\,w\,(y_1 - m), \qquad \sigma(x) = \sigma_f\sqrt{1 - \rho^2 w}, \qquad \rho = \rho(x, x_1).\]</span></p>
+<p>At 22 °C this gives 444.7 ± 10.3 MW, at 30 °C (<span class="math inline">\(\rho = 0.14\)</span>) 453.5 ± 16.9 MW – almost the prior. At the measured input itself (<span class="math inline">\(\rho = 1\)</span>), the formulas give step 1 again.</p>
+<div id="fig-gp-one" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gp-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/gp-one-point.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
-<div class="callout-title-container flex-fill">
-Definition: Gaussian process
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gp-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.3: A Gaussian process with a single measurement. Left: Bayes at the measured input – prior and measurement combine into the posterior. Right: the correction carries over to other temperatures according to the correlation ρ; far from the measurement, prediction and uncertainty return to the prior.
+</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A Gaussian process is a collection of random variables <span class="math inline">\(f(x)\)</span>, any finite number of which have a joint normal distribution. It is specified by a mean function (often 0) and a <strong>kernel</strong> (covariance function) <span class="math inline">\(\kappa(x, x')\)</span> that states how strongly the function values at <span class="math inline">\(x\)</span> and <span class="math inline">\(x'\)</span> are correlated. A common choice is the squared exponential (RBF) kernel <span class="math display">\[\kappa(x, x') = \sigma_f^2 \exp\left(-\frac{\|x - x'\|^2}{2\ell^2}\right),\]</span> with signal variance <span class="math inline">\(\sigma_f^2\)</span> and <strong>length scale</strong> <span class="math inline">\(\ell\)</span> (we write <span class="math inline">\(\kappa\)</span> to avoid confusion with the <span class="math inline">\(k\)</span> of k-fold cross-validation): points closer than about <span class="math inline">\(\ell\)</span> have similar function values.</p>
-</div>
-</div>
-<p>Given training data, the GP posterior at a new point is again normal: its <strong>mean</strong> is the prediction and its <strong>standard deviation</strong> quantifies the uncertainty. Near the training points the uncertainty is small, far away it grows back to the prior level. The kernel hyperparameters and the noise level are fitted by maximising the marginal likelihood – no cross-validation needed.</p>
+<p><strong>Many measurements.</strong> With many measurements, every measurement pulls its neighbourhood, and the GP combines all of them at once; neighbouring measurements that carry the same information are not counted twice. The software evaluates the same logic in matrix form (extension box below). <a href="#fig-gp" class="quarto-xref">Figure&nbsp;<span>6.4</span></a> shows the result for five measurements:</p>
+<ul>
+<li>Near the measurements, the uncertainty is small – it cannot become smaller than the measurement noise allows.</li>
+<li>Between the measurements, it grows – the more, the farther apart they are compared with <span class="math inline">\(\ell\)</span>.</li>
+<li>Beyond the data, the correlation carries the trend of the data on for about one length scale. Several length scales away, the prediction returns to the prior mean <span class="math inline">\(m\)</span> and the uncertainty to <span class="math inline">\(\sigma_f\)</span>: a GP does not extrapolate a trend indefinitely.</li>
+</ul>
+<p><strong>Fitting.</strong> <span class="math inline">\(\sigma_f\)</span>, <span class="math inline">\(\ell\)</span> and <span class="math inline">\(\sigma_n\)</span> are the <strong>hyperparameters</strong> of the GP. The software fits them by maximum likelihood (Chapter 3): they are chosen such that the measured data become most plausible – no cross-validation needed.</p>
 <div id="fig-gp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/gp-prior-posterior.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.3: A Gaussian process before and after observing data. Left: functions drawn from the prior. Right: after five noisy observations, the posterior mean interpolates the data and the uncertainty band is narrow near the observations and wide in between and outside.
+Figure&nbsp;6.4: A Gaussian process before and after observing data. Left: random functions that satisfy the prior assumptions – at every input, values around the mean with standard deviation <span class="math inline">\(\sigma_f\)</span>, and neighbouring values correlated as the kernel prescribes, hence smooth curves. Right: after five noisy measurements, the posterior mean passes close to the data; the uncertainty band is narrow near the measurements and wide in between and outside.
 </figcaption>
 </figure>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extension: where do the formulas come from?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Step 1.</strong> Prior and likelihood are normal densities: <span class="math display">\[p(f) \propto \exp\left(-\frac{(f - m)^2}{2\sigma_f^2}\right), \qquad p(y_1 \mid f) \propto \exp\left(-\frac{(y_1 - f)^2}{2\sigma_n^2}\right).\]</span> Their product, the posterior, has an exponent that is quadratic in <span class="math inline">\(f\)</span> – so the posterior is a normal density, too. Its variance <span class="math inline">\(\sigma_1^2\)</span> follows from the factor of <span class="math inline">\(f^2\)</span>, <span class="math inline">\(1/\sigma_1^2 = 1/\sigma_f^2 + 1/\sigma_n^2\)</span>, and completing the square gives its mean <span class="math inline">\(\mu_1 = \sigma_1^2\,(m/\sigma_f^2 + y_1/\sigma_n^2)\)</span>. Rearranged, this is <span class="math inline">\(\mu_1 = m + w\,(y_1 - m)\)</span> and <span class="math inline">\(\sigma_1^2 = \sigma_f^2\,(1 - w)\)</span>.</p>
+<p><strong>Step 2.</strong> <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(f(x_1)\)</span> are normally distributed with the same mean <span class="math inline">\(m\)</span>, the same standard deviation <span class="math inline">\(\sigma_f\)</span> and correlation <span class="math inline">\(\rho\)</span>. If <span class="math inline">\(f(x_1)\)</span> were known exactly, the best prediction of <span class="math inline">\(f(x)\)</span> would be the regression line <span class="math inline">\(m + \rho\,(f(x_1) - m)\)</span> – with equal standard deviations, its slope is the correlation – and the share <span class="math inline">\(\rho^2\)</span> of the variance would be explained, as <span class="math inline">\(R^2\)</span> in a simple regression. The rest, <span class="math inline">\(\sigma_f^2(1 - \rho^2)\)</span>, would remain. Since <span class="math inline">\(f(x_1)\)</span> is only known as <span class="math inline">\(\mu_1 \pm \sigma_1\)</span>, its uncertainty is passed on with the factor <span class="math inline">\(\rho^2\)</span>: <span class="math display">\[\mu(x) = m + \rho\,(\mu_1 - m), \qquad \sigma^2(x) = \sigma_f^2\,(1 - \rho^2) + \rho^2\,\sigma_1^2 = \sigma_f^2\,(1 - \rho^2 w).\]</span> The two parts of the variance have the same structure as the prediction interval in Chapter 5: scatter around the curve plus uncertainty of the curve.</p>
+<p><strong>Many measurements.</strong> With measurements <span class="math inline">\(y_1, \dots, y_n\)</span> at <span class="math inline">\(x_1, \dots, x_n\)</span>, the matrix <span class="math inline">\(K\)</span> contains the prior covariances <span class="math inline">\(\sigma_f^2\,\rho(x_i, x_j)\)</span> between the measured inputs, and the vector <span class="math inline">\(k(x)\)</span> the covariances <span class="math inline">\(\sigma_f^2\,\rho(x, x_i)\)</span> between <span class="math inline">\(x\)</span> and the measured inputs. Then <span class="math display">\[\mu(x) = m + k(x)^\top (K + \sigma_n^2 I)^{-1}(y - m), \qquad \sigma^2(x) = \sigma_f^2 - k(x)^\top (K + \sigma_n^2 I)^{-1} k(x).\]</span> For a single measurement, <span class="math inline">\(K = \sigma_f^2\)</span> and <span class="math inline">\(k = \sigma_f^2 \rho\)</span>, and the formulas of step 2 follow.</p>
+</div>
+</div>
+</div>
 <p>GPs are popular as <strong>surrogate models</strong> for expensive simulations and experiments, where data are scarce and knowing the uncertainty matters. Their limitation: the computational cost grows with <span class="math inline">\(n^3\)</span>, so they suit datasets up to a few thousand points.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Engineering practice: Gaussian process or a fixed functional form?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A GP needs no functional form – but that is not always an advantage.</p>
+<ul>
+<li><strong>GP:</strong> few, expensive data points, a smooth response, and the uncertainty matters – surrogate models, design of experiments.</li>
+<li><strong>Physical or empirical model</strong> (Chapter 5): if its form is right, it extrapolates sensibly beyond the data, while a GP returns to the prior mean. Its parameters have a meaning, such as the final strength <span class="math inline">\(f_\infty\)</span>, and can be interpreted and compared.</li>
+<li><strong>Many inputs, thresholds, large datasets:</strong> with many inputs, distances lose their meaning; the smoothness assumption blurs steps and thresholds. Tree ensembles (Chapter 8) are usually the better choice for large tabular datasets.</li>
+<li><strong>Best of both:</strong> use the physical model as the prior mean and let the GP learn only the deviations from it.</li>
+</ul>
+</div>
+</div>
 <p>We first look at a one-dimensional example: the power output of the combined cycle power plant as a function of ambient temperature, learned from only 15 measurements.</p>
 <div id="6d7c2b0d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.gaussian_process <span class="im">import</span> GaussianProcessRegressor</span>
@@ -837,19 +889,21 @@ Figure&nbsp;6.3: A Gaussian process before and after observing data. Left: funct
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pp <span class="op">=</span> pd.concat([ccpp.data.features, ccpp.data.targets], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>few <span class="op">=</span> pp.sample(<span class="dv">15</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> C(<span class="fl">100.0</span>) <span class="op">*</span> RBF(length_scale<span class="op">=</span><span class="fl">10.0</span>) <span class="op">+</span> WhiteKernel(noise_level<span class="op">=</span><span class="fl">10.0</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>gp <span class="op">=</span> GaussianProcessRegressor(kernel<span class="op">=</span>kernel, normalize_y<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>gp.fit(few[[<span class="st">"AT"</span>]], few[<span class="st">"PE"</span>])</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fitted kernel:"</span>, gp.kernel_)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">45</span>, <span class="dv">300</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>mean, std <span class="op">=</span> gp.predict(pd.DataFrame(T, columns<span class="op">=</span>[<span class="st">"AT"</span>]), return_std<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(pp[<span class="st">"AT"</span>], pp[<span class="st">"PE"</span>], s<span class="op">=</span><span class="dv">2</span>, c<span class="op">=</span><span class="st">"lightgray"</span>, label<span class="op">=</span><span class="st">"all data (unknown to the model)"</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(few[<span class="st">"AT"</span>], few[<span class="st">"PE"</span>], c<span class="op">=</span><span class="st">"C3"</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"15 training points"</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.plot(T, mean, label<span class="op">=</span><span class="st">"GP mean"</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.fill_between(T.ravel(), mean <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> std, mean <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> std, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"95 </span><span class="sc">% i</span><span class="st">nterval"</span>)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Ambient temperature (°C)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Power output (MW)"</span>)<span class="op">;</span> plt.legend()</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># kernel = sigma_f² x correlation with length scale l + measurement noise sigma_n² (starting values)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> C(<span class="fl">100.0</span>) <span class="op">*</span> RBF(length_scale<span class="op">=</span><span class="fl">10.0</span>) <span class="op">+</span> WhiteKernel(noise_level<span class="op">=</span><span class="fl">10.0</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>gp <span class="op">=</span> GaussianProcessRegressor(kernel<span class="op">=</span>kernel, normalize_y<span class="op">=</span><span class="va">True</span>,   <span class="co"># normalize_y: standardised outputs, m = their mean</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                              random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>gp.fit(few[[<span class="st">"AT"</span>]], few[<span class="st">"PE"</span>])</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fitted kernel:"</span>, gp.kernel_)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">45</span>, <span class="dv">300</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>mean, std <span class="op">=</span> gp.predict(pd.DataFrame(T, columns<span class="op">=</span>[<span class="st">"AT"</span>]), return_std<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.scatter(pp[<span class="st">"AT"</span>], pp[<span class="st">"PE"</span>], s<span class="op">=</span><span class="dv">2</span>, c<span class="op">=</span><span class="st">"lightgray"</span>, label<span class="op">=</span><span class="st">"all data (unknown to the model)"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.scatter(few[<span class="st">"AT"</span>], few[<span class="st">"PE"</span>], c<span class="op">=</span><span class="st">"C3"</span>, zorder<span class="op">=</span><span class="dv">3</span>, label<span class="op">=</span><span class="st">"15 training points"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.plot(T, mean, label<span class="op">=</span><span class="st">"GP mean"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.fill_between(T.ravel(), mean <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> std, mean <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> std, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">"95 </span><span class="sc">% i</span><span class="st">nterval"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Ambient temperature (°C)"</span>)<span class="op">;</span> plt.ylabel(<span class="st">"Power output (MW)"</span>)<span class="op">;</span> plt.legend()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Fitted kernel: 2.27**2 * RBF(length_scale=29.5) + WhiteKernel(noise_level=0.118)</code></pre>
 </div>
@@ -861,7 +915,13 @@ Figure&nbsp;6.3: A Gaussian process before and after observing data. Left: funct
 </div>
 </div>
 </div>
-<p><strong>Discussion.</strong> With only 15 points, the GP recovers the almost linear trend. The fitted <code>WhiteKernel</code> noise level estimates the scatter of the individual measurements, the RBF length scale how quickly the function can change. Outside the measured temperature range (below the coldest and above the warmest training point), the band widens: the model honestly reports that it does not know. A polynomial would extrapolate with the same confidence everywhere.</p>
+<p><strong>Discussion.</strong> With only 15 points, the GP recovers the almost linear trend. The printed kernel contains the three fitted hyperparameters. Because of <code>normalize_y=True</code>, the GP works with standardised outputs: the prior mean <span class="math inline">\(m\)</span> is the mean of the 15 measured outputs, and <span class="math inline">\(\sigma_f\)</span> and <span class="math inline">\(\sigma_n\)</span> are measured in units of their standard deviation.</p>
+<ul>
+<li><code>2.27**2</code> is <span class="math inline">\(\sigma_f^2\)</span>: before the data, the output may deviate from <span class="math inline">\(m\)</span> by about 2.3 standard deviations.</li>
+<li><code>RBF(length_scale=29.5)</code>: the length scale <span class="math inline">\(\ell = 29.5\)</span> °C is large compared with the measured range. Even values 30 °C apart are correlated with <span class="math inline">\(\rho = 0.60\)</span>, so the curve can bend only gently.</li>
+<li><code>WhiteKernel(noise_level=0.118)</code> is <span class="math inline">\(\sigma_n^2\)</span>: the measurements scatter by <span class="math inline">\(\sigma_n = \sqrt{0.118} \approx 0.34\)</span> standard deviations around the curve.</li>
+</ul>
+<p>Outside the measured temperatures (about 6 to 30 °C), the band widens. The mean, however, continues the downward trend: with <span class="math inline">\(\ell = 29.5\)</span> °C, the correlation carries it over the whole plotted range; only several length scales away would the prediction return to <span class="math inline">\(m\)</span>. Note also that the band describes single new measurements: with a <code>WhiteKernel</code>, <code>predict(..., return_std=True)</code> includes the measurement noise – like the prediction interval in Chapter 5. A polynomial would extrapolate without any warning.</p>
 <div id="92fea65a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GP on the full airfoil problem (5 inputs), compared with the polynomial ridge model</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gp_air <span class="op">=</span> make_pipeline(StandardScaler(), GaussianProcessRegressor(</span>
@@ -872,7 +932,7 @@ Figure&nbsp;6.3: A Gaussian process before and after observing data. Left: funct
 <pre><code>Gaussian process: CV RMSE = 1.89 dB</code></pre>
 </div>
 </div>
-<p>Here we use one length scale per input (an <em>anisotropic</em> or ARD kernel). After fitting, a long length scale indicates that the output changes slowly with that input – a built-in measure of relevance.</p>
+<p>Here the kernel has one length scale per input (<code>length_scale=np.ones(5)</code> sets their starting values). After fitting, a long length scale indicates that the output changes slowly with that input – a built-in measure of relevance.</p>
 </section>
 <section id="back-to-the-decision" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="back-to-the-decision"><span class="header-section-number">6.6</span> Back to the decision</h2>
@@ -960,11 +1020,11 @@ Key takeaways
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>The training error is optimistic; judge models by their error on unseen data.</li>
+<li>Test honestly: the training error is optimistic; judge models by their error on unseen data.</li>
 <li>The test error is U-shaped in model complexity: too simple → bias, too flexible → variance.</li>
 <li>k-fold cross-validation selects models and hyperparameters; preprocessing belongs inside the pipeline.</li>
 <li>Ridge and Lasso control complexity by penalising coefficients (standardise first!).</li>
-<li>Gaussian processes give predictions with uncertainty – valuable for small data and expensive experiments.</li>
+<li>Gaussian processes combine a smoothness assumption (prior) with the measurements by Bayes’ theorem. They give predictions with uncertainty – valuable for small data and expensive experiments – and return to the prior far from the data.</li>
 </ul>
 </div>
 </div>
@@ -974,17 +1034,18 @@ Key takeaways
 <div class="exercises">
 <ol type="1">
 <li>Repeat the degree study for the power plant data (<code>pp</code>, target <code>PE</code>). Why does the curve look so different from the airfoil case?</li>
-<li>Why must the <code>StandardScaler</code> be part of the pipeline instead of being fitted on all data beforehand? Construct an example in which the difference becomes visible.</li>
-<li>Plot predicted vs.&nbsp;measured sound pressure level for the Ridge model, using <code>cross_val_predict</code>. In which range does the model fail?</li>
-<li>GP: increase the number of training points from 15 to 50 and 200. How does the uncertainty band change? What happens outside the measured temperature range?</li>
-<li>(Extension) Replace Ridge by <code>LassoCV</code> (degree 3). How many of the polynomial features survive?</li>
-<li>(Extension) Bayesian optimisation: start with a different set of three runs. Does the algorithm still find the optimum? Compare with a regular grid of the same number of runs.</li>
+<li>Why must the <code>StandardScaler</code> be part of the pipeline instead of being fitted on all data beforehand? Construct an example in which the difference becomes visible. <em>Useful:</em> a step that uses the target makes the effect large – <code>SelectKBest(f_regression, k=20)</code> from <code>sklearn.feature_selection</code> keeps the 20 features most correlated with the target; pure noise data come from <code>rng.normal(size=(100, 2000))</code>.</li>
+<li>Plot predicted vs.&nbsp;measured sound pressure level for the Ridge model, using <code>cross_val_predict</code>. In which range does the model fail? <em>Useful:</em> <code>cross_val_predict(ridge, X, y, cv=cv)</code> from <code>sklearn.model_selection</code> returns for every observation the prediction of the fold model that did not see it.</li>
+<li>GP: increase the number of training points from 15 to 50 and 200. How does the uncertainty band change? What happens outside the measured temperature range? <em>Useful:</em> <code>pp.sample(n, random_state=1)</code> and the kernel and plotting code of the live coding.</li>
+<li>A GP for the plant output has the prior mean 455 MW, <span class="math inline">\(\sigma_f = 17\)</span> MW and the length scale <span class="math inline">\(\ell = 5\)</span> °C. A single measurement at 25 °C gives 450 MW, with a measurement scatter of <span class="math inline">\(\sigma_n = 5\)</span> MW. Compute the prediction and its standard deviation by hand at 25, 27 and 35 °C, and explain the three results.</li>
+<li>Replace Ridge by <code>LassoCV</code> (degree 3). How many of the polynomial features survive? <em>Useful:</em> <code>make_pipeline(PolynomialFeatures(3), StandardScaler(), LassoCV(cv=5))</code>; after <code>fit</code>, <code>pipe[-1].coef_</code> contains the coefficients of the last step and <code>pipe[0].get_feature_names_out(X.columns)</code> the names of the polynomial terms.</li>
+<li>(Extension) Bayesian optimisation: start with a different set of three runs. Does the algorithm still find the optimum? Compare with a regular grid of the same number of runs. <em>Useful:</em> change <code>X_runs</code> in the code of the extension.</li>
 </ol>
 </div>
 <section id="solutions" class="level3" data-number="6.9.1">
 <h3 data-number="6.9.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">6.9.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -993,7 +1054,7 @@ Solution to Exercise 1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="7366d7a9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X_pp, y_pp <span class="op">=</span> pp[[<span class="st">"AT"</span>, <span class="st">"V"</span>, <span class="st">"AP"</span>, <span class="st">"RH"</span>]], pp[<span class="st">"PE"</span>]</span>
@@ -1059,7 +1120,7 @@ Solution to Exercise 1
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1068,7 +1129,7 @@ Solution to Exercise 2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Fitting the scaler on all data uses the means and standard deviations of the test folds – a (here mild) form of leakage. The effect is small for scaling with many observations but becomes large for steps that use the target, e.g.&nbsp;selecting the features most correlated with <span class="math inline">\(y\)</span> before cross-validation:</p>
 <div id="5b925ea7" class="cell" data-execution_count="10">
@@ -1092,7 +1153,7 @@ Solution to Exercise 2
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1101,7 +1162,7 @@ Solution to Exercise 3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="81d3026f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_predict</span>
@@ -1125,7 +1186,7 @@ Solution to Exercise 3
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1134,7 +1195,7 @@ Solution to Exercise 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="792fa64a" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">4</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
@@ -1160,7 +1221,7 @@ Solution to Exercise 4
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1169,7 +1230,58 @@ Solution to Exercise 5
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The weight of the measurement is <span class="math inline">\(w = 17^2/(17^2 + 5^2) = 289/314 = 0.92\)</span>, and <span class="math inline">\(y_1 - m = -5\)</span> MW. With <span class="math inline">\(\rho = \exp(-d^2/2\ell^2)\)</span> for the distance <span class="math inline">\(d\)</span> to 25 °C, the formulas of step 2 give <span class="math inline">\(\mu = 455 - 4.6\,\rho\)</span> MW and <span class="math inline">\(\sigma = 17\sqrt{1 - 0.92\,\rho^2}\)</span> MW:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Temperature</th>
+<th>Distance <span class="math inline">\(d\)</span></th>
+<th><span class="math inline">\(\rho\)</span></th>
+<th><span class="math inline">\(\mu\)</span></th>
+<th><span class="math inline">\(\sigma\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>25 °C</td>
+<td>0</td>
+<td>1</td>
+<td>450.4 MW</td>
+<td>4.8 MW</td>
+</tr>
+<tr class="even">
+<td>27 °C</td>
+<td>2 °C</td>
+<td>0.92</td>
+<td>450.8 MW</td>
+<td>7.9 MW</td>
+</tr>
+<tr class="odd">
+<td>35 °C</td>
+<td>10 °C = <span class="math inline">\(2\ell\)</span></td>
+<td>0.14</td>
+<td>454.4 MW</td>
+<td>16.9 MW</td>
+</tr>
+</tbody>
+</table>
+<p>At 25 °C the precise measurement dominates: the GP almost follows it, and its uncertainty (4.8 MW) is even a little smaller than that of the measurement alone (5 MW), because the prior adds some information. At 27 °C, close to the measurement, most of the correction carries over, but the uncertainty grows. At 35 °C, two length scales away, the measurement says almost nothing: prediction and uncertainty are nearly those of the prior.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="55393631" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
@@ -1202,16 +1314,16 @@ dtype: float64</code></pre>
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution to Exercise 6
+Solution to Exercise 7
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Change <code>X_runs</code> to, e.g., <code>[[100.0], [130.0], [250.0]]</code> and rerun the loop. Usually the algorithm still finds the region of the optimum, because the large uncertainty in unexplored regions makes EI large there. With an unlucky start and a misleading local maximum (the sine term), it may need more iterations. A regular grid of 8 runs over 100–250 °C has a spacing of about 21 °C; the best grid point can easily be several percent below the true optimum, and the grid cannot refine itself. Bayesian optimisation pays off when each run is expensive and runs can be performed one after another.</p>
 </div>

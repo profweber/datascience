@@ -371,8 +371,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#evaluating-classifiers" id="toc-evaluating-classifiers" class="nav-link" data-scroll-target="#evaluating-classifiers"><span class="header-section-number">7.2</span> Evaluating classifiers</a>
   <ul class="collapse">
-  <li><a href="#thresholds-roc-and-precisionrecall-curves" id="toc-thresholds-roc-and-precisionrecall-curves" class="nav-link" data-scroll-target="#thresholds-roc-and-precisionrecall-curves"><span class="header-section-number">7.2.1</span> Thresholds, ROC and precision–recall curves</a></li>
-  <li><a href="#strategies-for-imbalanced-classes" id="toc-strategies-for-imbalanced-classes" class="nav-link" data-scroll-target="#strategies-for-imbalanced-classes"><span class="header-section-number">7.2.2</span> Strategies for imbalanced classes</a></li>
+  <li><a href="#how-much-can-we-trust-an-alarm" id="toc-how-much-can-we-trust-an-alarm" class="nav-link" data-scroll-target="#how-much-can-we-trust-an-alarm"><span class="header-section-number">7.2.1</span> How much can we trust an alarm?</a></li>
+  <li><a href="#thresholds-roc-and-precisionrecall-curves" id="toc-thresholds-roc-and-precisionrecall-curves" class="nav-link" data-scroll-target="#thresholds-roc-and-precisionrecall-curves"><span class="header-section-number">7.2.2</span> Thresholds, ROC and precision–recall curves</a></li>
+  <li><a href="#strategies-for-imbalanced-classes" id="toc-strategies-for-imbalanced-classes" class="nav-link" data-scroll-target="#strategies-for-imbalanced-classes"><span class="header-section-number">7.2.3</span> Strategies for imbalanced classes</a></li>
   </ul></li>
   <li><a href="#live-coding-predictive-maintenance" id="toc-live-coding-predictive-maintenance" class="nav-link" data-scroll-target="#live-coding-predictive-maintenance"><span class="header-section-number">7.3</span> Live coding: predictive maintenance</a></li>
   <li><a href="#back-to-the-decision" id="toc-back-to-the-decision" class="nav-link" data-scroll-target="#back-to-the-decision"><span class="header-section-number">7.4</span> Back to the decision</a></li>
@@ -417,11 +418,14 @@ window.Quarto = {
 <p><strong>Learning goals.</strong> After this chapter you can</p>
 <ul>
 <li>explain how logistic regression, k-nearest neighbours and decision trees classify,</li>
+<li>explain how logistic regression is fitted by maximum likelihood and why this leads to the log-loss,</li>
 <li>evaluate classifiers with confusion matrix, precision, recall, F1, ROC and precision–recall curves,</li>
+<li>explain with Bayes’ theorem why rare failures produce many false alarms (base rate effect),</li>
 <li>handle strongly imbalanced classes with class weights, suitable metrics and threshold choice,</li>
 <li>choose a decision threshold based on the costs of errors,</li>
 <li>recognise and avoid data leakage.</li>
 </ul>
+<p><strong>Course goal.</strong> This chapter contributes to step 4 of the <a href="../index.html#what-you-will-be-able-to-do">course goals</a>: build and validate prediction and monitoring models.</p>
 <p><strong>Datasets in this chapter</strong></p>
 <ul>
 <li><a href="https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset">AI4I 2020 Predictive Maintenance (UCI)</a></li>
@@ -445,6 +449,29 @@ Definition: Logistic regression
 </div>
 </div>
 <p>Logistic regression is the classification counterpart of linear regression: simple, fast, interpretable. A coefficient <span class="math inline">\(\beta_j\)</span> means that one unit more of <span class="math inline">\(x_j\)</span> multiplies the odds of failure by <span class="math inline">\(e^{\beta_j}\)</span> (the <strong>odds ratio</strong>). Its decision boundary – the set of <span class="math inline">\(x\)</span> where the probability equals the threshold – is a straight line (a hyperplane). Nonlinear boundaries require engineered features such as products or squares.</p>
+<p><strong>Fitting by maximum likelihood.</strong> Each record is a Bernoulli experiment, as in the inspection example of Chapter 3 – but now every record <span class="math inline">\(i\)</span> has its own failure probability <span class="math inline">\(p_i = \sigma(\beta_0 + \beta^\top x_i)\)</span>, which depends on its inputs. The likelihood of the observed labels <span class="math inline">\(y_i\)</span> is therefore a function of the coefficients: <span class="math display">\[L(\beta) = \prod_i p_i^{\,y_i}\,(1 - p_i)^{1 - y_i}.\]</span> Each factor is the probability that the model gave to what actually happened: <span class="math inline">\(p_i\)</span> for a failure, <span class="math inline">\(1 - p_i\)</span> for an OK record. The logarithm with reversed sign is the quantity that is minimised, the <strong>log-loss</strong> or <strong>cross-entropy</strong>: <span class="math display">\[-\ln L(\beta) = -\sum_i \big[y_i \ln p_i + (1 - y_i)\ln(1 - p_i)\big].\]</span> In each term, only <span class="math inline">\(-\ln\)</span>(probability of the true class) remains, so confident mistakes are expensive:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>probability given to the true class</th>
+<th>0.9</th>
+<th>0.5</th>
+<th>0.1</th>
+<th>0.01</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>contribution to the log-loss</td>
+<td>0.11</td>
+<td>0.69</td>
+<td>2.3</td>
+<td>4.6</td>
+</tr>
+</tbody>
+</table>
+<p>The squared error of linear regression arises in the same way, as the negative log-likelihood of normally distributed errors (Chapter 5). In general, <strong>a loss function is the negative log-likelihood of an assumed distribution of the data</strong>: choosing a loss means making an assumption about the data.</p>
+<p>Unlike least squares, there is no closed-form solution: <span class="math inline">\(p_i\)</span> depends nonlinearly on <span class="math inline">\(\beta\)</span>, so the software improves the coefficients step by step (<code>max_iter</code> limits the number of steps). The log-loss of logistic regression is convex – it has a single minimum, which the iteration finds from any starting point, unlike the nonlinear fits of Chapter 5. Note that scikit-learn’s <code>LogisticRegression</code> adds a Ridge penalty by default (<code>C=1.0</code>, Chapter 6; a larger <code>C</code> weakens it): it shrinks the coefficients slightly, which matters when they are read as odds ratios.</p>
 </section>
 <section id="k-nearest-neighbours-knn" class="level3" data-number="7.1.2">
 <h3 data-number="7.1.2" class="anchored" data-anchor-id="k-nearest-neighbours-knn"><span class="header-section-number">7.1.2</span> k-nearest neighbours (kNN)</h3>
@@ -452,14 +479,64 @@ Definition: Logistic regression
 </section>
 <section id="decision-trees" class="level3" data-number="7.1.3">
 <h3 data-number="7.1.3" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">7.1.3</span> Decision trees</h3>
-<p>A decision tree splits the input space step by step with simple rules such as “torque &gt; 55 Nm”. At each node, the split is chosen that makes the resulting groups as <strong>pure</strong> as possible, measured e.g.&nbsp;by the Gini impurity <span class="math inline">\(G = 1 - \sum_k p_k^2\)</span>, where <span class="math inline">\(p_k\)</span> is the share of class <span class="math inline">\(k\)</span> in the node. Trees are easy to explain to colleagues and can capture interactions and thresholds, but a single deep tree overfits strongly; its depth must be limited. Chapter 8 shows how combining many trees fixes this.</p>
+<p>A decision tree splits the input space step by step with simple rules such as “torque &gt; 55 Nm”. At each node, the split is chosen that makes the resulting groups as <strong>pure</strong> as possible, measured e.g.&nbsp;by the Gini impurity <span class="math inline">\(G = 1 - \sum_k p_k^2\)</span>, where <span class="math inline">\(p_k\)</span> is the share of class <span class="math inline">\(k\)</span> in the node. A small example: ten milling operations, three of which failed.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Torque (Nm)</th>
+<th>30</th>
+<th>35</th>
+<th>38</th>
+<th>40</th>
+<th>42</th>
+<th>45</th>
+<th>55</th>
+<th>58</th>
+<th>62</th>
+<th>65</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Failure</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Before any split, the failure share is 0.3, and <span class="math inline">\(G = 1 - (0.3^2 + 0.7^2) = 0.42\)</span>. The tree tries every possible threshold – one between each pair of neighbouring values – and computes the impurity of the two groups, weighted by their size:</p>
+<ul>
+<li><em>torque &gt; 50 Nm:</em> left 6 operations without failure (<span class="math inline">\(G = 0\)</span>), right 3 failures out of 4 (<span class="math inline">\(G = 1 - 0.75^2 - 0.25^2 = 0.375\)</span>); weighted <span class="math inline">\(0.6 \cdot 0 + 0.4 \cdot 0.375 = 0.15\)</span>,</li>
+<li><em>torque &gt; 41 Nm:</em> weighted 0.30; <em>torque &gt; 60 Nm:</em> weighted 0.18; all other thresholds give between 0.24 and 0.40.</li>
+</ul>
+<p>The tree takes the split with the smallest weighted impurity, “torque &gt; 50 Nm”, and repeats the same search – over all inputs – in each of the two groups, until the groups are pure or the maximum depth is reached. For a numeric target (a <em>regression tree</em>), the same procedure uses the variance of the target in each group instead of the Gini impurity.</p>
+<p><a href="#fig-tree-steps" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> shows the same procedure with two inputs. Each split is a line parallel to one axis – vertical for a split on <span class="math inline">\(x_1\)</span>, horizontal for a split on <span class="math inline">\(x_2\)</span> – and it divides only the rectangle in which it is made. For each rectangle, the tree chooses input and threshold anew: the same input can be used several times in a row, and an input that never helps is never used. Pure rectangles are not split further. Some splits do not change the predicted class but make one side purer: at depth 4, bottom right, an orange rectangle is split into two orange ones. Another split at depth 4 cuts off a sliver with a single point – too thin to see. Here the tree starts to follow single points.</p>
+<div id="fig-tree-steps" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/tree-steps.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: A decision tree with two inputs, built level by level. Black: the splits added at each depth; grey: the splits of the levels above. The shading shows the predicted class.
+</figcaption>
+</figure>
+</div>
+<p>Trees are easy to explain to colleagues and can capture interactions and thresholds, but a single deep tree overfits strongly; its depth must be limited. Chapter 8 shows how combining many trees fixes this.</p>
 <div id="fig-boundaries" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boundaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/decision-boundaries.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boundaries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1: Decision boundaries of the three classifiers on a two-dimensional toy problem. Logistic regression draws a straight line, kNN follows the local structure of the data, and a decision tree uses axis-parallel steps.
+Figure&nbsp;7.2: Decision boundaries of the three classifiers on a two-dimensional toy problem. Logistic regression draws a straight line, kNN follows the local structure of the data, and a decision tree uses axis-parallel steps.
 </figcaption>
 </figure>
 </div>
@@ -525,9 +602,25 @@ Pitfall: accuracy on imbalanced data
 <p>If 3 % of the records are failures, a “model” that always predicts “OK” reaches 97 % accuracy – and detects nothing. With rare events, accuracy is almost meaningless. Use precision, recall, F1 or balanced accuracy, and always look at the confusion matrix.</p>
 </div>
 </div>
-<p>Precision is nothing but <span class="math inline">\(P(\text{failure} \mid \text{alarm})\)</span> – Bayes’ theorem from Chapter 3. When failures are rare, even a detector with high recall and a low false alarm rate can have a low precision.</p>
-<section id="thresholds-roc-and-precisionrecall-curves" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="thresholds-roc-and-precisionrecall-curves"><span class="header-section-number">7.2.1</span> Thresholds, ROC and precision–recall curves</h3>
+<section id="how-much-can-we-trust-an-alarm" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="how-much-can-we-trust-an-alarm"><span class="header-section-number">7.2.1</span> How much can we trust an alarm?</h3>
+<p>Precision answers the question the maintenance team asks first: if the alarm fires, how likely is a real failure? It is the conditional probability <span class="math inline">\(P(F \mid A)\)</span> of a failure <span class="math inline">\(F\)</span> given an alarm <span class="math inline">\(A\)</span>. Bayes’ theorem (<a href="03-uncertainty.html#sec-bayes" class="quarto-xref"><span>Section 3.5</span></a>) relates it to the properties of the detector: <span class="math inline">\(P(A \mid F)\)</span> is the recall, <span class="math inline">\(P(A \mid \bar F) = \text{FP}/(\text{FP} + \text{TN})\)</span> the false alarm rate, and <span class="math inline">\(P(F)\)</span> the share of failures, the <strong>base rate</strong>: <span class="math display">\[P(F \mid A) = \frac{P(A \mid F)\,P(F)}{P(A \mid F)\,P(F) + P(A \mid \bar F)\,P(\bar F)}.\]</span> Chapter 3 computed an example: with a recall of 95 %, a false alarm rate of 5 % and a base rate of 1 %, only 16 % of the alarms are real. Five out of six alarms are false – not because the detector is bad, but because failures are rare.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pitfall: base rate neglect
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Intuition tends to confuse <span class="math inline">\(P(A \mid F)\)</span> (“the alarm detects 95 % of all failures”) with <span class="math inline">\(P(F \mid A)\)</span> (“95 % of all alarms are real”). When the base rate <span class="math inline">\(P(F)\)</span> is small, the two differ dramatically: even a detector with high recall and a low false alarm rate can have a low precision.</p>
+</div>
+</div>
+</section>
+<section id="thresholds-roc-and-precisionrecall-curves" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="thresholds-roc-and-precisionrecall-curves"><span class="header-section-number">7.2.2</span> Thresholds, ROC and precision–recall curves</h3>
 <p>Lowering the threshold produces more alarms: recall increases, precision usually decreases. Instead of judging a single threshold, we can look at all thresholds at once:</p>
 <ul>
 <li>The <strong>ROC curve</strong> plots the true positive rate (recall) against the false positive rate FP/(FP + TN). The area under the curve (<strong>ROC AUC</strong>) is the probability that a randomly chosen failure gets a higher score than a randomly chosen OK record; 0.5 = random guessing, 1 = perfect ranking.</li>
@@ -543,12 +636,12 @@ Engineering practice: choose the threshold by costs
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The threshold 0.5 is arbitrary. If a missed failure costs <span class="math inline">\(c_{FN}\)</span> and a false alarm <span class="math inline">\(c_{FP}\)</span>, choose the threshold that minimises the total cost <span class="math inline">\(c_{FN} \cdot \text{FN} + c_{FP} \cdot \text{FP}\)</span> – on validation data, not on the test data. For well-calibrated probabilities, the optimal threshold is <span class="math inline">\(c_{FP}/(c_{FP} + c_{FN})\)</span>: if a miss is 20 times as expensive as a false alarm, alarm already at a failure probability of about 5 %.</p>
+<p>The threshold 0.5 is arbitrary. If a missed failure costs <span class="math inline">\(c_{FN}\)</span> and a false alarm <span class="math inline">\(c_{FP}\)</span>, choose the threshold that minimises the total cost <span class="math inline">\(c_{FN} \cdot \text{FN} + c_{FP} \cdot \text{FP}\)</span> – on validation data, not on the test data. For <em>well-calibrated</em> probabilities – among all records with a predicted probability of 5 %, about 5 % actually fail – the optimal threshold is <span class="math inline">\(c_{FP}/(c_{FP} + c_{FN})\)</span>: if a miss is 20 times as expensive as a false alarm, alarm already at a failure probability of about 5 %.</p>
 </div>
 </div>
 </section>
-<section id="strategies-for-imbalanced-classes" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="strategies-for-imbalanced-classes"><span class="header-section-number">7.2.2</span> Strategies for imbalanced classes</h3>
+<section id="strategies-for-imbalanced-classes" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="strategies-for-imbalanced-classes"><span class="header-section-number">7.2.3</span> Strategies for imbalanced classes</h3>
 <ul>
 <li><strong>Stratified splitting:</strong> keep the class proportions equal in training and test data (<code>stratify=y</code>).</li>
 <li><strong>Class weights:</strong> weight errors on the rare class more strongly during training (<code>class_weight="balanced"</code>).</li>
@@ -579,25 +672,20 @@ Engineering practice: choose the threshold by costs
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ai4i <span class="op">=</span> fetch_ucirepo(<span class="bu">id</span><span class="op">=</span><span class="dv">601</span>).data.original</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Column names differ between versions of the dataset (with or without units in brackets,</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># blanks or underscores). We map them to one canonical spelling with units.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>canonical <span class="op">=</span> {<span class="st">"air temperature"</span>: <span class="st">"Air temperature [K]"</span>, <span class="st">"process temperature"</span>: <span class="st">"Process temperature [K]"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">"rotational speed"</span>: <span class="st">"Rotational speed [rpm]"</span>, <span class="st">"torque"</span>: <span class="st">"Torque [Nm]"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>             <span class="st">"tool wear"</span>: <span class="st">"Tool wear [min]"</span>, <span class="st">"machine failure"</span>: <span class="st">"Machine failure"</span>, <span class="st">"type"</span>: <span class="st">"Type"</span>}</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> standardise(col):</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    base <span class="op">=</span> re.sub(<span class="vs">r"[_\s]+"</span>, <span class="st">" "</span>, <span class="bu">str</span>(col).split(<span class="st">"["</span>)[<span class="dv">0</span>]).strip().lower()</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> canonical.get(base, col)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ai4i <span class="op">=</span> ai4i.rename(columns<span class="op">=</span>standardise)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Columns:"</span>, ai4i.columns.tolist())</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">"Type"</span>, <span class="st">"Air temperature [K]"</span>, <span class="st">"Process temperature [K]"</span>,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Rotational speed [rpm]"</span>, <span class="st">"Torque [Nm]"</span>, <span class="st">"Tool wear [min]"</span>]</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(ai4i[features], columns<span class="op">=</span>[<span class="st">"Type"</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> ai4i[<span class="st">"Machine failure"</span>]</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Failure rate: </span><span class="sc">{</span>y<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: the columns TWF, HDF, PWF, OSF, RNF describe the failure mode.</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Using them as features would be data leakage!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Some versions of the dataset have no units in the column names. We add them;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># names that already carry units stay unchanged.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>units <span class="op">=</span> {<span class="st">"Air temperature"</span>: <span class="st">"Air temperature [K]"</span>, <span class="st">"Process temperature"</span>: <span class="st">"Process temperature [K]"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Rotational speed"</span>: <span class="st">"Rotational speed [rpm]"</span>, <span class="st">"Torque"</span>: <span class="st">"Torque [Nm]"</span>, <span class="st">"Tool wear"</span>: <span class="st">"Tool wear [min]"</span>}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ai4i <span class="op">=</span> ai4i.rename(columns<span class="op">=</span>units)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Columns:"</span>, ai4i.columns.tolist())</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [<span class="st">"Type"</span>, <span class="st">"Air temperature [K]"</span>, <span class="st">"Process temperature [K]"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Rotational speed [rpm]"</span>, <span class="st">"Torque [Nm]"</span>, <span class="st">"Tool wear [min]"</span>]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(ai4i[features], columns<span class="op">=</span>[<span class="st">"Type"</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> ai4i[<span class="st">"Machine failure"</span>]</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Failure rate: </span><span class="sc">{</span>y<span class="sc">.</span>mean()<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: the columns TWF, HDF, PWF, OSF, RNF describe the failure mode.</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Using them as features would be data leakage!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Columns: ['UID', 'Product ID', 'Type', 'Air temperature [K]', 'Process temperature [K]', 'Rotational speed [rpm]', 'Torque [Nm]', 'Tool wear [min]', 'Machine failure', 'TWF', 'HDF', 'PWF', 'OSF', 'RNF']
 Failure rate: 3.4%</code></pre>
@@ -673,7 +761,7 @@ weighted avg      0.971     0.932     0.946      2500
 </code></pre>
 </div>
 </div>
-<p><strong>Discussion.</strong> Read the reports row by row: the line for class 1 (failure) is the interesting one. Typically, logistic regression with class weights detects many failures (high recall) but raises many false alarms (low precision), because its linear boundary cannot isolate the failure regions. kNN without class weights is conservative: few false alarms, but many missed failures. The decision tree can represent the thresholds in torque, speed and tool wear that generate the failures and usually achieves the best balance. The accuracy row is high for all models – and says little.</p>
+<p><strong>Discussion.</strong> Read the reports row by row: the line for class 1 (failure) is the interesting one. Typically, logistic regression with class weights detects many failures (high recall) but raises many false alarms (low precision), because its linear boundary cannot isolate the failure regions. kNN without class weights is conservative: few false alarms, but many missed failures. The decision tree can represent the thresholds in torque, speed and tool wear that generate the failures and usually achieves the best balance. The accuracy row is high for all models – and says little. <code>support</code> is the number of test records of each class (85 failures). The last two rows average over the classes: <code>macro avg</code> treats both classes equally, <code>weighted avg</code> weights them by their support – and is therefore dominated by the many OK records.</p>
 <div id="6ccf3c7d" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
@@ -727,7 +815,7 @@ decision tree             254.0 k€
 Decision: install the alarm based on the decision tree – saving 596.0 k€ (70%) per test period.</code></pre>
 </div>
 </div>
-<p>The cost comparison translates the confusion matrix into the language of the plant manager. Exercise 2 shows that choosing the threshold by cost improves the result further. Before the final decision, two things should be checked: the AI4I data are <em>simulated</em>, so the savings must be confirmed in a pilot on the real line; and the assumption that every detected failure can be prevented is optimistic.</p>
+<p>The cost comparison translates the confusion matrix into the language of the plant manager. Strictly, choosing the cheapest of three models on the test set makes its cost slightly optimistic; the clean way chooses on a validation split – as Exercise 2 does for the threshold – and reports the cost of the chosen model on the test set. With differences this large, the choice of the decision tree would not change. Exercise 2 shows that choosing the threshold by cost improves the logistic regression (from 442 to 404 k€) – but not enough to catch up with the tree. Before the final decision, two things should be checked: the AI4I data are <em>simulated</em>, so the savings must be confirmed in a pilot on the real line; and the assumption that every detected failure can be prevented is optimistic.</p>
 </section>
 <section id="summary" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.5</span> Summary</h2>
@@ -742,9 +830,11 @@ Key takeaways
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Classifiers estimate class probabilities; a threshold turns them into decisions – choose it by the costs of errors.</li>
+<li>Start from the decision: classifiers estimate class probabilities, and a threshold turns them into decisions – choose it by the costs of errors.</li>
 <li>Logistic regression: linear boundary, interpretable; kNN: local, needs scaling; trees: thresholds and interactions, must be kept shallow.</li>
+<li>Every model rests on assumptions: logistic regression minimises the log-loss, the negative log-likelihood of Bernoulli-distributed labels.</li>
 <li>With rare events, accuracy and ROC can look good while the model is useless – use precision, recall and precision–recall curves.</li>
+<li>Bayes’ theorem: with rare events, even good detectors produce mostly false alarms – the precision depends on the base rate.</li>
 <li>Features that encode the outcome (here: the failure mode columns) cause data leakage.</li>
 </ul>
 </div>
@@ -754,17 +844,18 @@ Key takeaways
 <h2 data-number="7.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.6</span> Exercises</h2>
 <div class="exercises">
 <ol type="1">
-<li>Add the failure mode columns (TWF, HDF, PWF, OSF, RNF) as features and retrain the decision tree. What happens to the scores – and why is this result worthless?</li>
-<li>Assume a missed failure costs 10,000 € and a false alarm 500 €. Choose the decision threshold of the logistic regression that minimises the total cost. Use a validation split of the training data, not the test data.</li>
-<li>Visualise the decision tree (<code>sklearn.tree.plot_tree</code>, depth 3). Do the rules make physical sense?</li>
-<li>Construct the feature <code>power [W]</code> = torque × angular velocity and the temperature difference between process and air. Do they improve the logistic regression? Why?</li>
+<li>Add the failure mode columns (TWF, HDF, PWF, OSF, RNF) as features and retrain the decision tree. What happens to the scores – and why is this result worthless? <em>Useful:</em> <code>X.join(ai4i[["TWF", "HDF", "PWF", "OSF", "RNF"]])</code> adds the columns.</li>
+<li>Assume a missed failure costs 10,000 € and a false alarm 500 €. Choose the decision threshold of the logistic regression that minimises the total cost. Use a validation split of the training data, not the test data. <em>Useful:</em> <code>train_test_split(X_train, y_train, test_size=0.3, stratify=y_train)</code> gives the validation split; <code>predict_proba(X_val)[:, 1]</code> the failure probabilities; <code>np.linspace(0.01, 0.99, 99)</code> candidate thresholds.</li>
+<li>Visualise the decision tree (<code>sklearn.tree.plot_tree</code>, depth 3). Do the rules make physical sense? <em>Useful:</em> <code>plt.figure(figsize=(16, 7))</code> before <code>plot_tree(tree, feature_names=X.columns, class_names=["OK", "failure"], filled=True)</code>.</li>
+<li>Construct the feature <code>power [W]</code> = torque × angular velocity and the temperature difference between process and air. Do they improve the logistic regression? Why? <em>Useful:</em> angular velocity = rotational speed · 2π/60; compare with <code>cross_val_score(..., scoring="average_precision")</code> – the <strong>average precision</strong> summarises the precision–recall curve in one number (roughly the area under it; 1 = perfect).</li>
 <li>A test set has TN = 950, FP = 30, FN = 5, TP = 15. Compute accuracy, precision, recall and F1 by hand. Is the model useful?</li>
+<li>In a well-maintained plant, only 0.1 % of the operations end in a failure. How reliable is an alarm with a recall of 95 % and a false alarm rate of 5 %? Which false alarm rate would be needed for <span class="math inline">\(P(F \mid A) = 50\,\%\)</span>?</li>
 </ol>
 </div>
 <section id="solutions" class="level3" data-number="7.6.1">
 <h3 data-number="7.6.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">7.6.1</span> Solutions</h3>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -773,7 +864,7 @@ Solution to Exercise 1
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="771ddced" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X_leak <span class="op">=</span> X.join(ai4i[[<span class="st">"TWF"</span>, <span class="st">"HDF"</span>, <span class="st">"PWF"</span>, <span class="st">"OSF"</span>, <span class="st">"RNF"</span>]])</span>
@@ -797,7 +888,7 @@ weighted avg      0.998     0.998     0.998      2500
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -806,7 +897,7 @@ Solution to Exercise 2
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="d4c21da6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>X_fit, X_val, y_fit, y_val <span class="op">=</span> train_test_split(X_train, y_train, test_size<span class="op">=</span><span class="fl">0.3</span>,</span>
@@ -844,7 +935,7 @@ Solution to Exercise 2
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -853,7 +944,7 @@ Solution to Exercise 3
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="5174a083" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> plot_tree</span>
@@ -876,7 +967,7 @@ Solution to Exercise 3
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -885,7 +976,7 @@ Solution to Exercise 4
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div id="d2823de4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>X_eng <span class="op">=</span> X.copy()</span>
@@ -904,12 +995,12 @@ Solution to Exercise 4
 with engineered features   average precision = 0.453</code></pre>
 </div>
 </div>
-<p>Engineered features based on physics can help logistic regression a lot, because they turn curved boundaries into simpler ones. But power failures occur for <em>both</em> too low and too high power – a linear model in <code>power</code> can only represent one side. Squared or binned terms, or a tree-based model, are needed to capture both. This is a typical example of how domain knowledge and model choice interact.</p>
+<p>Here the engineered features help only a little (average precision 0.43 → 0.45). Physics-based features can turn curved boundaries into simpler ones – but power failures occur for <em>both</em> too low and too high power, and a linear model in <code>power</code> can only represent one side. Squared or binned terms, or a tree-based model, are needed to capture both. This is a typical example of how domain knowledge and model choice interact.</p>
 </div>
 </div>
 </div>
 <div class="solution callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -918,10 +1009,26 @@ Solution to Exercise 5
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Total = 1000. Accuracy = (950 + 15)/1000 = 96.5 %. Precision = 15/(15 + 30) = 33 %. Recall = 15/(15 + 5) = 75 %. F1 = 2 · 0.33 · 0.75/(0.33 + 0.75) ≈ 0.46.</p>
 <p>The accuracy is lower than that of the trivial model “always OK” (98 %)! Still, the model may be useful: it detects three of four failures, at the price of two false alarms per real one. Whether that is acceptable depends on the costs – if a missed failure is expensive and checking an alarm is cheap, this model is valuable despite its “bad” accuracy.</p>
+</div>
+</div>
+</div>
+<div class="solution callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution to Exercise 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>With <span class="math inline">\(P(F) = 0.001\)</span>: <span class="math display">\[P(F \mid A) = \frac{0.95 \cdot 0.001}{0.95 \cdot 0.001 + 0.05 \cdot 0.999} \approx 0.019,\]</span> i.e.&nbsp;only about 2 % of the alarms are real. For <span class="math inline">\(P(F \mid A) = 0.5\)</span> we need <span class="math inline">\(0.95 \cdot 0.001 = q \cdot 0.999\)</span>, where <span class="math inline">\(q = P(A \mid \bar F)\)</span> is the false alarm rate, so <span class="math inline">\(q \approx 0.00095\)</span> – roughly one false alarm per thousand healthy operations. The more reliable the plant, the more specific the alarm must be.</p>
 </div>
 </div>
 </div>
